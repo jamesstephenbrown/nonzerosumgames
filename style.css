@@ -16,6 +16,9 @@ h1 {
 h2 {
 	font-size: large;
 }
+/* h3 {
+	font-size: medium;
+} */
 game {
 	align-content: center;
 }
@@ -26,13 +29,13 @@ game {
   position: relative;
 }
  @media only screen and (max-width: 768px) {
-  b {
+  h3 {
     font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 320px) {
-  b {
+  h3 {
     font-size: 10px;
   }
 }
