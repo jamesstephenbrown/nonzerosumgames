@@ -67,5 +67,7 @@ game {
   }
 } */
 hr {
-	color: #4dffb0;
+	height: 1px;
+	background-color: #4dffb0;
+	border: none;
 }
