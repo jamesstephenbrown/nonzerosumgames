@@ -16,9 +16,11 @@ h1 {
 h2 {
 	font-size: large;
 }
-/* h3 {
+h3 {
 	font-size: medium;
-} */
+	margin-left: 50;
+	margin-right: 50;
+}
 game {
 	align-content: center;
 }
@@ -31,12 +33,16 @@ game {
  @media only screen and (max-width: 768px) {
   h3 {
     font-size: 20px;
+	margin-left: 20;
+	margin-right: 20;
   }
 }
 
 @media only screen and (max-width: 320px) {
   h3 {
     font-size: 10px;
+	margin-left: 10;
+	margin-right: 10;
   }
 }
 .iframe-container iframe {
