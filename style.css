@@ -1,7 +1,9 @@
 body {
 	margin-top: 20;
-	padding-left: 50;
-	padding-right: 50;
+	margin-left: 100;
+	margin-right: 100;
+	padding-left: 100;
+	padding-right: 100;
 	
 /* 	color: #4dffb0; green  */
 	color: white;
