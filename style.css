@@ -5,6 +5,10 @@ body {
 	background-color: #c9c9c9;
 	font-size: small;
 }
+p {
+	margin-left: 50;
+	margin-right: 50;
+}
 
 h1 {
 	font-size: x-large;
@@ -47,7 +51,7 @@ game {
     max-height: 100vh;
     margin: auto;
 }
-/*  @media only screen and (max-width: 768px) {
+ @media only screen and (max-width: 768px) {
   p {
     font-size: 20px;
 	margin-left: 20;
@@ -61,5 +65,5 @@ game {
 	margin-left: 10;
 	margin-right: 10;
   }
-} */
+}
 
