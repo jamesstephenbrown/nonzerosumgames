@@ -23,13 +23,19 @@ p {
 
 h1 {
 	font-size: x-large;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 h2 {
 	font-size: large;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 h3 {
 	font-size: medium;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 game {
 	align-content: center;
@@ -49,8 +55,10 @@ game {
    width: 100%;
 }
 * {
-    margin: 0;
-    padding: 0;
+/*     margin: 0;
+    padding: 0; */
+	margin-left: 5%;
+	margin-right: 5%;
 }
 .imgbox {
     display: grid;
