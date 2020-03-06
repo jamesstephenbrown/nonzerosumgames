@@ -34,10 +34,12 @@ game {
    width: 100%;
 }
 * {
-    margin: 0;
-    padding: 0;
+    margin: 20;
+    padding: 20;
 }
 .imgbox {
+    margin: 20;
+    padding: 20;
     display: grid;
     height: 100%;
 }
