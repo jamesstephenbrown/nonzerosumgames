@@ -4,7 +4,7 @@ body {
 	padding-right: 50;
 	
 /* 	color: #4dffb0; green  */
-	color: #4dffb0;
+	color: white;
 	font-family: arial;
 	text-align: center;
 	background-color: #3b877e;
@@ -66,3 +66,6 @@ game {
 	margin-right: 10;
   }
 } */
+hr {
+	color: #4dffb0;
+}
