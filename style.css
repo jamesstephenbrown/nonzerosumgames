@@ -1,7 +1,9 @@
 body {
 	margin-top: 20;
+	margin-left: 50;
+	margin-right: 50;
 /* 	color: #4dffb0; green  */
-	color: white;
+	color: #4dffb0;
 	font-family: arial;
 	text-align: center;
 	background-color: #3b877e;
