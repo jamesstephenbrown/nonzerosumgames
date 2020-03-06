@@ -1,9 +1,9 @@
 body {
-	color: gray;
+	color: #c9c9c9;
 	font-family: arial;
 	text-align: center;
-	background-color: #c9c9c9;
-	font-size: small;
+	background-color: gray;
+	font-size: medium;
 	margin-left: 100;
 	margin-right: 100;
 }
@@ -52,20 +52,5 @@ game {
     max-width: 100%;
     max-height: 100vh;
     margin: auto;
-}
- @media only screen and (max-width: 768px) {
-  p {
-    font-size: 20px;
-	margin-left: 20;
-	margin-right: 20;
-  }
-}
-
-@media only screen and (max-width: 320px) {
-  p {
-    font-size: 10px;
-	margin-left: 10;
-	margin-right: 10;
-  }
 }
 
