@@ -3,10 +3,10 @@ body {
 	font-family: arial;
 	text-align: center;
 	background-color: gray;
-	font-size: 4vw;
+	font-size: (4/1vw);
 	margin-left: 100;
 	margin-right: 100;
-}
+}1
 p {
 	margin-left: 100;
 	margin-right: 100;
