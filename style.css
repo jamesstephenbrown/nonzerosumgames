@@ -3,7 +3,7 @@ body {
 	font-family: arial;
 	text-align: center;
 	background-color: gray;
-	font-size: 4vw;
+	font-size: (1/4)vw;
 	margin-left: 100;
 	margin-right: 100;
 }
