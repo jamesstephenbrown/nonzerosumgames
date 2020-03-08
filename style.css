@@ -6,7 +6,15 @@ body {
 	font-size: 4vw;
 	margin-left: 100;
 	margin-right: 100;
-}1
+}
+
+#Light {
+	background-color: white;
+}
+#Dark {
+	background-color: gray;
+}
+
 p {
 	margin-left: 100;
 	margin-right: 100;
