@@ -57,8 +57,8 @@ hr {
 }
 .imgbox {
     height: 100%;
-    margin: 0;
-    padding: 0;
+    margin: -1;
+    padding: -1;
 }
 .center-fit {
     max-width: 100%;
