@@ -1,8 +1,8 @@
 body {
-	color: #c9c9c9;
+	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
-	background-color: gray;
+	background-color: #3a3a3a;
 	font-size: (1/4)vw;
 	margin-left: 100;
 	margin-right: 100;
@@ -12,7 +12,7 @@ body {
 	background-color: white;
 }
 #Dark {
-	background-color: gray;
+	background-color: #3a3a3a;
 }
 
 p {
@@ -35,7 +35,7 @@ game {
 }
 
 hr {
-	background-color: gray;
+	background-color: 3a3a3a;
 }
 .iframe-container {
   overflow: hidden;
