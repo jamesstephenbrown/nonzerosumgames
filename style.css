@@ -8,6 +8,10 @@ body {
 	margin-right: 500;
 }
 
+left {
+	text-align: left;
+}
+
 #Light {
 	background-color: white;
 }
