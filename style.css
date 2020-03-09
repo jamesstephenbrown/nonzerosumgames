@@ -4,17 +4,18 @@ body {
 	text-align: center;
 	background-color: #3a3a3a;
 	font-size: 240/1vw;
-	margin-left: 500;
-	margin-right: 500;
 }
 
-left {
+.left {
 	text-align: left;
+	margin-left: 5% !important;
+	margin-right: 5% !important;
 }
 
 #Light {
 	background-color: white;
 }
+
 #Dark {
 	background-color: #3a3a3a;
 }
@@ -31,9 +32,11 @@ h1 {
 h2 {
 	font-size: large;
 }
+
 h3 {
 	font-size: medium;
 }
+
 game {
 	align-content: center;
 }
@@ -41,36 +44,41 @@ game {
 hr {
 	background-color: 3a3a3a;
 }
+
 .iframe-container {
-  overflow: hidden;
-/*   // Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625) */
-  padding-top: 56.25%;
-  position: relative;
-}
-.iframe-container iframe {
-   border: 0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
-}
-* {
-    margin: 100;
-    padding: 100;
-}
-.imgbox {
-    height: 100%;
-    margin: -1;
-    padding: -1;
-}
-.textbox {
-    margin: 500;
-    padding: 500;
-}
-.center-fit {
-    max-width: 100%;
-    max-height: 100vh;
-    margin: auto;
+	overflow: hidden;
+	/*   // Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625) */
+	padding-top: 56.25%;
+	position: relative;
 }
 
+	.iframe-container iframe {
+		border: 0;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+
+* {
+	margin: 100;
+	padding: 100;
+}
+
+.imgbox {
+	height: 100%;
+	margin: -1;
+	padding: -1;
+}
+
+.textbox {
+	margin: 500;
+	padding: 500;
+}
+
+.center-fit {
+	max-width: 100%;
+	max-height: 100vh;
+	margin: auto;
+}
