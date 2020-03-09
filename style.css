@@ -37,12 +37,21 @@ h3 {
 	font-size: medium;
 }
 
+.tab {
+	position: absolute;
+	left: 200px !important;
+}
+
 game {
 	align-content: center;
 }
 
 hr {
 	background-color: 3a3a3a;
+}
+
+a {
+	color: #4dffb0;
 }
 
 .iframe-container {
