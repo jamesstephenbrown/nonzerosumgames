@@ -1,10 +1,10 @@
-body {
+﻿body {
 	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
 	background-color: #3a3a3a;
-	/*font-size: 120/(2vw) !important;*/
-	/*font-size: 14 !important;*/
+	/*font-size: 2vw !important;*/
+	font-size: 12px !important
 }
 
 .left {
@@ -20,23 +20,6 @@ body {
 #Dark {
 	background-color: #3a3a3a;
 }
-
-p {
-	margin-left: 100;
-	margin-right: 100;
-}
-
-/*h1 {*/
-/*font-size: x-large;
-}
-
-h2 {
-	font-size: large;
-}
-
-h3 {
-	font-size: medium;
-}*/
 
 .tab {
 	position: absolute;
@@ -71,20 +54,16 @@ a {
 		width: 100%;
 	}
 
-* {
-	margin: 100;
-	padding: 100;
-}
-
 .imgbox {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	/*z-index: - !important;*/
 }
 
-.textbox {
-	margin: 500;
-	padding: 500;
+.dividerMarginFix {
+	margin-bottom: -20px !important;
+	/*z-index: -1 !important;*/
 }
 
 .center-fit {
