@@ -37,6 +37,10 @@ game {
 	align-content: center;
 }
 
+h1 {
+	text-align: center !important;
+}
+
 hr {
 	background-color: 3a3a3a;
 }
