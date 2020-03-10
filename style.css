@@ -23,7 +23,7 @@
 
 .tab {
 	position: absolute;
-	left: 200px !important;
+	left: 20%;
 }
 
 game {
@@ -63,6 +63,7 @@ a {
 
 .dividerMarginFix {
 	margin-bottom: -20px !important;
+	margin-top: -2px !important;
 	/*z-index: -1 !important;*/
 }
 
