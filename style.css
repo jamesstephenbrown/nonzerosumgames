@@ -4,13 +4,19 @@
 	text-align: center;
 	background-color: #3a3a3a;
 	/*font-size: 2vw !important;*/
-	font-size: 12px !important
+	font-size: 12px !important;
 }
 
 .left {
 	text-align: left;
-	margin-left: 5% !important;
-	margin-right: 5% !important;
+	margin-left: 50px !important;
+	margin-right: 50px !important;
+}
+
+.center {
+	text-align: center;
+	margin-left: 50px !important;
+	margin-right: 50px !important;
 }
 
 #Light {
@@ -23,7 +29,8 @@
 
 .tab {
 	position: absolute;
-	left: 20%;
+	left: 150px !important;
+	font-size: 12px !important;
 }
 
 game {
@@ -76,5 +83,6 @@ a {
 .center-expand {
 	max-width: 100%;
 	max-height: 100vh;
-	margin: auto;
+	margin-left: -1px !important;
+	margin-right: -1px !important;
 }
