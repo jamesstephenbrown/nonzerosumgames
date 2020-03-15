@@ -7,6 +7,26 @@
 	font-size: 12px !important;
 }
 
+h1 {
+	text-align: center !important;
+}
+
+hr {
+	background-color: 3a3a3a;
+}
+
+#Light {
+	background-color: white;
+}
+
+#Dark {
+	background-color: #3a3a3a;
+}
+
+a {
+	color: #4dffb0;
+}
+
 .left {
 	text-align: left;
 	margin-left: 50px !important;
@@ -19,34 +39,14 @@
 	margin-right: 50px !important;
 }
 
-#Light {
-	background-color: white;
-}
-
-#Dark {
-	background-color: #3a3a3a;
-}
-
 .tab {
 	position: absolute;
 	left: 150px !important;
 	font-size: 12px !important;
 }
 
-game {
+.game {
 	align-content: center;
-}
-
-h1 {
-	text-align: center !important;
-}
-
-hr {
-	background-color: 3a3a3a;
-}
-
-a {
-	color: #4dffb0;
 }
 
 .iframe-container {
@@ -73,8 +73,8 @@ a {
 }
 
 .dividerMarginFix {
-	margin-bottom: -20px !important;
-	margin-top: -2px !important;
+	margin-bottom: -25px !important;
+	margin-top: -1px !important;
 	/*z-index: -1 !important;*/
 }
 
