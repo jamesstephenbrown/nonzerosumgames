@@ -4,7 +4,7 @@
 	text-align: center;
 	background-color: #3a3a3a;
 	/*font-size: 2vw !important;*/
-	font-size: 14px !important;
+	font-size: 13px !important;
 }
 
 h1 {
@@ -74,12 +74,12 @@ a {
 
 .dividerMarginFix {
 	margin-bottom: -25px !important;
-	margin-top: -1px !important;
+	margin-top: -4px !important;
 	/*z-index: -1 !important;*/
 }
 .dividerMarginFix2 {
 	margin-bottom: -25px !important;
-	margin-top: -2px !important;
+	margin-top: -4px !important;
 	/*z-index: -1 !important;*/
 }
 
