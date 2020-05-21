@@ -1,4 +1,4 @@
-﻿body {
+body {
 	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
@@ -56,14 +56,35 @@ a {
 	position: relative;
 }
 
-	.iframe-container iframe {
-		border: 0;
-		height: 100%;
-		left: 0;
-		position: absolute;
-		top: 0;
-		width: 100%;
-	}
+.iframe-container iframe {
+	border: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+
+/*  .mobileShow {
+  	display: none;
+  } 
+
+  /* Smartphone Portrait and Landscape */ 
+/*  @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px){ 
+      .mobileShow {display: inline;
+      }*/
+
+  /*.mobileHide { display: inline; } */
+
+  /* Smartphone Portrait and Landscape */ 
+/*  @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 480px){ 
+     .mobileHide { display: none;}
+  }*/
 
 .imgbox {
 	height: 100%;
@@ -79,7 +100,7 @@ a {
 }
 .dividerMarginFix2 {
 	margin-bottom: -25px !important;
-	margin-top: -4px !important;
+	margin-top: -4px !important; /*I did have it at -2*/
 	/*z-index: -1 !important;*/
 }
 
