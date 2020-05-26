@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <section id="Header">
-    <a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('HideMenu')"><h1><div class="left"> >> </div></h1></a>
-    <div class="mid" id="HideMenu" style="display: none;">
-        <section id="MenuBackground">
-        <div class="left">
+    <section id="Header"><!-- maybe I can flip this on its side -->
+	    <a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('HideMenu')">
+	    <div class="menuButton"><h1> ||| </h1>
+	    </div></a>
+	    <div class="menuBackground" id="HideMenu" style="display: none;">
         	<br>
             <ul>
                 <li><a href="#Top">Top</a></li>
@@ -18,18 +18,17 @@
                 <li><a href="#Graviton">Graviton</a></li>
             </ul>
             <br>
-        </div>
-    </div>
-    <script type="text/javascript">// <![CDATA[
-        function ShowHide(divId) {
-            if (document.getElementById(divId).style.display == 'none') {
-                document.getElementById(divId).style.display = 'block';
-            } else {
-                document.getElementById(divId).style.display = 'none';
-            }
-        }
-    </script>
-    </section></section>
+	    </div>
+	    <script type="text/javascript">// <![CDATA[
+	        function ShowHide(divId) {
+	            if (document.getElementById(divId).style.display == 'none') {
+	                document.getElementById(divId).style.display = 'block';
+	            } else {
+	                document.getElementById(divId).style.display = 'none';
+	            }
+	        }
+	    </script>
+    </section id="Header"></section id="MenuBackground">
     <title>NON-ZERO-SUM GAMES</title>
 </head>
 <body>

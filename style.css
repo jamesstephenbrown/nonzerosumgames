@@ -26,16 +26,26 @@ hr {
 
 #Header {
     position: fixed;
+	text-align: left;
 }
 
-#MenuBackground {
+.menuButton {
+    font-size: 24px !important;
+    transform: rotate(90deg);
+	margin-left: 10px !important;
+	margin-right: 10px !important;
+	margin-top: -30px !important;
+}
+
+.menuBackground {
     background-color: #3a3a3a;
+    padding-right: 20px;
+/*    background-repeat: repeat-x;
+    background-size: cover;*/
+	text-align: left;
+	margin-top: -20px !important;
     /*opacity: 0.8;*/
 }
-
-/*#content {
-    margin-top: 100px;
-}*/
 
 a {
 /*	color: #4dffb0;*/
