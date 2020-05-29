@@ -3,7 +3,6 @@ body {
 	font-family: arial;
 	text-align: center;
 	background-color: #3a3a3a;
-	/*font-size: 2vw !important;*/
 	font-size: 16px !important;
 }
 
@@ -27,7 +26,8 @@ hr {
 #Header {
     position: fixed;
 	text-align: left;
-	font-size: 16px !important;
+	font-size: 24px !important;
+	text-decoration: none;
 }
 
 .menuButton {
@@ -36,16 +36,15 @@ hr {
 	margin-left: 10px !important;
 	margin-right: 10px !important;
 	margin-top: -30px !important;
+	text-decoration: none;
 }
 
 .menuBackground {
     background-color: #3a3a3a;
     padding-right: 20px;
-/*    background-repeat: repeat-x;
-    background-size: cover;*/
 	text-align: left;
 	margin-top: -20px !important;
-    /*opacity: 0.8;*/
+	text-decoration: none;
 }
 
 a {
@@ -91,43 +90,18 @@ a {
 	width: 100%;
 }
 
-
-/*  .mobileShow {
-  	display: none;
-  } 
-
-  /* Smartphone Portrait and Landscape */ 
-/*  @media only screen 
-    and (min-device-width : 320px) 
-    and (max-device-width : 480px){ 
-      .mobileShow {display: inline;
-      }*/
-
-  /*.mobileHide { display: inline; } */
-
-  /* Smartphone Portrait and Landscape */ 
-/*  @media only screen 
-    and (min-device-width : 320px) 
-    and (max-device-width : 480px){ 
-     .mobileHide { display: none;}
-  }*/
-
 .imgbox {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	/*z-index: - !important;*/
 }
 
-.dividerMarginFix {
-	margin-bottom: -25px !important;
-	margin-top: -1px !important;
-	/*z-index: -1 !important;*/
-}
-.dividerMarginFix2 {
-	margin-bottom: -25px !important;
-	margin-top: -4px !important; /*I did have it at -2*/
-	/*z-index: -1 !important;*/
+.divider {
+	/*text-align: center;*/
+	/*margin-left: 0px !important;*/
+	/*margin-right: 0px !important;*/
+	margin-bottom: -50px !important;
+	margin-top: -50px !important; 
 }
 
 .center-fit {
@@ -138,6 +112,7 @@ a {
 
 .center-expand {
 	max-width: 100%;
-/*	max-height: 100vh;*/
-	margin: auto;
+	/*margin-left: 0px !important;*/
+	/*margin-right: 0px !important;*/
+	/*margin: 0px;*/
 }
