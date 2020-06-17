@@ -27,7 +27,6 @@ hr {
     position: fixed;
 	text-align: left;
 	font-size: 24px !important;
-	text-decoration: none;
 }
 
 .menuButton {
@@ -36,7 +35,6 @@ hr {
 	margin-left: 10px !important;
 	margin-right: 10px !important;
 	margin-top: -30px !important;
-	text-decoration: none;
 }
 
 .menuBackground {
@@ -44,7 +42,6 @@ hr {
     padding-right: 20px;
 	text-align: left;
 	margin-top: -20px !important;
-	text-decoration: none;
 }
 
 a {
