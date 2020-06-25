@@ -26,22 +26,26 @@
             </ul>
             <br>
 	    </div>
-
-	    <script type="text/javascript">// <![CDATA[
-	        function ShowHide(divId) {
-	            if (document.getElementById(divId).style.display == 'none') {
-	                document.getElementById(divId).style.display = 'block';
-	            } else {
-	                document.getElementById(divId).style.display = 'none';
-	            }
-	        }
-	    </script>
     </section id="Header">
     <title>NON-ZERO-SUM GAMES</title>
 </head>
 
 
 <body>
+
+
+	<!-- not sure where this should go but it works here and is not needed elsewhere for all Show / Hide functions to work -->
+	<script type="text/javascript"> function ShowHide(divId) { if(document.getElementById(divId).style.display == 'none') {
+			document.getElementById(divId).style.display='block'; } else {
+			document.getElementById(divId).style.display = 'none'; } }
+	</script>
+	<script type="text/javascript"> function Show(divId) {
+			document.getElementById(divId).style.display='block'; }
+	</script>
+	<script type="text/javascript"> function Hide(divId) { document.getElementById(divId).style.display='none'; }
+	</script>
+
+
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<br>
 	<a name="Top"></a>
@@ -94,19 +98,17 @@
 				<br /> Hannah:   <b><i>That’s it.</i></b>
 				
 				<p>I turn, readying my <b><i>I called it</i></b> look... no response from Natalie.</p>
-				<p>The non-zero-sum game is central to <a href="https://en.wikipedia.org/wiki/Game_theory">game theory</a> and is a personal fascination. This site is not a primer on non-zero-sum games or game theory, but a personal exploration that ducks in and out of these subjects. The non-zero-sum game underpins much of my thinking and creativity and this psuedo-blog will be made up of essays, games, artwork and video - one person's attempt to understand the nature of existence.</p>
+				<p>The non-zero-sum game is central to <a onmouseover="javascript:Show('HideDefinition2')" onmouseleave="javascript:Hide('HideDefinition2')" style="display: inline-block;" onclick="">Game Theory</a>
+					<span class="definitionBackground" id="HideDefinition2" style="display:none;">Game theory is a theoretical framework for conceiving social situations among competing players. In some respects, game theory is the science of strategy, or at least the optimal decision-making of independent and competing actors in a strategic setting</span>
+        and is a personal fascination. This site is not a primer on non-zero-sum games or game theory, but a personal exploration that ducks in and out of these subjects. The non-zero-sum game underpins much of my thinking and creativity and this psuedo-blog will be made up of essays, games, artwork and video - one person's attempt to understand the nature of existence.</p>
 				<p>#LoftyAF</p>
-			</div>
 
-			<script type="text/javascript">// <![CDATA[
-				function ShowHide(divId) {
-					if(document.getElementById(divId).style.display == 'none') {
-					document.getElementById(divId).style.display='block';
-					} else {
-					document.getElementById(divId).style.display = 'none';
-					}
-				}
-			</script>
+
+
+	    </div>
+
+
+
 
 		</div>
 
