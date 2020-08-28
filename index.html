@@ -32,7 +32,30 @@
 
 
 <body>
+	
+	
+	
+<script id="fragment-shader" type="x-shader/x-fragment">
+  uniform vec2 dims;
+  uniform float zNear, zFar;
+  uniform sampler2D depthMap;
+  
+  void main() {
+    float solidsDepth = texture2D(depthMap, gl_FragCoord.xy / dims).r;
+  
+    float solidsDiff = 1.0 - smoothstep(zNear, zFar, gl_FragCoord.z / gl_FragCoord.w) - solidsDepth;
+  
+    float alpha = 0.3 + max(0.0, 1.0 - log(100.0 * (solidsDiff - 0.005) + 1.0));
+  
+    gl_FragColor = vec4(vec3(1.0), alpha);
+  }
+</script>
 
+<script id="vertex-shader" type="x-shader/x-vertex">
+  void main() {
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+</script>
 
 	<!-- not sure where this should go but it works here and is not needed elsewhere for all Show / Hide functions to work -->
 	<script type="text/javascript"> function ShowHide(divId) { if(document.getElementById(divId).style.display == 'none') {
