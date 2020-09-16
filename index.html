@@ -15,12 +15,14 @@
         	<br>
             <ul>
                 <li><a style="text-decoration:none" href="#Top">Home</a></li>
-                <li><a style="text-decoration:none" href="#Arrival">Arrival</a></li>
-                <li><a style="text-decoration:none" href="#Navigation">Navigation</a></li>
-                <li><a style="text-decoration:none" href="#PartialRecall01">Partial Recall: A Recurring Dream</a></li>
-                <li><a style="text-decoration:none" href="#PerpetualRant">Perpetual Rant</a></li>
                 <li><a style="text-decoration:none" href="#CosmicLottery">The Cosmic Lottery</a></li>
                 <li><a style="text-decoration:none" href="#Graviton">Graviton</a></li>
+                <li><a style="text-decoration:none" href="#PartialRecall01">Partial Recall: A Recurring Dream</a></li>
+                <li><a style="text-decoration:none" href="#WhyAmIHere">Why Am I Here?</a></li>
+                <li><a style="text-decoration:none" href="#Arrival">Arrival</a></li>
+                <li><a style="text-decoration:none" href="#PerpetualRant">Perpetual Rant</a></li>
+                <li><a style="text-decoration:none" href="#PartialRecall02">Partial Recall: Unreliable Narrator</a></li>
+                <li><a style="text-decoration:none" href="#TheVeil">The Veil</a></li>
                 <li><a style="text-decoration:none" href="#Lockwise">Lockwise</a></li>
                 <li><a style="text-decoration:none" href="#OtherStuff">Other Stuff</a></li>
             </ul>
@@ -32,30 +34,8 @@
 
 
 <body>
-	
-	
-	
-<script id="fragment-shader" type="x-shader/x-fragment">
-  uniform vec2 dims;
-  uniform float zNear, zFar;
-  uniform sampler2D depthMap;
-  
-  void main() {
-    float solidsDepth = texture2D(depthMap, gl_FragCoord.xy / dims).r;
-  
-    float solidsDiff = 1.0 - smoothstep(zNear, zFar, gl_FragCoord.z / gl_FragCoord.w) - solidsDepth;
-  
-    float alpha = 0.3 + max(0.0, 1.0 - log(100.0 * (solidsDiff - 0.005) + 1.0));
-  
-    gl_FragColor = vec4(vec3(1.0), alpha);
-  }
-</script>
 
-<script id="vertex-shader" type="x-shader/x-vertex">
-  void main() {
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-</script>
+	<a name="Top"></a>
 
 	<!-- not sure where this should go but it works here and is not needed elsewhere for all Show / Hide functions to work -->
 	<script type="text/javascript"> function ShowHide(divId) { if(document.getElementById(divId).style.display == 'none') {
@@ -71,10 +51,22 @@
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<br>
-	<a name="Top"></a>
-	<div class="imgbox">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+<!-- 	<br>
+
+<div class="imgbox">
 		<img class="center-fit" src="NZSLogo.png">
-	</div>
+	</div> -->
+
+
 
 	<section id="Dark">
 		<br>
@@ -89,192 +81,25 @@
 		<br>
 		<br>
 
-		<a name="Arrival"></a>
 
-		<div class="divider">
-			<img class="center-expand" src="Border-Arrival_Light.png">
-		</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-	</section>
+	<a name="FishAndHuman"></a>
 
-
-	<section id="Light">
-
-		<br>
-		<br>
-		<br>
-
-			<div class="textbox">
-		<div class="left">
-			
-			<h1>ARRIVAL</h1>
-
-			<p>In Denis Villeneuve’s “Arrival”, Louise Banks is asked by her daughter Hannah for a “more sciencey term” for a “win win" situation.<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide0')"> >> </a>
-				<div class="mid" id="Hide0" style="display: none;">At this point I annoyingly lean over to Natalie sitting beside me in the theatre and whisper <i>“non-zero-sum game"</i>. The scene continues to reveal the circular nature of time in the film, when the future (or past) dialogue ensues…</p>
-			
-				Agent Halpern:   <b><i>How will we ever get them to give up their data?</i></b>
-				<br /> Ian:   <b><i>We offer them ours</i>.</b>
-				<br /> Colonel Weber:   <b><i>A trade?</i></b>
-				<br /> Ian:   <b><i>It’s a non-zero-sum game.</i></b>
-				<br />
-				<br /> Louise:   <b><i>Non-zero-sum game.</i></b>
-				<br /> Hannah:   <b><i>That’s it.</i></b>
-				
-				<p>I turn, readying my <b><i>I called it</i></b> look... no response from Natalie.</p>
-				<p>The non-zero-sum game is central to <a onmouseover="javascript:Show('HideDefinition2')" onmouseleave="javascript:Hide('HideDefinition2')" style="display: inline-block;" onclick="">Game Theory</a>
-					<span class="definitionBackground" id="HideDefinition2" style="display:none;">Game theory is a theoretical framework for conceiving social situations among competing players. In some respects, game theory is the science of strategy, or at least the optimal decision-making of independent and competing actors in a strategic setting</span>
-        and is a personal fascination. This site is not a primer on non-zero-sum games or game theory, but a personal exploration that ducks in and out of these subjects. The non-zero-sum game underpins much of my thinking and creativity and this psuedo-blog will be made up of essays, games, artwork and video - one person's attempt to understand the nature of existence.</p>
-				<p>#LoftyAF</p>
-
-
-
-	    </div>
-
-
-
-
-		</div>
-
-		<br>
-		<br>
-		<br>
-
-		<a name="Navigation"></a>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-Navigation_Dark.png">
-		</div>
-
-	</section>
-
-
-	<section id="Dark">
-
-		<br>
-		<br>
-		<br>
-		<!-- replace this section with something else - about -->
-
-			<div class="textbox">
-	  <div class="left">
-			<h1>NAVIGATION</h1>
-			<ul>
-				<li><a href="#Top">Top</a></li>
-				<li><a href="#Arrival">Arrival</a></li>
-				<li><a href="#Navigation">Navigation</a></li>
-				<li><a href="#PartialRecall01">Partial Recall: A Recurring Dream</a></li>
-				<li><a href="#PerpetualRant">Perpetual Rant</a></li>
-				<li><a href="#CosmicLottery">The Cosmic Lottery</a></li>
-				<li><a href="#Graviton">Graviton</a></li>
-			</ul>
-
-			<p>Many of these experiments are hosted at the fabulous indie game site <a href="https://nonzerosum.itch.io" target="_blank">itch.io</a></p>
-		</div>
+	<div class="divider">
+		<img class="center-expand" src="Border-FishAndHuman_Light.png">
 	</div>
 
-
-		<br>
-		<br>
-		<br>
-
-		<a name="PartialRecall01"></a>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-Dream_Light.png">
-		</div>
-
-	</section>
-
-
-	<section id="Light">
-
-		<br>
-		<br>
-		<br>
-<div class="textbox">
-		<div class="left">
-			<h1>PARTIAL RECALL: A RECURRING DREAM</h1>
-				
-			<p>My memories begin with a recurring dream, before any sense of the physical world, an abstract space in which I am very small, a shiny blue marble, vulnerable, easily consumed.
-
-			<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide1')"> >> </a><div class="mid" id="Hide1" style="display: none;">
-
-			Around me is mystery and prickly orbs of a sickly pollen-orange colour and texture loom, hungry. As I am drawn inevitably inside the form, it expands, relative to my approach so that the moment is drawn out, the terror prolonged, pensive, sinister. In making way for me, the brim of a surrounding wave closes in around me, and yet brings no closure with it, this cavern once sealed, is at once, as the night’s sky; open, but I am no longer there.</p>
-
-			<p> Elements of this dream would be triggered by events in my early childhood, bringing with it the immediate terror it had originally evoked. Strangely it was not triggered by imagery but by voices, the slightly too slow voice of a computer game character, or a resonant line in a film, I would have to stop the voice, it worried me, as if it was on the inside speaking and yet foreign and unfriendly. But now the story I tell of the dream is merely me grasping at a handful of images, memories of poor descriptions I gave myself and my parents in my early childhood. Sometimes I wish I could feel that fear again and measure myself against it. </p>
-		</div>
-	</div>
-
-		<br>
-		<br>
-		<br>
-
-		<a name="PerpetualRant"></a>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-Nodes_Dark.png">
-		</div>
-
-	</section>
-
-
-	<section id="Dark">
-
-		<br>
-		<br>
-		<br>
-
-		<h1>PERPETUAL RANT</h1>
-		<p>A non-linear interactive essay and a discussion I had with some mates about it...</p>
-		<br>
-
-		<div style="width: 960px; height: 620px; overflow: hidden; display: inline-block;">
-			<iframe frameborder="0" src="https://itch.io/embed-upload/2301249?color=3a3a3a" allowfullscreen="true" width="960" height="640"><a href="https://nonzerosum.itch.io/perpetual-rant">Play Perpetual Rant on itch.io</a></iframe>
-		</div>
-
-		<br>
-		<br>
-
-		<div > 
-			<p>A FINITE DISCUSSION OF A PERPETUAL RANT: AKA PINKY ONLY</p>
-			<iframe
-			   frameborder="0"
-			   width="100%"
-			   height="100"
-			   src="https://drive.google.com/file/d/1PSw8nlS4MgnmryKss4cVMebYvcMF0NHe/preview">
-			</iframe>
-		</div>
-
-
-
-		<br>
-
-			<div class="textbox">
-		<div class="left">
-				<p>MENTIONS & FURTHER READING</p>
-				<ul>
-					<li><a href="https://www.amazon.com/Finite-Infinite-Games-James-Carse/dp/1476731713" target="_blank">Finite and Infinite Games</a></li>
-					<li><a href="https://en.wikipedia.org/wiki/Moral_foundations_theory" target="_blank">Moral Foundations Theory</a></li>
-					<li><a href="https://ncase.me/trust/" target="_blank">Evolution of Trust</a></li>
-					<li><a href="https://www.youtube.com/watch?v=Aj7NcdDh-WM" target="_blank">Fiasco</a></li>
-					<li><a href="https://en.wikipedia.org/wiki/Semantic_primes" target="_blank">Semantic Primes</a></li>
-					<li><a href="https://thornygames.com/pages/dialect" target="_blank">Dialect: A Game About Language and How It Dies</a></li>
-					<li><a href="https://boardgamegeek.com/boardgame/238017/starship-babel" target="_blank">Starship Babel</a></li>
-				</ul>
-        </div>
-    </div>
-
-		<br>
-		<br>
-		<br>
-
-		<a name="FishAndHuman"></a>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-FishAndHuman_Light.png">
-		</div>
-	</section>
-
+</section>
 
 	<section id="Light">
 		<a name="CosmicLottery"></a>
@@ -290,7 +115,7 @@
 				
 			<p>Imagine you wake up one morning to a phone call, you’ve won a million dollars in the weekly lotto draw, but you don’t remember entering.<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide2')"> >> </a><div class="mid" id="Hide2" style="display: none;">The operator informs you that the government has, in a bizarre act of wealth redistribution, put your tax dollars towards a single lottery ticket every week for every person in the country. Somehow you have been completely ignorant of this fact for over a decade. You receive your cheque and are handed an NDA, in another bizarre twist it turns out the program is completely secretive, no one knows about this lottery until they win it.
 			</p><p>
-			What are the chances you would win such a competition? Well, since the lottery has been running for 10 years, your country has a population of, let's say $10 million, all of the money each week is allotted to the winner and no one can win twice, you have a 1 / 5000 chance of having won it by now. Not great odds. However, from the perspective of everyone who is aware of the lottery (the 2000 winners so far), the chances of winning are 100%.</p><p>
+			What are the chances you would win such a competition? Well, since the lottery has been running for 10 years, your country has a population of, let's say 10 million people, all of the money each week is allotted to the winner and no one can win twice, you have a 1 / 5000 chance of having won it by now. Not great odds. However, from the perspective of everyone who is aware of the lottery (the 2000 winners so far), the chances of winning are 100%.</p><p>
 			We have no idea how many entries we’ve had in the cosmic lottery, but we know that all the other entries that did not win the prize of consciousness are not aware they haven’t won. The fact that we live in a universe where there exist beings that perceive the universe, is actually unremarkable, on the contrary it is inescapable. If there were to be other possible universes that didn’t contain agents capable of perception, they would never be perceived.</p><p>
 			This idea is known in philosophy as the <a href="https://en.wikipedia.org/wiki/Anthropic_principle" target="_blank">Weak Anthropic Principle</a> which is a materialist position against the teleological argument from fine tuning, and was the subject of the above painting <a href="#FishAndHuman">I Believe the Fish and Human Can Co-Exist Peacefully</a>.</p>
 			<br>
@@ -369,6 +194,220 @@
 		<br>
 		<br>
 
+		<a name="PartialRecall01"></a>
+
+		<div class="divider">
+			<img class="center-expand" src="Border-Dream_Light.png">
+		</div>
+
+	</section>
+
+
+	<section id="Light">
+
+		<br>
+		<br>
+		<br>
+<div class="textbox">
+		<div class="left">
+			<h1>PARTIAL RECALL: A RECURRING DREAM</h1>
+				
+			<p>My memories begin with a recurring dream, before any sense of the physical world, an abstract space in which I am very small, a shiny blue marble, vulnerable, easily consumed.
+
+			<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide1')"> >> </a><div class="mid" id="Hide1" style="display: none;">
+
+			Around me is mystery and prickly orbs of a sickly pollen-orange colour and texture loom, hungry. As I am drawn inevitably inside the form, it expands, relative to my approach so that the moment is drawn out, the terror prolonged, pensive, sinister. In making way for me, the brim of a surrounding wave closes in around me, and yet brings no closure with it, this cavern once sealed, is at once, as the night’s sky; open, but I am no longer there.</p>
+
+			<p> Elements of this dream would be triggered by events in my early childhood, bringing with it the immediate terror it had originally evoked. Strangely it was not triggered by imagery but by voices, the slightly too slow voice of a computer game character, or a resonant line in a film, I would have to stop the voice, it worried me, as if it was on the inside speaking and yet foreign and unfriendly. But now the story I tell of the dream is merely me grasping at a handful of images, memories of poor descriptions I gave myself and my parents in my early childhood. Sometimes I wish I could feel that fear again and measure myself against it. </p>
+		</div>
+	</div>
+
+		<br>
+		<br>
+		<br>
+
+		<a name="WhyAmIHere"></a>
+
+	<div class="divider">
+			<img class="center-expand" src="Border-Gorilla_Dark.png">
+		</div>
+	</section>
+
+	<section id="Dark">
+		<br>
+		<br>
+		<br>
+		<div class="textbox">
+			<div class="left">
+				<h1>WHY AM I HERE?</h1>
+				<p>Now is probably a good time to start explaining myself - Why does this page exist? Who am I? What's with all the pictures? What does it all mean?</p>
+
+				<p>If only it were that simple. To tell the truth, I'm not sure what this page is. It is a letter to the world, an artist,s diary and an experiment in cross-pollinating of ideas. I'm discovering what it is as we go along, but the fulcrum upon which all of this is levered is the <i>non-zero-sum game.</i></p>
+				<br>
+        	</div>
+    	</div>
+		<br>
+		<br>
+		<br>
+
+		<a name="Arrival"></a>
+
+		<div class="divider">
+			<img class="center-expand" src="Border-Arrival_Light.png">
+		</div>
+
+	</section>
+
+
+	<section id="Light">
+
+		<br>
+		<br>
+		<br>
+
+			<div class="textbox">
+		<div class="left">
+			
+			<h1>ARRIVAL</h1>
+
+			<p>In Denis Villeneuve’s “Arrival”, Louise Banks is asked by her daughter Hannah for a “more sciencey term” for a “win win" situation.<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide0')"> >> </a>
+				<div class="mid" id="Hide0" style="display: none;">At this point I annoyingly lean over to Natalie sitting beside me in the theatre and whisper <i>“non-zero-sum game"</i>. The scene continues to reveal the circular nature of time in the film, when the future (or past) dialogue ensues…</p>
+			
+				Agent Halpern:   <b><i>How will we ever get them to give up their data?</i></b>
+				<br /> Ian:   <b><i>We offer them ours</i>.</b>
+				<br /> Colonel Weber:   <b><i>A trade?</i></b>
+				<br /> Ian:   <b><i>It’s a non-zero-sum game.</i></b>
+				<br />
+				<br /> Louise:   <b><i>Non-zero-sum game.</i></b>
+				<br /> Hannah:   <b><i>That’s it.</i></b>
+				
+				<p>I turn, readying my <b><i>I called it</i></b> look... no response from Natalie.</p>
+				<p>The non-zero-sum game is central to <a onmouseover="javascript:Show('HideDefinition2')" onmouseleave="javascript:Hide('HideDefinition2')" style="display: inline-block;" onclick="">Game Theory</a>
+					<span class="definitionBackground" id="HideDefinition2" style="display:none;">Game theory is a theoretical framework for conceiving social situations among competing players. In some respects, game theory is the science of strategy, or at least the optimal decision-making of independent and competing actors in a strategic setting</span>
+        and is a personal fascination. This site is not a primer on non-zero-sum games or game theory, but a personal exploration that ducks in and out of these subjects. The non-zero-sum game underpins much of my thinking and creativity and this psuedo-blog will be made up of essays, games, artwork and video - one person's attempt to understand the nature of existence.</p>
+				<p>#LoftyAF</p>
+
+	    </div>
+		</div>
+
+		<br>
+		<br>
+		<br>
+
+		<a name="PerpetualRant"></a>
+
+		<div class="divider">
+			<img class="center-expand" src="Border-Nodes_Dark.png">
+		</div>
+
+	</section>
+
+
+	<section id="Dark">
+
+		<br>
+		<br>
+		<br>
+
+		<h1>PERPETUAL RANT</h1>
+		<p>A non-linear interactive essay and a discussion I had with some mates about it...</p>
+		<br>
+
+		<div style="width: 960px; height: 620px; overflow: hidden; display: inline-block;">
+			<iframe frameborder="0" src="https://itch.io/embed-upload/2301249?color=3a3a3a" allowfullscreen="true" width="960" height="640"><a href="https://nonzerosum.itch.io/perpetual-rant">Play Perpetual Rant on itch.io</a></iframe>
+		</div>
+
+		<br>
+		<br>
+
+		<div > 
+			<p>A FINITE DISCUSSION OF A PERPETUAL RANT: AKA PINKY ONLY</p>
+			<iframe
+			   frameborder="0"
+			   width="100%"
+			   height="100"
+			   src="https://drive.google.com/file/d/1PSw8nlS4MgnmryKss4cVMebYvcMF0NHe/preview">
+			</iframe>
+		</div>
+
+
+
+		<br>
+
+			<div class="textbox">
+		<div class="left">
+				<p>MENTIONS & FURTHER READING</p>
+				<ul>
+					<li><a href="https://www.amazon.com/Finite-Infinite-Games-James-Carse/dp/1476731713" target="_blank">Finite and Infinite Games</a></li>
+					<li><a href="https://en.wikipedia.org/wiki/Moral_foundations_theory" target="_blank">Moral Foundations Theory</a></li>
+					<li><a href="https://ncase.me/trust/" target="_blank">Evolution of Trust</a></li>
+					<li><a href="https://www.youtube.com/watch?v=Aj7NcdDh-WM" target="_blank">Fiasco</a></li>
+					<li><a href="https://en.wikipedia.org/wiki/Semantic_primes" target="_blank">Semantic Primes</a></li>
+					<li><a href="https://thornygames.com/pages/dialect" target="_blank">Dialect: A Game About Language and How It Dies</a></li>
+					<li><a href="https://boardgamegeek.com/boardgame/238017/starship-babel" target="_blank">Starship Babel</a></li>
+				</ul>
+        </div>
+    </div>
+
+		<br>
+		<br>
+		<br>
+
+<a name="PartialRecall02"></a>
+
+		<div class="divider">
+			<img class="center-expand" src="Border-Darwin_Light.png">
+		</div>
+
+	</section>
+
+	<section id="Light">
+		
+		<br>
+		<br>
+		<br>
+
+		<div class="textbox">
+			<div class="left">
+				<h1>PARTIAL RECALL: UNRELIABLE NARRATOR</h1>
+				<p>I have many short memories in Turangi; putting a mandarin net over my head and telling dad I wanted to be a burglar when I grow up<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide3')"> >> </a><div class="mid" id="Hide3" style="display: none;">he advised against it. I remember tapping on the bottom window pane of our back door, guessing at the point where it would break. I remember the banana medicine I refused, warning “I’ll throw it up”, mum made me take it - as promised I threw it up, all over the brown floral linoleum kitchen floor. I remember Zane my neighbour bashing his front teeth on the curb of his drive way, and his brother Quentin taking a dump on the dining room floor (their house), I remember them showing me a big black spider in a shed. I trust none of these memories, I know they are creations, a collage of other images other places at other times, but the core emotion is there, the sense that you never know until it’s too late and the glass is cracked, the inevitability of the banana vomit, the unbelief at the antics of Quentin and Zane, the “what if I was trapped in here?” question about the spider in the shed.</p>
+				<br>
+			</div>
+        	</div>
+    	</div>
+
+    <!-- other media -->
+
+		<br>
+		<br>
+		<br>
+
+<a name="TheVeil"></a>
+
+		<div class="divider">
+			<img class="center-expand" src="Border-Dionysus_Dark.png">
+		</div>
+	</section>
+
+
+	<section id="Dark">
+		
+		<br>
+		<br>
+		<br>
+		  <h1>THE VEIL</h1>
+
+
+		<div class="game" style="width: 900px; height: 480px; overflow: hidden; display: inline-block;">
+			<iframe frameborder="0" src="https://itch.io/embed-upload/1970408?color=333333" allowfullscreen="" width="900" height="500"><a href="https://nonzerosum.itch.io/the-veil">Play THE VEIL on itch.io</a></iframe>
+		</div>
+
+
+
+		<br>
+		<br>
+		<br>
+
 		<a name="Lockwise"></a>
 
 		<div class="divider">
@@ -376,7 +415,6 @@
 		</div>
 
 	</section>
-
 
 	<section id="Light">
 		
@@ -405,77 +443,11 @@
 		<br>
 		<br>
 
-		<a name="OtherStuff"></a>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-Sisyphus_Dark.png">
-		</div>
-	</section>
-
-
-	<section id="Dark">
 		
-		<br>
-		<br>
-		<br>
-		  <h1>THE VEIL</h1>
 
-
-		<div class="game" style="width: 900px; height: 480px; overflow: hidden; display: inline-block;">
-			<iframe frameborder="0" src="https://itch.io/embed-upload/1970408?color=333333" allowfullscreen="" width="900" height="500"><a href="https://nonzerosum.itch.io/the-veil">Play THE VEIL on itch.io</a></iframe>
-		</div>
-
-			<div class="textbox">
-		<div class="left">
-		<br>
-
-		  <h1>OTHER STUFF TO CHECK OUT</h1>
-			<ul>
-				<li><a href="https://www.branchoutmedia.com">Branch Out Media</a> My work site and documentary work</li>
-				<li><a href="https://5a262343-b428-4840-aa3f-250948454e69.usrfiles.com/ugd/5a2623_ae68e217ddc04144aa831d4dda28693c.pdf">TL;DR</a> A 35K word essay you really don't want to read</li>
-				<li><a href="https://nonzerosum.itch.io">Non Zero Sum on Itch.io</a> The host for all of these games and simulations and others</li>
-			</ul>
-		  <br>
-        </div>
-    </div>
-
-		<br>
-		<br>
-		<br>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-Darwin_Light.png">
-		</div>
-
-	</section>
-
-
-
-
-	<section id="Light">
-		
-		<br>
-		<br>
-		<br>
-
-		<div class="textbox">
-			<div class="left">
-				<h1>Partial Recall: Unreliable Narrator</h1>
-				<p>I have many short memories in Turangi; putting a mandarin net over my head and telling dad I wanted to be a burglar when I grow up<a onmouseover="" style="cursor: pointer;" onclick="javascript:ShowHide('Hide3')"> >> </a><div class="mid" id="Hide3" style="display: none;">he advised against it. I remember tapping on the bottom window pane of our back door, guessing at the point where it would break. I remember the banana medicine I refused, warning “I’ll throw it up”, mum made me take it - as promised I threw it up, all over the brown floral linoleum kitchen floor. I remember Zane my neighbour bashing his front teeth on the curb of his drive way, and his brother Quentin taking a dump on the dining room floor (their house), I remember them showing me a big black spider in a shed. I trust none of these memories, I know they are creations, a collage of other images other places at other times, but the core emotion is there, the sense that you never know until it’s too late and the glass is cracked, the inevitability of the banana vomit, the unbelief at the antics of Quentin and Zane, the “what if I was trapped in here?” question about the spider in the shed.</p>
-				<br>
-			</div>
-        	</div>
-    	</div>
-
-    <!-- other media -->
-
-		<br>
-		<br>
-		<br>
-
-		<div class="divider">
-			<img class="center-expand" src="Border-Gorilla_Dark.png">
-		</div>
+<!-- 		<div class="divider">
+			<img class="center-expand" src="Border-Dark.png">
+		</div> -->
 	</section>
 
 
@@ -526,9 +498,13 @@
 		<br>
 		<br>
 
-		<div class="divider">
-			<img class="center-expand" src="Border-Dionysus_Dark.png">
-		</div>
+<!-- 		<div class="divider">
+			<img class="center-expand" src="Border-Dark.png">
+		</div> -->
+
+
+
+		<a name="OtherStuff"></a>
 	</section>
 
 
@@ -536,13 +512,19 @@
 		<br>
 		<br>
 		<br>
-		<div class="textbox">
-			<div class="left">
-				<h1><!-- Title --></h1>
-				<p><!-- Body of text --></p>
-				<br>
-        	</div>
-    	</div>
+			<div class="textbox">
+		<div class="left">
+		<br>
+
+		  <h1>OTHER STUFF TO CHECK OUT</h1>
+			<ul>
+				<li><a href="https://www.branchoutmedia.com">Branch Out Media</a> My work site and documentary work</li>
+				<li><a href="https://5a262343-b428-4840-aa3f-250948454e69.usrfiles.com/ugd/5a2623_ae68e217ddc04144aa831d4dda28693c.pdf">TL;DR</a> A 35K word essay you really don't want to read</li>
+				<li><a href="https://nonzerosum.itch.io">Non Zero Sum on Itch.io</a> The host for all of these games and simulations and others</li>
+			</ul>
+		  <br>
+        </div>
+    </div>
 
     <!-- other media -->
 
