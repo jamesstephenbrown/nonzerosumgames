@@ -10,9 +10,9 @@ const mouse = {
   y: innerHeight / 2
 }
 const numberOfElements = 5
-const numberOfGravitons = 250
-const attractionMin = -12
-const attractionMax = 12
+const numberOfGravitons = 300
+const attractionMin = -30
+const attractionMax = 30
 
 const red = 'rgb(255,40,40)'
 const yellow = 'rgb(40,255,0)'
