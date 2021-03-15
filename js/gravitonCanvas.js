@@ -9,10 +9,10 @@ const mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 }
-const numberOfElements = 5
+const numberOfElements = 6
 const numberOfGravitons = 300
-const attractionMin = -30
-const attractionMax = 30
+const attractionMin = -100
+const attractionMax = 100
 
 const red = 'rgb(255,40,40)'
 const yellow = 'rgb(40,255,0)'
@@ -111,7 +111,7 @@ class Graviton {
     // c.fill()
     // c.closePath()
     c.beginPath()
-    c.rect(this.x,this.y,3,3)
+    c.rect(this.x,this.y,6,6)
     c.fillStyle = this.color
     c.fill()
     // c.stroke()
