@@ -1,14 +1,20 @@
 body {
+	margin: 0;
 	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
 	background-color: #3a3a3a;
 	font-size: 16px !important;
+	/*overflow: hidden;*/
 }
 
 h1 {
 	text-align: center !important;
 }
+
+.example::-/*webkit-scrollbar {
+  display: none;
+}*/
 
 hr {
 	background-color: #3a3a3a;
