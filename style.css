@@ -1,20 +1,46 @@
 body {
-	margin: 0;
+
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+
 	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
 	background-color: #3a3a3a;
-	font-size: 16px !important;
-	/*overflow: hidden;*/
+	font-size: 20px !important;
+
+	overflow: hidden;
+    overflow-y: scroll;
+}
+
+.container {
+    position:absolute; 
+    height:80%; 
+    width:80%;
+    display: table;
+
+}
+.allCentred {
+    display: table-cell;
+    vertical-align: middle;
+    /*text-align:center;*/
+    text-align: justify;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
 }
 
 h1 {
-	text-align: center !important;
-}
 
-.example::-/*webkit-scrollbar {
-  display: none;
-}*/
+	text-align: left !important;
+}
 
 hr {
 	background-color: #3a3a3a;
