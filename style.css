@@ -8,8 +8,7 @@ body {
 	font-family: arial;
 	text-align: center;
 	background-color: #3a3a3a;
-	font-size:calc(12px * (1200/(1vw+1vh)));
-
+	font-size: 14px !important;
 	overflow: hidden;
     overflow-y: scroll;
 }
@@ -38,7 +37,7 @@ body {
 }
 
 h1 {
-	font-size:calc(14px * (1200/(1vw+1vh)));
+	font-size:18px !important;
 	text-align: left !important;
 }
 
