@@ -3,7 +3,9 @@ body {
 	margin-left: 10%;
 	margin-right: 10%;
 	margin-top: 5%;
-
+	
+	font-size:calc(12px + 1.5vw);
+	
 	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
