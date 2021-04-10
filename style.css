@@ -3,14 +3,12 @@ body {
 	margin-left: 10%;
 	margin-right: 10%;
 	margin-top: 5%;
-	
-	font-size:calc(12px + 1.5vw);
-	
+
 	color: #7e7e7e;
 	font-family: arial;
 	text-align: center;
 	background-color: #3a3a3a;
-	font-size: 20px !important;
+	font-size:calc(14px + 1.5vw);
 
 	overflow: hidden;
     overflow-y: scroll;
@@ -40,7 +38,7 @@ body {
 }
 
 h1 {
-
+	font-size:calc(20px + 1.5vw);
 	text-align: left !important;
 }
 
