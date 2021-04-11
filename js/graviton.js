@@ -2,25 +2,38 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
+
+// element which needs to enter full-screen mode
+var element = document.querySelector('canvas');
+
+// make the element go to full-screen mode
+element.requestFullscreen()
+  .then(function() {
+    // element has entered fullscreen mode successfully
+  })
+  .catch(function(error) {
+    // element could not enter fullscreen mode
+  });
+
 canvas.width = innerWidth
-canvas.height = innerHeight
+canvas.height = 300
 
 const mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 }
-const numberOfElements = 7
-const numberOfGravitons = 200
-const attractionMin = -50
-const attractionMax = 50
+const numberOfElements = 5
+const numberOfGravitons = 250
+const attractionMin = -12
+const attractionMax = 12
 
-const red = 'rgb(255,40,40)'
-const yellow = 'rgb(40,255,0)'
-const blue = 'rgb(40,40,255)'
-const orange = 'rgb(100,200,40)'
-const green = 'rgb(0,40,255)'
-const purple = 'rgb(150,0,150)'
-const grey = 'rgb(100,100,100)'
+const red = 'rgb(255,100,100)'
+const yellow = 'rgb(150,255,100)'
+const blue = 'rgb(100,100,255)'
+const orange = 'rgb(150,255,100)'
+const green = 'rgb(40,100,255)'
+const purple = 'rgb(200,50,200)'
+const grey = 'rgb(150,150,150)'
 const grass = 'rgb(0,255,0)'
 const sky = 'rgb(150,150,255)'
 const turquoise = 'rgb(0,200,100)'
@@ -38,7 +51,7 @@ addEventListener('mousemove', (event) => {
 
 addEventListener('resize', () => {
   canvas.width = innerWidth
-  canvas.height = innerHeight
+  canvas.height = 300
   init()
 })
 
@@ -111,7 +124,7 @@ class Graviton {
     // c.fill()
     // c.closePath()
     c.beginPath()
-    c.rect(this.x,this.y,4,4)
+    c.rect(this.x,this.y,3,3)
     c.fillStyle = this.color
     c.fill()
     // c.stroke()
@@ -125,8 +138,9 @@ let elements
 let offset = new Offset (0,0)
 
 function init() {
+  element.requestFullscreen()
 
-  c.fillStyle = 'rgba(0,0,0,1)'
+  c.fillStyle = '#3a3a3a'
   c.fillRect(0,0,canvas.width,canvas.height)
   // console.log('initializing')
   elements = []
@@ -186,7 +200,7 @@ let mostPopular = gravitons[0]
 function animate() {
   // console.log('animating')
   requestAnimationFrame(animate)
-  c.fillStyle = 'rgba(0,0,0,0.4)'
+  c.fillStyle = '#3a3a3a'
   c.fillRect(0,0,canvas.width,canvas.height)
   gravitons.forEach(graviton => {
    graviton.reset()
