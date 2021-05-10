@@ -7,6 +7,7 @@ centre = {x: innerWidth/2, y:innerHeight/2}
 ballCount = 20
 closestBall = null
 mouseIsDown = false
+mousePosition = {x:0,y:0}
 
 const balls = []
 
@@ -15,20 +16,24 @@ class Ball {
 		this.x = position.x
 		this.y = position.y
 		this.radius = radius
+		this.offset = 0
+		this.offsetRadius = radius
 		this.contacts = []
 		this.contactPoints = []
 		this.index = index
+
+		console.log(index);
 	}
 	draw () {
 		c.beginPath()
-		c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+		c.arc(this.x, this.y, this.offsetRadius, 0, Math.PI * 2, false)
 		c.fillStyle = 'grey'
 		c.fill()
 		c.closePath()
 
 		c.beginPath()
 		for (var i = this.contactPoints.length - 1; i >= 0; i--) {
-				const points = this.contactPoints[i]
+			const points = this.contactPoints[i]
 			c.moveTo(points[0].x,points[0].y)
 			c.quadraticCurveTo(points[1].x, points[1].y, points[2].x, points[2].y)
 			c.lineTo(points[3].x, points[3].y)
@@ -41,23 +46,40 @@ class Ball {
 	}
 	findContacts () {
 		for (var i = balls.length - 1; i >= 0; i--) {
-
 			const heading = {x: this.x - balls[i].x, y: this.y - balls[i].y}
 			const distance = Math.hypot(heading.x,heading.y)
-			if (this.index > balls[i].index) { // avoids duplication of meta calculations
-				if (this.contacts.includes(balls[i]) && distance > this.radius * 2.5 + balls[i].radius * 2.5) {
-					setTimeout(() => {
-						this.contacts.splice(i,1)
-					},0)
-				} else if (!this.contacts.includes(balls[i]) && distance <= this.radius + balls[i].radius) {
+			if (this.index > balls[i].index) { // avoids duplication of metaUpdate calculations and avoids self
+				if (!this.contacts.includes(balls[i]) && distance <= this.offsetRadius + balls[i].radius) {
 					this.contacts.push(balls[i])
 				}
+			}
+		}
+		for (var i = this.contacts.length - 1; i >= 0; i--) {
+			const heading = {x: this.x - this.contacts[i].x, y: this.y - this.contacts[i].y}
+			const distance = Math.hypot(heading.x,heading.y)
+			if (distance > this.offsetRadius * 2.5 + this.contacts[i].offsetRadius * 2.5) {
+				// this.offsetRadius = this.radius
+				// this.contacts[i].offsetRadius = this.contacts[i].radius
+				this.contacts.splice(i,1)
+			} else if (distance <= this.radius + this.contacts[i].radius) {
+				const touchDistance = this.radius + this.contacts[i].radius
+				const multiplier = (touchDistance - distance) / touchDistance;
+
+				const contactVolume = Math.PI*(this.contacts[i].radius*this.contacts[i].radius)
+				const thisVolume = Math.PI*(this.radius*this.radius)
+				const combinedVolume = contactVolume + thisVolume
+				const combinedVolumeRadius = Math.sqrt(combinedVolume/Math.PI)
+
+				// we set for both in the pair because the other does not process this part
+				this.offset += multiplier*multiplier * (combinedVolumeRadius - this.radius) // this doesn't take into account if the offset radius is already increased by contact with another
+				this.contacts[i].offset += multiplier*multiplier * (combinedVolumeRadius - this.contacts[i].radius)
 			}
 		}
 	}
 	update () {
 		this.draw()
 	}
+	
 	metaUpdate () {
 		// clearing contact points array
 		this.contactPoints = []
@@ -67,30 +89,28 @@ class Ball {
 			const distance = Math.hypot(heading.x,heading.y)
 
 			if (distance > 10) {
-				this.x -= (1/distance + 1) * ball.radius * heading.x / (distance *100)
-				this.y -= (1/distance + 1) * ball.radius * heading.y / (distance *100)
-				ball.x += (1/distance + 1) * this.radius * heading.x / (distance *100)
-				ball.y += (1/distance + 1) * this.radius * heading.y / (distance *100)
+				this.x -= (1/distance + 1) * ball.offsetRadius * heading.x / (distance *100)
+				this.y -= (1/distance + 1) * ball.offsetRadius * heading.y / (distance *100)
+				ball.x += (1/distance + 1) * this.offsetRadius * heading.x / (distance *100)
+				ball.y += (1/distance + 1) * this.offsetRadius * heading.y / (distance *100)
 			}
 
-
-
-			const averageRadius = ((this.radius + ball.radius) / 2)
-			const maxDist = (this.radius + ball.radius) * 1.8
+			const averageRadius = ((this.offsetRadius + ball.offsetRadius) / 2)
+			const maxDist = (this.offsetRadius + ball.offsetRadius) * 1.8
 			// Work out aMid first!
-			const aMidX = (this.radius / (this.radius+ball.radius)) * distance
+			const aMidX = (this.offsetRadius / (this.offsetRadius+ball.offsetRadius)) * distance
 			const aMidY = (averageRadius) - ((distance/maxDist) * (averageRadius))
 
 			const startHypot = Math.sqrt(aMidX * aMidX + averageRadius * averageRadius)
 			// aStart
-			const aStartX = (this.radius / startHypot) * aMidX
-			const aStartY = (this.radius / startHypot) * averageRadius
+			const aStartX = (this.offsetRadius / startHypot) * aMidX
+			const aStartY = (this.offsetRadius / startHypot) * averageRadius
 			// aEnd
 			const endDist = (distance - aMidX)
 			const endHypot = Math.sqrt(endDist * endDist + averageRadius * averageRadius)
 
-			const aEndX = distance - ((ball.radius / endHypot) * endDist)
-			const aEndY = ((ball.radius / endHypot) * averageRadius)
+			const aEndX = distance - ((ball.offsetRadius / endHypot) * endDist)
+			const aEndY = ((ball.offsetRadius / endHypot) * averageRadius)
 			// add points
 			points[0] = ( { x: aStartX + this.x, y: aStartY + this.y } )
 			points[1] = ( { x: aMidX + this.x, y: aMidY + this.y } )
@@ -120,15 +140,16 @@ addEventListener('mousedown', (event) => {
 			closestDist = distance
 		}
 	})
+	mousePosition.x = event.clientX
+	mousePosition.y = event.clientY
 })
 addEventListener('mousemove', (event) => {
-	if (mouseIsDown) {
-		closestBall.x = event.clientX
-		closestBall.y = event.clientY
-	}
+	mousePosition.x = event.clientX
+	mousePosition.y = event.clientY
 })
 addEventListener('mouseup', (event) => {
 	mouseIsDown = false
+	closestBall = null
 })
 let debugFrame = false
 document.addEventListener('keydown', function(event){
@@ -149,25 +170,45 @@ function findPosition() {
 }
 function init () {
 	for (var i = ballCount - 1; i >= 0; i--) {
+			v = i
 		balls.push(new Ball(
-			findPosition(),Math.random() * (50 - 20 + 1) + 20, i
+			findPosition(),Math.random() * (50 - 20 + 1) + 20, v
 			)
 		)
 	}
 	closestBall = balls[0]
 }
 function animate() {
-	// console.log('animating')
 	requestAnimationFrame(animate)
 	c.fillStyle = 'rgba(50,50,50,1)'
 	c.fillRect(0,0,canvas.width,canvas.height)
 
 	balls.forEach((ball) => {
+		ball.offset = 0
+	})
+	balls.forEach((ball) => {
 		ball.findContacts()
+	})
+	balls.forEach((ball) => {
+		ball.offsetRadius = ball.radius + ball.offset
+	})
+	if (mouseIsDown && closestBall) {
+		closestBall.x = mousePosition.x
+		closestBall.y = mousePosition.y
+	}
+	balls.forEach((ball) => {
 		ball.metaUpdate()
+	})
+	balls.forEach((ball) => {
 		ball.update()
 	})
+	if (debugFrame) {
+		for (var i = closestBall.contacts.length - 1; i >= 0; i--) {
+			console.log (closestBall.contacts[i].index + "\n")
+		}
+	}
 	debugFrame = false;
+
 }
 init()
 animate()
