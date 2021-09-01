@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  background-color:#799;
+}
+img {
+  max-width: 100% important!;
+}
+.content {
+  position: relative;
+  text-align: center;
+}
+.links {
+  position: relative;
+  text-align: center;
+}
