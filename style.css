@@ -1,15 +1,38 @@
-body {
-  margin: 0;
-  background-color:#799;
+@media only screen and (max-width:  800px) {
+
+  body {
+    margin: 0;
+    background-color:#799;
+  }
+  img {
+    max-width: 100% important!;
+  }
+  .content {
+    position: relative;
+    text-align: center;
+  }
+  .links {
+    position: relative;
+    text-align: center;
+  }
 }
-img {
-  max-width: 100% important!;
+
+@media only screen and (min-width: 800px) {
+
+  body {
+    margin: 0;
+    background-color:#799;
+  }
+  img {
+    max-width: 600px important;
+  }
+  .content {
+    position: relative;
+    text-align: center;
+  }
+  .links {
+    position: relative;
+    text-align: center;
+  }
 }
-.content {
-  position: relative;
-  text-align: center;
-}
-.links {
-  position: relative;
-  text-align: center;
-}
+
