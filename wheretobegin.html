@@ -8,16 +8,33 @@
     <body>
         <div class="content">
             <img src="./Images/Content/wheretobegin.png"><br>
+            <a href="nonzerosumgames.html"><img src="./Images/Links/tononzerosumgames.png"></a>
+            <img src="./Images/Content/wheretobegin2.png"><br>
         </div>
         <br>
         <div class="links">
 
-            <a href="shapleyvalueisridiculous.html"><img src="./Images/Links/shapleyvalue.png"></a>
-            <a href="combinatorialgame.html"><img src="./Images/Links/whatisacombinatorygame.png"></a>
+            <a href="shapleyvalueisridiculous.html"><img src="./Images/Links/whatstheshapleyvalue.png"></a>
+            <a href="combinatorialgame.html"><img src="./Images/Links/whatarecombinatorygames.png"></a>
+            <!-- need to add nash equilibrium link here (when I make the page) -->
             
         </div>
         
         <canvas></canvas>
         <script src="./js/wheretobegin.js"></script>
+        <div id="disqus_thread" ></div>
+        <script>
+        var disqus_config = function () {
+        this.page.url = "https://nonzerosum.games/wheretobegin.html";
+        this.page.identifier=wheretobegin;
+        };
+        ( function () {
+        var d = document, s = d.createElement ( 'script' );
+        s.src = 'https://nonzerosum.disqus.com/embed.js';
+        s.setAttribute ( 'data-timestamp', +new Date () );
+        ( d.head || d.body ).appendChild ( s );
+        })();
+        </script>
+        <noscript> Please enable JavaScript to view the < a href = "https://disqus.com/?ref_noscript">comments powered by Disqus.</ a ></noscript>
     </body>
 </html>

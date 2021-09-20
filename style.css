@@ -1,7 +1,6 @@
 @media only screen and (max-width:  320px) {
 
   body {
-    margin: 0;
     background-color:#799;
   }
   img {
@@ -20,7 +19,6 @@
 @media only screen and (min-width: 320px) {
 
   body {
-    margin: 0;
     background-color:#799;
   }
   img {
@@ -35,4 +33,5 @@
     text-align: center;
   }
 }
+
 
