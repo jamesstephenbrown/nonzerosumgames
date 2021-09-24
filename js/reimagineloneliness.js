@@ -4,12 +4,12 @@ c = canvas.getContext('2d')
 canvas.width = innerWidth - 30 // to avoid scroll bar
 canvas.height = 1000
 centre = {x: canvas.width/2, y:canvas.height/2}
-ballCount = 20
-closestBall = null
+ballCount = 40
 mouseIsDown = false
 mousePosition = {x:0,y:0}
 balls = []
-vacinity = 100
+vacinity = 200
+maxSpeed = 2
 
 class Dot {
 	constructor (position, radius, index) {
@@ -18,6 +18,10 @@ class Dot {
 		this.goal = {x:this.x,y:this.y}
 		this.index = index
 		this.radius = radius
+		this.timer = 0
+		this.timeLimit = Math.floor(Math.random()*(1000)+500)
+		this.otherIndex = Math.floor(Math.random()*(ballCount-1))
+		this.scared = false
 
 		console.log(this.index, this.x, this.y)
 	}
@@ -29,7 +33,6 @@ class Dot {
 		c.closePath()
 	}
 }
-
 class Player extends Dot {
 	follow () {
 		// follow mouse position at a restricted speed
@@ -49,39 +52,46 @@ class Player extends Dot {
 		this.collision()
 		this.draw()
 	}
-
-	collision() {
-
-	}
-
 }
-
-player = new Player({x:centre.x,y: -20}, 15, -1);
+player = new Player({x:centre.x,y: 20}, 15, -1);
 
 class Ball extends Dot {
+
 	react () {
+		this.goal.x = this.x
+		this.goal.y = this.y
 
-		var random = Math.floor(Math.random()*(ballCount-1))
+		var head = {x: (player.x - this.x), y:(player.y - this.y)}
+		var dist = Math.hypot(head.x,head.y)
 
-		var runFromIndex = this.index < ballCount - 10 ? this.index + 10 : this.index - (ballCount) + 10
-		var index = this.index < ballCount - 1 ? this.index + 1 : this.index - (ballCount) + 1
-		var index2 = this.index < ballCount - random ? this.index + random : this.index - (ballCount) + random
+		if (dist < vacinity) {
+			this.scared = true;
+		}
+		this.timer += 1
 
-		var heading = {x: balls[index].x - this.x, y: balls[index].y - this.y}
-		var heading2 = {x: balls[index2].x - this.x, y: balls[index2].y - this.y}
-		var runFromHeading = {x: balls[runFromIndex].x - this.x, y: balls[runFromIndex].y - this.y}
-		var distance = Math.hypot(runFromHeading.x,runFromHeading.y)
-		this.x += heading.x / 50
-		this.y += heading.y / 50
-		this.x += heading2.x / 500
-		this.y += heading2.y / 500
-		this.x -= runFromHeading.x / (distance * 10)
-		this.y -= runFromHeading.y / (distance * 10)
+		if (this.timer > this.timeLimit) {
 
-		// for a random index go towards until you get within a certain distance
-		// each 5 seconds switch to a new friend
-		// if the player comes within your vacinity move away from player with twice the intensity of staying together
-		// avoid edge
+			this.scared = false;
+			this.otherIndex = Math.floor(Math.random()*(ballCount-1))
+			this.timer = 0
+		}
+		if (!this.scared) {
+
+
+			var runFromIndex = this.index < ballCount - 10 ? this.index + 10 : this.index - (ballCount) + 10
+			// var index = this.index < ballCount - 1 ? this.index + 1 : this.index - (ballCount) + 1
+			var index = this.index < ballCount - this.otherIndex ? this.index + this.otherIndex : this.index - (ballCount) + this.otherIndex
+
+			// var heading = {x: balls[index].x - this.x, y: balls[index].y - this.y}
+			var heading = {x: balls[index].x - this.x, y: balls[index].y - this.y}
+			var centreHeading = {x: centre.x - this.x, y: centre.y - this.y}
+
+			this.goal.x += heading.x / 50
+			this.goal.y += heading.y / 50
+			this.goal.x += centreHeading.x / 100
+			this.goal.y += centreHeading.y / 100
+
+		}
 	}
 	update () {
 		this.react()
@@ -89,25 +99,33 @@ class Ball extends Dot {
 		this.draw()
 	}
 	collision () {
-
-		balls.forEach((ball) => {
-			if (ball != this) {
-				var heading = {x: (ball.x - this.x), y:(ball.y - this.y)}
-				var distance = Math.hypot(heading.x,heading.y)
-				this.x -= 10*heading.x/(distance*distance)
-				this.y -= 10*heading.y/(distance*distance)
-			}
-		})
-
 		var head = {x: (player.x - this.x), y:(player.y - this.y)}
 		var dist = Math.hypot(head.x,head.y)
+
 		if (dist < vacinity) {
-			this.x -= (10*head.x)/(dist)
-			this.y -= (10*head.y)/(dist)
+			this.goal.x -= (300*head.x)/(dist*dist)
+			this.goal.y -= (300*head.y)/(dist*dist)
+		} else {
+			balls.forEach((ball) => {
+				if (ball != this) {
+					var heading = {x: (ball.x - this.x), y:(ball.y - this.y)}
+					var distance = Math.hypot(heading.x,heading.y)
+					this.goal.x -= 30*heading.x/(distance*distance)
+					this.goal.y -= 30*heading.y/(distance*distance)
+				}
+			})
 		}
-		// all balls cannot go over edge
-		// all balls collide with each other if they get closer than
-		// all balls slow down if they are near a collider?
+
+		var goalHead = {x: (this.goal.x - this.x), y:(this.goal.y - this.y)}
+		var goalDist = Math.hypot(goalHead.x,goalHead.y)
+
+		if (goalDist > maxSpeed) {
+			this.x += (goalHead.x / goalDist) * maxSpeed
+			this.y += (goalHead.y / goalDist) * maxSpeed
+		} else {
+			this.x = this.goal.x
+			this.y = this.goal.y
+		}
 	}
 }
 
@@ -137,12 +155,7 @@ addEventListener('mousemove', (event) => {
 })
 addEventListener('mouseup', (event) => {
 	mouseIsDown = false
-	closestBall = null
 })
-// let debugFrame = false
-// document.addEventListener('keydown', function(event){
-// 	debugFrame = true
-// })
 
 function findPosition() {
 	let position = {
@@ -174,12 +187,11 @@ function animate() {
 
 	player.follow()
 	player.draw()
-	player.collision()
 
 	balls.forEach((ball) => {
 		ball.react()
-		ball.draw()
 		ball.collision()
+		ball.draw()
 	})
 }
 init()
