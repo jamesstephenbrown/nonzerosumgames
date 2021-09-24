@@ -44,5 +44,9 @@
   }
 }
 
+.game {
+  touch-action:  none;
+}
+
 
 
