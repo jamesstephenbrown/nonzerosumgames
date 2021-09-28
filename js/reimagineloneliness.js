@@ -11,31 +11,75 @@ balls = []
 vacinity = 200
 maxSpeed = 2
 
-canvas.addEventListener("touchstart", (event) => {
 
-	event.preventDefault()
-	mouseIsDown = true
-	var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX - rect.left
-	mousePosition.y = event.clientY - rect.top
-})
-canvas.addEventListener("touchmove", (event) => {
+// canvas.addEventListener("touchstart", (event) => {
 
-	event.preventDefault()
-	var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX - rect.left
-	mousePosition.y = event.clientY - rect.top
-})
-canvas.addEventListener("touchend", (event) => {
+// 	event.preventDefault()
+// 	mouseIsDown = true
+// 	var rect = canvas.getBoundingClientRect()
+// 	mousePosition.x = event.clientX - rect.left
+// 	mousePosition.y = event.clientY - rect.top
+// })
+// canvas.addEventListener("touchmove", (event) => {
 
-	event.preventDefault()
-	mouseIsDown = false
-})
-canvas.addEventListener("touchcancel", (event) => {
+// 	event.preventDefault()
+// 	var rect = canvas.getBoundingClientRect()
+// 	mousePosition.x = event.clientX - rect.left
+// 	mousePosition.y = event.clientY - rect.top
+// })
+// canvas.addEventListener("touchend", (event) => {
 
-	event.preventDefault()
-	mouseIsDown = false
-})
+// 	event.preventDefault()
+// 	mouseIsDown = false
+// })
+// canvas.addEventListener("touchcancel", (event) => {
+
+// 	event.preventDefault()
+// 	mouseIsDown = false
+// })
+
+canvas.addEventListener("touchstart", touchDown, false);
+canvas.addEventListener("touchmove", touchMoved, false);
+canvas.addEventListener("touchend", touchUp, false);
+canvas.addEventListener("touchcancel", touchUp, false);
+
+function touchDown(evt) {
+    evt.preventDefault();
+
+    // Ignore touches after the first.
+    if (activeTouch != null)
+        return;
+
+    if (evt.changedTouches.length > 0) {
+        activeTouch = evt.changedTouches[0].identifier;
+        mousePosition = getTouchPos(evt);
+    }
+}
+
+function touchUp(evt)  {
+    mousePosition = getTouchPos(evt);
+    activeTouch = null;
+}
+
+function touchMoved(evt)  {
+    mousePosition = getTouchPos(evt);
+}
+
+function getTouchPos(evt)  {
+    var canX = 0;
+    var canY = 0;
+
+    for( var i = 0; i < evt.touches.length; i++ ) {
+        if (evt.touches[i].identifier == activeTouch) {
+            canX = evt.touches[i].pageX - c.offsetLeft;
+            canY = evt.touches[i].pageY - c.offsetTop;
+            break;
+        }
+    }
+    return { 'x': canX, 'y': canY }
+}
+
+
 
 class Dot {
 	constructor (position, radius, index) {
