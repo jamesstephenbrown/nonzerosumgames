@@ -11,9 +11,26 @@ balls = []
 vacinity = 200
 maxSpeed = 2
 
-canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
-canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
-canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
+canvas.addEventListener("touchstart",  function(event) {
+	event.preventDefault()
+
+	mouseIsDown = true
+	var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX - rect.left
+	mousePosition.y = event.clientY - rect.top
+})
+canvas.addEventListener("touchmove",   function(event) {
+	event.preventDefault()
+
+	var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX - rect.left
+	mousePosition.y = event.clientY - rect.top
+})
+canvas.addEventListener("touchend",    function(event) {
+	event.preventDefault()
+	
+	mouseIsDown = false
+})
 canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
 
 class Dot {
