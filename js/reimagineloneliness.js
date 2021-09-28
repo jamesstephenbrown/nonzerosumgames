@@ -11,22 +11,24 @@ balls = []
 vacinity = 200
 maxSpeed = 2
 
-canvas.addEventListener("touchstart",  function(event) {
+canvas.addEventListener("touchstart", (event) => {
 	event.preventDefault()
+
+// it might be that because this listener is restricted to the actual canvas that I don't need to ge the bounding client rect and offset
 
 	mouseIsDown = true
-	var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX - rect.left
-	mousePosition.y = event.clientY - rect.top
+	// var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX
+	mousePosition.y = event.clientY
 })
-canvas.addEventListener("touchmove",   function(event) {
+canvas.addEventListener("touchmove", (event) => {
 	event.preventDefault()
 
-	var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX - rect.left
-	mousePosition.y = event.clientY - rect.top
+	// var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX
+	mousePosition.y = event.clientY
 })
-canvas.addEventListener("touchend",    function(event) {
+canvas.addEventListener("touchend", (event) => {
 	event.preventDefault()
 	
 	mouseIsDown = false
