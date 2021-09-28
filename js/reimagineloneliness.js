@@ -1,6 +1,8 @@
 canvas = document.querySelector('canvas')
 c = canvas.getContext('2d')
 
+var rect = canvas.getBoundingClientRect()
+
 canvas.width = innerWidth - 30 // to avoid scroll bar
 canvas.height = 1000
 centre = {x: canvas.width/2, y:canvas.height/2}
@@ -10,7 +12,7 @@ mousePosition = {x:0,y:0}
 balls = []
 vacinity = 200
 maxSpeed = 2
-
+activeTouch = null;
 
 // canvas.addEventListener("touchstart", (event) => {
 
@@ -38,6 +40,25 @@ maxSpeed = 2
 // 	mouseIsDown = false
 // })
 
+
+canvas.addEventListener('mousedown', (event) => {
+
+	mouseIsDown = true 
+	var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX - rect.left
+	mousePosition.y = event.clientY - rect.top
+})
+canvas.addEventListener('mousemove', (event) => {
+
+	var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX - rect.left
+	mousePosition.y = event.clientY - rect.top
+})
+canvas.addEventListener('mouseup', (event) => {
+	
+	mouseIsDown = false
+})
+
 canvas.addEventListener("touchstart", touchDown, false);
 canvas.addEventListener("touchmove", touchMoved, false);
 canvas.addEventListener("touchend", touchUp, false);
@@ -45,6 +66,8 @@ canvas.addEventListener("touchcancel", touchUp, false);
 
 function touchDown(evt) {
     evt.preventDefault();
+
+    mouseIsDown = true;
 
     // Ignore touches after the first.
     if (activeTouch != null)
@@ -57,26 +80,27 @@ function touchDown(evt) {
 }
 
 function touchUp(evt)  {
+    mouseIsDown = false;
     mousePosition = getTouchPos(evt);
     activeTouch = null;
 }
 
 function touchMoved(evt)  {
+    mouseIsDown = true;
     mousePosition = getTouchPos(evt);
 }
 
 function getTouchPos(evt)  {
-    var canX = 0;
-    var canY = 0;
 
     for( var i = 0; i < evt.touches.length; i++ ) {
         if (evt.touches[i].identifier == activeTouch) {
-            canX = evt.touches[i].pageX - c.offsetLeft;
-            canY = evt.touches[i].pageY - c.offsetTop;
+			rect = canvas.getBoundingClientRect()
+			mousePosition.x = evt.touches[i].clientX - rect.left
+			mousePosition.y = evt.touches[i].clientY - rect.top
             break;
         }
     }
-    return { 'x': canX, 'y': canY }
+    return { 'x': mousePosition.x, 'y': mousePosition.y }
 }
 
 
@@ -110,7 +134,6 @@ class Player extends Dot {
 		if (mouseIsDown) {
 			this.goal.x = mousePosition.x
 			this.goal.y = mousePosition.y
-			console.log("Player")
 
 			var heading = {x: this.goal.x - this.x, y: this.goal.y - this.y}
 			this.x += heading.x / 10
@@ -198,24 +221,6 @@ class Ball extends Dot {
 		}
 	}
 }
-
-canvas.addEventListener('mousedown', (event) => {
-
-	mouseIsDown = true 
-	var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX - rect.left
-	mousePosition.y = event.clientY - rect.top
-})
-canvas.addEventListener('mousemove', (event) => {
-
-	var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX - rect.left
-	mousePosition.y = event.clientY - rect.top
-})
-canvas.addEventListener('mouseup', (event) => {
-	
-	mouseIsDown = false
-})
 
 function findPosition() {
 	let position = {
