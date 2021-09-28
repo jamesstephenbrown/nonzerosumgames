@@ -12,28 +12,30 @@ vacinity = 200
 maxSpeed = 2
 
 canvas.addEventListener("touchstart", (event) => {
+
 	event.preventDefault()
-
-// it might be that because this listener is restricted to the actual canvas that I don't need to ge the bounding client rect and offset
-
 	mouseIsDown = true
-	// var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX
-	mousePosition.y = event.clientY
+	var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX - rect.left
+	mousePosition.y = event.clientY - rect.top
 })
 canvas.addEventListener("touchmove", (event) => {
-	event.preventDefault()
 
-	// var rect = canvas.getBoundingClientRect()
-	mousePosition.x = event.clientX
-	mousePosition.y = event.clientY
+	event.preventDefault()
+	var rect = canvas.getBoundingClientRect()
+	mousePosition.x = event.clientX - rect.left
+	mousePosition.y = event.clientY - rect.top
 })
 canvas.addEventListener("touchend", (event) => {
+
 	event.preventDefault()
-	
 	mouseIsDown = false
 })
-canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+canvas.addEventListener("touchcancel", (event) => {
+
+	event.preventDefault()
+	mouseIsDown = false
+})
 
 class Dot {
 	constructor (position, radius, index) {
@@ -153,31 +155,21 @@ class Ball extends Dot {
 	}
 }
 
-addEventListener('mousedown', (event) => {
-	mouseIsDown = true
-// setting up closest ball
-	// closestBall = null
-	// closestDist = 1000
-	// balls.forEach((ball) => {
-	// 	let heading = {x: event.clientX - ball.x, y: event.clientY - ball.y}
-	// 	const distance = Math.hypot(heading.x,heading.y)
-	// 	if (distance < closestDist) {
-	// 		closestBall = ball
-	// 		closestDist = distance
-	// 	}
-	// })
+canvas.addEventListener('mousedown', (event) => {
+
+	mouseIsDown = true 
 	var rect = canvas.getBoundingClientRect()
 	mousePosition.x = event.clientX - rect.left
 	mousePosition.y = event.clientY - rect.top
 })
-addEventListener('mousemove', (event) => {
-	// mousePosition.x = event.clientX
-	// mousePosition.y = event.clientY
+canvas.addEventListener('mousemove', (event) => {
+
 	var rect = canvas.getBoundingClientRect()
 	mousePosition.x = event.clientX - rect.left
 	mousePosition.y = event.clientY - rect.top
 })
-addEventListener('mouseup', (event) => {
+canvas.addEventListener('mouseup', (event) => {
+	
 	mouseIsDown = false
 })
 
