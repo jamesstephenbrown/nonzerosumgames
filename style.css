@@ -19,9 +19,9 @@
     right: 0;
     bottom: 0;
   }
-  .game {
+/*  .game {
     touch-action:  none;
-  }
+  }*/
 }
 
 @media only screen and (min-width: 320px) {
@@ -45,9 +45,9 @@
     right: 0;
     bottom: 0;
   }
-  .game {
+/*  .game {
     touch-action:  none;
-  }
+  }*/
 }
 
 
