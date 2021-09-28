@@ -11,6 +11,11 @@ balls = []
 vacinity = 200
 maxSpeed = 2
 
+canvas.addEventListener("touchstart",  function(event) {event.preventDefault()})
+canvas.addEventListener("touchmove",   function(event) {event.preventDefault()})
+canvas.addEventListener("touchend",    function(event) {event.preventDefault()})
+canvas.addEventListener("touchcancel", function(event) {event.preventDefault()})
+
 class Dot {
 	constructor (position, radius, index) {
 		this.x = position.x
