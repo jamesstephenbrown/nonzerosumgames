@@ -12,6 +12,20 @@ p {
   font-size: 200%;
   font-weight:normal;
   font-style:normal;
+
+}
+a {
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 200%;
+  font-weight:normal;
+  font-style:normal;
+  color: white;
+}
+li {
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 200%;
+  font-weight:normal;
+  font-style:normal;
 }
 
 h1 {
