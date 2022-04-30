@@ -102,7 +102,7 @@
     font-weight:normal;
     font-style:normal;
     min-width:400;
-    max-width:400;
+    max-width:400 !important;
     text-align:center;
     margin:0 auto;
 
