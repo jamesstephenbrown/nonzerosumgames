@@ -27,7 +27,7 @@ class Ball {
 	draw () {
 		c.beginPath()
 		c.arc(this.x, this.y, this.offsetRadius, 0, Math.PI * 2, false)
-		c.fillStyle = 'grey'
+		c.fillStyle = 'black'
 		c.fill()
 		c.closePath()
 
@@ -40,7 +40,7 @@ class Ball {
 			c.quadraticCurveTo(points[4].x, points[4].y, points[5].x, points[5].y)
 			c.lineTo(points[0].x, points[0].y)
 		}
-		c.fillStyle = 'grey'
+		c.fillStyle = 'black'
 		c.fill()
 		c.closePath()
 	}
