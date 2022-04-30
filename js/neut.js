@@ -43,7 +43,7 @@ class Neut {
 	    let newSize = this.mood > 0 ? this.mood * 2 + 4:this.mood < 0 ? -this.mood * 2 + 4 : 4
 
 	    c.rect(this.x + this.width/2 - newSize/2,this.y + this.height/2 - newSize/2,newSize,newSize)
-	    c.fillStyle = this.mood > 0 ? 'lightGreen': this.mood < 0 ? 'red' : 'grey'
+	    c.fillStyle = this.mood > 0 ? 'black': this.mood < 0 ? 'white' : 'grey'
 	    c.fill()
 
   		// c.drawImage(square, this.x,this.y)
@@ -139,7 +139,7 @@ class Neut {
 class Player extends Neut {
 }
 
-const player = new Neut(centre, 22, 22, 'lightGreen', {x:0,y:0}, {x:0,y:0}, 5, 3)
+const player = new Neut(centre, 22, 22, 'black', {x:0,y:0}, {x:0,y:0}, 5, 3)
 // console.log('player position x: ' + player.x + ' y: ' + player.y)
 const neuts = [player]
 
@@ -164,7 +164,7 @@ function init () {
 			findPosition(),
 			22,
 			22,
-			'lightGreen',
+			'black',
 			{x:0,y:0},
 			{x:0,y:0},
 			5,
@@ -210,7 +210,7 @@ document.addEventListener('keydown', function(event) {
 function animate() {
   // console.log('animating')
   requestAnimationFrame(animate)
-  c.fillStyle = 'rgba(0,0,0,0.1)'
+  c.fillStyle = 'rgba(112, 144, 144, 0.1)'
   c.fillRect(0,0,canvas.width,canvas.height)
 
 player.isTouched = false

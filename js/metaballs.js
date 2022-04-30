@@ -180,7 +180,7 @@ function init () {
 }
 function animate() {
 	requestAnimationFrame(animate)
-	c.fillStyle = 'rgba(50,50,50,1)'
+	c.fillStyle = 'rgba(112, 144, 144,1)'
 	c.fillRect(0,0,canvas.width,canvas.height)
 
 	balls.forEach((ball) => {
