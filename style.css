@@ -1,3 +1,30 @@
+@font-face {
+    font-family: 'vals_handwriting_is_pretty_Rg';
+    src: url('vals_handwriting_is_pretty_messy-webfont.woff2') format('woff2'),
+         url('vals_handwriting_is_pretty_messy-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+p {
+  font-family: 'CustomFont', Arial, sans-serif;
+  font-weight:normal;
+  font-style:normal;
+}
+
+h1 {
+font-family: 'CustomFont', Arial, sans-serif;
+font-weight:normal;
+font-style:normal;
+}
+
+h1 {
+font-family: 'CustomFont', Arial, sans-serif;
+font-weight:normal;
+font-style:normal;
+}
+
 @media only screen and (max-width:  320px) {
 
   body {
@@ -49,6 +76,7 @@
     touch-action:  none;
   }*/
 }
+
 
 
 
