@@ -98,36 +98,35 @@
 
   p {
     font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 150%;
+    font-size: 200%;
     font-weight:normal;
     font-style:normal;
-    max-width: 400px !important;
 
   }
   a {
     font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 150%;
+    font-size: 200%;
     font-weight:normal;
     font-style:normal;
     color: white;
   }
   li {
     font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 150%;
+    font-size: 200%;
     font-weight:normal;
     font-style:normal;
   }
 
   h1 {
   font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 250%;
+  font-size: 350%;
   font-weight:normal;
   font-style:normal;
   }
 
   h3 {
   font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 350%;
+  font-size: 250%;
   font-weight:normal;
   font-style:normal;
   }
