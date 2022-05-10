@@ -23,7 +23,8 @@
     position: relative;
     text-align: center;
   }
-  .disqus {
+  .giscus {
+    display: none;
     position:  fixed;
     right: 0;
     bottom: 0;
@@ -78,17 +79,20 @@
     background-color:#799;
   }
   img {
-    max-width: 400px important;
   }
   .content {
+    max-width: 200px important;
     position: relative;
     text-align: center;
   }
   .links {
+    max-width: 200px important;
     position: relative;
     text-align: center;
   }
-  .disqus {
+  .giscus {
+    max-width: 200px important;
+    display: none;
     position:  fixed;
     right: 0;
     bottom: 0;
@@ -101,8 +105,8 @@
     font-size: 200%;
     font-weight:normal;
     font-style:normal;
-    min-width:400;
-    max-width:400 !important;
+    min-width:200;
+    max-width:200 !important;
     text-align:center;
     margin:0 auto;
 
