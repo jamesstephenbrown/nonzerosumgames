@@ -24,7 +24,6 @@
     text-align: center;
   }
   .giscus {
-    display: none;
     position:  fixed;
     right: 0;
     bottom: 0;
@@ -91,8 +90,6 @@
     text-align: center;
   }
   .giscus {
-    max-width: 200px important;
-    display: none;
     position:  fixed;
     right: 0;
     bottom: 0;
