@@ -7,12 +7,6 @@
 
 }
 
-.portraits {
-  min-width: 50%;
-  max-width: 50%;
-  height: auto;
-}
-
 @media only screen and (max-width:  320px) {
 
   body {
@@ -37,15 +31,16 @@
 /*  .game {
     touch-action:  none;
   }*/
-
-
-
   p {
     font-family: 'vals_handwriting_is_pretty_Rg';
     font-size: 300%;
     font-weight:normal;
     font-style:normal;
-
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align:center;
   }
   a {
     font-family: 'vals_handwriting_is_pretty_Rg';
@@ -60,22 +55,28 @@
     font-weight:normal;
     font-style:normal;
   }
-
   h1 {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 500%;
-  font-weight:normal;
-  font-style:normal;
+    font-family: 'vals_handwriting_is_pretty_Rg';
+    font-size: 500%;
+    font-weight:normal;
+    font-style:normal;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align:center;
   }
-
   h3 {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 400%;
-  font-weight:normal;
-  font-style:normal;
+    font-family: 'vals_handwriting_is_pretty_Rg';
+    font-size: 400%;
+    font-weight:normal;
+    font-style:normal;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align:center;
   }
-
-
 }
 
 @media only screen and (min-width: 320px) {
@@ -83,12 +84,21 @@
   body {
     background-color:#799;
   }
-  img {
-  }
+img {
+}
   .content {
     max-width: 200px important;
     position: relative;
     text-align: center;
+  }
+  .portraits {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    position: relative;
+    align-content: center;
+
   }
   .links {
     max-width: 200px important;
@@ -100,18 +110,19 @@
     right: 0;
     bottom: 0;
   }
-
-
-
+  .comments {
+    position: relative;
+  }
   p {
     font-family: 'vals_handwriting_is_pretty_Rg';
     font-size: 200%;
     font-weight:normal;
     font-style:normal;
-    min-width:200;
-    max-width:200 !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
     text-align:center;
-    margin:0 auto;
 
   }
   a {
@@ -127,19 +138,27 @@
     font-weight:normal;
     font-style:normal;
   }
-
   h1 {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 350%;
-  font-weight:normal;
-  font-style:normal;
+    font-family: 'vals_handwriting_is_pretty_Rg';
+    font-size: 350%;
+    font-weight:normal;
+    font-style:normal;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align:center;
   }
-
   h3 {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 250%;
-  font-weight:normal;
-  font-style:normal;
+    font-family: 'vals_handwriting_is_pretty_Rg';
+    font-size: 250%;
+    font-weight:normal;
+    font-style:normal;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align:center;
   }
 
 
