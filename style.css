@@ -91,6 +91,21 @@ img {
     position: relative;
     text-align: center;
   }
+  .container {
+    display: flex;
+    height: 100%;
+    margin: 20px;
+
+  }
+  .column {
+    flex: 33.33%;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 50px;
+    border: 5px solid #000;
+  }
   .portraits {
     display: block;
     margin-left: auto;
@@ -98,6 +113,7 @@ img {
     width: 50%;
     position: relative;
     align-content: center;
+    /*border-radius: 50%;*/
 
   }
   .links {
