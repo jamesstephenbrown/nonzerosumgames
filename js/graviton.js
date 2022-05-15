@@ -200,7 +200,7 @@ let mostPopular = gravitons[0]
 function animate() {
   // console.log('animating')
   requestAnimationFrame(animate)
-  c.fillStyle = '#3a3a3a'
+  c.fillStyle = '#000'
   c.fillRect(0,0,canvas.width,canvas.height)
   gravitons.forEach(graviton => {
    graviton.reset()
