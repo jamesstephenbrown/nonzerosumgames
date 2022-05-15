@@ -26,7 +26,7 @@ a {
     align-content: center;
   }
 
-@media only screen and (max-device-width: 450px) and (orientation: portrait) {
+@media only screen and (max-device-width: 450px) {
 
   img {
     max-width: 100% important!;
@@ -98,7 +98,7 @@ a {
   }
 }
 
-@media only screen and (min-device-width: 450px) {
+@media only screen and (min-device-width: 450px) or (orientation: landscape) {
 
 
   img {
