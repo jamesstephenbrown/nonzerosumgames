@@ -16,15 +16,18 @@ a {
   color: white;
 }
 .portraits {
-    border-radius: 5px;
-    border: 100px solid #FFF;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    position: relative;
-    align-content: center;
-  }
+  border-radius: 5px;
+  border: 100px solid #FFF;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  position: relative;
+  align-content: center;
+}
+.circle {
+  border-radius: 50%;
+}
 
 @media only screen and (max-device-width: 450px) {
 
