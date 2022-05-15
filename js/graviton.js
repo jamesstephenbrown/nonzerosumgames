@@ -16,7 +16,7 @@ element.requestFullscreen()
   });
 
 canvas.width = innerWidth
-canvas.height = 300
+canvas.height = 500
 
 const mouse = {
   x: innerWidth / 2,
