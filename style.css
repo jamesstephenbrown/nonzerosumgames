@@ -28,7 +28,7 @@ a {
 #circle {
     border-radius: 50%;
     background-color: #55AAE3;
-    border: 1px solid ##55AAE3;
+    border: 0px solid ##55AAE3;
     margin-right: 50px;
     margin-left: 50px;
     overflow: hidden;
