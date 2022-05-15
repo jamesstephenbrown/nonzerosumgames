@@ -51,6 +51,9 @@ a {
     right: 0;
     bottom: 0;
   }
+  .giscus {
+    font-size: 300%;
+  }
 /*  .game {
     touch-action:  none;
   }*/
