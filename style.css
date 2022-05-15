@@ -26,7 +26,7 @@ a {
   align-content: center;
 }
 #circle {
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: #55AAE3;
     border: 1px solid ##55AAE3;
     overflow: hidden;
