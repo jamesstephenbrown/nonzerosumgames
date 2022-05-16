@@ -68,7 +68,7 @@ a:hover {
   .container {
     height: 100%;
     margin: 100px;
-    background-color: rgba(100, 250, 150, 0.2);
+    background-color: rgba(100, 250, 150, 0.3);
     border-radius: 50px;
     border: 10px solid #000;
   }
@@ -147,7 +147,7 @@ a:hover {
     flex: 33.33%;
     padding: 10px;
     margin: 10px;
-    background-color: rgba(100, 250, 150, 0.2);
+    background-color: rgba(100, 250, 150, 0.3);
     text-align: center;
     border-radius: 50px;
     border: 5px solid #000;
