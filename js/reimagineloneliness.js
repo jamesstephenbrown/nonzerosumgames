@@ -14,33 +14,6 @@ vacinity = 200
 maxSpeed = 2
 activeTouch = null;
 
-// canvas.addEventListener("touchstart", (event) => {
-
-// 	event.preventDefault()
-// 	mouseIsDown = true
-// 	var rect = canvas.getBoundingClientRect()
-// 	mousePosition.x = event.clientX - rect.left
-// 	mousePosition.y = event.clientY - rect.top
-// })
-// canvas.addEventListener("touchmove", (event) => {
-
-// 	event.preventDefault()
-// 	var rect = canvas.getBoundingClientRect()
-// 	mousePosition.x = event.clientX - rect.left
-// 	mousePosition.y = event.clientY - rect.top
-// })
-// canvas.addEventListener("touchend", (event) => {
-
-// 	event.preventDefault()
-// 	mouseIsDown = false
-// })
-// canvas.addEventListener("touchcancel", (event) => {
-
-// 	event.preventDefault()
-// 	mouseIsDown = false
-// })
-
-
 canvas.addEventListener('mousedown', (event) => {
 
 	mouseIsDown = true 
@@ -66,12 +39,15 @@ canvas.addEventListener("touchcancel", touchUp, false);
 
 function touchDown(evt) {
     evt.preventDefault();
-
+    if (mouseIsDown) {
+    	closestBall = null;
+    }
     mouseIsDown = true;
 
     // Ignore touches after the first.
-    if (activeTouch != null)
+    if (activeTouch != null) {
         return;
+    }
 
     if (evt.changedTouches.length > 0) {
         activeTouch = evt.changedTouches[0].identifier;
@@ -247,7 +223,7 @@ function init () {
 }
 function animate() {
 	requestAnimationFrame(animate)
-	c.fillStyle = '#799'
+	c.fillStyle = '#55AAE3'
 	c.fillRect(0,0,canvas.width,canvas.height)
 
 	player.follow()
