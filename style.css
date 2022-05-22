@@ -45,6 +45,7 @@ a:hover {
 
 .rounded_outlined {
   margin: auto;
+  max-width: 95%;
   border-radius: 50px;
   border: 5px solid #000;
   background-color: #55AAE3;
@@ -58,7 +59,7 @@ a:hover {
 @media only screen and (max-device-width: 450px) {
 
   img {
-    max-width: 100% important!;
+    max-width: 95% important!;
   }
   .content {
     position: relative;
@@ -129,6 +130,9 @@ a:hover {
 
 @media only screen and (min-device-width: 451px) {
 
+  .rounded_outlined {
+    max-width: 700px;
+  }
 
   img {
     max-width: 700px;
