@@ -82,9 +82,10 @@ function getTouchPos(evt)  {
 
 
 class Dot {
-	constructor (position, radius, index) {
+	constructor (position, radius, index, color) {
 		this.x = position.x
 		this.y = position.y
+		this.color = color
 		this.goal = {x:this.x,y:this.y}
 		this.index = index
 		this.radius = radius
@@ -98,8 +99,11 @@ class Dot {
 	draw () {
 		c.beginPath()
 		c.arc(this.x, this.y, this.radius, Math.PI * 2, false)
-		c.fillStyle = 'black'
+		c.fillStyle = this.color
 		c.fill()
+		c.fillStyle = 'black'
+		c.lineWidth = 8;
+		c.stroke()
 		c.closePath()
 	}
 }
@@ -122,7 +126,7 @@ class Player extends Dot {
 		this.draw()
 	}
 }
-player = new Player({x:centre.x,y: 20}, 15, -1);
+player = new Player({x:centre.x,y: 20}, 15, -1, 'lightGreen');
 
 class Ball extends Dot {
 
@@ -214,7 +218,7 @@ function init () {
 	for (var i = ballCount - 1; i >= 0; i--) {
 			v = i
 		balls.push(new Ball(
-			findPosition(),Math.random() * (5) + 10, v
+			findPosition(),Math.random() * (5) + 10, v, 'yellow'
 			)
 		)
 	}
