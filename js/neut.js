@@ -210,7 +210,7 @@ document.addEventListener('keydown', function(event) {
 function animate() {
   // console.log('animating')
   requestAnimationFrame(animate)
-  c.fillStyle = 'rgba(112, 144, 144, 0.1)'
+  c.fillStyle = 'rgba(85,170,227,0.1)'
   c.fillRect(0,0,canvas.width,canvas.height)
 
 player.isTouched = false
