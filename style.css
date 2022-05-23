@@ -42,6 +42,10 @@ a:hover {
   height: 200px;
   background-color: red;
 }
+.mina {
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  color: mediumpurple;
+}
 
 .rounded_outlined {
   margin: auto;
@@ -53,6 +57,19 @@ a:hover {
   display: block;
   position: relative;
   align-content: center;
+}
+.montage {
+  position: relative;
+  margin: 20px;
+  border-radius: 50px;
+  border: 5px solid #000;
+  background-color: #55AAE3;
+  overflow: hidden;
+  align-content: center;
+  text-align: center;
+  width:300px;
+  height:300px;
+  object-fit:cover;
 }
 
 
