@@ -71,6 +71,12 @@ a:hover {
   height:150px;
   object-fit:cover;
 }
+./*montage:hover {
+
+  width:500px;
+  height:500px;
+  position: 50%;
+}*/
 
 
 @media only screen and (max-device-width: 450px) {
