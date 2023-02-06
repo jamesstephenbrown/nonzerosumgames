@@ -16,16 +16,16 @@ element.requestFullscreen()
   });
 
 canvas.width = innerWidth
-canvas.height = 500
+canvas.height = 4*innerHeight / 5
 
 const mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 }
 const numberOfElements = 5
-const numberOfGravitons = 250
-const attractionMin = -12
-const attractionMax = 12
+const numberOfGravitons = 1000
+const attractionMin = -50
+const attractionMax = 50
 
 const red = 'rgb(255,100,100)'
 const yellow = 'rgb(150,255,100)'
@@ -51,7 +51,7 @@ addEventListener('mousemove', (event) => {
 
 addEventListener('resize', () => {
   canvas.width = innerWidth
-  canvas.height = 500
+  canvas.height = innerHeight
   init()
 })
 
@@ -101,13 +101,13 @@ class Graviton {
 
         // console.log(thisAttractionForGravitonElement, graviotnAttractionForThisElement)
 
-        this.goal.x += (heading.x * thisAttractionForGravitonElement) / 10
-        this.goal.y += (heading.y * thisAttractionForGravitonElement) / 10
-        this.goal.z += (heading.z * thisAttractionForGravitonElement) / 10 // remember divided by 10?
+        this.goal.x += (heading.x * thisAttractionForGravitonElement) / 100
+        this.goal.y += (heading.y * thisAttractionForGravitonElement) / 100
+        this.goal.z += (heading.z * thisAttractionForGravitonElement) / 100 // remember divided by 10?
 
-        graviton.goal.x += (heading.x * gravitonAttractionForThisElement) / 10
-        graviton.goal.y += (heading.y * gravitonAttractionForThisElement) / 10
-        graviton.goal.z += (heading.z * gravitonAttractionForThisElement) / 10// remember divided by 10?
+        graviton.goal.x += (heading.x * gravitonAttractionForThisElement) / 100
+        graviton.goal.y += (heading.y * gravitonAttractionForThisElement) / 100
+        graviton.goal.z += (heading.z * gravitonAttractionForThisElement) / 100// remember divided by 10?
       }
     })
   }
@@ -218,11 +218,14 @@ function animate() {
 
     graviton.x += graviton.goal.x
     graviton.y += graviton.goal.y
-    graviton.x -= offset.x
-    graviton.y -= offset.y
-    // graviton.x += graviton.goal.x
-    // graviton.y += graviton.goal.y
+    //graviton.x -= offset.x
+    //graviton.y -= offset.y
     graviton.z += graviton.goal.z
+
+      graviton.x = graviton.x < 0 ? graviton.x + canvas.width : graviton.x > canvas.width ? graviton.x - canvas.width : graviton.x;
+      graviton.y = graviton.y < 0 ? graviton.y + canvas.height : graviton.y > canvas.height ? graviton.y - canvas.height : graviton.y;
+      graviton.z = graviton.z < 0 ? graviton.z + canvas.width : graviton.z > canvas.width ? graviton.z - canvas.width : graviton.z;
+
     graviton.draw()
   })
 }
