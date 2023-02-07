@@ -7,13 +7,13 @@ const c = canvas.getContext('2d')
 var element = document.querySelector('canvas');
 
 // make the element go to full-screen mode
-element.requestFullscreen()
-  .then(function() {
-    // element has entered fullscreen mode successfully
-  })
-  .catch(function(error) {
-    // element could not enter fullscreen mode
-  });
+//element.requestFullscreen()
+//  .then(function() {
+//    // element has entered fullscreen mode successfully
+//  })
+//  .catch(function(error) {
+//    // element could not enter fullscreen mode
+//  });
 
 canvas.width = innerWidth
 canvas.height = 4*innerHeight / 5
