@@ -138,7 +138,7 @@ let elements
 let offset = new Offset (0,0)
 
 function init() {
-  element.requestFullscreen()
+  //element.requestFullscreen()
 
   c.fillStyle = '#3a3a3a'
   c.fillRect(0,0,canvas.width,canvas.height)
