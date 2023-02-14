@@ -6,20 +6,31 @@
     font-style: normal;
 }
 body {
-  background-color:#55AAE3;
+    background-color: #55AAE3;
+    margin: 0px;
+    padding-top: 0px;
 }
 a {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 100%;
-  font-weight:normal;
-  font-style:normal;
-  color: white;
+    font-family: 'vals_handwriting_is_pretty_Rg';
+/*    font-family: 'Prototype';*/
+    font-size: 100%;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
 }
 
-a:hover {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-style: oblique;
+
+.dark {
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 1) !important;
+    color: #55AAE3 !important;
 }
+
+    a:hover {
+/*        font-family: 'Prototype';*/
+        font-family: 'vals_handwriting_is_pretty_Rg';
+        font-style: oblique;
+    }
 .portraits {
   border-radius: 5px;
   border: 100px solid #FFF;
@@ -48,30 +59,30 @@ a:hover {
 }
 
 .rounded_outlined {
-  margin: auto;
-  max-width: 95%;
-  border-radius: 50px;
-  border: 5px solid #000;
-  background-color: #55AAE3;
-  overflow: hidden;
-  display: block;
-  position: relative;
-  align-content: center;
+    margin: auto;
+    max-width: 95%;
+    border-radius: 50px;
+    border: 5px solid #3388C2;
+    background-color: #55AAE3;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    align-content: center;
 }
 .montage {
-  position: relative;
-  margin: 5px;
-  border-radius: 50px;
-  border: 5px solid #000;
-  background-color: #55AAE3;
-  overflow: hidden;
-  align-content: center;
-  text-align: center;
-  width:150px;
-  height:150px;
-  object-fit:cover;
+    position: relative;
+    margin: 5px;
+    border-radius: 50px;
+    border: 5px solid #3388C2;
+    background-color: #55AAE3;
+    overflow: hidden;
+    align-content: center;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }
-./*montage:hover {
+/*.montage:hover {
 
   width:500px;
   height:500px;
@@ -100,6 +111,7 @@ a:hover {
     text-align: center;
   }
   .giscus_button {
+      margin: 0px;
     position: fixed;
     right: 0;
     bottom: 0;
@@ -110,45 +122,49 @@ a:hover {
 /*  .game {
     touch-action:  none;
   }*/
-  p {
+p {
     font-family: 'vals_handwriting_is_pretty_Rg';
+/*    font-family: 'Prototype';*/
     font-size: 400%;
-    font-weight:normal;
-    font-style:normal;
+    font-weight: normal;
+    font-style: normal;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    text-align:center;
-  }
-  li {
+    text-align: center;
+}
+li {
     font-family: 'vals_handwriting_is_pretty_Rg';
+/*    font-family: 'Prototype';*/
     font-size: 300%;
-    font-weight:normal;
-    font-style:normal;
-  }
-  h1 {
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
     font-family: 'vals_handwriting_is_pretty_Rg';
+/*    font-family: 'Prototype';*/
     font-size: 800%;
-    font-weight:normal;
-    font-style:normal;
+    font-weight: normal;
+    font-style: normal;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    text-align:center;
-  }
-  h3 {
+    text-align: center;
+}
+h3 {
     font-family: 'vals_handwriting_is_pretty_Rg';
+/*    font-family: 'Prototype';*/
     font-size: 500%;
-    font-weight:normal;
-    font-style:normal;
+    font-weight: normal;
+    font-style: normal;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    text-align:center;
-  }
+    text-align: center;
+}
 }
 
 @media only screen and (min-device-width: 451px) {
@@ -157,9 +173,11 @@ a:hover {
     max-width: 700px;
   }
 
-  img {
-    max-width: 700px;
-  }
+    img {
+/*        width: 100%;
+        height: 100%;*/
+        max-width: 700px;
+    }
   .content {
     position: relative;
     text-align: center;
@@ -182,6 +200,9 @@ a:hover {
   .links {
     position: relative;
     text-align: center;
+  }
+  .halfsize {
+      max-height: 20px;
   }
   .giscus_button {
     position: fixed;
