@@ -5,21 +5,16 @@
     font-weight: normal;
     font-style: normal;}
 
-/* All Screens */
 body {
-    background-color: #55AAE3;
-    margin: 0px;
-    padding-top: 0px;}
+  background-color: #55AAE3;
+  margin: 0px;
+  padding-top: 0px;}
 a {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 100%;
-    font-weight: normal;
-    font-style: normal;
-    color: white;}
-.dark {
-    margin: 0px;
-    background-color: rgba(0, 0, 0, 1) !important;
-    color: #55AAE3 !important;}
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: white;}
 a:hover {
 /*        font-family: 'Prototype';*/
     font-family: 'vals_handwriting_is_pretty_Rg';
@@ -50,7 +45,7 @@ a:hover {
     margin: auto;
     max-width: 95%;
     border-radius: 50px;
-    border: 5px solid #3388C2;
+    border: 5px rgba(0, 0, 0, 0.2);
     background-color: #55AAE3;
     overflow: hidden;
     display: block;
@@ -68,14 +63,30 @@ a:hover {
     width: 150px;
     height: 150px;
     object-fit: cover;}
+.darkColumn {
+  flex: 33.33%;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  text-align: center;
+  border-radius: 50px;
+  padding-bottom: 20px; }
+.lightColumn {
+  flex: 33.33%;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  text-align: center;
+  border-radius: 50px;
+  padding-bottom: 20px; }
+.content {
+  position: relative;
+  text-align: center;}
 
-/* Phone Screen scale */
+/* Phone */
 @media only screen and (max-device-width: 450px) {
   img {
     max-width: 95% important!;}
-  .content {
-    position: relative;
-    text-align: center;}
   .container {
     height: 100%;
     margin: 100px;}
@@ -126,15 +137,12 @@ h3 {
     width: 90%;
     text-align: center;}
   }
-/* Computer Screen scale */
+/* Computer */
 @media only screen and (min-device-width: 451px) {
   .rounded_outlined {
     max-width: 700px;}
   img {
         max-width: 700px;}
-  .content {
-    position: relative;
-    text-align: center;}
   .container {
     display: flex;
     height: 100%;
@@ -149,23 +157,9 @@ h3 {
     border: 5px solid #000; */
     padding-bottom: 20px;}
   .darkColumn {
-    flex: 33.33%;
-    padding: 10px;
-    margin: 10px;
-    background-color: #4090c6;
-    text-align: center;
-    border-radius: 50px;
-    /* border: 5px solid #000; */
-    padding-bottom: 20px; }
+    flex: 33.33%;}
   .lightColumn {
-    flex: 33.33%;
-    padding: 10px;
-    margin: 10px;
-    background-color: #7dc2ef;
-    text-align: center;
-    border-radius: 50px;
-    /* border: 5px solid #000; */
-    padding-bottom: 20px; }
+    flex: 33.33%;}
   .links {
     position: relative;
     text-align: center;}
