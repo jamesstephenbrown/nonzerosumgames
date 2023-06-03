@@ -12,7 +12,6 @@ body {
 }
 a {
     font-family: 'vals_handwriting_is_pretty_Rg';
-/*    font-family: 'Prototype';*/
     font-size: 100%;
     font-weight: normal;
     font-style: normal;
@@ -26,11 +25,11 @@ a {
     color: #55AAE3 !important;
 }
 
-    a:hover {
+a:hover {
 /*        font-family: 'Prototype';*/
-        font-family: 'vals_handwriting_is_pretty_Rg';
-        font-style: oblique;
-    }
+    font-family: 'vals_handwriting_is_pretty_Rg';
+    font-style: oblique;
+}
 .portraits {
   border-radius: 5px;
   border: 100px solid #FFF;
@@ -197,12 +196,39 @@ h3 {
     border: 5px solid #000; */
     padding-bottom: 20px;
   }
+
+
+
+  .darkColumn {
+    flex: 33.33%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #4090c6;
+    text-align: center;
+    border-radius: 50px;
+    /* border: 5px solid #000; */
+    padding-bottom: 20px;
+  }
+  .lightColumn {
+    flex: 33.33%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #7dc2ef;
+    text-align: center;
+    border-radius: 50px;
+    /* border: 5px solid #000; */
+    padding-bottom: 20px;
+  }
+
   .links {
     position: relative;
     text-align: center;
   }
   .halfsize {
       max-height: 20px;
+  }
+  .halfSizeImage {
+      max-width: 250px;
   }
   .giscus_button {
     position: fixed;
