@@ -106,27 +106,24 @@ p {
   font-weight: normal;
   font-style: normal;
   display: block;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 50px;
+  margin-right: 50px;
   text-align: center;}
 li {
   font-family: 'vals_handwriting_is_pretty_Rg';
   font-size: 400%;
   font-weight: normal;
   font-style: normal;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;}
+  margin-left: 50px;
+  margin-right: 50px;}
 h1 {
   font-family: 'vals_handwriting_is_pretty_Rg';
   font-size: 800%;
   font-weight: normal;
   font-style: normal;
   display: block;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 50px;
+  margin-right: 50px;
   text-align: center;}
 h3 {
   font-family: 'vals_handwriting_is_pretty_Rg';
@@ -135,8 +132,8 @@ h3 {
   font-style: normal;
   display: block;
   max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 50px;
+  margin-right: 50px;
   text-align: center;}
 }
 /* Computer */
