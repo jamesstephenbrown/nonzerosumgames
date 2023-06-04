@@ -189,7 +189,11 @@ h3 {
     font-family: 'vals_handwriting_is_pretty_Rg';
     font-size: 200%;
     font-weight:normal;
-    font-style:normal;}
+    font-style:normal;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 90%;}
   h1 {
     font-family: 'vals_handwriting_is_pretty_Rg';
     font-size: 350%;
