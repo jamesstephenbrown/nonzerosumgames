@@ -108,13 +108,14 @@ p {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
     text-align: center;}
 li {
     font-family: 'vals_handwriting_is_pretty_Rg';
     font-size: 300%;
     font-weight: normal;
-    font-style: normal;}
+    font-style: normal;
+    margin-left: auto;
+    margin-right: auto;}
 h1 {
     font-family: 'vals_handwriting_is_pretty_Rg';
 /*    font-family: 'Prototype';*/
