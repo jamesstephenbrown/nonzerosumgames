@@ -86,58 +86,55 @@ a:hover {
 /* Phone */
 @media only screen and (max-device-width: 450px) {
   img {
-    max-width: 95% important!;}
-  .container {
-    height: 100%;
-    margin: 100px;}
-  .links {
-    position: relative;
-    text-align: center;}
-  .giscus_button {
-      margin: 0px;
-    position: fixed;
-    right: 0;
-    bottom: 0;}
-  .giscus {
-    font-size: 300%;}
+  max-width: 95% !important;}
+.container {
+  height: 100%;
+  margin: 5rem;} /* changed from 100px to 5rem */
+.links {
+  position: relative;
+  text-align: center;}
+.giscus_button {
+  margin: 0px;
+  position: fixed;
+  right: 0;
+  bottom: 0;}
+.giscus {
+  font-size: 300%;}
 p {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 400%;
-    font-weight: normal;
-    font-style: normal;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;}
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 400%;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;}
 li {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 300%;
-    font-weight: normal;
-    font-style: normal;
-    margin-left: auto;
-    margin-right: auto;}
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 400%;
+  font-weight: normal;
+  font-style: normal;
+  margin-left: auto;
+  margin-right: auto;}
 h1 {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-/*    font-family: 'Prototype';*/
-    font-size: 800%;
-    font-weight: normal;
-    font-style: normal;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    text-align: center;}
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 800%;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;}
 h3 {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 500%;
-    font-weight: normal;
-    font-style: normal;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    text-align: center;}
-  }
+  font-family: 'vals_handwriting_is_pretty_Rg';
+  font-size: 500%;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;}
+}
 /* Computer */
 @media only screen and (min-device-width: 451px) {
   .rounded_outlined {
