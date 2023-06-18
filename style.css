@@ -89,7 +89,7 @@ a:hover {
   max-width: 95% !important;}
 .container {
   height: 100%;
-  margin: 5rem;} /* changed from 100px to 5rem */
+  margin: 20px;} /* changed from 100px to 5rem */
 .links {
   position: relative;
   text-align: center;}
