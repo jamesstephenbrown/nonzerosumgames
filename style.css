@@ -165,7 +165,7 @@ h3 {
   .halfsize {
       max-height: 20px;}
   .halfSizeImage {
-      max-width: 250px;}
+      max-height: 200px;}
   .giscus_button {
     position: fixed;
     right: 0;
