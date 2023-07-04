@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <title>THE ARCADE</title>
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Include the jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="menu"></div>
+
+    <div class="content">
+        <a name="AboutMe"></a>
+        <h1>THE ARCADE</h1>
+        <p>Many of the posts on this blog have interactive elements, if you'd just like to have a play with the games and simulations, this page will take you directly to them!</p>
+        <div class="container">
+            <div class="darkColumn">
+                <h3>
+                    GAMES<br><br>
+                    <a href="lockwise.html#Lockwise" target="blank">Lockwise</a> a meta-game<br>
+                    <a href="reimagineloneliness.html">Loneliness</a> a negative-sum game<br>
+                    <a href="neut.html">Neut</a> a competitive non-zero-sum game<br>
+                    <a href="dungeonbffs.html">Dungeon BFFs</a> a board game you build as you play<br>
+                    <br>
+                    </h3>
+                </div>
+                <br>
+            <div class="darkColumn">
+                <h3>
+                    SIMULATIONS<br><br>
+                    <a href="./Thesis/GRAVITON.html">Graviton</a> (epilepsy warning)<br>
+                    <a href="parableofapolyp.html#Coral">Coral</a> a meditative experience<br>
+                    <br />
+                </h3>
+            </div>
+        </div>
+    </div>
+    <canvas></canvas>
+    <script src="./js/sitemap.js"></script>
+    <div class="content">
+    <script src="https://giscus.app/client.js"
+        data-repo="jamesstephenbrown/nonzerosumgames"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
+        data-category-id="DIC_kwDODpsK184CA9jn"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+    </div>
+</body>
+</html>
