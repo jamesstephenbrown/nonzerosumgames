@@ -19,7 +19,20 @@
     <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
     
     <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Include the jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
 </head>
+<body>
     <script type="text/javascript">
         function swapImage(imageElement, src1, src2) {
             if (imageElement.src.match(src1)) {
@@ -29,24 +42,9 @@
             }
         }
     </script>
-<body>
-    <!-- Menu Items -->
-    <div class="container">
-        <div class="darkColumn">
-            <p>
-                <a href="blog.html">Blog</a>
-                <a href="https://nonzerosum.itch.io">Games</a>
-                <!-- <a href="gametheory.html">Theory</a> -->
-                <!-- <a href="community.html">Community</a> -->
-                <a href="index.html">Home</a>
-                <a href="aboutme.html">About</a>
-            </p>
-        </div>
-    </div>
+    <div id="menu"></div>
     <!-- Content -->
     <h1>PARABLE OF A POLYP</h1>
-
-    <!-- <a style="color:#00000068" title="like Nemo">clown fish</a>  IF I WANT TO DO POP UP DEFINITIONS  -->
 
     <p><img src="./Images/Content/UpsideDownPolyp.png"></p>
 
@@ -63,7 +61,8 @@
     <p>In fact the polyp itself is a non-zero system that benefits from a symbiotic relationship with microscopic algae known as zooxanthellae which are what give coral its beautiful <span style="color:#e74aff">c</span><span style="color:#66CC66">o</span><span style="color:#FF9966">l</span><span style="color:#FFCCCC">o</span><span style="color:#FF0066">u</span><span style="color:#8254ff">r</span>. These algae contribute to both the coral and the rest us by producing oxygen through photosynthesis<sub>•</sub> In fact it's estimated that marine photosynthetic organisms produce 50-80% of the world's oxygen<sub>•</sub></p>
     <p>Tragically, many coral reefs are becoming gray and dying due to pollution, acidification and temperature change<sub>•</sub> When the reefs lose their vibrant hues, it signifies that these symbiotic organisms are no longer producing oxygen<sub>•</sub></p>
     <p>What a downer<sub>•••</sub></p>
-        
+       
+    <a name="Coral"></a> 
     <div class="container">
         <div class="darkColumn">
             <p><sub>•••</sub> as a consolation you can make your very own virtual coral bed here, just have a tap around in this space and watch 'em grow<sub>•••</sub></p>

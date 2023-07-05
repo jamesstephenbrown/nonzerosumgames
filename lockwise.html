@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <title>LOCKWISE - A Meta-Game</title>
+        <meta name="description" content="Discover LOCKWISE, a unique meta-game experiment that transforms the zero-sum game 'Rock, Paper, Scissors' into a non-zero-sum puzzle. Explore this new twist on classic gameplay.">
+        <meta name="keywords" content="LOCKWISE, Meta-Game, Non-Zero-Sum Game, Zero-Sum Game, Rock Paper Scissors, Game Theory, Puzzle Game, Interactive Games">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="NonZeroSumJames">
+        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
+        <!-- Include the jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Linking to Menu.html -->
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color:#6253ff">
+        <div id="menu"></div>
+    <!-- Content -->
+    <h1>LOCKWISE - a meta-game</h1>
+    <p>
+        This one of the more gamey-game interactives here, an experiment in creating a meta-game - a <a href="whatarenonzerosumgames.html">non-zero-sum</a> game made on top of a <a href="whatarenonzerosumgames.html#ZeroSumGames">zero-sum</a> game<sub>•</sub>
+    </p><p>
+        Give it a go using the arrow keys or draw a path<sub>•</sub>
+    </p>
+    <a name="Lockwise"></a>
+    <p>
+        <iframe frameborder="0" src="https://itch.io/embed-upload/816178?color=5340d5" allowfullscreen="" width="635" height="655"></iframe>
+    </p><p>
+        LOCKWISE is based on the zero-sum game "Rock, Paper, Scissors" which always intrigued me because of its circular value system<sub>•••</sub></p>
+
+    <div class="container">
+        <div class="lightColumn">
+            <p>      
+                Rock beats scissors, scissors beats paper, paper beats rock
+            </p><p>
+                <img src="./Images/Content/Lockwise_PSR.png">
+            </p><p>
+                In LOCKWISE this circular structure becomes<sub>•••</sub>
+            </p><p>
+                <img src="./Images/Content/Lockwise_STC.png">
+            </p><p>
+                Circles eat triangles, triangles eat squares, squares eat circles
+            </p>
+        </div>
+    </div>
+    <h3>SO<sub>•••</sub></h3>
+    <p> 
+        Instead of being a chance-based zero-sum game, LOCKWISE becomes a puzzle game that a player can succeed at, at no cost to an opponent - a non-zero-sum game<sub>•</sub>
+    </p>
+
+<div class="container">
+<div class="darkColumn">
+    <h3>RELATED MATERIAL</h3>
+    <p>
+        Read more about <a href="whatarenonzerosumgames.html#MetaGames">Meta-Games</a>!
+    </p>
+</div>
+</div>
+<canvas></canvas>
+<script src="./js/lockwise.js"></script>
+<div id="giscus_thread" ></div>
+<script src="https://giscus.app/client.js"
+data-repo="jamesstephenbrown/nonzerosumgames"
+data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
+data-category-id="DIC_kwDODpsK184CA9jn"
+data-mapping="pathname"
+data-reactions-enabled="1"
+data-emit-metadata="0"
+data-input-position="bottom"
+data-theme="dark_dimmed"
+data-lang="en"
+crossorigin="anonymous"
+async>
+</script>
+</body>
+</html>

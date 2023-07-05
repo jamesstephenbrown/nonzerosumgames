@@ -18,7 +18,20 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="OpenAICats">
     <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Include the jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
 </head>
+<body>
 <script type="text/javascript">
     function swap(imageElement, src1, src2) {
         if (imageElement.src.match(src1)) {
@@ -28,18 +41,6 @@
         }
     }
 </script>
-<body>
-    <!-- Menu Items -->
-    <div class="container">
-        <div class="darkColumn">
-            <p>
-                <a href="blog.html">Blog</a>
-                <a href="https://nonzerosum.itch.io">Games</a>
-                <a href="index.html">Home</a>
-                <a href="aboutme.html">About</a>
-            </p>
-        </div>
-    </div>
     <!-- Content -->
     <h1>Diminishing Returns • A Path to Shared Joy?</h1>
 
