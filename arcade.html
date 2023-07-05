@@ -14,22 +14,15 @@
     <title>THE ARCADE</title>
     <a name="Top"></a>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- Include the jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
-    <script>
-        $(document).ready(function() {
-            $("#menu").load("menu.html", function() {
-                var pageName = window.location.pathname.split("/").pop();
-                var menuLink = $("a[href='" + pageName + "']");
-                menuLink.parent().remove();
-            });
-        });
-    </script>
 </head>
 <body>
-    <div id="menu"></div>
-
+    <div class="menuColumn">
+        <p>
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="aboutme.html">About</a>
+        </p>
+    </div>
     <div class="content">
         <a name="AboutMe"></a>
         <h1>THE ARCADE</h1>
