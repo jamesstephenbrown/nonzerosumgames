@@ -1,227 +1,217 @@
 @font-face {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    src: url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff2') format('woff2'),
-         url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;}
-
-body {
-  background-color: #55AAE3;
-  margin: 0px;
-  padding-top: 0px;}
-a {
   font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 100%;
+  src: url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff2') format('woff2'),
+       url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  color: white;}
-a:hover {
-/*        font-family: 'Prototype';*/
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-style: oblique;}
-.portraits {
-  border-radius: 5px;
-  border: 100px solid #FFF;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  position: relative;
-  align-content: center;}
-#circle {
-    border-radius: 50%;
-    background-color: #55AAE3;
-    border: 0px solid #55AAE3;
-    margin-right: 50px;
-    margin-left: 50px;
-    overflow: hidden;}
-#circle > div {
-  height: 200px;
-  background-color: red;}
-.mina {
+}
+
+body {
+background-color: #55AAE3;
+margin: 0;
+padding-top: 0;
+}
+
+a, .mina, p, h1, h3, li {
   font-family: 'vals_handwriting_is_pretty_Rg';
-  color: mediumpurple;}
-.rounded_outlined {
-    margin: auto;
-    max-width: 95%;
-    border-radius: 50px;
-    border: 5px rgba(0, 0, 0, 0.2);
-    background-color: #55AAE3;
-    overflow: hidden;
-    display: block;
-    position: relative;
-    align-content: center;}
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+font-size: 100%;
+color: white;
+}
+
+a:hover {
+font-style: oblique;
+}
+
+.portraits, .rounded_outlined {
+border-radius: 50px;
+display: block;
+margin: auto;
+width: 50%;
+position: relative;
+align-content: center;
+overflow: hidden;
+text-align: center;
+}
+
+.mina {
+color: mediumpurple;
+}
+
+#circle, .rounded_outlined {
+background-color: #55AAE3;
+margin-right: 50px;
+margin-left: 50px;
+}
+
+#circle > div {
+height: 200px;
+background-color: red;
+}
+
+.rounded_outlined, .montage {
+border-radius: 50px;
+margin: auto;
+background-color: #55AAE3;
+overflow: hidden;
+text-align: center;
+}
+
 .montage {
-    position: relative;
-    margin: 5px;
-    border-radius: 50px;
-    border: 5px solid #3388C2;
-    background-color: #55AAE3;
-    overflow: hidden;
-    align-content: center;
-    text-align: center;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;}
-.darkColumn {
-  flex: 33.33%;
-  padding: 10px;
-  margin: 10px;
-  background-color: rgba(0, 0, 0, 0.15) !important;
-  text-align: center;
-  border-radius: 50px;
-  padding-bottom: 20px; }
+position: relative;
+border: 5px solid #3388C2;
+width: 150px;
+height: 150px;
+object-fit: cover;
+}
+
+.darkColumn, .menuColumn, .lightColumn {
+padding: 10px;
+margin-bottom: 10px;
+text-align: center;
+border-radius: 50px;
+padding-bottom: 20px;
+}
+
+.darkColumn, .lightColumn {
+flex: 33.33%;
+margin: 10px;
+}
+
+.darkColumn, .menuColumn {
+background-color: rgba(0, 0, 0, 0.15);
+}
+
 .menuColumn {
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 0px;
-  background-color: rgba(0, 0, 0, 0.15) !important;
-  text-align: center;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  padding-bottom: 20px; }
+margin-left: 30px;
+margin-right: 30px;
+margin-top: 0;
+border-bottom-left-radius: 50px;
+border-bottom-right-radius: 50px;
+}
+
 .lightColumn {
-  flex: 33.33%;
-  padding: 10px;
-  margin: 10px;
-  background-color: rgba(255, 255, 255, 0.3) !important;
-  text-align: center;
-  border-radius: 50px;
-  padding-bottom: 20px; }
-.content {
-  position: relative;
-  text-align: center;}
+background-color: rgba(255, 255, 255, 0.3);
+}
+
+.content, .links {
+position: relative;
+text-align: center;
+}
+
+li {
+text-align: left;
+}
 
 /* Phone */
 @media only screen and (max-device-width: 450px) {
-  img {
-  max-width: 95% !important;}
+img {
+  max-width: 95%;
+}
+
 .container {
   height: 100%;
-  margin: 20px;} /* changed from 100px to 5rem */
-.links {
-  position: relative;
-  text-align: center;}
+  margin: 20px;
+}
+
 .giscus_button {
-  margin: 0px;
+  margin: 0;
   position: fixed;
   right: 0;
-  bottom: 0;}
+  bottom: 0;
+}
+
 .giscus {
-  font-size: 300%;}
+  font-size: 300%;
+}
+
 p {
-  font-family: 'vals_handwriting_is_pretty_Rg';
   font-size: 400%;
-  font-weight: normal;
-  font-style: normal;
-  display: block;
   margin-left: 50px;
   margin-right: 50px;
-  text-align: center;}
+  text-align: center;
+}
+
 li {
-  font-family: 'vals_handwriting_is_pretty_Rg';
   font-size: 400%;
-  font-weight: normal;
-  font-style: normal;
-  margin-left: 50px;
-  margin-right: 50px;}
-h1 {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-size: 800%;
-  font-weight: normal;
-  font-style: normal;
-  display: block;
   margin-left: 50px;
   margin-right: 50px;
-  text-align: center;}
+}
+
+h1 {
+  font-size: 800%;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+}
+
 h3 {
-  font-family: 'vals_handwriting_is_pretty_Rg';
   font-size: 500%;
-  font-weight: normal;
-  font-style: normal;
-  display: block;
   max-width: 90%;
   margin-left: 50px;
   margin-right: 50px;
-  text-align: center;}
+  text-align: center;
 }
+}
+
 /* Computer */
 @media only screen and (min-device-width: 451px) {
-  .rounded_outlined {
-    max-width: 700px;}
-  img {
-        max-width: 700px;}
-  .container {
-    display: flex;
-    height: 100%;
-    margin: 20px;}
-  .column {
-    flex: 33.33%;
-    padding: 10px;
-    margin: 10px;
-    /* background-color: rgba(100, 250, 150, 0.5); */
-    text-align: center;
-    /* border-radius: 50px;
-    border: 5px solid #000; */
-    padding-bottom: 20px;}
-  .darkColumn {
-    flex: 33.33%;}
-  .lightColumn {
-    flex: 33.33%;}
-  .links {
-    position: relative;
-    text-align: center;}
-  .halfsize {
-      max-height: 20px;}
-  .halfSizeImage {
-      max-height: 200px;}
-  .giscus_button {
-    position: fixed;
-    right: 0;
-    bottom: 0;}
-  .comments {
-    position: relative;
-    right: auto;
-    bottom: auto;}
-  p {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 200%;
-    font-weight:normal;
-    font-style:normal;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    text-align:center;}
-  li {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 200%;
-    font-weight:normal;
-    font-style:normal;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-    width: 90%;}
-  h1 {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 350%;
-    font-weight:normal;
-    font-style:normal;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    text-align:center;}
-  h3 {
-    font-family: 'vals_handwriting_is_pretty_Rg';
-    font-size: 250%;
-    font-weight:normal;
-    font-style:normal;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    text-align:center;}
-  }
+.rounded_outlined, img {
+  max-width: 700px;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  margin: 20px;
+}
+
+.column, .darkColumn, .lightColumn {
+  flex: 33.33%;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.giscus_button {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+
+p {
+  font-size: 200%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  text-align: center;
+}
+
+li {
+  font-size: 200%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+h1 {
+  font-size: 350%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  text-align: center;
+}
+
+h3 {
+  font-size: 250%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  text-align: center;
+}
+}
