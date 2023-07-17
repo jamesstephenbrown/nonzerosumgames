@@ -92,6 +92,8 @@ margin-right: 30px;
 margin-top: 0;
 border-bottom-left-radius: 50px;
 border-bottom-right-radius: 50px;
+border-top-left-radius: 0px;
+border-top-right-radius: 00px;
 }
 
 .lightColumn {
