@@ -3,12 +3,11 @@
  * Copyright (c) 2018 GitHub Inc.
  * https://github.com/primer/primitives/blob/main/LICENSE
  */
-.giscus {
-    font-size: xx-large;
-}
+
 
 
 main {
+    font-size: xx-large;
   --color-prettylights-syntax-comment: #ffffff;
   --color-prettylights-syntax-constant: #6cb6ff;
   --color-prettylights-syntax-entity: #dcbdfb;
@@ -40,37 +39,37 @@ main {
   --color-prettylights-syntax-sublimelinter-gutter-mark: #545d68;
   --color-prettylights-syntax-constant-other-reference-link: #96d0ff;
   --color-btn-text: #ffffff;
-  --color-btn-bg: #ffffff46;
-  --color-btn-border: rgba(205, 217, 229, 0);
+  --color-btn-bg: #ffffff00;
+  --color-btn-border: rgba(255, 255, 255, 0.166);
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
-  --color-btn-hover-bg: #444c56;
+  --color-btn-hover-bg: #444c5600;
   --color-btn-hover-border: #898989;
-  --color-btn-active-bg: hsl(213deg 12% 27% / 100%);
+  --color-btn-active-bg: hsla(214, 12%, 27%, 0);
   --color-btn-active-border: #ffffff;
   --color-btn-selected-bg: #2d333b;
   --color-btn-primary-text: #fff;
   --color-btn-primary-bg: #347d3900;
-  --color-btn-primary-border: rgba(255, 255, 255, 0.1);
+  --color-btn-primary-border: rgba(255, 255, 255, 0.231);
   --color-btn-primary-shadow: 0 0 transparent;
   --color-btn-primary-inset-shadow: 0 0 transparent;
-  --color-btn-primary-hover-bg: #46954a00;
-  --color-btn-primary-hover-border: rgb(205 217 229 / 10%);
-  --color-btn-primary-selected-bg: #347d39;
+  --color-btn-primary-hover-bg: #00000000;
+  --color-btn-primary-hover-border: rgba(59, 255, 209, 0.256);
+  --color-btn-primary-selected-bg: #347d393e;
   --color-btn-primary-selected-shadow: 0 0 transparent;
   --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.625);
   --color-btn-primary-disabled-bg: rgba(52, 125, 57, 0);
   --color-btn-primary-disabled-border: rgba(205, 217, 229, 0);
-  --color-action-list-item-default-hover-bg: rgb(144 157 171 / 12%);
-  --color-segmented-control-bg: rgb(99 110 123 / 10%);
-  --color-segmented-control-button-bg: #22272e;
-  --color-segmented-control-button-selected-border: #636e7b;
+  --color-action-list-item-default-hover-bg: rgba(144, 157, 171, 0);
+  --color-segmented-control-bg: rgba(99, 110, 123, 0);
+  --color-segmented-control-button-bg: #22272e00;
+  --color-segmented-control-button-selected-border: #ffffff;
   --color-fg-default: #adbac7;
   --color-fg-muted: #768390;
   --color-fg-subtle: #545d68;
-  --color-canvas-default: rgb(25 39 52);
+  --color-canvas-default: rgba(25, 39, 52, 0);
   --color-canvas-overlay: #161b22;
-  --color-canvas-inset: rgb(21 32 43 / 100%);
+  --color-canvas-inset: rgba(21, 32, 43, 0);
   --color-canvas-subtle: rgb(37 51 65);
   --color-border-default: #444c56;
   --color-border-muted: #373e47;
@@ -127,7 +126,7 @@ main .pagination-loader-container {
 }
 
 .gsc-homepage-bg {
-  background-color: #15202b;
+  background-color: #15202b00;
 }
 
 main .gsc-loading-image {
