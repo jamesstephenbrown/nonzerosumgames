@@ -5,6 +5,7 @@
  */
 
 main {
+    font-size: xx-large;
   --color-prettylights-syntax-comment: #768390;
   --color-prettylights-syntax-constant: #6cb6ff;
   --color-prettylights-syntax-entity: #dcbdfb;
