@@ -8,7 +8,8 @@
 
 body {
 background-color: #55AAE3;
-margin: 0;
+max-width: 1000px; /* Limit the width to 1000 pixels */
+margin: 0 auto;   /* Center the container horizontally */
 padding-top: 0;
 }
 
@@ -17,7 +18,6 @@ a, .mina, p, h1, h3, li {
   font-weight: normal;
   font-style: normal;
 }
-
 a {
 font-size: 100%;
 color: white;
