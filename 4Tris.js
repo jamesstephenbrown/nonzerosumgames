@@ -67,8 +67,23 @@ window.onload = function() {
     let initiationThreshold = 10; // Threshold to start recognizing the swipe
     let incrementalThreshold = unitSize*2; // Threshold for incremental movement
     
-    document.addEventListener('touchstart', function(e) {
+    document.addEventListener('touchstart', (e) => {
+      };
+      
+      document.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+      }, { passive: false });
+      
+      document.addEventListener('touchend', (e) => {
+        e.preventDefault();
+      }, { passive: false });
+      
 
+
+
+
+    document.addEventListener('touchstart', function(e) {
+        e.preventDefault();
         if (!start) {
             startGame();
         }
@@ -85,9 +100,10 @@ window.onload = function() {
             startTime = Date.now();
             lastY = startY;
             }
-    });
+    }, { passive: false });
     
     document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
 
         if (e.touches.length === 2) {
 
@@ -161,12 +177,13 @@ window.onload = function() {
                 lastY = y;
             }
         }
-    });
+    }, { passive: false });
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
-      });
+      }, { passive: false });
     
     document.addEventListener('touchend', function(e) {
+        e.preventDefault();
         let x = e.changedTouches[0].clientX;
         let y = e.changedTouches[0].clientY;
         let endTime = Date.now();
@@ -184,7 +201,7 @@ window.onload = function() {
         }
         startY = 0;
         lastY = 0; // Reset positions on touch end
-    });
+    }, { passive: false });
 
 function hue(number) {
     return "hsl(" + (number) + ", 100%, 75%)";
@@ -492,7 +509,7 @@ function hue(number) {
     function draw(tet, tetColour) {
 
         // Clear the entire canvas first
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
         drawScore();
         drawTet(tet, tetColour);
