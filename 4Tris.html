@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>4 Tris - 4D Tetris</title>
+  <style>
+
+    @font-face {
+        font-family: 'vals_handwriting_is_pretty_Rg';
+        src: url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff2') format('woff2'),
+            url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+    body {
+        touch-action: manipulation; /* Disables double-tap zooming */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #55AAE3;
+        overflow: hidden;
+        font-family: 'vals_handwriting_is_pretty_Rg';
+    }
+    #gameCanvas {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        display: block;
+        margin: auto;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        position: relative;
+        align-content: center;
+        overflow: hidden;
+        text-align: center;
+
+    }
+
+@media only screen and (max-device-width: 450px) {
+    #gameCanvas {
+      width: 450px;
+    }
+  }
+  
+
+  </style>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+</head>
+<body>
+    <div class="rounded">
+  <canvas id="gameCanvas"></canvas>
+
+
+
+  
+  <script src="4tris.js"></script>
+</div>
+</bodyw>
+</html>
