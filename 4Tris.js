@@ -67,21 +67,6 @@ window.onload = function() {
     let initiationThreshold = 10; // Threshold to start recognizing the swipe
     let incrementalThreshold = unitSize*2; // Threshold for incremental movement
     
-    document.addEventListener('touchstart', (e) => {
-      };
-      
-      document.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-      }, { passive: false });
-      
-      document.addEventListener('touchend', (e) => {
-        e.preventDefault();
-      }, { passive: false });
-      
-
-
-
-
     document.addEventListener('touchstart', function(e) {
         e.preventDefault();
         if (!start) {
