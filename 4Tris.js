@@ -64,10 +64,7 @@ window.onload = function() {
             let swipeY = e.touches[0].clientY - twoFingersStartY;
             if (swipeY > initiationThreshold) {
                 let endTime = Date.now();
-                if (endTime - startTime < 200) { // Check if the swipe was quick
-                    // Logic for a quick two-finger swipe down
-                    console.log('Quick two-finger swipe down detected');
-                }
+                moveTet("x");
                 twoFingersStartY = null; // Reset the start position to prevent continuous detection
             }
         } else {
