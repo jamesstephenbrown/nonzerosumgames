@@ -39,7 +39,7 @@ window.onload = function() {
     let rainbow = false;
 
     let startX, startY, startTime;
-    let initiationThreshold = 10; // Threshold to start recognizing the swipe
+    let initiationThreshold = 50; // Threshold to start recognizing the swipe
     
     // document.documentElement.requestFullscreen();
     
@@ -73,12 +73,12 @@ window.onload = function() {
             }
         } else {
             if (swipeY > initiationThreshold) {
-                // Swipe down action - drop
-                moveTet("x");
+                // Swipe down action - move back
+                moveTet("s");
                 startY = y; // Reset the start position for continuous swiping
             } else if (swipeY < -initiationThreshold) {
-                // Swipe up action - rotate around Y axis back
-                rotateTet("ArrowUp");
+                // Swipe up action - move forward
+                moveTet("w");
                 startY = y; // Reset the start position for continuous swiping
             }
         }
@@ -108,11 +108,11 @@ window.onload = function() {
                 }
             } else {
                 if (y < centerY) {
-                    // Logic for upper region - Move back along Z axis
-                    moveTet("w");
+                    // Logic for upper region - rotate backward
+                    rotateTet("ArrowUp");
                 } else {
-                    // Logic for lower region - Move forwards along Z axis
-                    moveTet("s");
+                    // Logic for lower region - rotate forward
+                    rotateTet("ArrowDown");
                 }
             }
         }
@@ -402,6 +402,8 @@ function hue(number) {
     
         // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        // drawX();
     
         // Restore the previous context state
         context.restore();
@@ -410,6 +412,30 @@ function hue(number) {
         drawTet(tet, tetColour);
         drawTet(pile, "white");
     }
+
+    function drawX() {
+        // Get the center coordinates
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+    
+        // Determine the length of the lines
+        const lineLength = Math.min(window.innerWidth, window.innerHeight) / 4; // Adjust this value as needed
+    
+        // Draw the first line of the X
+        context.beginPath();
+        context.moveTo(centerX - lineLength, centerY - lineLength);
+        context.lineTo(centerX + lineLength, centerY + lineLength);
+    
+        // Draw the second line of the X
+        context.moveTo(centerX - lineLength, centerY + lineLength);
+        context.lineTo(centerX + lineLength, centerY - lineLength);
+    
+        // Apply styling and stroke the lines
+        context.lineWidth = 5; // You can adjust this value
+        context.strokeStyle = "red"; // You can choose a color
+        context.stroke();
+    }
+    
     
     function drawTet(thisTet, thisTetColour) {
         console.log("Drawing tet");
