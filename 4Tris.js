@@ -27,189 +27,8 @@ window.onload = function() {
     let previousLinesRemoved = 0;
     var bloop = new Audio('bloop.mp3');
     var bleep = new Audio('bleep.mp3');
-    // var loop1 = new Audio('loop1.mp3');
-    // var loop2 = new Audio('loop2.mp3');
-    // var loop3 = new Audio('loop3.mp3');
-
-    // <button id="rotate-cw">CW</button>
-    // <button id="rotate-y">Y</button>
-    // <button id="back"></button>Back</button>
-    // <button id="forward">Forward</button>
-
-    // document.getElementById('rotate-cw').addEventListener('click', () => {
-    //     // Logic to rotate clockwise
-    //     rotateTet(".");
-    //   });
-      
-    //   document.getElementById('rotate-y').addEventListener('click', () => {
-    //     // Logic to rotate around the Y axis
-    //     rotateTet("ArrowLeft");
-    //   });
-      
-    //   document.getElementById('back').addEventListener('click', () => {
-    //     // Logic to move back
-    //     moveTet("w");
-    //   });
-      
-    //   document.getElementById('forward').addEventListener('click', () => {
-    //     // Logic to move forward
-    //     moveTet("s");
-    //   });
-      
-
-
-    //   x = key === "a"? -1 : key === "d"? 1 : 0;
-    //   z = key === "w"? -1 : key === "s"? 1 : 0;
-    //   y = key === "x" ? 1 : 0;
-
-    let startX, startY, startTime, startY1, startY2, startX1, startX2;
-    let lastY, lastY1, lastY2, lastX1, lastX2;
-    let initiationThreshold = 10; // Threshold to start recognizing the swipe
-    let incrementalThreshold = unitSize*2; // Threshold for incremental movement
-    
-    document.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        if (!start) {
-            startGame();
-        }
-        if (e.touches.length === 2) {
-            // Two fingers have started touching the screen
-            startY1 = e.touches[0].clientY;
-            startY2 = e.touches[1].clientY;
-            startX1 = e.touches[0].clientX;
-            startX2 = e.touches[1].clientX;
-          } else {
-            // Single finger has started touching the screen
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-            startTime = Date.now();
-            lastY = startY;
-            }
-    }, { passive: false });
-    
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-
-        if (e.touches.length === 2) {
-
-            let y1 = e.touches[0].clientY;
-            let y2 = e.touches[1].clientY;
-            let x1 = e.touches[0].clientX;
-            let x2 = e.touches[1].clientX;
-            let diff1 = startY1 - y1;
-            let diff2 = startY2 - y2;
-            let diff3 = startX1 - x1;
-            let diff4 = startX2 - x2;
-            let incrementalDiff1 = y1 - lastY1;
-            let incrementalDiff2 = y2 - lastY2;
-            let incrementalDiff3 = x1 - lastX1;
-            let incrementalDiff4 = x2 - lastX2;
-
-            // check if both fingers are moving in the same direction and what direction
-            if (Math.abs(diff1) > initiationThreshold && Math.abs(diff2) > initiationThreshold && Math.abs(diff3) > initiationThreshold && Math.abs(diff4) > initiationThreshold && Math.abs(incrementalDiff1) > incrementalThreshold && Math.abs(incrementalDiff2) > incrementalThreshold && Math.abs(incrementalDiff3) > incrementalThreshold && Math.abs(incrementalDiff4) > incrementalThreshold) {
-                if (incrementalDiff1 > 0 && incrementalDiff2 > 0 && incrementalDiff3 > 0 && incrementalDiff4 > 0) {
-                    // check if fingers are going up or down
-                    if (diff1 > 0 && diff2 > 0 && diff3 > 0 && diff4 > 0) {
-                        // Logic to move forward
-                        rotateTet("ArrowUp");
-                    } else if (diff1 < 0 && diff2 < 0 && diff3 < 0 && diff4 < 0) {
-                        // Logic to move back
-                        moveTet("x");
-                    }
-                } else if (incrementalDiff1 < 0 && incrementalDiff2 < 0 && incrementalDiff3 < 0 && incrementalDiff4 < 0) {
-                    // check if fingers are going up or down
-                    if (diff1 > 0 && diff2 > 0 && diff3 > 0 && diff4 > 0) {
-                        // Logic to move forward
-                        rotateTet("ArrowRight");
-                    } else if (diff1 < 0 && diff2 < 0 && diff3 < 0 && diff4 < 0) {
-                        // Logic to move back
-                        rotateTet("ArrowLeft");
-                    }
-                }
-                // Update the last position for incremental swiping
-                lastY1 = y1;
-                lastY2 = y2;
-                lastX1 = x1;
-                lastX2 = x2;
-            }
-        } else { // Single finger
-        // Handle x (sensitivity is fine)
-            const x = e.touches[0].clientX;
-            if (x > startX + 10) {
-            // Logic to move right
-            moveTet("d");
-
-            } else if (x < startX - 10) {
-            // Logic to move left
-            moveTet("a");
-            }
-            startX = x;
-
-        // Handle y (sensitivity needs modulation)
-            let y = e.touches[0].clientY;
-            let diff = startY - y;
-            let incrementalDiff = y - lastY;
-            
-            if (Math.abs(diff) > initiationThreshold && Math.abs(incrementalDiff) > incrementalThreshold) {
-                if (incrementalDiff > 0) {
-                // Swipe down action - move forward
-                    moveTet("s");
-                } else {
-                // Swipe up action - move back
-                    moveTet("w");
-                }
-                // Update the last position for incremental swiping
-                lastY = y;
-            }
-        }
-    }, { passive: false });
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-      }, { passive: false });
-    
-    document.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        let x = e.changedTouches[0].clientX;
-        let y = e.changedTouches[0].clientY;
-        let endTime = Date.now();
-
-        let dist = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
-        let time = endTime - startTime;
-
-        if (dist < 10 && time < 200) {
-            // Logic to rotate clockwise
-            if (x > window.innerWidth / 2) {
-                rotateTet(".");
-            } else {
-                rotateTet(",");
-            }
-        }
-        startY = 0;
-        lastY = 0; // Reset positions on touch end
-    }, { passive: false });
-
-function hue(number) {
-    return "hsl(" + (number) + ", 100%, 75%)";
-}
-
     let tetColours = [
-        hue(0),
-        hue(128),
-        hue(32),
-        hue(160),
-        hue(64),
-        hue(192),
-        hue(96),
-        hue(0),
-        hue(128),
-        hue(32),
-        hue(160),
-        hue(64),
-        hue(192),
-        hue(96),
-        hue(0),
-        hue(224),
-        hue(224)];
+        hue(0), hue(128),hue(32),hue(160),hue(64),hue(192),hue(96),hue(0),hue(128),hue(32),hue(160),hue(64),hue(192),hue(96),hue(0),hue(224),hue(224)];
     let tet = []; // setting tet to origin
     let tetColour = tetColours[0];
     let start = false;
@@ -219,12 +38,94 @@ function hue(number) {
     let rainbowCurrent = 0;
     let rainbow = false;
 
+    let startX, startY, startTime;
+    let initiationThreshold = 10; // Threshold to start recognizing the swipe
+    
+    // document.documentElement.requestFullscreen();
+    
+    document.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        if (!start) {
+            startGame();
+        }
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
+    }, { passive: false });
+    
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        const x = e.touches[0].clientX;
+        const y = e.touches[0].clientY;
+    
+        let swipeX = x - startX;
+        let swipeY = y - startY;
+    
+        if (Math.abs(swipeX) > Math.abs(swipeY)) {
+            if (swipeX > initiationThreshold) {
+                // Logic to move right
+                moveTet("d");
+                startX = x; // Reset the start position for continuous swiping
+            } else if (swipeX < -initiationThreshold) {
+                // Logic to move left
+                moveTet("a");
+                startX = x; // Reset the start position for continuous swiping
+            }
+        } else {
+            if (swipeY > initiationThreshold) {
+                // Swipe down action - drop
+                moveTet("x");
+                startY = y; // Reset the start position for continuous swiping
+            } else if (swipeY < -initiationThreshold) {
+                // Swipe up action - rotate around Y axis back
+                rotateTet("ArrowUp");
+                startY = y; // Reset the start position for continuous swiping
+            }
+        }
+    }, { passive: false });
+    
+    
+    document.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        let x = e.changedTouches[0].clientX;
+        let y = e.changedTouches[0].clientY;
+        let endTime = Date.now();
+    
+        let dist = Math.sqrt(Math.pow(x - startX, 2) + Math.pow(y - startY, 2));
+        let time = endTime - startTime;
+    
+        if (dist < initiationThreshold && time < 200) {
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 2;
+    
+            if (Math.abs(x - centerX) > Math.abs(y - centerY)) {
+                if (x < centerX) {
+                    // Logic for left region - Rotate counter-clockwise
+                    rotateTet(",");
+                } else {
+                    // Logic for right region - Rotate clockwise
+                    rotateTet(".");
+                }
+            } else {
+                if (y < centerY) {
+                    // Logic for upper region - Move back along Z axis
+                    moveTet("w");
+                } else {
+                    // Logic for lower region - Move forwards along Z axis
+                    moveTet("s");
+                }
+            }
+        }
+    }, { passive: false });
+    
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+    
 
-
-
-
-
-
+function hue(number) {
+    return "hsl(" + (number) + ", 100%, 75%)";
+}
     // draw screen
     function drawScreen(message) {
         console.log("Drawing start screen");
@@ -233,7 +134,7 @@ function hue(number) {
         let unscaledWidth = canvas.width / scale;
         let unscaledHeight = canvas.height / scale;
     
-        context.clearRect(0, 0, unscaledWidth, unscaledHeight);
+        context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     
         const title = "T 3 D";
         const instructions = message;
@@ -493,13 +394,23 @@ function hue(number) {
     }
     function draw(tet, tetColour) {
 
-        // Clear the entire canvas first
+        // Save the current context state
+        context.save();
+    
+        // Reset the transformation matrix
+        context.setTransform(1, 0, 0, 1, 0, 0);
+    
+        // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
+    
+        // Restore the previous context state
+        context.restore();
+    
         drawScore();
         drawTet(tet, tetColour);
         drawTet(pile, "white");
     }
+    
     function drawTet(thisTet, thisTetColour) {
         console.log("Drawing tet");
 
