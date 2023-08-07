@@ -45,41 +45,58 @@ window.onload = function() {
     
     document.addEventListener('touchstart', function(e) {
         e.preventDefault();
+        if (e.touches.length == 2) { // Check if two fingers are touching the screen
+            twoFingersStartY = e.touches[0].clientY;
+            startTime = Date.now();
+        } else {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }
         if (!start) {
             startGame();
         }
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
         startTime = Date.now();
     }, { passive: false });
     
     document.addEventListener('touchmove', function(e) {
         e.preventDefault();
-        const x = e.touches[0].clientX;
-        const y = e.touches[0].clientY;
-    
-        let swipeX = x - startX;
-        let swipeY = y - startY;
-    
-        if (Math.abs(swipeX) > Math.abs(swipeY)) {
-            if (swipeX > initiationThreshold) {
-                // Logic to move right
-                moveTet("d");
-                startX = x; // Reset the start position for continuous swiping
-            } else if (swipeX < -initiationThreshold) {
-                // Logic to move left
-                moveTet("a");
-                startX = x; // Reset the start position for continuous swiping
+        if (e.touches.length == 2 && twoFingersStartY != null) { // Check if two fingers are still on the screen
+            let swipeY = e.touches[0].clientY - twoFingersStartY;
+            if (swipeY > initiationThreshold) {
+                let endTime = Date.now();
+                if (endTime - startTime < 200) { // Check if the swipe was quick
+                    // Logic for a quick two-finger swipe down
+                    console.log('Quick two-finger swipe down detected');
+                }
+                twoFingersStartY = null; // Reset the start position to prevent continuous detection
             }
         } else {
-            if (swipeY > initiationThreshold) {
-                // Swipe down action - move back
-                moveTet("s");
-                startY = y; // Reset the start position for continuous swiping
-            } else if (swipeY < -initiationThreshold) {
-                // Swipe up action - move forward
-                moveTet("w");
-                startY = y; // Reset the start position for continuous swiping
+            const x = e.touches[0].clientX;
+            const y = e.touches[0].clientY;
+        
+            let swipeX = x - startX;
+            let swipeY = y - startY;
+        
+            if (Math.abs(swipeX) > Math.abs(swipeY)) {
+                if (swipeX > initiationThreshold) {
+                    // Logic to move right
+                    moveTet("d");
+                    startX = x; // Reset the start position for continuous swiping
+                } else if (swipeX < -initiationThreshold) {
+                    // Logic to move left
+                    moveTet("a");
+                    startX = x; // Reset the start position for continuous swiping
+                }
+            } else {
+                if (swipeY > initiationThreshold) {
+                    // Swipe down action - move back
+                    moveTet("s");
+                    startY = y; // Reset the start position for continuous swiping
+                } else if (swipeY < -initiationThreshold) {
+                    // Swipe up action - move forward
+                    moveTet("w");
+                    startY = y; // Reset the start position for continuous swiping
+                }
             }
         }
     }, { passive: false });
@@ -134,7 +151,17 @@ function hue(number) {
         let unscaledWidth = canvas.width / scale;
         let unscaledHeight = canvas.height / scale;
     
+        // Save the current context state
+        context.save();
+    
+        // Reset the transformation matrix
+        context.setTransform(1, 0, 0, 1, 0, 0);
+    
+        // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    
+        // Restore the previous context state
+        context.restore();
     
         const title = "T 3 D";
         const instructions = message;
@@ -403,7 +430,7 @@ function hue(number) {
         // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-        // drawX();
+        drawX();
     
         // Restore the previous context state
         context.restore();
@@ -415,11 +442,14 @@ function hue(number) {
 
     function drawX() {
         // Get the center coordinates
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
     
         // Determine the length of the lines
-        const lineLength = Math.min(window.innerWidth, window.innerHeight) / 4; // Adjust this value as needed
+        const lineLength = Math.min(canvas.width, canvas.height) / 3; // Adjust this value as needed
+    
+        // Set the alpha value for transparency
+        context.globalAlpha = 0.1; // Set to a value between 0 (fully transparent) and 1 (fully opaque)
     
         // Draw the first line of the X
         context.beginPath();
@@ -432,9 +462,13 @@ function hue(number) {
     
         // Apply styling and stroke the lines
         context.lineWidth = 5; // You can adjust this value
-        context.strokeStyle = "red"; // You can choose a color
+        context.strokeStyle = "white"; // You can choose a color
         context.stroke();
+    
+        // Reset the alpha value to its default
+        context.globalAlpha = 1.0;
     }
+    
     
     
     function drawTet(thisTet, thisTetColour) {
@@ -578,7 +612,7 @@ function hue(number) {
         const originalHeight = (height+1) * unitSize; // Your original game height
         const originalWidth = (width+1) * unitSize; // Your original game width
 
-        const targetHeight = window.innerHeight * 0.9;
+        const targetHeight = window.innerHeight * 0.8;
         scale = targetHeight / originalHeight;
         
         canvas.height = targetHeight;
