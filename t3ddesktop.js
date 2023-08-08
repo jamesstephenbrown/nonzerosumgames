@@ -478,7 +478,7 @@ function hue(number) {
     }, ms);
     resizeCanvas();
     document.fonts.load('30px vals_handwriting_is_pretty_Rg').then(() => {
-        drawScreen("tap or hit\nreturn\n");
+        drawScreen("hit\nreturn\n");
     });
     window.addEventListener('resize', resizeCanvas, false);
 
@@ -502,6 +502,12 @@ function hue(number) {
         // Apply scaling to the context
         context.setTransform(scale, 0, 0, scale, 0, 0);
         console.log("New centre after resize: ", centre);
+
+        if(start) {
+            draw(tet, tetColour)
+        } else {
+            drawScreen("hit\nreturn\n");
+        }
       }
   }
   
