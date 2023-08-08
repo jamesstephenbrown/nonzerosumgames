@@ -65,8 +65,15 @@ function hue(number) {
         // Calculate the center using unscaled dimensions
         let unscaledWidth = canvas.width / scale;
         let unscaledHeight = canvas.height / scale;
-    
+
+        // Save the current context state
+        context.save();
+        // Reset the transformation matrix
+        context.setTransform(1, 0, 0, 1, 0, 0);
+        // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        // Restore the previous context state
+        context.restore();
     
         const title = "T 3 D";
         const instructions = message;
@@ -109,12 +116,15 @@ function hue(number) {
     }
 
     document.addEventListener('keydown', function(event) {
-        if (event.key == "Enter") {
+        if (event.key === "Enter") {
             startGame();
         } else {
             if (!start) return;
             rotateTet(event.key);
             moveTet(event.key);
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault(); // Prevent the default scrolling behavior
+            }
         }
     });
     function findCentre() {
@@ -326,8 +336,14 @@ function hue(number) {
     }
     function draw(tet, tetColour) {
 
-        // Clear the entire canvas first
+        // Save the current context state
+        context.save();
+        // Reset the transformation matrix
+        context.setTransform(1, 0, 0, 1, 0, 0);
+        // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        // Restore the previous context state
+        context.restore();
 
         drawScore();
         drawTet(tet, tetColour);
@@ -472,7 +488,7 @@ function hue(number) {
         const originalHeight = (height+1) * unitSize; // Your original game height
         const originalWidth = (width+1) * unitSize; // Your original game width
 
-        const targetHeight = window.innerHeight * 0.9;
+        const targetHeight = window.innerHeight * 0.8;
         scale = targetHeight / originalHeight;
         
         canvas.height = targetHeight;
