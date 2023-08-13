@@ -387,7 +387,7 @@ document.addEventListener('touchend', function(e) {
         // Clear the entire canvas
         context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-        drawX();
+        // drawX();
     
         // Restore the previous context state
         context.restore();
@@ -396,34 +396,34 @@ document.addEventListener('touchend', function(e) {
         drawTet(tet, tetColour);
         drawTet(pile, "white");
     }
-    function drawX() {
-        // Get the center coordinates
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
+    // function drawX() {
+    //     // Get the center coordinates
+    //     const centerX = canvas.width / 2;
+    //     const centerY = canvas.height / 2;
     
-        // Determine the length of the lines
-        const lineLength = Math.min(canvas.width, canvas.height) / 4; // Adjust this value as needed
+    //     // Determine the length of the lines
+    //     const lineLength = Math.min(canvas.width, canvas.height) / 4; // Adjust this value as needed
     
-        // Set the alpha value for transparency
-        context.globalAlpha = 0.1; // Set to a value between 0 (fully transparent) and 1 (fully opaque)
+    //     // Set the alpha value for transparency
+    //     context.globalAlpha = 0.1; // Set to a value between 0 (fully transparent) and 1 (fully opaque)
     
-        // Draw the first line of the X
-        context.beginPath();
-        context.moveTo(centerX - lineLength, centerY - lineLength);
-        context.lineTo(centerX + lineLength, centerY + lineLength);
+    //     // Draw the first line of the X
+    //     context.beginPath();
+    //     context.moveTo(centerX - lineLength, centerY - lineLength);
+    //     context.lineTo(centerX + lineLength, centerY + lineLength);
     
-        // Draw the second line of the X
-        context.moveTo(centerX - lineLength, centerY + lineLength);
-        context.lineTo(centerX + lineLength, centerY - lineLength);
+    //     // Draw the second line of the X
+    //     context.moveTo(centerX - lineLength, centerY + lineLength);
+    //     context.lineTo(centerX + lineLength, centerY - lineLength);
     
-        // Apply styling and stroke the lines
-        context.lineWidth = 5; // You can adjust this value
-        context.strokeStyle = "white"; // You can choose a color
-        context.stroke();
+    //     // Apply styling and stroke the lines
+    //     context.lineWidth = 5; // You can adjust this value
+    //     context.strokeStyle = "white"; // You can choose a color
+    //     context.stroke();
     
-        // Reset the alpha value to its default
-        context.globalAlpha = 1.0;
-    }
+    //     // Reset the alpha value to its default
+    //     context.globalAlpha = 1.0;
+    // }
     function drawTet(thisTet, thisTetColour) {
         console.log("Drawing tet");
 
