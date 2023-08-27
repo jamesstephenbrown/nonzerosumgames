@@ -18,6 +18,7 @@ a, .mina, p, h1, h3, li {
   font-weight: normal;
   font-style: normal;
 }
+
 a {
 font-size: 100%;
 color: white;
@@ -81,6 +82,18 @@ padding-bottom: 20px;
 flex: 33.33%;
 margin: 10px;
 }
+
+.smallColumn {
+flex: 33.33%;
+text-align: center;
+margin: 10px;
+}
+.largeColumn {
+flex: 66.66%;
+text-align: center;
+margin: 10px;
+}
+
 
 .darkColumn, .menuColumn {
 background-color: rgba(0, 0, 0, 0.15);
@@ -164,6 +177,9 @@ h3 {
 @media only screen and (min-device-width: 451px) {
 .rounded_outlined, img {
   max-width: 700px;
+}
+.halfSizeImage {
+  max-width: 50%;
 }
 
 .container {
