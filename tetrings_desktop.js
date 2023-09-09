@@ -205,9 +205,9 @@ function hue(number) {
         let z = 0;
 
         // QWERTY Controls
-        x = key === "a"||"A"? -1 : key === "d"||"D"? 1 : 0;
-        z = key === "w"||"W"? -1 : key === "s"||"S"? 1 : 0;
-        y = key === "x"||"X" ? 1 : 0;
+        x = key === "a"||key === "A"? -1 : key === "d"||key === "D"? 1 : 0;
+        z = key === "w"||key === "W"? -1 : key === "s"||key === "S"? 1 : 0;
+        y = key === "x"||key === "X" ? 1 : 0;
 
         // Dvorak Controls
         // x = key === "a"? -1 : key === "e"? 1 : 0;
