@@ -149,10 +149,10 @@ text-align: center;
 
 .subscribe {
   font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
-  margin: 10px;
+  margin: 20px;
   position: fixed;
   right: 0;
-  bottom: 0;
+  top: 0;
 }
 
 .darkColumn, .menuColumn {
@@ -239,6 +239,10 @@ text-align: left;
 /* Phone */
 @media only screen and (max-device-width: 450px) {
 
+  .subscribe {
+    font-size: 300%;
+  }
+
   body {
     word-wrap: break-word;
     font-size: 250%;
@@ -275,6 +279,7 @@ text-align: left;
 
 /* Computer */
 @media only screen and (min-device-width: 451px) {
+
   body {
     font-size: 180%;
   }
@@ -319,6 +324,9 @@ text-align: left;
     margin-bottom: 0px;
     width: 90%;
     text-align: center;
+  }
+  .subscribe {
+    font-size: 100%;
   }
 }
 
