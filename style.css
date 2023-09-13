@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'vals_handwriting_is_pretty_Rg';
   src: url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff2') format('woff2'),
@@ -239,7 +240,7 @@ text-align: left;
 
 
 /* Phone */
-@media only screen and (max-width: 500px) {
+@media only screen and (max-device-width: 500px) {
 
   .subscribe {
     font-size: 300%;
@@ -283,7 +284,7 @@ text-align: left;
 }
 
 /* Computer */
-@media only screen and (min-width: 501px) {
+@media only screen and (min-device-width: 500px) {
 
   body {
     font-size: 180%;
