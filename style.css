@@ -17,6 +17,23 @@
   font-style: normal;
 }
 
+body {
+word-wrap: break-word;
+font-size: 250%;
+background-color: #55AAE3;
+max-width: 800px; /* Limit the width to 1000 pixels */
+padding-top: 0;
+padding-left: 30px;
+padding-right: 30px;
+margin-left: auto;
+margin-right: auto;
+margin-top: 0px;
+text-align: center;
+font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
+font-weight: normal;
+font-style: normal;
+}
+
 strong {
   font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
 }
@@ -46,22 +63,15 @@ a:hover {
 font-style: oblique;
 }
 
-body {
-word-wrap: break-word;
-font-size: 250%;
-background-color: #55AAE3;
-max-width: 800px; /* Limit the width to 1000 pixels */
-padding-top: 0;
-padding-left: 30px;
-padding-right: 30px;
-font-size: 180%;
-margin-left: auto;
-margin-right: auto;
-margin-top: 0px;
-text-align: center;
-font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-font-weight: normal;
-font-style: normal;
+li {
+text-align: left;
+}
+/*Ordered lists we having their numbers too far left*/
+ol {
+  margin-left: 30px;
+}
+img {
+  max-width: 95%;
 }
 
 blockquote, footer {
@@ -140,7 +150,7 @@ object-fit: cover;
   top: 0;
 }
 .container {
-  font-size: 180%;
+  font-size: 150%;
   height: 100%;
   flex-direction: column;
 }
@@ -173,27 +183,22 @@ background-color: rgba(255, 255, 255, 0.3);
 position: relative;
 text-align: center;
 }
-
-li {
-text-align: left;
-}
-/*Ordered lists we having their numbers too far left*/
-ol {
-  margin-left: 30px;
-}
-img {
-  max-width: 95%;
-}
 #mc_embed_signup {
   background: #55AAE3;
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
   border-radius: 50px;
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 #mc_embed_signup h1 {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: bold;
   font-style: bold;
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 #mc_embed_signup p {
   background:#55AAE3;
@@ -202,6 +207,9 @@ img {
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
   font-weight: normal;
   font-style: normal;
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 #mc_embed_signup input[type="email"] {
   font-size: 100%;
@@ -211,6 +219,9 @@ img {
   font-family: 'MoreSugar';
   font-weight: bold;
   text-align: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 #mc_embed_signup input[type="submit"] {
   height: 50px;
@@ -223,17 +234,26 @@ img {
   font-family: 'MoreSugar';
   color: white;
   border: none;
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 #mce-EMAIL {
   width: 80%; /* you can adjust this value according to your needs */
   background-color: rgba(255, 255, 255, 0.3); /* semi-transparent white */
   border: none;  /* Add a light grey border */
   outline: none;  /* Disable the default outline */
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 /* Focused state of the input field */
 #mce-EMAIL:focus {
   background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
   border: none;  /* Change border to a different color if you like */
+  align-items: center;
+  align-content: center;
+  align-self: center;
 }
 
 .giscus {
