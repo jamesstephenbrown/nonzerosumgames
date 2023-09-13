@@ -239,7 +239,7 @@ text-align: left;
 
 
 /* Phone */
-@media only screen and (max-device-width: 450px) {
+@media only screen and (max-width: 400px) {
 
   .subscribe {
     font-size: 300%;
@@ -283,7 +283,7 @@ text-align: left;
 }
 
 /* Computer */
-@media only screen and (min-device-width: 451px) {
+@media only screen and (min-width: 401px) {
 
   body {
     font-size: 180%;
