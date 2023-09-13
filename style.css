@@ -10,7 +10,7 @@
   font-family: 'MoreSugar';
   src: url('https://nonzerosum.games/MoreSugar-Regular.otf') format('opentype'), url('MoreSugar-Regular.otf') format('opentype');
   font-weight: bold;
-  font-style: bold;
+  font-style: normal;
 }
 
 @font-face {
