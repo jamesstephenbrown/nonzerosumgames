@@ -61,11 +61,10 @@ padding-top: 0;
 padding-left: 30px;
 padding-right: 30px;
 font-size: 180%;
-
 margin-left: auto;
 margin-right: auto;
+margin-top: 0px;
 text-align: center;
-
 font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
 font-weight: normal;
 font-style: normal;
