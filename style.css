@@ -274,7 +274,6 @@ text-align: left;
 
   h3 {
     font-size: 100%;
-    max-width: 90%;
     text-align: center;
   }
 }
@@ -316,7 +315,6 @@ text-align: left;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    width: 90% !important;
     text-align: center;
   }
 
@@ -324,7 +322,6 @@ text-align: left;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    width: 90%;
     text-align: center;
   }
   .subscribe {
