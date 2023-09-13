@@ -239,7 +239,7 @@ text-align: left;
 
 
 /* Phone */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
 
   .subscribe {
     font-size: 300%;
@@ -276,14 +276,14 @@ text-align: left;
     font-size: 100%;
     text-align: center;
   }
-
+/*Ordered lists we having their numbers too far left*/
   ol {
     margin-left: 30px;
   }
 }
 
 /* Computer */
-@media only screen and (min-width: 401px) {
+@media only screen and (min-width: 501px) {
 
   body {
     font-size: 180%;
