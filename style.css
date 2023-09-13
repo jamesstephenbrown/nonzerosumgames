@@ -39,7 +39,7 @@ blockquote, footer {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: normal;
   font-style: normal;
-  padding: 30px;
+  padding: 50px;
   text-align: center;
   border-radius: 50px;
   margin-left: 10px;
@@ -127,11 +127,10 @@ object-fit: cover;
 }
 
 .darkColumn, .menuColumn, .lightColumn {
-padding: 10px;
+padding: 20px;
 margin-bottom: 10px;
 text-align: center;
 border-radius: 50px;
-padding-bottom: 20px;
 }
 
 .darkColumn, .lightColumn {
@@ -142,13 +141,10 @@ margin: 10px;
 .smallColumn {
 flex: 33.33%;
 text-align: center;
-margin: 10px;
 }
 .largeColumn {
 flex: 66.66%;
 text-align: center;
-margin: 10px;
-padding-bottom: 0px;
 }
 
 .subscribe {
@@ -184,86 +180,6 @@ li {
 text-align: left;
 }
 
-/* Phone */
-@media only screen and (max-device-width: 450px) {
-  img {
-    max-width: 95%;
-  }
-
-  .container {
-    height: 100%;
-    margin: 20px;
-    font-size: 150%;
-  }
-
-  .giscus {
-    font-size: 300%;
-  }
-
-  h1 {
-    font-size: 400%;
-    text-align: center;
-  }
-
-  h3 {
-    font-size: 150%;
-    max-width: 90%;
-    text-align: center;
-  }
-}
-
-/* Computer */
-@media only screen and (min-device-width: 451px) {
-  .rounded_outlined, img {
-    max-width: 700px;
-  }
-  .halfSizeImage {
-    max-width: 50%;
-  }
-
-  .container {
-    display: flex;
-    margin: 20px;
-  }
-
-  .column, .darkColumn, .lightColumn {
-    flex: 33.33%;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    padding-bottom: 20px;
-  }
-
-  /* p {
-    font-size: 200%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  } */
-
-  li {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-  }
-
-  h1 {
-    font-size: 250%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    width: 90% !important;
-    text-align: center;
-  }
-
-  h3 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    width: 90%;
-    text-align: center;
-  }
-}
 
 #mc_embed_signup {
   background: #55AAE3;
@@ -316,5 +232,93 @@ text-align: left;
 #mce-EMAIL:focus {
   background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
   border: none;  /* Change border to a different color if you like */
+}
+
+
+
+/* Phone */
+@media only screen and (max-device-width: 450px) {
+
+  body {
+    word-wrap: break-word;
+    font-size: 250%;
+  }
+
+  img {
+    max-width: 95%;
+  }
+
+  .container {
+    height: 100%;
+    margin: 20px;
+  }
+
+  .giscus {
+    font-size: 300%;
+  }
+
+  footer {
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 250%;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 100%;
+    max-width: 90%;
+    text-align: center;
+  }
+}
+
+/* Computer */
+@media only screen and (min-device-width: 451px) {
+  body {
+    font-size: 180%;
+  }
+  .rounded_outlined, img {
+    max-width: 700px;
+  }
+  .halfSizeImage {
+    max-width: 50%;
+  }
+
+  .container {
+    display: flex;
+    margin: 20px;
+  }
+
+  .column, .darkColumn, .lightColumn {
+    flex: 33.33%;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  li {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 250%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 90% !important;
+    text-align: center;
+  }
+
+  h3 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 90%;
+    text-align: center;
+  }
 }
 
