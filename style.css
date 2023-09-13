@@ -6,21 +6,78 @@
   font-style: normal;
 }
 
-body {
-background-color: #55AAE3;
-max-width: 1000px; /* Limit the width to 1000 pixels */
-margin: 0 auto;   /* Center the container horizontally */
-padding-top: 0;
+@font-face {
+  font-family: 'MoreSugar';
+  src: url('./webfontkit-20220429-204351/MoreSugar-Regular.otf') format('opentype');
+  font-weight: bold;
+  font-style: bold;
 }
 
-a, .mina, p, h1, h3, li {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  font-weight: normal;
+@font-face {
+  font-family: 'MoreSugarExtras';
+  src: url('./webfontkit-20220429-204351/MoreSugar-Extras.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MoreSugar';
+  src: url('./webfontkit-20220429-204351/MoreSugar-Thin.otf') format('opentype');
+  font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
 
+strong {
+  font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
+}
+
+aside {
+  display: inline;
+  font-family: 'MoreSugarExtras', fallback, sans-serif;
+}
+
+blockquote, footer {
+  text-align: center;
+  font-family: 'MoreSugar', fallback, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  padding: 30px;
+  text-align: center;
+  border-radius: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+blockquote {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+footer {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+body {
+background-color: #55AAE3;
+max-width: 800px; /* Limit the width to 1000 pixels */
+padding-top: 0;
+padding-left: 30px;
+padding-right: 30px;
+font-size: 180%;
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+
+font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
+font-weight: normal;
+font-style: normal;
+}
+
+h1, h3 {
+  font-family: 'MoreSugar', fallback, sans-serif;
+  font-weight: bold;
+  font-style: bold;
+}
+
 a {
-font-size: 100%;
 color: white;
 }
 
@@ -94,19 +151,24 @@ text-align: center;
 margin: 10px;
 }
 
+.subscribe {
+  font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
+  margin: 10px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
 
 .darkColumn, .menuColumn {
 background-color: rgba(0, 0, 0, 0.15);
 }
 
 .menuColumn {
-margin-left: 30px;
-margin-right: 30px;
 margin-top: 0;
 border-bottom-left-radius: 50px;
 border-bottom-right-radius: 50px;
 border-top-left-radius: 0px;
-border-top-right-radius: 00px;
+border-top-right-radius: 0px;
 }
 
 .lightColumn {
@@ -124,112 +186,136 @@ text-align: left;
 
 /* Phone */
 @media only screen and (max-device-width: 450px) {
-img {
-  max-width: 95%;
-}
+  img {
+    max-width: 95%;
+  }
 
-.container {
-  height: 100%;
-  margin: 20px;
-}
+  .container {
+    height: 100%;
+    margin: 20px;
+    font-size: 150%;
+  }
 
-.giscus_button {
-  margin: 0;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-}
+  .giscus {
+    font-size: 300%;
+  }
 
-.giscus {
-  font-size: 300%;
-}
+  h1 {
+    font-size: 400%;
+    text-align: center;
+  }
 
-p {
-  font-size: 400%;
-  margin-left: 50px;
-  margin-right: 50px;
-  text-align: center;
-}
-
-li {
-  font-size: 400%;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-h1 {
-  font-size: 800%;
-  margin-left: 50px;
-  margin-right: 50px;
-  text-align: center;
-}
-
-h3 {
-  font-size: 500%;
-  max-width: 90%;
-  margin-left: 50px;
-  margin-right: 50px;
-  text-align: center;
-}
+  h3 {
+    font-size: 150%;
+    max-width: 90%;
+    text-align: center;
+  }
 }
 
 /* Computer */
 @media only screen and (min-device-width: 451px) {
-.rounded_outlined, img {
-  max-width: 700px;
-}
-.halfSizeImage {
-  max-width: 50%;
+  .rounded_outlined, img {
+    max-width: 700px;
+  }
+  .halfSizeImage {
+    max-width: 50%;
+  }
+
+  .container {
+    display: flex;
+    height: 100%;
+    margin: 20px;
+  }
+
+  .column, .darkColumn, .lightColumn {
+    flex: 33.33%;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  /* p {
+    font-size: 200%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  } */
+
+  li {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 250%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 90% !important;
+    text-align: center;
+  }
+
+  h3 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 90%;
+    text-align: center;
+  }
 }
 
-.container {
-  display: flex;
-  height: 100%;
-  margin: 20px;
-}
-
-.column, .darkColumn, .lightColumn {
-  flex: 33.33%;
-  padding: 10px;
-  margin: 10px;
+#mc_embed_signup {
+  background: #55AAE3;
   text-align: center;
-  padding-bottom: 20px;
+  font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
+  border-radius: 50px;
 }
 
-.giscus_button {
-  position: fixed;
-  right: 0;
-  bottom: 0;
+#mc_embed_signup h1 {
+  font-family: 'MoreSugar', fallback, sans-serif;
+  font-weight: bold;
+  font-style: bold;
 }
 
-p {
-  font-size: 200%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
+#mc_embed_signup p {
+  background:#55AAE3;
+  position: relative;
+  text-align: center;
+  font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
+  font-weight: normal;
+  font-style: normal;
+}
+
+#mc_embed_signup input[type="email"] {
+  font-size: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  border: none;
+  font-family: 'MoreSugar';
+  font-weight: bold;
   text-align: center;
 }
 
-li {
-  font-size: 200%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
+#mc_embed_signup input[type="submit"] {
+  font-size: 100%;
+  padding:20px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+  font-family: 'MoreSugar';
+  color: white;
+  border: none;
+}
+#mce-EMAIL {
+  width: 80%; /* you can adjust this value according to your needs */
+  background-color: rgba(255, 255, 255, 0.3); /* semi-transparent white */
+  border: none;  /* Add a light grey border */
+  outline: none;  /* Disable the default outline */
+}
+/* Focused state of the input field */
+#mce-EMAIL:focus {
+  background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
+  border: none;  /* Change border to a different color if you like */
 }
 
-h1 {
-  font-size: 350%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  text-align: center;
-}
-
-h3 {
-  font-size: 250%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  text-align: center;
-}
-}

@@ -129,7 +129,7 @@ document.addEventListener('touchend', function(e) {
         const title = "T3TRINGS";
         const instructions = message;
         context.fillStyle = "white";
-        context.font = unitSize + "px vals_handwriting_is_pretty_Rg";
+        context.font = "40px MoreSugar";
     
         let textWidth = context.measureText(title).width;
         let centerX = unscaledWidth / 2 - textWidth / 2;
@@ -432,7 +432,7 @@ document.addEventListener('touchend', function(e) {
     function drawScore() {
         const scoreText = score;
         context.fillStyle = "white";
-        context.font = unitSize+"px vals_handwriting_is_pretty_Rg";
+        context.font = "40px MoreSugar";
         const textWidth = context.measureText(scoreText).width;
         const centerX = canvas.width / 2 - textWidth / 2;
         context.fillText(scoreText, centerX, unitSize);
@@ -525,7 +525,7 @@ document.addEventListener('touchend', function(e) {
         dropBlocksAboveClearedLevels();
     }, ms);
     resizeCanvas();
-    document.fonts.load('30px vals_handwriting_is_pretty_Rg').then(() => {
+    document.fonts.load('40px MoreSugar').then(() => {
         drawScreen("tap to\nplay\n");
     });
     window.addEventListener('resize', resizeCanvas, false);
