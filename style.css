@@ -73,7 +73,6 @@ font-style: normal;
 h1, h3 {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: bold;
-  font-style: bold;
 }
 
 a {
