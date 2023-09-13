@@ -149,6 +149,7 @@ margin: 10px;
 flex: 66.66%;
 text-align: center;
 margin: 10px;
+padding-bottom: 0px;
 }
 
 .subscribe {
@@ -223,7 +224,6 @@ text-align: left;
 
   .container {
     display: flex;
-    height: 100%;
     margin: 20px;
   }
 
