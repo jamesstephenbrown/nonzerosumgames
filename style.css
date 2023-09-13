@@ -213,6 +213,9 @@ text-align: left;
 }
 
 #mc_embed_signup input[type="submit"] {
+  height: 50px;
+  line-height: 0px;
+  line-height: /* same as button height */;
   font-size: 100%;
   padding:20px;
   background: rgba(0, 0, 0, 0.15);
