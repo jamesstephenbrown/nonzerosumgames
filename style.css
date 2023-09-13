@@ -8,19 +8,19 @@
 
 @font-face {
   font-family: 'MoreSugar';
-  src: url('./webfontkit-20220429-204351/MoreSugar-Regular.otf') format('opentype');
+  src: url('https://nonzerosum.games//MoreSugar-Regular.otf') format('opentype');
   font-weight: bold;
   font-style: bold;
 }
 
 @font-face {
   font-family: 'MoreSugarExtras';
-  src: url('./webfontkit-20220429-204351/MoreSugar-Extras.otf') format('opentype');
+  src: url('https://nonzerosum.games//MoreSugar-Extras.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'MoreSugar';
-  src: url('./webfontkit-20220429-204351/MoreSugar-Thin.otf') format('opentype');
+  src: url('https://nonzerosum.games//MoreSugar-Thin.otf') format('opentype');
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
