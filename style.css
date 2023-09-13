@@ -1,12 +1,3 @@
-
-@font-face {
-  font-family: 'vals_handwriting_is_pretty_Rg';
-  src: url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff2') format('woff2'),
-       url('https://nonzerosum.games/vals_handwriting_is_pretty_messy-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 @font-face {
   font-family: 'MoreSugar';
   src: url('https://nonzerosum.games/MoreSugar-Regular.otf') format('opentype'), url('MoreSugar-Regular.otf') format('opentype');
@@ -30,9 +21,47 @@ strong {
   font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
 }
 
-aside {
-  display: inline;
-  font-family: 'MoreSugarExtras', fallback, sans-serif;
+h1, h3 {
+  font-family: 'MoreSugar', fallback, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+}
+
+h1 {
+  font-size: 250%;
+}
+
+h3 {
+  font-size: 100%;
+}
+
+a {
+color: white;
+}
+
+a:hover {
+font-style: oblique;
+}
+
+body {
+word-wrap: break-word;
+font-size: 250%;
+background-color: #55AAE3;
+max-width: 800px; /* Limit the width to 1000 pixels */
+padding-top: 0;
+padding-left: 30px;
+padding-right: 30px;
+font-size: 180%;
+margin-left: auto;
+margin-right: auto;
+margin-top: 0px;
+text-align: center;
+font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
+font-weight: normal;
+font-style: normal;
 }
 
 blockquote, footer {
@@ -53,35 +82,12 @@ blockquote {
 }
 footer {
   background-color: rgba(0, 0, 0, 0.15);
+  padding: 30px;
 }
 
-body {
-background-color: #55AAE3;
-max-width: 800px; /* Limit the width to 1000 pixels */
-padding-top: 0;
-padding-left: 30px;
-padding-right: 30px;
-font-size: 180%;
-margin-left: auto;
-margin-right: auto;
-margin-top: 0px;
-text-align: center;
-font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-font-weight: normal;
-font-style: normal;
-}
-
-h1, h3 {
-  font-family: 'MoreSugar', fallback, sans-serif;
-  font-weight: bold;
-}
-
-a {
-color: white;
-}
-
-a:hover {
-font-style: oblique;
+aside {
+  display: inline;
+  font-family: 'MoreSugarExtras', fallback, sans-serif;
 }
 
 .portraits, .rounded_outlined {
@@ -125,40 +131,32 @@ width: 150px;
 height: 150px;
 object-fit: cover;
 }
-
-.darkColumn, .menuColumn, .lightColumn {
-padding: 20px;
-margin-bottom: 10px;
-text-align: center;
-border-radius: 50px;
-}
-
-.darkColumn, .lightColumn {
-flex: 33.33%;
-margin: 10px;
-}
-
-.smallColumn {
-flex: 33.33%;
-text-align: center;
-}
-.largeColumn {
-flex: 66.66%;
-text-align: center;
-}
-
 .subscribe {
+  font-size: 300%;
   font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
   margin: 20px;
   position: fixed;
   right: 0;
   top: 0;
 }
-
+.container {
+  font-size: 180%;
+  height: 100%;
+  flex-direction: column;
+}
 .darkColumn, .menuColumn {
 background-color: rgba(0, 0, 0, 0.15);
 }
-
+.darkColumn, .menuColumn, .lightColumn {
+padding: 20px;
+margin-bottom: 10px;
+text-align: center;
+border-radius: 50px;
+}
+.darkColumn, .lightColumn {
+flex: 33.33%;
+margin: 10px;
+}
 .menuColumn {
 margin-top: 0;
 border-bottom-left-radius: 50px;
@@ -179,21 +177,24 @@ text-align: center;
 li {
 text-align: left;
 }
-
-
+/*Ordered lists we having their numbers too far left*/
+ol {
+  margin-left: 30px;
+}
+img {
+  max-width: 95%;
+}
 #mc_embed_signup {
   background: #55AAE3;
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
   border-radius: 50px;
 }
-
 #mc_embed_signup h1 {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: bold;
   font-style: bold;
 }
-
 #mc_embed_signup p {
   background:#55AAE3;
   position: relative;
@@ -202,7 +203,6 @@ text-align: left;
   font-weight: normal;
   font-style: normal;
 }
-
 #mc_embed_signup input[type="email"] {
   font-size: 100%;
   border-radius: 20px;
@@ -212,7 +212,6 @@ text-align: left;
   font-weight: bold;
   text-align: center;
 }
-
 #mc_embed_signup input[type="submit"] {
   height: 50px;
   line-height: 0px;
@@ -237,50 +236,8 @@ text-align: left;
   border: none;  /* Change border to a different color if you like */
 }
 
-
-
-/* Phone */
-@media only screen and (max-device-width: 500px) {
-
-  .subscribe {
-    font-size: 300%;
-  }
-
-  body {
-    word-wrap: break-word;
-    font-size: 250%;
-  }
-
-  img {
-    max-width: 95%;
-  }
-
-  .container {
-    height: 100%;
-    margin: 20px;
-  }
-
-  .giscus {
-    font-size: 300%;
-  }
-
-  footer {
-    padding: 30px;
-  }
-
-  h1 {
-    font-size: 250%;
-    text-align: center;
-  }
-
-  h3 {
-    font-size: 100%;
-    text-align: center;
-  }
-/*Ordered lists we having their numbers too far left*/
-  ol {
-    margin-left: 30px;
-  }
+.giscus {
+  font-size: 300%;
 }
 
 /* Computer */
@@ -295,10 +252,10 @@ text-align: left;
   .halfSizeImage {
     max-width: 50%;
   }
-
   .container {
+    font-size: 100%;
     display: flex;
-    margin: 20px;
+    flex-direction: row;
   }
 
   .column, .darkColumn, .lightColumn {
@@ -314,22 +271,15 @@ text-align: left;
     margin-right: auto;
     width: 90%;
   }
-
-  h1 {
-    font-size: 250%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    text-align: center;
-  }
-
-  h3 {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    text-align: center;
+  /*Ordered lists we having their numbers too far left*/
+  ol {
+    margin-left: 0px;
   }
   .subscribe {
+    font-size: 100%;
+  }
+
+  .giscus {
     font-size: 100%;
   }
 }
