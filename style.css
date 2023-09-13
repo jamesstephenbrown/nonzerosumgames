@@ -276,6 +276,10 @@ text-align: left;
     font-size: 100%;
     text-align: center;
   }
+
+  ol {
+    margin-left: 30px;
+  }
 }
 
 /* Computer */
