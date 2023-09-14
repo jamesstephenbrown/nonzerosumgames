@@ -6,6 +6,17 @@
         <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
         </head>
     <body>
+        <!-- Linking to Menu.html -->
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
+            });
+        </script>
+        <div id="menu"></div>
         <h1>NEUTROPIA</h1>
         <p>~ a non-zero-sum game ~</p>
         <div class="content">
