@@ -19,7 +19,7 @@
 
 body {
 word-wrap: break-word;
-font-size: 350%;
+font-size: 300%;
 background-color: #55AAE3;
 max-width: 800px; /* Limit the width to 1000 pixels */
 padding-top: 0;
@@ -68,7 +68,7 @@ text-align: left;
 }
 /*Ordered lists we having their numbers too far left*/
 ol {
-  margin-left: 30px;
+  margin-left: 50px;
 }
 img {
   max-width: 95%;
