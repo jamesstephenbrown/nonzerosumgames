@@ -19,7 +19,7 @@
 
 body {
 word-wrap: break-word;
-font-size: 250%;
+font-size: 350%;
 background-color: #55AAE3;
 max-width: 800px; /* Limit the width to 1000 pixels */
 padding-top: 0;
@@ -44,11 +44,11 @@ h1, h3 {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 0px;
+  margin-bottom: -30px;
 }
 
 h1 {
-  font-size: 250%;
+  font-size: 200%;
 }
 
 h3 {
@@ -263,6 +263,9 @@ text-align: center;
 /* Computer */
 @media only screen and (min-device-width: 500px) {
 
+  h1 {
+    font-size: 250%;
+  }
   body {
     font-size: 180%;
   }
