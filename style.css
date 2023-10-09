@@ -16,6 +16,24 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+.nav-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  font-size: 24px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.part-number {
+  padding: 0 15px;
+}
 
 body {
 word-wrap: break-word;
@@ -262,6 +280,32 @@ text-align: center;
   font-size: 300%;
 }
 
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text (Image) */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: transparent;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 150%; /* Position the tooltip below the text */
+  left: 50%;
+  margin-left: -100px; /* Center the tooltip */
+}
+
+/* Show tooltip text when you hover over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 /* Computer */
 @media only screen and (min-device-width: 500px) {
 
@@ -281,6 +325,8 @@ text-align: center;
     display: flex;
     flex-direction: row;
   }
+
+  
 
   .column, .darkColumn, .lightColumn {
     flex: 33.33%;
