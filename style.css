@@ -16,6 +16,9 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+
+
+
 .nav-section {
   display: flex;
   justify-content: center;
@@ -29,6 +32,7 @@
   color: #ffffff;
   margin: 0 10px;
   transition: color 0.3s;
+  font-size: 40px;
 }
 
 .part-number {
@@ -36,20 +40,14 @@
 }
 
 body {
-word-wrap: break-word;
-font-size: 300%;
-background-color: #55AAE3;
-max-width: 800px; /* Limit the width to 1000 pixels */
-padding-top: 0;
-padding-left: 30px;
-padding-right: 30px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 0px;
-text-align: center;
-font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-font-weight: normal;
-font-style: normal;
+  word-wrap: break-word;
+  font-size: 150%;
+  background-color: #55AAE3;
+  max-width: 800px;
+  padding: 30px 30px 0 30px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
 }
 
 strong {
@@ -66,7 +64,7 @@ h1, h3 {
 }
 
 h1 {
-  font-size: 220%;
+  font-size: 200%;
 }
 
 h3 {
@@ -82,17 +80,17 @@ font-style: oblique;
 }
 
 li {
-text-align: left;
+  text-align: left;
+  margin: auto;
+  padding-bottom: 5px;
+  width: 95%;
 }
-/*Ordered lists we having their numbers too far left*/
-ol {
-  margin-left: 50px;
-}
-ul {
-  margin-left: 20px;
+
+ol, ul {
+  margin-left: -10px;
 }
 img {
-  max-width: 95%;
+  max-width: 90%;
 }
 
 blockquote, footer {
@@ -100,7 +98,7 @@ blockquote, footer {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: normal;
   font-style: normal;
-  padding: 50px;
+  padding: 20px;
   text-align: center;
   border-radius: 50px;
   margin-left: 10px;
@@ -113,7 +111,6 @@ blockquote {
 }
 footer {
   background-color: rgba(0, 0, 0, 0.15);
-  padding: 30px;
 }
 
 aside {
@@ -163,7 +160,7 @@ height: 150px;
 object-fit: cover;
 }
 .subscribe {
-  font-size: 300%;
+  font-size: 100%;
   font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
   margin: 20px;
   position: fixed;
@@ -178,7 +175,7 @@ object-fit: cover;
 background-color: rgba(0, 0, 0, 0.15);
 }
 .darkColumn, .menuColumn, .lightColumn {
-padding: 20px;
+padding: 10px;
 margin-bottom: 10px;
 text-align: center;
 border-radius: 50px;
@@ -246,7 +243,7 @@ text-align: center;
 #mc_embed_signup input[type="submit"] {
   height: 50px;
   line-height: 0px;
-  line-height: /* same as button height */;
+  /* line-height: same as button height; */
   font-size: 100%;
   padding:20px;
   background: rgba(0, 0, 0, 0.15);
@@ -275,12 +272,9 @@ text-align: center;
   align-content: center;
   align-self: center;
 }
-
 .giscus {
-  font-size: 300%;
+  font-size: 100%;
 }
-
-
 /* Tooltip container */
 .tooltip {
   position: relative;
@@ -309,51 +303,28 @@ text-align: center;
 /* Computer */
 @media only screen and (min-device-width: 500px) {
 
+  .container {
+    flex-direction: row;
+  }
   h1 {
     font-size: 250%;
   }
-  body {
-    font-size: 150%;
-  }
-  .rounded_outlined, img {
-    max-width: 700px;
-  }
-  .halfSizeImage {
-    max-width: 50%;
-  }
-  .container {
-    display: flex;
-    flex-direction: row;
-  }
-
-  
 
   .column, .darkColumn, .lightColumn {
     flex: 33.33%;
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
     text-align: center;
     padding-bottom: 20px;
   }
 
-  li {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
+  blockquote {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 5%;
   }
-  /*Ordered lists we having their numbers too far left*/
-  ol {
-    margin-left: 20px;
-  }
-  ul {
-    margin-left: 0px;
-  }
-  .subscribe {
-    font-size: 100%;
-  }
-
-  .giscus {
-    font-size: 100%;
+  footer {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 5%;
   }
 }
 
