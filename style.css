@@ -160,7 +160,7 @@ height: 150px;
 object-fit: cover;
 }
 .subscribe {
-  font-size: 100%;
+  font-size: 200%;
   font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
   margin: 20px;
   position: fixed;
@@ -185,7 +185,7 @@ flex: 33.33%;
 margin: 10px;
 }
 .menuColumn {
-margin-top: -20px;
+margin-top: -30px;
 border-bottom-left-radius: 50px;
 border-bottom-right-radius: 50px;
 border-top-left-radius: 0px;
