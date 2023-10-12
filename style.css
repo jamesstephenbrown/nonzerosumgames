@@ -17,13 +17,11 @@
   font-style: normal;
 }
 
-
-
 .nav-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
+  padding: 0px 0;
   font-size: 24px;
 }
 
@@ -32,7 +30,7 @@
   color: #ffffff;
   margin: 0 10px;
   transition: color 0.3s;
-  font-size: 40px;
+  font-size: 24px;
 }
 
 .part-number {
@@ -41,10 +39,10 @@
 
 body {
   word-wrap: break-word;
-  font-size: 150%;
+  font-size: 125%;
   background-color: #55AAE3;
   max-width: 800px;
-  padding: 30px 30px 0 30px;
+  padding: 20px 20px 0 20px;
   margin: 0 auto;
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
@@ -54,17 +52,21 @@ strong {
   font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
 }
 
-h1, h3 {
+h1, h2, h3 {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: bold;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: -20px;
+  margin-bottom: -10px;
 }
 
 h1 {
-  font-size: 200%;
+  font-size: 150%;
+}
+h2 {
+  font-size: 100%;
+
 }
 
 h3 {
@@ -81,7 +83,6 @@ font-style: oblique;
 
 li {
   text-align: left;
-  margin: auto;
   padding-bottom: 5px;
   width: 95%;
 }
@@ -90,7 +91,7 @@ ol, ul {
   margin-left: -10px;
 }
 img {
-  max-width: 90%;
+  max-width: 100%;
 }
 
 blockquote, footer {
@@ -98,13 +99,13 @@ blockquote, footer {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: normal;
   font-style: normal;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
-  border-radius: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  border-radius: 40px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 blockquote {
   background-color: rgba(255, 255, 255, 0.3);
@@ -306,8 +307,11 @@ text-align: center;
   .container {
     flex-direction: row;
   }
+  body {
+    font-size: 135%;
+  }
   h1 {
-    font-size: 250%;
+    font-size: 300%;
   }
 
   .column, .darkColumn, .lightColumn {
@@ -325,6 +329,9 @@ text-align: center;
   footer {
     background-color: rgba(0, 0, 0, 0.15);
     padding: 5%;
+  }
+  img {
+    max-width: 90%;
   }
 }
 
