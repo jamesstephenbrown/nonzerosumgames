@@ -65,7 +65,7 @@ h1 {
   font-size: 150%;
 }
 h2 {
-  font-size: 100%;
+  font-size: 125%;
 
 }
 
@@ -87,9 +87,14 @@ li {
   width: 95%;
 }
 
-ol, ul {
+ul {
   margin-left: -10px;
 }
+
+ol {
+  margin-left: 0px;
+}
+
 img {
   max-width: 100%;
 }
