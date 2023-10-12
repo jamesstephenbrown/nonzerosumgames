@@ -106,9 +106,9 @@ blockquote, footer {
   font-style: normal;
   padding: 10px;
   text-align: center;
-  border-radius: 40px;
-  margin-left: 0px;
-  margin-right: 0px;
+  border-radius: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
