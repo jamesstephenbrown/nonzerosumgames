@@ -1,28 +1,86 @@
-<!DOCTYPE html><html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GAME THEORY</title>
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-    <body>
-        <div class="content">
-            <img src="./Images/Content/gametheory.png"><br>
-        </div>
-        <br>
-        <div class="links">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
 
-            <a href="wheretobegin.html"><img src="./Images/Links/pleasedotellmemore.png"></a>
-        
-        </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME THEORY: A science of strategic interactions</title>
+    <meta name="description" content="A comprehensive guide to understanding the diverse world of game theory.">
+    <meta name="keywords" content="Game Theory, Combinatory Games, Shapley Value, Nash Equilibrium, Non-Zero-Sum">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-         <div class="giscus_button">
-        <a href="giscus.html"><img src="./Images/Links/giscus.png"></a>
-        </div>
-        
-        <canvas></canvas>
-        <script src="./js/gametheory.js"></script>
+    <!-- For Facebook and LinkedIn -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/GameTheory.png">
+    <meta property="og:title" content="Unveiling the Intricacies of Game Theory">
+    <meta property="og:description" content="~ A comprehensive guide to understanding game theory ~">
+
+    <!-- For Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <meta name="twitter:image" content="https://nonzerosum.games/Images/Social/GameTheory.png">
+    <meta name="twitter:title" content="Unveiling the Intricacies of Game Theory">
+    <meta name="twitter:description" content="~ A comprehensive guide to understanding game theory ~">
+</head>
+
+<body>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+
+    <!-- Content -->
+    <h1 style="margin-bottom: 0;">GAME THEORY</h1>
+    <p style="margin-top: 0.2em;">~ A science of strategic interactions ~</p>
+
+    
+    <p><img src="./Images/Content/Alignment_Carrot.png" alt="Carrot"></p>
+
+    <p><a href="whatarenonzerosumgames.html">Non-Zero-Sum games</a> are just one aspect of the wider field of Game Theory; a fascinating field of mathematics that deals with models of conflict and cooperation among rational decision-makers.</p>
+
+    <p><img src="./Images/Content/Alignment_Stick.png" alt="Stick"></p>
+
+    <h3>KEY CONCEPTS IN GAME THEORY</h3>
+    <p>Here are some pivotal ideas in the study of game theory:</p>
+    <footer>
+    <ul>
+        <li><a href="combinatorialgames.html">Combinatorial Games</a></li>
+        <li><a href="shapleyvalueisridiculous.html">Shapley Value</a></li>
+        <li><a href="nashequilibrium.html">Nash Equilibrium</a></li>
+        <li><a href="whatarenonzerosumgames.html">Non-Zero-Sum Games</a></li>
+    </ul>
+</footer>
+
+    <p>Each of these concepts provides a unique lens through which to understand the dynamics of various types of games, from simple games like tic-tac-toe to complex economic and social interactions.</p>
+
+    <p><img src="./Images/Content/Liv_HawkAndDove.png" alt="Game chips"></p>
+
+    <p>Leave us your thoughts below. What concept fascinates you the most? What would you like to explore further?</p>
+
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script src="./js/game-theory.js"></script>
+    <div id="giscus_thread"></div>
+    <script src="./js/gametheory.js"></script>
             <div id="giscus_thread" ></div>
             <script src="https://giscus.app/client.js"
             data-repo="jamesstephenbrown/nonzerosumgames"
