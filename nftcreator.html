@@ -1,16 +1,43 @@
 <!DOCTYPE html><html lang="en">
     
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NFT Creator</title>
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-    <body>
-        <div class="content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
 
-            <h1>NFT Creator</h1>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Creator</title>
+    <meta name="description" content="scripts to help you combine image elements to create 1000s of unique characters">
+    <meta name="keywords" content="combining images, create 10,000 images, characters">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+    <body>
+        <!-- Linking to Menu.html -->
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
+            });
+        </script>
+        <div id="menu"></div>
+        <div class="content">
+            <h1 style="margin-bottom: 0;">NFT CREATOR</h1><p style="margin-top: 0.2em;">~ generate 1000s of unique images by combining just a few elements ~</p>
+
             <p>
                 After creating <a href="destroyingamanofwealthandtaste.html">my first NFTs</a> I noticed that NFT Collections were becoming very popular. These usually started with a base image with new elements and colours to create variations. I noticed this at the same time as I was realising something about art in general; that the art world doesn't actually reward originality, it rewards consistency. I got on to this line of thinking after seeing <a href="https://www.ted.com/talks/derek_thompson_the_four_letter_code_to_selling_anything">this TED Talk</a> about the importance of familiarity in the field of sales. These NFT collections were a manifestation of this approach to artistic consistency and it got me asking what were the possibilities of creating multiple variations from a very small amount of elements, cutting out originality almost altogether, and focusing completely on consistency.
             </p><p>
@@ -25,11 +52,9 @@
             </p>
             <p><a href="index.html">HOME</a></p>
         </div>
-        <br>
-        <div class="links">
-        </div>
-         <div class="giscus_button">
-        <a href="giscus.html"><img src="./Images/Links/giscus.png"></a>
+
+        <div class="subscribe">
+            <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
         </div>
         
         <canvas></canvas>
