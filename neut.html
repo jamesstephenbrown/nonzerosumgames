@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1CMWXLFBCG');
+  </script>
 
-        <title>Neut</title>
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEUT - a non-zero-sum game</title>
+<meta name="description" content="A minimalist non-zero-sum game">
+<meta name="keywords" content="Neutropia, Game Theory, Mathematics, Non-Zero-Sum">
+<meta name="robots" content="index, follow">
+<meta name="author" content="NonZeroSumJames">
+<a name="Top"></a>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
 
-    <p>This one works with the arrow keys, try to make them all black...</p><br>
+    <p>This is a <a href="whatarenonzerosumgames.html">non-zero-sum game</a> which is a minimalist derivation of <a href="neutropia.html">NEUTROPIA</a> that works with the arrow keys, try to make 'em all black...</p><br>
 
     <canvas></canvas>
     <script src="js/neut.js"></script><br>
