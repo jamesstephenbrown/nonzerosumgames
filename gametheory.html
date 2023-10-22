@@ -35,6 +35,16 @@
 </head>
 
 <body>
+    <!-- Swapping Script -->
+    <script type="text/javascript">
+        function swapImage(imageElement, src1, src2) {
+            if (imageElement.src.match(src1)) {
+                imageElement.src = src2;
+            } else {
+                imageElement.src = src1;
+            }
+        }
+    </script>
     <!-- Linking to Menu.html -->
     <script>
         $(document).ready(function() {
@@ -56,24 +66,75 @@
 
     <p><a href="whatarenonzerosumgames.html">Non-Zero-Sum games</a> are just one aspect of the wider field of Game Theory; a fascinating field of mathematics that deals with models of conflict and cooperation among rational decision-makers.</p>
 
+    <p>While humans have used game-theoretical ideas throughout history, Game Theory was formalised by John von Neumann and economist Oskar Morgenstern in their seminal work, "Theory of Games and Economic Behavior", in 1944.</p>
+
     <p><img src="./Images/Content/Alignment_Stick.png" alt="Stick"></p>
 
     <h3>KEY CONCEPTS IN GAME THEORY</h3>
     <p>Here are some pivotal ideas in the study of game theory:</p>
     <footer>
-    <ul>
-        <li><a href="combinatorialgames.html">Combinatorial Games</a></li>
-        <li><a href="shapleyvalue.html">Shapley Value</a></li>
-        <li><a href="nashequilibrium.html">Nash Equilibrium</a></li>
-        <li><a href="whatarenonzerosumgames.html">Non-Zero-Sum Games</a></li>
-    </ul>
-</footer>
+        <h3 id="BasicConcepts">BASIC CONCEPTS</h3>
+        <ul>
+            <li id="Player"><strong>Player:</strong> Anyone with skin in the game, like a team member in a football game, a CEO in corporate politics, or even countries in global diplomacy.</li>
 
-    <p>Each of these concepts provides a unique lens through which to understand the dynamics of various types of games, from simple games like tic-tac-toe to complex economic and social interactions.</p>
+            <img src="./Images/Content/Liv_HawkAndDove.png" alt="Game chips">
+            <li id="Strategy"><strong>Strategy:</strong> Your plan of action, whether you're lining up behind a spawn point or planning a long-term business model.</li>
+            <li id="Payoff"><strong>Payoff:</strong> What you get out of it, from winning a bet to securing a long-term business contract.</li>
+        </ul>
+    </footer>
+    
+    <footer>
+        <h3 id="TypesOfGames">TYPES OF GAMES</h3>
+        <ul>
+            <li id="ZeroSumGame"><strong><a href="whatarenonzerosumgames.html#ZeroSumGames">Zero-Sum Game</a>:</strong> Where one's loss is another's gain, from a tug-of-war to legal battles.</li>
+            <li id="NonZeroSumGame"><strong><a href="whatarenonzerosumgames.html">Non-Zero-Sum Game</a>:</strong> Win-win situations, like mutually beneficial trade agreements or collaborative research projects.</li>
+            
+            <img src="./Images/Content/CrabBucket.png" alt="Crabs in a bucket saying - pull">
 
-    <p><img src="./Images/Content/Liv_HawkAndDove.png" alt="Game chips"></p>
+            <li id="SimultaneousGame"><strong>Simultaneous Game:</strong> Players act at the same time, from Rock-Paper-Scissors to blind auctions.</li>
 
-    <p>Leave us your thoughts below. What concept fascinates you the most? What would you like to explore further?</p>
+            <img src="./Images/Content/Lockwise_PSR.png" alt="Paper, scissors, rock">
+
+            <li id="SequentialGame"><strong>Sequential Game:</strong> Where Players take turns, like chess.</li>
+            <li id="CombinatorialGames"><strong><a href="combinatorialgames.html">Combinatorial Games</a>:</strong> No chance moves and perfect information, like chess, connect four, or <a href="SquareBears/info.html">Square Bears</a></li>
+
+        </ul>
+    </footer>
+    
+    <footer>
+        <h3 id="StrategiesAndEquilibria">STRATEGIES AND EQUILIBRIA</h3>
+        <ul>
+            <li id="NashEquilibrium"><strong><a href="nashequilibrium.html">Nash Equilibrium</a>:</strong> No one can benefit from changing their strategy if others don't, like stopping at traffic lights, or driving on the correct side of the road.</li>
+
+            <img src="./Images/Content/TrafficLights_RedAnnoyed.png" alt="Traffic Lights">
+
+            <li id="DominantStrategy"><strong>Dominant Strategy:</strong> A strategy that guarantees a win or draw: Like defecting in the a single round of the Prisoner's Dilemma. A rare example of tic-tac-toe has a dominant strategy right from the start for both players that always leads to a draw - making it a very limited game. Often dominant strategies will become available at a point of leverage in a game, like two rooks against a king reveals the strategy of driving the king to the end of the board.</li>
+            <li id="DominatedStrategy"><strong>Dominated Strategy:</strong> The always worse option, like folding in poker no matter your hand, always choosing the defensive play in football or camping in a deathmatch.</li>
+            <li id="MixedStrategy"><strong>Mixed Strategy:</strong> Introducing randomness, from mixing up your serves in tennis to changing up your pricing strategy in a bidding war.</li>
+        </ul>
+    </footer>
+    
+    <footer>
+        <h3 id="AdvancedConcepts">ADVANCED CONCEPTS</h3>
+        <ul>
+            <li id="MechanismDesign"><strong>Mechanism Design:</strong> Creating game rules to get desired outcomes, from designing balanced gameplay in a video game to optimizing voting systems.</li>
+            <li id="ParetoEfficiency"><strong>Pareto Efficiency:</strong> When it's not possible to make one player better off without making another player worse off the situation is Pareto Efficient - like when you're swapping cards and no one has any doubles that the other needs.</li>
+
+            <p> <img id="imageToSwap" src="./Images/Content/Cards.png" alt="Cards held by a crab being swapped when you click on the image" onclick="swapImage(this, './Images/Content/Cards.png', './Images/Content/Cards_Swapped.png')" style="cursor:pointer;"></p>
+      
+            <li id="CommonKnowledge"><strong>Common Knowledge:</strong> Information that everyone knows and understands, like the basic rules of chess or commonly accepted business practices.</li>
+
+            <img src="./Images/Content/shapleyvalueisridiculous_1.png" alt="Shapley Value">
+
+            <li id="ShapleyValue"><strong><a href="shapleyvalue.html">Shapley Value</a>:</strong> A very complex algorithm for divvying up payoffs fairly in cooperative scenarios, like joint business ventures or splitting bills among roommates.</li>
+            <li id="ExtensiveForm"><strong>Extensive Form:</strong> Using tree-like diagrams to map sequential moves, useful in chess and corporate decision-making.</li>
+            <li id="NormalForm"><strong>Normal Form:</strong> Using a matrix for simultaneous moves, handy in figuring out everything from the prisoner's dilemma to market competitions.</li>
+        </ul>
+    </footer>
+
+    <p>Each of these concepts provides a unique lens through which to understand the dynamics of various types of games, from simple games like tic-tac-toe to complex economic and social interactions. What concept fascinates you the most? What would you like to explore further?</p>
+
+    <p>Leave us your thoughts below.</p>
 
     <div class="subscribe">
         <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
