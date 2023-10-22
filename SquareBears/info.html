@@ -1,13 +1,40 @@
-<!DOCTYPE html><html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>SQUARE BEARS</title>
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQUARE BEARS: privacy and information page</title>
+    <meta name="description" content="A combinatorial game based on the classic squares game you'd usually play on a napkin.">
+    <meta name="keywords" content="Squares, Combinatory Games, Bears, Games">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <a name="Top"></a><link rel="stylesheet" type="text/css" href="../style.css">
         </head>
     <body>
-        <div class="content">
-            <h1>Square Bears</h1>
+        <!-- Linking to Menu.html -->
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("../menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
+            });
+        </script>
+        <div id="menu"></div>
+            <h1>SQUARE BEARS</h1>
 
             <img src="Icon.png">
 
@@ -29,14 +56,6 @@
             <p>If you have any concerns please contact me at <a href="mailto:james@branchoutmedia.com">james@branchoutmedia.com</a></p>
 
             <img src="Bear_06.png">
-
-        </div>
-        <br>
-        <div class="links">
-
-            <p>To explore other nonzerosum.games <a href="../index.html">Click Here</a></p>
-        
-        </div>
 
         <canvas></canvas>
 
