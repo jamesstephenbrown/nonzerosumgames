@@ -26,7 +26,7 @@
         <!-- Linking to Menu.html -->
         <script>
             $(document).ready(function() {
-                $("#menu").load("../menu.html", function() {
+                $("#menu").load("/menu.html", function() {
                     var pageName = window.location.pathname.split("/").pop();
                     var menuLink = $("a[href='" + pageName + "']");
                     menuLink.parent().remove();
