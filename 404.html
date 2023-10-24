@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>404 ERROR</title>
+        
+        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
+        </head>
+    <body>
+        <!-- Linking to Menu.html -->
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
+            });
+        </script>
+        <div id="menu"></div>
+    
+        <!-- Content -->
+        <h1 style="margin-bottom: 0;">YOU FOUND IT!</h1>
+        <p style="margin-top: 0.2em;">~ looks like you've found the secret 404 culdesac ~</p>
+        
+        <img src="./Images/Content/culdesac.png">
+
+        <p>Sorry about this, I'm doing my best to keep on top of all the pages. It's possible that this is an <i><b>aspirational</b></i> page that I haven't got to yet. I'm open to suggestions for what could go here. Please leave a comment if you found this page, I will be eternally in your debt.</p>
+
+        <div class="subscribe">
+            <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+        </div>
+        
+        <script src="./js/culdesac.js"></script>
+            <div id="giscus_thread" ></div>
+            <script src="https://giscus.app/client.js"
+            data-repo="jamesstephenbrown/nonzerosumgames"
+            data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
+            data-category-id="DIC_kwDODpsK184CA9jn"
+            data-mapping="pathname"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="dark_dimmed"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+        </script>
+    </body>
+</html>
