@@ -4,19 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Metaballs</title>
-        
+        <title>METABALLS</title>
         <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
   </head>
-    <!-- <img id="square" src="./Square_White.png"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
+
+    /* Style for the canvas */
+    canvas {
+      display: block;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    /* Style for the text to make it appear above the canvas */
+    .overlay-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1; /* To ensure it appears above the canvas */
+    }
+    .overlay-container {
+position: relative;
+text-align: center;
+color: white;
+}
+
+.centered-text {
+position: absolute;
+top: 150px;
+left: 50%;
+transform: translate(-50%, -50%);
+font-family: 'MoreSugar', fallback, sans-serif; /*inherits the font*/
+text-align: center; /*inherits the centering*/
+}
+  </style>
   <body>
 
-
-    <canvas></canvas>
+    <canvas class="overlay-container"></canvas>
     <script src="js/metaballs.js"></script>
 
-    <p>Throw them around, join them up, try and break it...</p>
-    <a href="sitemap.html">Click here to return to the site map</a>
+    <div class="centered-text">
+      <h1 style="margin-bottom: 0;color: white">METABALLS</h1>
+      <p style="margin-top: 0.2em;color: white">~ throw them around, join them up, try and break it ~</p></div>
+    <script src="js/graviton.js"></script>
+    <div class="subscribe">
+      <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+  </div>
   </body>
 </html>
