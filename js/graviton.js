@@ -2,7 +2,6 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-
 // element which needs to enter full-screen mode
 var element = document.querySelector('canvas');
 
@@ -16,17 +15,17 @@ var element = document.querySelector('canvas');
 //  });
 
 canvas.width = innerWidth
-canvas.height = 4*innerHeight / 5
+canvas.height = innerHeight
 
 const mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 }
+
 const numberOfElements = 5
-const numberOfGravitons = 1000
+const numberOfGravitons = 800
 const attractionMin = -50
 const attractionMax = 50
-
 const red = 'rgb(255,100,100)'
 const yellow = 'rgb(150,255,100)'
 const blue = 'rgb(100,100,255)'
@@ -43,6 +42,8 @@ const pink = 'rgb(255,0,100)'
 const brown = 'rgb(200,150,100)'
 const maroon = 'rgb(180,0,40)'
 const navy = 'rgb(0,0,180)'
+
+
 // Event Listeners
 addEventListener('mousemove', (event) => {
   mouse.x = event.clientX
@@ -55,14 +56,12 @@ addEventListener('resize', () => {
   init()
 })
 
-
 class Offset {
   constructor (x,y) {
     this.x = x
     this.y = y
   }
 }
-
 
 // Objects
 class Graviton {
@@ -229,7 +228,6 @@ function animate() {
     graviton.draw()
   })
 }
-
 animate()
 
 function randomIntFromRange(min, max) {
