@@ -7,16 +7,19 @@
         <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
         </head>
     <body>
+        <!-- Linking to Menu.html -->
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
+            });
+        </script>
+        <div id="menu"></div>
         <div class="content">
             <img src="./Images/Content/howtofailcreatively.png"><br>
-        </div>
-        <br>
-        <div class="links">
-
-        </div>
-
-         <div class="giscus_button">
-        <a href="giscus.html"><img src="./Images/Links/giscus.png"></a>
         </div>
         
         <canvas></canvas>
