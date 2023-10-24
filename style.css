@@ -151,6 +151,7 @@ background-color: red;
 }
 
 .rounded_outlined, .montage {
+border: 5px solid #3388C2;
 border-radius: 50px;
 margin: auto;
 background-color: #55AAE3;
@@ -309,6 +310,10 @@ text-align: center;
 /* Computer */
 @media only screen and (min-device-width: 500px) {
 
+  .halfSizeImage {
+    width: 75%;
+    height: auto;
+  }
   .container {
     flex-direction: row;
   }
