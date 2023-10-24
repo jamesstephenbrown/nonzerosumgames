@@ -56,6 +56,15 @@ addEventListener('resize', () => {
   init()
 })
 
+
+
+
+addEventListener('touchmove', (event) => {
+  event.preventDefault();
+  // Your existing code
+}, { passive: false });
+
+
 class Offset {
   constructor (x,y) {
     this.x = x

@@ -127,7 +127,14 @@ class Ball {
     })
   }
 }
-addEventListener('mousedown', (event) => {
+
+
+
+function handleStart(event) {
+  if(event.touches) {
+    event.clientX = event.touches[0].clientX;
+    event.clientY = event.touches[0].clientY;
+  }
   mouseIsDown = true
 // setting up closest ball
   closestBall = null
@@ -142,15 +149,43 @@ addEventListener('mousedown', (event) => {
   })
   mousePosition.x = event.clientX
   mousePosition.y = event.clientY
-})
-addEventListener('mousemove', (event) => {
+}
+
+function handleMove(event) {
+  if(event.touches) {
+    event.clientX = event.touches[0].clientX;
+    event.clientY = event.touches[0].clientY;
+  }
   mousePosition.x = event.clientX
   mousePosition.y = event.clientY
-})
-addEventListener('mouseup', (event) => {
+}
+
+function handleEnd(event) {
+  if(event.touches) {
+    event.clientX = event.changedTouches[0].clientX;
+    event.clientY = event.changedTouches[0].clientY;
+  }
   mouseIsDown = false
   closestBall = null
-})
+}
+
+// For touch devices
+addEventListener('touchstart', handleStart);
+addEventListener('touchmove', handleMove);
+addEventListener('touchend', handleEnd);
+
+// For non-touch devices
+addEventListener('mousedown', handleStart);
+addEventListener('mousemove', handleMove);
+addEventListener('mouseup', handleEnd);
+
+addEventListener('touchmove', (event) => {
+  event.preventDefault();
+  // Your existing code
+}, { passive: false });
+
+
+
 let debugFrame = false
 document.addEventListener('keydown', function(event){
   debugFrame = true
