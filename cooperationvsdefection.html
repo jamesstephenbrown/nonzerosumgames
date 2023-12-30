@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COOPERATION VS DEFECTION ~ a karmic simulation ~</title>
+    <link rel="canonical" href="https://nonzerosum.games/cooperationvsdefection.html" />
+    <meta name="description" content="A simulation demonstrating the long term dominance of a cooperative strategy in the prisoner's dilemma.">
+    <meta name="keywords" content="Prisoner's Dilemma, Simulation, Ethics, Debate, Discussion">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/cooperationvsdefection.png">
+    <meta property="og:title" content="COOPERATION VS DEFECTION ~ a karmic simulation ~">
+    <meta property="og:description" content="A simulation demonstrating the long term dominance of a cooperative strategy in the prisoner's dilemma.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <style>
+        #gameCanvas {
+            background-color: #55AAE3;
+            max-width: 800px; /* Max width of the canvas */
+            width: 100%; /* Make the canvas take full width of the container */
+            margin: 0 auto; /* Center the canvas horizontally */
+        }
+    table {
+        border-collapse: separate;
+        border-spacing: 2px;
+    }
+    th, td {
+        margin: 0px;
+        padding: 10px 15px;
+        background-color: #55AAE3;
+        border-radius: 8px;
+    }
+    </style>
+    
+</head>
+<body>
+    <!-- menu -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+    <h1 style="margin-bottom: 0;">COOPERATION VS DEFECTION</h1>
+    <p style="margin-top: 0.2em;">~ a karmic simulation ~</p>
+
+<p>Recently we've been exploring moral philosophy with our series on <a href="morallicensing1.html">Moral Licensing</a>, Andrew Tane Glen's <a href="whycooperate1.html">Why Cooperate?</a>, and in a <a href="nonzerothinkingforkids.html">workshop</a> I ran with my daughter's class about the strategies of cooperation and defection. One phenomenon that has arisen through these explorations is that defectors gain a short term, relative advantage, while cooperators benefit from a sustained long term absolute advantage, which got me thinking about a simulation.</p>
+
+<p><img src="./Images/Content/WhyCooperate_Buttons.png" alt="Hedgehog curled over with spines out avoiding conflict."></p>
+
+<p>What if we take a group of individuals, all interacting at random, with some defectors and some cooperators, and set up a Prisoner's dilemma style payoff matrix, could we observe this phenomenon in real time?</p>
+
+
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script>
+class Player {
+    constructor(type, id, x, y) {
+        this.type = type;
+        this.id = id;
+        this.health = 10;
+        this.x = x;
+        this.y = y;
+        this.directionX = Math.random() * 2 - 1;
+        this.directionY = Math.random() * 2 - 1;
+        this.trustArray = new Array(100).fill(true);
+        this.updateRadius();
+        this.lastInteractionTime = 0;
+        this.lastHealthDecreaseTime = Date.now(); // Track the last time health was decreased
+        this.isAvoiding = false;
+        this.avoidanceDirectionX = 0;
+        this.avoidanceDirectionY = 0;
+        this.avoidingPlayers = [];
+    }
+
+        updateRadius() {
+        this.radius = Math.max(this.health, 2); // Ensuring a minimum size
+    }
+
+    move() {
+        // Adjust direction slightly to create a jiggly effect
+        this.directionX += Math.random() * 0.2 - 0.1;
+        this.directionY += Math.random() * 0.2 - 0.1;
+
+        // Add a subtle influence towards the center of the screen
+        let centerX = canvas.width / 2;
+        let centerY = canvas.height / 2;
+        let toCenterX = centerX - this.x;
+        let toCenterY = centerY - this.y;
+
+        // Normalize the 'to center' vector and add a small influence
+        let centerMagnitude = Math.sqrt(toCenterX * toCenterX + toCenterY * toCenterY);
+        const pull = 1000;
+        this.directionX += (toCenterX / 10000); // Adjust this factor to control the strength of the pull
+        this.directionY += (toCenterY / 10000);
+
+        // Normalize the direction vector
+        let magnitude = Math.sqrt(this.directionX * this.directionX + this.directionY * this.directionY);
+        this.directionX /= magnitude;
+        this.directionY /= magnitude;
+
+        // Move in the current direction
+        this.x += this.directionX;
+        this.y += this.directionY;
+
+        // Keep players within canvas bounds
+        this.x = Math.max(Math.min(this.x, canvas.width - this.radius), this.radius);
+        this.y = Math.max(Math.min(this.y, canvas.height - this.radius), this.radius);
+    }
+
+    interact(otherPlayer, currentTime, allPlayers) {
+        if (currentTime - this.lastInteractionTime < 500 || currentTime - otherPlayer.lastInteractionTime < 500 ) return;
+        if (this.health <= 0 || otherPlayer.health <= 0) return;
+
+        // Special interaction for players with less than 1 health
+        if (this.health < 1) {
+            if (otherPlayer.type === 'cooperator') {
+                otherPlayer.health -= 1; // Cooperator loses 1 health
+                this.health += 1; // Gains 1 health
+            }
+        } else if (otherPlayer.health < 1) {
+            if (this.type === 'cooperator') {
+                this.health -= 1;
+                otherPlayer.health += 1;
+            }
+        } else {
+            // Standard interaction logic for healthy players
+            if (this.type === 'cooperator' && otherPlayer.type === 'cooperator') {
+                this.health += 1;
+                otherPlayer.health += 1;
+            } else if (this.type === 'cheater' && otherPlayer.type === 'cheater') {
+                this.health -= 1;
+                otherPlayer.health -= 1;
+                this.trustArray[otherPlayer.id] = false;
+                otherPlayer.trustArray[this.id] = false;
+            } else if (this.type !== otherPlayer.type) {
+                if (this.type === 'cheater') {
+                    this.health += 2;
+                    otherPlayer.health -= 2;
+                    // Cooperator loses trust in the cheater and impact witnesses
+                    otherPlayer.trustArray[this.id] = false;
+                    // this.impactWitnesses(this.id, allPlayers);
+                } else {
+                    this.health -= 2;
+                    otherPlayer.health += 2;
+                    // Cooperator loses trust in the cheater and impact witnesses
+                    this.trustArray[otherPlayer.id] = false;
+                    // otherPlayer.impactWitnesses(otherPlayer.id, allPlayers);
+                }
+            }
+        }
+
+        this.lastInteractionTime = currentTime;
+        otherPlayer.lastInteractionTime = currentTime;
+    }
+    
+    impactWitnesses(cheaterId, allPlayers) {
+        const witnessRadius = 100; // Define the radius within which cheating is observed
+        allPlayers.forEach(player => {
+            if (player.id !== cheaterId) {
+                let dx = this.x - player.x;
+                let dy = this.y - player.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < witnessRadius) {
+                    // Player witnesses the cheating and loses trust in the cheater
+                    player.trustArray[cheaterId] = false;
+                }
+            }
+        });
+    }
+
+
+    avoid(players) {
+        this.avoidingPlayers = []; // Reset the list of players being avoided
+
+        players.forEach(otherPlayer => {
+            if (this.id !== otherPlayer.id && !this.trustArray[otherPlayer.id] && this.isAlive()) {
+                let dx = this.x - otherPlayer.x;
+                let dy = this.y - otherPlayer.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                let combinedRadii = 4 * (this.radius + otherPlayer.radius);
+
+                if (distance < combinedRadii) {
+                    // Calculate the avoidance force
+                    this.directionX += 20 * dx / (distance * distance);
+                    this.directionY += 20 * dy / (distance * distance);
+
+                    // Add the position of the avoided player to the list
+                    this.avoidingPlayers.push({ x: otherPlayer.x, y: otherPlayer.y });
+                }
+            }
+        });
+
+        // If there are players to avoid, adjust the direction vector
+        if (this.avoidingPlayers.length > 0) {
+            let magnitude = Math.sqrt(this.directionX * this.directionX + this.directionY * this.directionY);
+            this.directionX /= magnitude;
+            this.directionY /= magnitude;
+        }
+    }
+    isAlive() {
+        return this.health > 0;
+    }
+    decreaseHealthOverTime() {
+        let currentTime = Date.now();
+        if (currentTime - this.lastHealthDecreaseTime >= 1000) { // Every 1 second
+            this.health *= 0.95; // Decrease health by 2%
+            this.health = Math.max(this.health, 0); // Ensure health doesn't go below 0
+            this.updateRadius();
+            this.lastHealthDecreaseTime = currentTime;
+        }
+    }
+}
+
+let players = [];
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+function initializeGame() {
+    for (let i = 0; i < 100; i++) {
+        let type = i < 15 ? 'cheater' : 'cooperator';
+        let player = new Player(type, i, Math.random() * canvas.width, Math.random() * canvas.height);
+        players.push(player);
+    }
+}
+
+function updateGame() {
+    let currentTime = Date.now();
+    players.forEach(player => {
+        player.avoid(players);
+        player.move();
+        player.decreaseHealthOverTime();
+        player.updateRadius();
+    });
+
+    // Collision and interaction logic
+    for (let i = 0; i < players.length; i++) {
+        if (!players[i].isAlive()) continue; // Skip if the player is "dead"
+        for (let j = i + 1; j < players.length; j++) {
+            if (!players[j].isAlive()) continue; // Skip if the other player is "dead"
+            let dx = players[i].x - players[j].x;
+            let dy = players[i].y - players[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < players[i].radius + players[j].radius) {
+                players[i].interact(players[j], currentTime);
+            }
+        }
+    }
+}
+
+function drawGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    players.forEach(player => {
+        // Draw the player
+        ctx.beginPath();
+        ctx.arc(player.x, player.y, player.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = player.type === 'cheater' ? 'red' : '#a1d8fd';
+        ctx.fill();
+
+        // Draw a small red dot for each player being avoided
+        player.avoidingPlayers.forEach(avoidPos => {
+            let dx = avoidPos.x - player.x;
+            let dy = avoidPos.y - player.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            let dotRadius = player.radius - 4; // Position the dot slightly outside the player's body
+            let dotX = player.x + dotRadius * (dx / distance);
+            let dotY = player.y + dotRadius * (dy / distance);
+
+            ctx.beginPath();
+            ctx.arc(dotX, dotY, 2, 0, 2 * Math.PI); // Small dot
+            ctx.fillStyle = 'white';
+            ctx.fill();
+        });
+    });
+}
+
+initializeGame();
+setInterval(() => {
+    updateGame();
+    drawGame();
+}, 1000 / 60); // 60 FPS
+
+    </script>
+
+
+<p>
+To explain what's going on here. We have 100 "agents" which all start with 20 health points - health is reflected in their size. 15 of the agents are <span style="color:red">defectors</span>, while the others are <span style="color:#a1d8fd">cooperators</span>. When they bump into each other there is an interaction. 
+</p><p>
+If two cooperators interact, they each get +1 health, two defectors -1 each, and if a defector and a cooperator interact the defector gets +2 and the cooperator gets -2.
+</p>
+
+<footer>
+    <table>
+        <tr>
+            <th>ROLE</th>
+            <th>Cooperator</th>
+            <th>Defector</th>
+        </tr>
+        <tr>
+            <td>Cooperator</td>
+            <td>+1,+1</td>
+            <td>-2,+2</td>
+        </tr>
+        <tr>
+            <td>Defector</td>
+            <td>+2,-2</td>
+            <td>-1,-1</td>
+        </tr>
+    </table>
+</footer>
+
+<p>
+As you can imagine this initially benefits the defectors, but there's a catch for those greedy grubs; <i><b>each agent remembers who has defected against them and physically avoids them from then on</i></b>. Avoiding a defector is indicated with a white dot in the body of the agent in the direction of the defector (and of course the agent moves away).
+</p>
+<h3>NOBODY DIES</h3>
+<p>
+An additional rule is that when an agent gets very low in health, they can no longer give health to a defector or a cooperator, but any cooperator with adequate life that interacts with them will "gift" them +2, restoring their ability to interact normally. It's sort of like a social safety net combined with some charitable behaviour.
+</p>
+<p><img src="./Images/Content/shapleyvalueisridiculous_7.png" alt="3 Bunnies sitting together."></p>
+
+<h3>SO...</h3>
+<p>
+    We can see that over time, cooperation is the <a href="gametheory.html#DominantStrategy">dominant strategy</a>, even if it doesn't appear to be in the short term. This is because of the presence of trust, that might be interpersonal trust, or trust in a system. It also shows that a system can still thrive despite the persistent presence of defectors - in saying that, there is a limit, when the number of defectors goes over 20% you end up with a system wide crash, a negative sum game, where no one has anything left to give, making defection an absolutely <a href="gametheory.html#DominatedStrategy">dominated strategy</a>. Cooperation, on the other hand, breeds trust and trust breeds cooperation in a virtuous cycle that can be capitalised on sustainably, which leads to <a href="whatarenonzerosumgames.html#PositiveSumGames">positive-sum</a> outcomes.
+</p>
+<footer>
+    <h3>RELATED CONTENT</h3>
+    <ul>
+        <li>Our series on <a href="morallicensing1.html">Moral Licensing</a>.
+        </li><li>Andrew Tane Glen's <a href="whycooperate1.html">Why Cooperate?</a>
+        </li><li>The <a href="nonzerothinkingforkids.html">Non-Zero Thinking for Kids</a> workshop.</li>
+    </ul>
+</footer>
+
+<canvas></canvas>
+<div class="subscribe">
+    <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+</div>
+<script src="./js/cooperationvsdefection.js"></script>
+<div id="giscus_thread"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="jamesstephenbrown/nonzerosumgames"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
+        data-category-id="DIC_kwDODpsK184CA9jn"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>
