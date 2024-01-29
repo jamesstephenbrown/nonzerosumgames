@@ -16,6 +16,28 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+a[target="_blank"]::after {
+  content: "^";
+  color: #ffffff55;
+  text-decoration: none;
+  display: inline-block; /* Prevents inheriting underline from the link */
+
+}
+
+.custom-like-button {
+  background-image: url('./Images/Social/facebook_like.png'); /* Path to your image */
+  background-size: cover; /* This ensures the image covers the button area */
+  border: none; /* Removes default button styling */
+  width: 50px; /* Set the width as needed */
+  height: 50px; /* Set the height as needed */
+}
+.custom-share-button {
+  background-image: url('./Images/Social/facebook_like.png'); /* Path to your image */
+  background-size: cover; /* This ensures the image covers the button area */
+  border: none; /* Removes default button styling */
+  width: 50px; /* Set the width as needed */
+  height: 50px; /* Set the height as needed */
+}
 
 .nav-section {
   display: flex;
@@ -306,6 +328,92 @@ text-align: center;
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+#game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.player-grid {
+  margin: 10px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid grey;
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  margin: 2px;
+}
+
+
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Standard size based on the largest cell */
+  gap: 10px;
+  justify-content: center; /* Center the items */
+}
+
+.image-item {
+  position: relative;
+  border-radius: 30px; /* Rounded corners */
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.15); /* Background color */
+  padding-top: 50%; /* Half the width of the cell */
+}
+
+.image-item img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 95%;
+  max-height: 95%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.image-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(61, 122, 162, 0.9), rgba(61, 122, 162, 0.9));
+  color: white;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Align children to the bottom */
+  align-items: center; /* Center children horizontally */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+
+.image-item a:hover .image-title {
+  opacity: 0;
+}
+
+.image-item a {
+  text-decoration: none; /* No underline */
+}
+
+
+
+
+
+
 
 /* Computer */
 @media only screen and (min-device-width: 500px) {

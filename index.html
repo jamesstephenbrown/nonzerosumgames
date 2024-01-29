@@ -12,7 +12,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to NON-ZERO-SUM GAMES</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://nonzerosum.games/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://nonzerosum.games/favicon.png">
+
     <link rel="canonical" href="https://nonzerosum.games/" />
     <meta name="description" content="Home page for a World-Help site: How to create more Non-Zero-Sum Games for a brighter future.">
     <meta name="keywords" content="Game Theory, AI, Non-Zero-Sum, Zero-Sum, Game Development, Ethics, Morality, Humanity, Positive Future, Futurism">
@@ -33,9 +35,34 @@
     <meta name="twitter:image" content="https://nonzerosum.games/Images/Social/index.png">
     <meta name="twitter:title" content="NON-ZERO-SUM GAMES">
     <meta name="twitter:description" content="~ a world-help site ~">
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+          window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const center = windowHeight / 2;
+      
+            document.querySelectorAll('.image-item').forEach(function(item) {
+              const bounds = item.getBoundingClientRect();
+              const itemCenter = bounds.top + bounds.height / 2;
+              const distanceToCenter = Math.abs(center - itemCenter);
+              
+              // Calculate opacity and scale based on distance to center
+              const scale = Math.min(Math.max(0.9 + (1 - distanceToCenter / center) * 0.1, 0.9), 1);
+      
+              const titleElement = item.querySelector('.image-title');
+     
+      
+              // Apply the scale transformation
+              item.style.transform = `scale(${scale})`;
+            });
+          });
+        });
+      </script>
 
 </head>
 <body>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0&appId=585876926888646" nonce="d1ZfkJKD"></script>
     <!-- Menu Items -->
     <div class="menuColumn">
         <p>
@@ -47,16 +74,205 @@
     <h3 style="margin-bottom: 0px;">WELCOME TO</h3>
     <h1 style="margin-top: 10px;">NON•ZERO•SUM GAMES</h1>
     <p>~ a <b>world</b>-help site ~</p><br>
-    <p>Hi, I'm Non-Zero-Sum <a href="aboutme.html">James</a> - your companion on this exploration of <a href="whatarenonzerosumgames.html">win-win games</a> and how they are essential to building solutions-focused collaborative strategies for a better future.
-    </p>
+    <img id="blink1" style="max-width: 50%;" src="./Images/Content/ProfilePic.png" alt="Two Rabbits thinking together">
+    <p>Hi, I'm Non-Zero-Sum <a href="aboutme.html">James</a> - your companion on this exploration of <a href="whatarenonzerosumgames.html">win-win games</a> and how they are essential for a better future. <a href="blog.html">Each week</a> we'll delve into another aspect of <a href="gametheory.html">game theory</a> and how it can help us navigate the complex problems we face in our world <i><b>together</i></b>.</p>
 
-    <img id="blink1" src="./Images/Content/ProfilePic.png" alt="Two Rabbits thinking together">
-    <blockquote>
-        <p>"It is well to remember that the entire universe, <i><b>with one trifling exception</b></i>, is composed of others."</p><p>- <b>John Holmes</b></p>
-    </blockquote>
-        <p><a href="blog.html">Each week</a> we'll delve into another aspect of <a href="gametheory.html">game theory</a> and how it can help us navigate the complex problems we face in our world <i><b>together</i></b>.</p>
+    <a name="WhatsNew"></a>
+<!-- NEW Section -->
+<h3>WHAT'S NEW?</h3>
+<br>
+<div class="image-grid">
+<!-- What Are Non-Zero-Sum Games? -->
+<div class="image-item">
+    <a href="capitalism.html">
+        <img src="./Images/Content/Capitalism_GreedIsGood.png" alt="Capitalism - a zero sum game?">
+        <span class="image-title">CAPITALISM?<p style="margin-top: 0.2em;font-size: 70%;">~ a zero-sum game? ~</p></span>
+    </a>
+</div>
+</div>
+
+
+<!-- GAME THEORY Section -->
+    <h3>ROUGHLY GAME THEORY STUFF</h3>
+    <br>
+<div class="image-grid">
+    <!-- What Are Non-Zero-Sum Games? -->
+    <div class="image-item">
+        <a href="whatarenonzerosumgames.html">
+            <img src="./Images/Content/Hercules_Beetles.png" alt="What Are Non-Zero-Sum Games">
+            <span class="image-title">WHAT ARE NON-ZERO-SUM GAMES?<p style="margin-top: 0.2em;font-size: 70%;">~ an introduction ~</p></span>
+        </a>
+    </div>
+    <!-- Parable of a Polyp -->
+    <div class="image-item">
+        <a href="parableofapolyp.html">
+            <img src="./Images/Content/UpsideDownPolyp.png" alt="Parable of a Polyp">
+            <span class="image-title">PARABLE OF A POLYP<p style="margin-top: 0.2em;font-size: 70%;">~ from zero-sum to non-zero-sum ~</p></span>
+        </a>
+    </div>
+    <!-- Combinatorial Games -->
+    <div class="image-item">
+        <a href="combinatorialgames.html">
+            <img src="./Images/Content/CombinatoryGames_Chips.png" alt="Combinatorial Games">
+            <span class="image-title">COMBINATORIAL GAMES<p style="margin-top: 0.2em;font-size: 70%;">~ games with perfect information ~</p></span>
+        </a>
+    </div>
+    <!-- Nash Equilibrium -->
+    <div class="image-item">
+        <a href="nashequilibrium.html">
+            <img src="./Images/Content/TrafficLights_RedAnnoyed.png" alt="Nash Equilibrium">
+            <span class="image-title">NASH EQUILIBRIUM<p style="margin-top: 0.2em;font-size: 70%;">~ the real reason you stop at a red ~</p></span>
+        </a>
+    </div>
+    <!-- Crabs in a Bucket -->
+    <div class="image-item">
+        <a href="crabbucket.html">
+            <img src="./Images/Content/CrabBucket.png" alt="Crabs in a Bucket">
+            <span class="image-title">CRABS IN A BUCKET<p style="margin-top: 0.2em;font-size: 70%;">~ or links in a chain? ~</p></span>
+        </a>
+    </div>
+    <!-- Shapley Value is Ridiculous -->
+    <div class="image-item">
+        <a href="shapleyvalue.html">
+            <img src="./Images/Content/shapleyvalueisridiculous_7.png" alt="Shapley Value is Ridiculous">
+            <span class="image-title">SHAPLEY VALUE IS RIDICULOUS<p style="margin-top: 0.2em;font-size: 70%;">~ where game theory fails in real world applications ~</p></span>
+        </a>
+    </div>
+    <!-- Non-Zero Thinking for Kids -->
+    <div class="image-item">
+        <a href="nonzerothinkingforkids.html">
+            <img src="./Images/Content/Lifes_A_Game.png" alt="Non-Zero Thinking for Kids">
+            <span class="image-title">NON-ZERO THINKING FOR KIDS<p style="margin-top: 0.2em;font-size: 70%;">~ taking non-zero-sum thinking out into the world ~</p></span>
+        </a>
+    </div>
+    <!-- Capitalising on Trust -->
+    <div class="image-item">
+        <a href="cooperationvsdefection.html">
+            <img src="./Images/Content/WhyCooperate_Buttons.png" alt="Capitalising on Trust">
+            <span class="image-title">CAPITALISING ON TRUST<p style="margin-top: 0.2em;font-size: 70%;">~ a karmic simulation ~</p></span>
+        </a>
+    </div>
+    <!-- Pareto Efficiency -->
+    <div class="image-item">
+        <a href="paretoefficiency.html">
+            <img src="./Images/Content/Pareto_TickCross.png" alt="Pareto Efficiency">
+            <span class="image-title">PARETO EFFICIENCY<p style="margin-top: 0.2em;font-size: 70%;">~ how pareto efficiency can make everyone better off (sometimes) ~</p></span>
+        </a>
+    </div>
+</div>
+
+<!-- MORAL PHILOSOPHY Section -->
+<h3>MORAL PHILOSOPHY & ETHICAL ECONOMICS</h3>
+<br>
+<div class="image-grid">
+<!-- Why Cooperate? -->
+<div class="image-item">
+    <a href="whycooperate1.html">
+        <img src="./Images/Content/WhyCooperate_SuperDefectorSnake.png" alt="Why Cooperate">
+        <span class="image-title">THE SUPER-DEFECTOR<br><p style="margin-top: 0.2em;font-size: 70%;">~ Guest writer Andrew Tane Glen on why we cooperate ~ (3 parts)</p></span>
+    </a>
+</div>
+<!-- It's Subjective -->
+<div class="image-item">
+    <a href="itssubjective.html">
+        <img src="./Images/Content/Hog_Hides.png" alt="It's Subjective">
+        <span class="image-title">IT'S SUBJECTIVE<p style="margin-top: 0.2em;font-size: 70%;">~ the end of the conversation? ~</p></span>
+    </a>
+</div>
+<!-- Moral Licensing -->
+<div class="image-item">
+    <a href="morallicensing1.html">
+        <img src="./Images/Content/MoralLicensing_CatAffection.png" alt="Moral Licensing">
+        <span class="image-title">MORAL LICENSING<p style="margin-top: 0.2em;font-size: 70%;">~ the makings of a very negative-sum game ~ (2 parts)</p></span>
+    </a>
+</div>
+<!-- Taking Credit -->
+<div class="image-item">
+    <a href="takingcredit.html">
+        <img src="./Images/Content/HH_Sharing.png" alt="Taking Credit">
+        <span class="image-title">TAKING CREDIT<p style="margin-top: 0.2em;font-size: 70%;">~ the paradox of original ideas ~</p></span>
+    </a>
+</div>
+    <!-- Diminishing Returns -->
+    <div class="image-item">
+        <a href="diminishingreturns.html">
+            <img src="./Images/Content/CatCars.png" alt="Diminishing Returns">
+            <span class="image-title">DIMINISHING RETURNS<p style="margin-top: 0.2em;font-size: 70%;">~ a path to shared joy? ~</p></span>
+        </a>
+    </div>
+    <!-- Capitalism -->
+    <div class="image-item">
+        <a href="capitalism.html">
+            <img src="./Images/Content/Capitalism_GreedIsGood.png" alt="Capitalism">
+            <span class="image-title">CAPITALISM<p style="margin-top: 0.2em;font-size: 70%;">~ a zero-sum game? ~</p></span>
+        </a>
+    </div>
+    <!-- Evil Globalisation -->
+    <div class="image-item">
+        <a href="globalisation.html">
+            <img src="./Images/Content/Globalisation_JustDontDoIt.png" alt="Evil Globalisation">
+            <span class="image-title">EVIL GLOBALISATION<p style="margin-top: 0.2em;font-size: 70%;">~ and how it is eliminating poverty ~</p></span>
+        </a>
+    </div>
+    <!-- Relative Gains -->
+    <div class="image-item">
+        <a href="absolutevsrelative.html">
+            <img src="./Images/Content/Relative_DiderotCatRich.png" alt="Relative Gains">
+            <span class="image-title">RELATIVE GAINS<br><p style="margin-top: 0.2em;font-size: 70%;">~ how not to measure success ~</p></span> 
+        </a>
+    </div>
+    <!-- A Simple Recycling Idea -->
+    <div class="image-item">
+        <a href="betterrecycling.html">
+            <img src="./Images/Content/Recycling_OctopusInJar.png" alt="A Simple Recycling Idea">
+            <span class="image-title">A SIMPLE RECYCLING IDEA<br><p style="margin-top: 0.2em;font-size: 70%;">~ 8 bottles ~<br>(3 parts)</p></span>
+        </a>
+    </div>
+</div>
+
+<!-- MOLOCH Section -->
+    <h3>AI, MOLOCH AND OTHER INTERESTING STUFF</h3>
+    <br>
+<div class="image-grid">
+    <!-- Who is Moloch? -->
+    <div class="image-item">
+        <a href="whoismoloch.html">
+            <img src="./Images/Content/ThornyDevil_02.png" alt="Who is Moloch">
+            <span class="image-title">MOLOCH?<p style="margin-top: 0.2em;font-size: 70%;">~ the god of negative-sum games ~<br>(3 parts)</p></span>
+        </a>
+    </div>
+    <!-- Non-Zero Hero - Liv Boeree -->
+    <div class="image-item">
+        <a href="nonzeroherolivboeree.html">
+            <img src="./Images/Content/Liv_WinWin.png" alt="Non-Zero Hero - Liv Boeree">
+            <span class="image-title">LIV BOEREE<p style="margin-top: 0.2em;font-size: 70%;">~ a non-zero hero ~</p></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="alignment1.html">
+            <img src="./Images/Content/Alignment_Collision.png" alt="The Alignment Problem No One Is Talking About">
+            <span class="image-title">THE ALIGNMENT PROBLEM NO ONE IS TALKING ABOUT<p style="margin-top: 0.2em;font-size: 70%;">(6 parts)</p></span>
+        </a>
+    </div>
+</div>
+
+<blockquote>
+  <p>"It is well to remember that the entire universe, <i><b>with one trifling exception</b></i>, is composed of others."</p><p>- <b>John Holmes</b></p>
+</blockquote>
+
+
+
     <p>Your thoughts and contributions are invaluable. Share, debate, and help co-create in the comments section at the end of every page. <aside>9</aside></p> 
-    <canvas></canvas>
+
+
+
+
+
+
+
+
+
+
     <div class="subscribe">
         <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
     </div>
@@ -81,21 +297,7 @@
         // Call changeImage every 6 seconds (6000 milliseconds)
         setInterval(changeImage, 3000);
         </script>
+<div class="fb-comments" data-href="https://nonzerosum.games" data-width="" data-numposts="25"></div>
 
-    <script src="./js/home.js"></script>
-    <div id="giscus_thread" ></div>
-    <script src="https://giscus.app/client.js"
-    data-repo="jamesstephenbrown/nonzerosumgames"
-    data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
-    data-category-id="DIC_kwDODpsK184CA9jn"
-    data-mapping="pathname"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="dark_dimmed"
-    data-lang="en"
-    crossorigin="anonymous"
-    async>
-    </script>
     </body>
     </html>
