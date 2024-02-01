@@ -385,7 +385,7 @@ text-align: center;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to top, rgba(74, 145, 192, 0), rgba(74, 145, 192, 0.9));
+  /* background: linear-gradient(to top, rgba(74, 145, 192, 0), rgba(74, 145, 192, 0.9)); */
   color: white;
   display: flex;
   flex-direction: column; /* Stack children vertically */
