@@ -410,7 +410,9 @@ text-align: center;
 }
 
 
-
+.fb-comments, .fb-comments iframe {
+  width: inherit;;
+}
 
 
 
@@ -425,6 +427,11 @@ text-align: center;
   .container {
     flex-direction: row;
   }
+
+
+.fb-comments, .fb-comments iframe {
+  width: 100%;
+}
   body {
     font-size: 135%;
   }
@@ -451,5 +458,6 @@ text-align: center;
   img {
     max-width: 90%;
   }
+  
 }
 
