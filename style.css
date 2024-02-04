@@ -409,9 +409,10 @@ text-align: center;
   text-decoration: none; /* No underline */
 }
 
-
-.fb-comments, .fb-comments iframe {
-  width: inherit;;
+@media (max-width: 768px) {
+  .fb-comments, .fb-comments iframe {
+      width: 100% !important;
+  }
 }
 
 
@@ -429,9 +430,6 @@ text-align: center;
   }
 
 
-.fb-comments, .fb-comments iframe {
-  width: 100%;
-}
   body {
     font-size: 135%;
   }
