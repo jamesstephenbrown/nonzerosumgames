@@ -409,11 +409,9 @@ text-align: center;
   text-decoration: none; /* No underline */
 }
 
-@media (max-width: 768px) {
   .fb-comments, .fb-comments iframe {
       width: 100% !important;
   }
-}
 
 
 
