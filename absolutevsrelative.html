@@ -30,29 +30,28 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
 </head>
 <body>
-</body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=585876926888646" nonce="wL0kMNqz"></script>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0" nonce="ZzQPGqy6"></script>
-<script>
-    $(document).ready(function() {
-        $("#menu").load("menu.html", function() {
-            var pageName = window.location.pathname.split("/").pop();
-            var menuLink = $("a[href='" + pageName + "']");
-            menuLink.parent().remove();
-        });
-    });
-</script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0&appId=585876926888646" nonce="7fIZV31l"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0&appId=585876926888646" nonce="U31Jl2aT"></script>
     <div id="menu"></div>
     <h1 style="margin-bottom: 0;">RELATIVE GAINS</h1>
     <p style="margin-top: 0.2em;">~ how not to measure success ~</p>
 
     <p><img src="./Images/Content/Relative_DiderotCatPoor.png" alt="Diderot as a poor cat."></p>
 
-    <body>
         <p>In Jean Jacques Diderot's <a href="https://www.marxists.org/reference/archive/diderot/1769/regrets.htm">Regrets on Parting with My Old Dressing Gown</a> he describes the opulent furnishings that now adorn of his once familiar home.</p>
     
         <blockquote>
