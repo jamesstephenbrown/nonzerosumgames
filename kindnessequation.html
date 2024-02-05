@@ -28,7 +28,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#menu").load("menu.html");
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
         });
     </script>
 </head>
