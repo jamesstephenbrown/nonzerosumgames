@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PRIVACY PAGE</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/privacy.html" />
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="menu"></div>
+    <div class="content">
+        <a name="AboutMe"></a><br>
+        <h1 style="margin-top: 10px;">PRIVACY POLICY</h1>
+        <p>While the site facilitates facebook and giscus comments, we do not store or share any information from those that comment.</p>
+
+
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script src="./js/privacy.js"></script>
+    <div class="content">
+    <script src="https://giscus.app/client.js"
+        data-repo="jamesstephenbrown/nonzerosumgames"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
+        data-category-id="DIC_kwDODpsK184CA9jn"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+    </div>
+</body>
+</html>
