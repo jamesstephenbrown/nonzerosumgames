@@ -181,6 +181,17 @@ overflow: hidden;
 text-align: center;
 }
 
+
+.blog_rounded_outlined {
+  border: 5px solid #3388C2;
+  border-radius: 25px;
+  margin: auto;
+  overflow: hidden;
+  text-align: center;
+  background-color: #55AAE3;
+  }
+
+
 .montage {
 position: relative;
 border: 5px solid #3388C2;
