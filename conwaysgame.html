@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONWAY'S GAME OF LIFE</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/conwaysgame.html" />
+    <meta name="description" content="how complexity emerges from simple rules">
+    <meta name="keywords" content="Conway's Game, Philosophy, emergence, John Horton Conway, cellular automata">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/conwaysgame.png">
+    <meta property="og:title" content="CONWAY'S GAME OF LIFE">
+    <meta property="og:description" content="how complexity emerges from simple rules">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        #gameCanvas {
+            background-color: #55AAE3;
+            max-width: 800px; /* Max width of the canvas */
+            width: 100%; /* Make the canvas take full width of the container */
+            margin: 0 auto; /* Center the canvas horizontally */
+        }
+    table {
+        border-collapse: separate;
+        border-spacing: 2px;
+    }
+    th, td {
+        margin: 0px;
+        padding: 10px 15px;
+        background-color: #55AAE3;
+        border-radius: 8px;
+    }
+    </style>
+    
+</head>
+
+
+<body>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0&appId=585876926888646" nonce="g50GAYYK"></script>
+    <!-- menu -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+    <h1 style="margin-bottom: 0;">CONWAY'S GAME</h1>
+    <p style="margin-top: 0.2em;">~ how complexity emerges from simple rules ~</p>
+
+    <img src="./Images/Content/Emergence_Pondering.png" alt="a picture of a hedgehog looking at the pieces from Game of Life">
+
+    <h3>A NON-ZERO-SUM UNIVERSE</h3>
+    <p>A <a href="whatarenonzerosumgames.html">non-zero-sum game</a> is one in which the whole is greater than the sum of its parts and so a prerequisite for non-zero-sum games is that we live in a universe where the whole <b><i>can</i></b> be greater than the sum of its parts, or more accurately speaking, can be <b><i>more complex</i></b> than its parts.</p>
+
+    <p>It's not a given that this should be the case: nothing could continue to be nothing, something could continue to be that same thing, replication could lead to homogeneity—all of these universes are fathomable, and yet we live in one where the seemingly impossible is apparently possible, we live in a non-zero-sum universe<a href="#RelatedMaterial" style="text-decoration: none;">*</a>, where complexity <b><i>emerges</i></b>.</p>
+
+    <img src="./Images/Content/Emergence_FineTuning.png" alt="two hedgehogs arguing over fine-tuning questioning if there is a universe without fine-tuning where someone is having this conversation.">
+
+    <h3>EMERGENCE</h3>
+    <p>This series is going to explore the fundamental non-zero nature of the universe in which we find ourselves, namely the principle of <i><b>emergence</b></i>. Through a series of simulations and speculations, we'll look at the seemly contradictory nature of emergence in a universe governed by entropy, how layers of replication give quantity a quality all of its own, at how successive phenomena essentially consume their precursor's... waste and how we are already complicit in the destruction of the universe (but that's okay).</p>
+
+    <img src="./Images/Content/HH_Idea.png" alt="Conway's coming up with an idea">
+
+    <h3>A SIMPLE EXAMPLE OF COMPLEXITY</h3>
+    <p>Conway's Game of Life is type of cellular automata devised by the British mathematician John Horton Conway in 1970. It is a zero-player game in that its evolution is determined by its initial state.</p>
+
+    <footer>
+        <p>If you're on a computer, draw some initial cells and run the simulation, if you're using a touch device you can seed it randomly.</p>
+<canvas id="gameOfLife" width="700" height="400"></canvas>
+<br>
+<button id="randomStart">Random Seed</button>
+<button id="presetStart">Run</button>
+</footer>
+
+<p>Conway's Game of Life is one of the simplest embodiments of emergence, creating seemingly organic behaviours; moving, consuming, spinning, dying, blooming, all from extremely...</p>
+
+<blockquote>
+    <h3>... SIMPLE PARAMETERS</h3>
+    <ol>
+<li><b>Birth</b>: A dead cell with exactly three live neighbours becomes a live cell (as if by reproduction).</li>
+<li><b>Survival</b>: A live cell with two or three live neighbours stays alive for the next generation.</li>
+<li><b>Death</b></li>
+<ul>
+    <li><b>Overpopulation</b>: A live cell with more than three live neighbours dies in the next generation.</li>
+    <li><b>Underpopulation</b>: A live cell with fewer than two live neighbours also dies.</li>
+</ul>
+</ol>
+</blockquote>
+
+<p>We, in part, have our inate tendency to anthropomorphise to thank for interpetting these behaviours as "life", but it is not just a perceived complexity we are witnessing. Bear in mind that Conway developed this "Game" before he had access to a computer to run it on! So, imagining Conway analysing his results manually might give one an appreciation for the very real complexity that emerged from this simple formula.</p>
+
+
+<img src="./Images/Content/Emergence_TheGlider.png" alt="a picture of the glider from Conway's Game of Life">
+
+<p>Now with computers we can simulate the results to a fine degree, where the biomorphic behaviour becomes more evident. You can see that while the pattern below tends toward stasis it does so unpredictably, with small events triggering wild cascades of new activity.</p>
+
+<footer><p>Try clicking around to disturb a stable patch and see the chain reaction that results.</p>
+<canvas id="coral" width="700" height="400"></canvas>
+<br>
+<button id="randomStartCoral">Random Seed</button>
+<button id="clearGridCoral">Clear</button>
+</footer>
+
+<h3>BUT...</h3>
+<p>
+... this is all well and good on a computer designed by humans, with a very specific program created by a human mind and set in motion by yet another human being. One could claim that there's a whole lot of complexity, order and even design there to begin with! Whereas the universe is a whole different situation, how can complexity arise from a universe where the second law of thermodynamics states that entropy, disorder and simplicity always increases?</p>
+
+<img src="./Images/Content/Emergence_LWSS.png" alt="a picture of the LWSS from Conway's Game of Life">
+<p>In the next part we shall see how this seeming contradiction turns out to be false, and that the principle at work in Conway's Game of Life, is at work in life itself.</p>
+
+<script>
+// Conways Game of Life 
+(function() {
+const canvas = document.getElementById('gameOfLife');
+const ctx = canvas.getContext('2d');
+
+const cellSize = 10;
+const gridWidth = canvas.width / cellSize;
+const gridHeight = canvas.height / cellSize;
+
+let grid = new Array(gridHeight).fill(null).map(() => new Array(gridWidth).fill(0));
+let isRunning = false;
+let isDrawing = false;
+
+// Modify the button to toggle between running and stopped states
+const toggleButton = document.getElementById('presetStart');
+toggleButton.addEventListener('click', function() {
+    if (isRunning) {
+        isRunning = false;
+        this.textContent = 'Run';
+        clearGrid();
+    } else {
+        isRunning = true;
+        this.textContent = 'Stop';
+        draw();
+    }
+});
+
+document.getElementById('randomStart').addEventListener('click', function() {
+    isRunning = true; // Ensure the simulation is marked as running
+    clearGrid(); // Clear the grid first
+    randomSeed(); // Apply random seeds
+    toggleButton.textContent = 'Stop'; // Change the toggle button text to "Stop"
+    draw(); // Start drawing
+});
+
+
+// Initial setup for continuous drawing
+canvas.addEventListener('mousedown', (event) => {
+    isDrawing = true;
+    // Start drawing
+    drawCell(event);
+});
+
+canvas.addEventListener('mousemove', (event) => {
+    if (isDrawing) {
+        // Continue drawing
+        drawCell(event);
+    }
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+});
+
+canvas.addEventListener('mouseleave', () => {
+    isDrawing = false;
+});
+
+
+
+function drawCell(event) {
+    if (!isRunning) { // Only draw if the simulation is not running
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const gridX = Math.floor(x / cellSize);
+        const gridY = Math.floor(y / cellSize);
+
+        if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+            grid[gridY][gridX] = 1;
+            draw(true); // Update the canvas to show the drawing
+        }
+    }
+}
+function randomSeed() {
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
+            grid[y][x] = Math.random() > 0.8 ? 1 : 0;
+        }
+    }
+}
+
+function clearGrid() {
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
+            grid[y][x] = 0;
+        }
+    }
+    draw(true); // Draw once without looping
+}
+
+function draw(preventLoop = false) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
+            if (grid[y][x] === 1) {
+                ctx.fillStyle = 'white';
+                ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+            }
+        }
+    }
+
+    if (!preventLoop && isRunning) {
+        updateGrid();
+        setTimeout(draw, 100);
+    }
+}
+
+function updateGrid() {
+    const newGrid = new Array(gridHeight).fill(null).map(() => new Array(gridWidth).fill(0));
+
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
+            const neighbors = countNeighbors(grid, x, y);
+
+            if (grid[y][x] === 1) {
+                if (neighbors === 2 || neighbors === 3) {
+                    newGrid[y][x] = 1;
+                }
+            } else {
+                if (neighbors === 3) {
+                    newGrid[y][x] = 1;
+                }
+            }
+        }
+    }
+
+    grid = newGrid;
+}
+
+function countNeighbors(grid, x, y) {
+    let count = 0;
+
+    for (let yy = -1; yy < 2; yy++) {
+        for (let xx = -1; xx < 2; xx++) {
+            if (yy === 0 && xx === 0) {
+                continue;
+            }
+
+            const iy = y + yy;
+            const ix = x + xx;
+
+            if (iy >= 0 && iy < gridHeight && ix >= 0 && ix < gridWidth && grid[iy][ix] === 1) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+// Commented out to prevent auto-start. Use buttons to control.
+// draw();
+
+
+})();
+// Conways Game of Life with color blending
+// (function() {
+// const canvas = document.getElementById('blend'); // Ensure this matches your canvas ID in HTML
+// const ctx = canvas.getContext('2d');
+
+// const cellSize = 10; // Example value, adjust based on your grid setup
+// const dotSize = cellSize * 0.8; // dotSize is 80% of cellSize
+// const gridWidth = canvas.width / cellSize;
+// const gridHeight = canvas.height / cellSize;
+
+// let grid = new Array(gridHeight).fill(null).map(() => new Array(gridWidth).fill(0));
+
+// // Colors array if not defined
+// const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+
+
+// let isRunning = false;
+// let isDrawing = false;
+
+// // Modify the toggle button to run or stop the simulation
+// const toggleButton = document.getElementById('toggleRunStop');
+// toggleButton.addEventListener('click', function() {
+//     if (isRunning) {
+//         isRunning = false;
+//         this.textContent = 'Run';
+//         // No need to clear the grid here as stopping the simulation will just halt it
+//     } else {
+//         isRunning = true;
+//         this.textContent = 'Stop';
+//         draw();
+//     }
+// });
+// document.getElementById('clearGrid').addEventListener('click', function() {
+//     isRunning = false; // Stop the simulation if it's running
+//     clearGrid(); // Clear the grid data structure
+//     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas visually
+//     // Optionally reset the toggle button text if you're using one
+//     toggleButton.textContent = 'Run';
+// });
+
+// // Add functionality for the "Random Start" button
+// document.getElementById('randomStartBlend').addEventListener('click', function() {
+//     isRunning = true;
+//     clearGrid();
+//     randomSeed();
+//     toggleButton.textContent = 'Stop'; // Ensure the toggle button reflects the simulation state
+//     draw();
+// });
+
+// // Continuous drawing setup
+// canvas.addEventListener('mousedown', (event) => {
+//     isDrawing = true;
+//     drawCell(event);
+// });
+
+// canvas.addEventListener('mousemove', (event) => {
+//     if (isDrawing && !isRunning) { // Allow drawing only if the simulation isn't running
+//         drawCell(event);
+//     }
+// });
+
+// canvas.addEventListener('mouseup', () => isDrawing = false);
+// canvas.addEventListener('mouseleave', () => isDrawing = false);
+
+// function drawCell(event) {
+//     if (!isRunning && isDrawing) { // Only allow drawing if not running and mouse is down
+//         const rect = canvas.getBoundingClientRect();
+//         const x = event.clientX - rect.left;
+//         const y = event.clientY - rect.top;
+//         const gridX = Math.floor(x / cellSize);
+//         const gridY = Math.floor(y / cellSize);
+
+//         if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+//             // Assign a random color from the colors array
+//             grid[gridY][gridX] = colors[Math.floor(Math.random() * colors.length)];
+//             // Directly draw the circle without needing to clear and redraw the entire grid
+//             ctx.fillStyle = grid[gridY][gridX];
+//             ctx.beginPath();
+//             ctx.arc(gridX * cellSize + cellSize / 2, gridY * cellSize + cellSize / 2, dotSize / 2, 0, Math.PI * 2);
+//             ctx.fill();
+//         }
+//     }
+// }
+
+
+// function randomSeed() {
+//     for (let y = 0; y < gridHeight; y++) {
+//         for (let x = 0; x < gridWidth; x++) {
+//             grid[y][x] = Math.random() > 0.8 ? colors[Math.floor(Math.random() * colors.length)] : 0;
+//         }
+//     }
+// }
+
+// function clearGrid() {
+//     for (let y = 0; y < gridHeight; y++) {
+//         for (let x = 0; x < gridWidth; x++) {
+//             grid[y][x] = 0;
+//         }
+//     }
+// }
+// function draw(preventLoop = false) {
+//         // Clear the canvas
+//         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+//         // Draw the grid
+//         for (let y = 0; y < gridHeight; y++) {
+//             for (let x = 0; x < gridWidth; x++) {
+//                 if (grid[y][x] !== 0) {
+//                     ctx.fillStyle = grid[y][x];
+//                     ctx.beginPath();
+//                     ctx.arc(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, dotSize / 2, 0, Math.PI * 2);
+//                     ctx.closePath();
+//                     ctx.fill();
+//                 }
+//             }
+//         }
+
+//         // Calculate next grid state
+//         const newGrid = new Array(gridHeight).fill(null).map(() => new Array(gridWidth).fill(0));
+
+//         for (let y = 0; y < gridHeight; y++) {
+//             for (let x = 0; x < gridWidth; x++) {
+//                 const neighbors = countNeighbors(grid, x, y);
+
+//                 if (grid[y][x] !== 0) {
+//                     if (neighbors.count === 2 || neighbors.count === 3) {
+//                         newGrid[y][x] = saturateColor(blendColors([...neighbors.colors, grid[y][x]]));
+//                     }
+//                 } else {
+//                     if (neighbors.count === 3) {
+//                         newGrid[y][x] = saturateColor(blendColors(neighbors.colors));
+//                     }
+//                 }
+//             }
+//         }
+
+//         grid = newGrid;
+
+//     if (!preventLoop && isRunning) {
+//         // Your existing logic for updating and drawing the grid
+//         setTimeout(draw, 100);
+//     }
+// }
+// function countNeighbors(grid, x, y) {
+//         let count = 0;
+//         const colors = [];
+
+//         for (let yy = -1; yy < 2; yy++) {
+//             for (let xx = -1; xx < 2; xx++) {
+//                 if (yy === 0 && xx === 0) {
+//                     continue;
+//                 }
+
+//                 const iy = y + yy;
+//                 const ix = x + xx;
+
+//                 if (iy >= 0 && iy < gridHeight && ix >= 0 && ix < gridWidth && grid[iy][ix] !== 0) {
+//                     count++;
+//                     colors.push(grid[iy][ix]);
+//                 }
+//             }
+//         }
+
+//         return {
+//             count: count,
+//             colors: colors
+//         };
+//     }
+
+//     function blendColors(colors) {
+//         let r = 0;
+//         let g = 0;
+//         let b = 0;
+
+//         for(let color of colors) {
+//             r += parseInt(color.slice(1, 3), 16);
+//             g += parseInt(color.slice(3, 5), 16);
+//             b += parseInt(color.slice(5, 7), 16);
+//         }
+
+//         r = Math.floor(r / colors.length);
+//         g = Math.floor(g / colors.length);
+//         b = Math.floor(b / colors.length);
+
+//         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+//     }
+
+//     function saturateColor(color) {
+//         let r = parseInt(color.slice(1, 3), 16);
+//         let g = parseInt(color.slice(3, 5), 16);
+//         let b = parseInt(color.slice(5, 7), 16);
+
+//         if(r > g && r > b) {
+//             r = Math.min(255, r * 1.1);
+//         } else if(g > r && g > b) {
+//             g = Math.min(255, g * 1.1);
+//         } else {
+//             b = Math.min(255, b * 1.1);
+//         }
+
+//         r = Math.floor(r);
+//         g = Math.floor(g);
+//         b = Math.floor(b);
+
+//         return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+//     }
+
+//     draw();
+
+// })();
+// // Conways Game of Life with coral growth
+(function() {
+
+
+    const canvas = document.getElementById('coral'); // Ensure this matches your canvas ID in HTML
+    const ctx = canvas.getContext('2d');
+
+    const cellSize = 2; // Set cell size to 2 pixels
+    const gridWidth = canvas.width / cellSize;
+    const gridHeight = canvas.height / cellSize;
+
+    let grid = new Array(gridHeight).fill(null).map(() => new Array(gridWidth).fill(0));
+    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+
+    let isRunning = false;
+    let isDrawing = false;
+
+    // Modify the toggle button to run or stop the simulation
+    // const toggleButton = document.getElementById('toggleRunStopCoral');
+    // toggleButton.addEventListener('click', function() {
+    //     isRunning = !isRunning;
+    //     this.textContent = isRunning ? 'Stop' : 'Run';
+    //     if (isRunning) draw();
+    // });
+
+    document.getElementById('clearGridCoral').addEventListener('click', function() {
+        isRunning = false;
+        clearGrid();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        toggleButton.textContent = 'Run';
+    });
+
+    document.getElementById('randomStartCoral').addEventListener('click', function() {
+        clearGrid();
+        randomSeed();
+        if (!isRunning) {
+            isRunning = true;
+            toggleButton.textContent = 'Stop';
+            draw();
+        }
+    });
+
+    canvas.addEventListener('mousedown', (event) => {
+        isDrawing = true;
+        drawCell(event);
+    });
+
+    canvas.addEventListener('mousemove', (event) => {
+        if (isDrawing && !isRunning) drawCell(event);
+    });
+
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseleave', () => isDrawing = false);
+
+    function drawCell(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const gridX = Math.floor(x / cellSize);
+        const gridY = Math.floor(y / cellSize);
+
+        if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+            grid[gridY][gridX] = colors[Math.floor(Math.random() * colors.length)];
+            ctx.fillStyle = grid[gridY][gridX];
+            ctx.fillRect(gridX * cellSize, gridY * cellSize, cellSize, cellSize); // Draw square
+        }
+    }
+
+
+    function randomSeed() {
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
+            grid[y][x] = Math.random() > 0.8 ? colors[Math.floor(Math.random() * colors.length)] : 0;
+        }
+    }
+}
+
+function clearGrid() {
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
+            grid[y][x] = 0;
+        }
+    }
+}
+function draw(preventLoop = false) {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the grid
+        for (let y = 0; y < gridHeight; y++) {
+    for (let x = 0; x < gridWidth; x++) {
+        if (grid[y][x] !== 0) {
+            ctx.fillStyle = grid[y][x];
+            // Draw a square for each cell that is not "empty"
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+    }
+}
+
+        // Calculate next grid state
+        const newGrid = new Array(gridHeight).fill(null).map(() => new Array(gridWidth).fill(0));
+
+        for (let y = 0; y < gridHeight; y++) {
+            for (let x = 0; x < gridWidth; x++) {
+                const neighbors = countNeighbors(grid, x, y);
+
+                if (grid[y][x] !== 0) {
+                    if (neighbors.count === 2 || neighbors.count === 3) {
+                        newGrid[y][x] = saturateColor(blendColors([...neighbors.colors, grid[y][x]]));
+                    }
+                } else {
+                    if (neighbors.count === 3) {
+                        newGrid[y][x] = saturateColor(blendColors(neighbors.colors));
+                    }
+                }
+            }
+        }
+
+        grid = newGrid;
+
+    if (!preventLoop && isRunning) {
+        // Your existing logic for updating and drawing the grid
+        // setTimeout(draw, 100);
+requestAnimationFrame(draw);
+    }
+requestAnimationFrame(draw);
+}
+function countNeighbors(grid, x, y) {
+        let count = 0;
+        const colors = [];
+
+        for (let yy = -1; yy < 2; yy++) {
+            for (let xx = -1; xx < 2; xx++) {
+                if (yy === 0 && xx === 0) {
+                    continue;
+                }
+
+                const iy = y + yy;
+                const ix = x + xx;
+
+                if (iy >= 0 && iy < gridHeight && ix >= 0 && ix < gridWidth && grid[iy][ix] !== 0) {
+                    count++;
+                    colors.push(grid[iy][ix]);
+                }
+            }
+        }
+
+        return {
+            count: count,
+            colors: colors
+        };
+    }
+
+    function blendColors(colors) {
+        let r = 0;
+        let g = 0;
+        let b = 0;
+
+        for(let color of colors) {
+            r += parseInt(color.slice(1, 3), 16);
+            g += parseInt(color.slice(3, 5), 16);
+            b += parseInt(color.slice(5, 7), 16);
+        }
+
+        r = Math.floor(r / colors.length);
+        g = Math.floor(g / colors.length);
+        b = Math.floor(b / colors.length);
+
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+    }
+
+    function saturateColor(color) {
+        let r = parseInt(color.slice(1, 3), 16);
+        let g = parseInt(color.slice(3, 5), 16);
+        let b = parseInt(color.slice(5, 7), 16);
+
+        if(r > g && r > b) {
+            r = Math.min(255, r * 1.1);
+        } else if(g > r && g > b) {
+            g = Math.min(255, g * 1.1);
+        } else {
+            b = Math.min(255, b * 1.1);
+        }
+
+        r = Math.floor(r);
+        g = Math.floor(g);
+        b = Math.floor(b);
+
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+    }
+
+    draw();
+randomSeed();
+
+
+
+
+
+
+})();
+</script>
+
+<footer>
+    <a name="RelatedMaterial"></a>
+<h3>RELATED CONTENT</h3>
+<ul>
+    <li>* It's important to note here that the Universe itself may in fact be very much zero-sum, in that the balance of positive and negative energy is zero. So, when I use the term "non-zero-sum universe" I'm describing a universe within which non-zero phenomena can happen.</li>
+    <li>Have a look around to see some of the shapes that have been found to have interesting predictable behaviours in Conway's Game of Life. You can find more <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">here</a>.</li>
+    <li>A more flexible and feature rich simulator for Conway's game is <a href="https://playgameoflife.com/">here</a>.</li>
+</ul>
+</footer>
+<div class="fb-comments" data-href="https://nonzerosum.games/conwaysgame.html" data-width="" data-numposts="25"></div>
+</body>
+</html>
