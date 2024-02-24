@@ -16,27 +16,34 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+
+canvas {
+  width: 100%;    /* Make the canvas width responsive */
+  height: auto;   /* Maintain the aspect ratio */
+  display: block; /* Remove extra space below the canvas */
+}
+button {
+  font-family: 'MoreSugar', sans-serif; /* Use the custom font */
+  background-color: #55AAE3; /* Background color from your body styling */
+  color: white; /* Text color */
+  border: 5px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 5px 10px; /* Padding inside the button */
+  font-size: 20px; /* Slightly larger font size for better readability */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+}
+
+button:hover {
+  background-color: rgba(85, 170, 227, 0.8); /* Lighter background on hover */
+  border-color: rgba(255, 255, 255, 0.8); /* More opaque border on hover */
+}
+
 a[target="_blank"]::after {
   content: "^";
   color: #ffffff55;
   text-decoration: none;
   display: inline-block; /* Prevents inheriting underline from the link */
-
-}
-
-.custom-like-button {
-  background-image: url('./Images/Social/facebook_like.png'); /* Path to your image */
-  background-size: cover; /* This ensures the image covers the button area */
-  border: none; /* Removes default button styling */
-  width: 50px; /* Set the width as needed */
-  height: 50px; /* Set the height as needed */
-}
-.custom-share-button {
-  background-image: url('./Images/Social/facebook_like.png'); /* Path to your image */
-  background-size: cover; /* This ensures the image covers the button area */
-  border: none; /* Removes default button styling */
-  width: 50px; /* Set the width as needed */
-  height: 50px; /* Set the height as needed */
 }
 
 .nav-section {
