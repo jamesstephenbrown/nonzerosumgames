@@ -22,7 +22,7 @@ const mouse = {
   y: innerHeight / 2
 }
 
-const numberOfElements = 5
+const numberOfElements = 4
 const numberOfGravitons = 800
 const attractionMin = -50
 const attractionMax = 50
@@ -74,14 +74,13 @@ class Offset {
 
 // Objects
 class Graviton {
-  constructor(index,x, y, z, radius, color, goal, element, attractions) {
+  constructor(index,x, y, radius, color, goal, element, attractions) {
     this.index = index
     this.x = x
     this.y = y
-    this.z = z
     this.radius = radius
     this.color = color
-    this.goal = {x:0,y:0,z:0}
+    this.goal = {x:0,y:0}
     this.element = element
     this.attractions = attractions
     this.cluster = 0
@@ -90,17 +89,16 @@ class Graviton {
     gravitons.forEach(graviton => {
       if (this.index > graviton.index) {
 
-        let heading = {x: graviton.x - this.x, y: graviton.y - this.y, z: graviton.z - this.z}
-        const distance = Math.hypot(heading.x,heading.y,heading.z);
+        let heading = {x: graviton.x - this.x, y: graviton.y - this.y}
+        const distance = Math.hypot(heading.x,heading.y);
 
         if (distance < 200) {
           this.cluster += 1
           graviton.cluster += 1
         }
 
-        heading.x = heading.x / (distance + 1)
-        heading.y = heading.y / (distance + 1)
-        heading.z = heading.z / (distance + 1)
+        heading.x = heading.x / (distance)
+        heading.y = heading.y / (distance)
 
         // console.log (this.attractions[graviton.element])
 
@@ -108,20 +106,20 @@ class Graviton {
         const gravitonAttractionForThisElement = -this.attractions [graviton.element]
 
         // console.log(thisAttractionForGravitonElement, graviotnAttractionForThisElement)
+        
+        const divider = 150
 
-        this.goal.x += (heading.x * thisAttractionForGravitonElement) / 100
-        this.goal.y += (heading.y * thisAttractionForGravitonElement) / 100
-        this.goal.z += (heading.z * thisAttractionForGravitonElement) / 100 // remember divided by 10?
+        this.goal.x += (heading.x * thisAttractionForGravitonElement) / divider
+        this.goal.y += (heading.y * thisAttractionForGravitonElement) / divider
 
-        graviton.goal.x += (heading.x * gravitonAttractionForThisElement) / 100
-        graviton.goal.y += (heading.y * gravitonAttractionForThisElement) / 100
-        graviton.goal.z += (heading.z * gravitonAttractionForThisElement) / 100// remember divided by 10?
+        graviton.goal.x += (heading.x * gravitonAttractionForThisElement) / divider
+        graviton.goal.y += (heading.y * gravitonAttractionForThisElement) / divider
       }
     })
   }
   reset() {
     // draw()
-    this.goal = {x:0,y:0,z:0}
+    this.goal = {x:0,y:0}
     this.cluster = 0
   }
 
@@ -169,7 +167,6 @@ function init() {
 
     const x = Math.random() * innerWidth
     const y = Math.random() * innerHeight
-    const z = Math.random() * innerWidth
 
     const element = randomIntFromRange (0, numberOfElements - 1) // perhaps numberOfElements - 1
     const attractions = elements [element];
@@ -196,48 +193,84 @@ function init() {
     'white';
 
     const radius = 10
-    const goal = {x:0,y:0,z:0}
-    gravitons.push(new Graviton (index,x,y,z,radius,color,goal,element,attractions))
+    const goal = {x:0,y:0}
+    gravitons.push(new Graviton (index,x,y,radius,color,goal,element,attractions))
   }
 }
 
 init()
 let mostPopular = gravitons[0]
   
+let persistent = {x:canvas.width,y:canvas.height}
+
 // Animation Loop
 function animate() {
   // console.log('animating')
   requestAnimationFrame(animate)
-  c.fillStyle = '#000'
+  c.fillStyle = 'black'
   c.fillRect(0,0,canvas.width,canvas.height)
   gravitons.forEach(graviton => {
    graviton.reset()
   })
   gravitons.forEach(graviton => {
    graviton.update()
-   if (graviton.cluster > mostPopular.cluster && Math.hypot(graviton.x - mostPopular.x, graviton.y - mostPopular.y, graviton.z - mostPopular.y) > 50) {
+   if (graviton.cluster > mostPopular.cluster ) {
     mostPopular = graviton
    }
   })
+
+let clusterCount = 0
+let averageX = 0
+let averageY = 0
+
   gravitons.forEach(graviton => {
-    offset.x = mostPopular.x - canvas.width / 2
-    offset.y = mostPopular.y - canvas.height / 2
-    // camera.update(){
+    if(distance(graviton.x,graviton.y,mostPopular.x,mostPopular.y) < 100) {
+      clusterCount += 1
+      averageX += graviton.x
+      averageY += graviton.y
+    }
+   })
 
-    graviton.x += graviton.goal.x
-    graviton.y += graviton.goal.y
-    //graviton.x -= offset.x
-    //graviton.y -= offset.y
-    graviton.z += graviton.goal.z
+  averageX = averageX / clusterCount
+  averageY = averageY / clusterCount
 
-      graviton.x = graviton.x < 0 ? graviton.x + canvas.width : graviton.x > canvas.width ? graviton.x - canvas.width : graviton.x;
-      graviton.y = graviton.y < 0 ? graviton.y + canvas.height : graviton.y > canvas.height ? graviton.y - canvas.height : graviton.y;
-      graviton.z = graviton.z < 0 ? graviton.z + canvas.width : graviton.z > canvas.width ? graviton.z - canvas.width : graviton.z;
+  mostPopular = {x:averageX,y:averageY,cluster:clusterCount}
+
+  smoothing = 100
+  gravitons.forEach(graviton => {
+    offset.x = ((mostPopular.x) - canvas.width + (persistent.x - canvas.width)*smoothing) / (smoothing+1)
+    offset.y = ((mostPopular.y) - canvas.height + (persistent.y - canvas.height)*smoothing) / (smoothing+1)
+
+    graviton.x += graviton.goal.x - canvas.width / 2
+    graviton.y += graviton.goal.y - canvas.height / 2
+    graviton.x -= offset.x
+    graviton.y -= offset.y
+
+
+
+//     const limit = canvas.height / 2;
+//     const centre = { x: canvas.width / 2, y: canvas.height / 2 }
+//     const dist = distance(centre.x,centre.y,0,graviton.x,graviton.y,graviton.z)
+//     const headingEdge = {x: ((graviton.x-mostPopular.x) / dist)*limit, y: ((graviton.y-mostPopular.y) / dist)*limit, z: (graviton.z / dist)*limit};
+// console.log("graviton ", graviton.x, graviton.y, graviton.z, "headingEdge ", headingEdge.x, headingEdge.y, headingEdge.z)
+//     if (dist > limit) {
+//       graviton.x -= 2*headingEdge.x;
+//       graviton.y -= 2*headingEdge.y;
+//       graviton.z -= 2*headingEdge.z
+    // }
+    
+      // graviton.x = graviton.x < 0 ? graviton.x + canvas.width : graviton.x > canvas.width ? graviton.x - canvas.width : graviton.x;
+      // graviton.y = graviton.y < 0 ? graviton.y + canvas.height : graviton.y > canvas.height ? graviton.y - canvas.height : graviton.y;
+      // graviton.z = graviton.z < 0 ? graviton.z + canvas.width : graviton.z > canvas.width ? graviton.z - canvas.width : graviton.z;
 
     graviton.draw()
+
+    persistent = mostPopular
   })
 }
-animate()
+function distance(x1, y1, x2, y2) {
+  return Math.hypot(x2-x1,y2-y1);
+}
 
 function randomIntFromRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -246,13 +279,7 @@ function randomIntFromRange(min, max) {
 function randomColor(colors) {
   return colors[Math.floor(Math.random() * colors.length)]
 }
-
-function distance(x1, y1, x2, y2) {
-  const xDist = x2 - x1
-  const yDist = y2 - y1
-
-  return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
-}
+animate()
 
 // module.exports = { randomIntFromRange, randomColor, distance }
 
