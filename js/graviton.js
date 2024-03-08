@@ -22,7 +22,7 @@ const mouse = {
   y: innerHeight / 2
 }
 
-const numberOfElements = 4
+const numberOfElements = 5
 const numberOfGravitons = 800
 const attractionMin = -50
 const attractionMax = 50
@@ -53,7 +53,7 @@ addEventListener('mousemove', (event) => {
 addEventListener('resize', () => {
   canvas.width = innerWidth
   canvas.height = innerHeight
-  init()
+  // init()
 })
 
 class Offset {
@@ -69,6 +69,8 @@ class Graviton {
     this.index = index
     this.x = x
     this.y = y
+    this.oX = x
+    this.oY = y
     this.radius = radius
     this.color = color
     this.goal = {x:0,y:0}
@@ -80,7 +82,7 @@ class Graviton {
     gravitons.forEach(graviton => {
       if (this.index > graviton.index) {
 
-        let heading = {x: graviton.x - this.x, y: graviton.y - this.y}
+        let heading = {x: graviton.oX - this.oX, y: graviton.oY - this.oY}
         const distance = Math.hypot(heading.x,heading.y);
 
         if (distance < 200) {
@@ -110,6 +112,8 @@ class Graviton {
   }
   reset() {
     // draw()
+    this.oX = this.x
+    this.oY = this.y
     this.goal = {x:0,y:0}
     this.cluster = 0
   }
@@ -190,6 +194,9 @@ function init() {
 }
 
 init()
+
+
+
 let mostPopular = gravitons[0]
   
 let persistent = {x:canvas.width,y:canvas.height}
@@ -205,7 +212,7 @@ function animate() {
   })
   gravitons.forEach(graviton => {
    graviton.update()
-   if (graviton.cluster > mostPopular.cluster ) {
+   if (graviton.cluster > mostPopular.cluster + 20 ) {
     mostPopular = graviton
    }
   })
