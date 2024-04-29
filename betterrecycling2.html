@@ -63,6 +63,8 @@
         <a href="betterrecycling3.html" class="nav-link last"><b>>|</b></a>
     </div>
 
+    <p>If you enjoyed reading this, please consider sharing it :)</p>
+    <div id="social-icons"></div>
     <footer>
         <div id="related"></div>
         <h3>RELATED CONTENT</h3>
@@ -93,6 +95,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

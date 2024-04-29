@@ -140,7 +140,10 @@
 
         <h3>SO...</h3>
         <p>It's complicated. While relative gains can be a measure of fairness, it is beneficial to focus on whether those relative gains are really material. If we are talking about a level of inequality that leaves people socially immobile, lacking in basic needs or worse, then those gains are, on an absolute scale, real and we should do all we can to address them. But for those of us who are comfortable, people who are perhaps the recipients of a grand inheritance like Diderot or have sold 25 million albums like Dave Mustaine, we can gain a lot of perspective by considering absolute gains.</p>
-<footer>
+
+        <p>If you enjoyed reading this, please consider sharing it :)</p>
+        <div id="social-icons"></div>
+        <footer>
 <h3>RELATED MATERIAL</h3>
 <ul>
     <li>Defection in game theory is often associated with zero-sum relative gains. In <a href="cooperationvsdefection.html">Capitalising on Trust</a> we use a simulation to show the long term efficacy of non-zero-sum thinking.</li>
@@ -153,5 +156,20 @@
 </div>
 <div class="fb-like" data-href="https://nonzerosum.games/absolutevsrelative.html" data-width="10" data-layout="" data-action="" data-size="" data-share="true"></div>
 <div class="fb-comments" data-href="https://nonzerosum.games/absolutevsrelative.html" data-width="" data-numposts="25"></div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>
