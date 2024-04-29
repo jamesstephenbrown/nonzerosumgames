@@ -158,11 +158,15 @@
 
                 // Replace placeholders in the loaded HTML
                 $(this).find("a").each(function() {
-                    this.href = this.href.replace('emergenceisbeautiful.html', encodeURIComponent(pageUrl));
-                    this.href = this.href.replace('EMERGENCE IS BEAUTIFUL', encodeURIComponent(pageTitle));
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
                 });
             });
         });
     </script>
+
+
+
+
 </body>
 </html>
