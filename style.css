@@ -16,6 +16,27 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+.social-share {
+  text-align: center; /* Centers the share icons */
+  padding: 20px 0; /* Adds some spacing around the icons */
+}
+
+.social-share a {
+  margin: 0 10px; /* Spacing between each icon */
+  display: inline-block; /* Aligns icons in a row */
+}
+
+.social-share img {
+  width: 40px; /* Set the size of the icons */
+  height: auto;
+  transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+.social-share img:hover {
+  transform: scale(1.1); /* Scales the icon on hover */
+}
+
+
 
 canvas {
   width: 100%;    /* Make the canvas width responsive */
@@ -39,12 +60,14 @@ button:hover {
   border-color: rgba(255, 255, 255, 0.8); /* More opaque border on hover */
 }
 
-a[target="_blank"]::after {
+a[target="_blank"]:not(.no-outlink)::after {
   content: "^";
   color: #ffffff55;
   text-decoration: none;
   display: inline-block; /* Prevents inheriting underline from the link */
 }
+
+
 
 .nav-section {
   display: flex;
@@ -197,14 +220,19 @@ text-align: center;
   text-align: center;
   background-color: #55AAE3;
   }
+.rounded-corners {
+  border-radius: 30px;
+  object-fit: cover;
+  overflow: hidden;
+}
 
 
 .montage {
-position: relative;
-border: 5px solid #3388C2;
-width: 150px;
-height: 150px;
-object-fit: cover;
+  position: relative;
+  border: 5px solid #3388C2;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 .subscribe {
   font-size: 200%;
