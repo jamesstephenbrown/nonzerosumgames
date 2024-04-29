@@ -130,6 +130,7 @@
     </div>
 
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED CONTENT</h3>
         <ul>
         <li>This is a big subject so we'll be exploring it in multiple parts - <a href="manifestationsofmoloch.html">part 2</a> is a breakdown of some real world applications (our first listicle perhaps) and part 3 will revisit 'The Story of Moloch' itself. But if this post has already made you think of some Moloch-y situations you've experienced please share in the comments.</li>
@@ -157,6 +158,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

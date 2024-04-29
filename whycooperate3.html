@@ -97,6 +97,7 @@
     
 
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED CONTENT</h3>
         <ul>
             <li>This is the final post <a href="whycooperate1.html">3-part series</a> on the super defector and why we cooperate by guest writer Andrew Tane Glen - a software engineer with a Masters in Philosophy. A huge thanks to Andy for sharing his insights.</li>
@@ -123,6 +124,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

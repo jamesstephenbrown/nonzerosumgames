@@ -245,6 +245,8 @@
         In the end, the class went very well, with high levels of engagement all the way through. I worried a little that perhaps I had encouraged the students to indulge some of the more Machiavellian elements of their decision-making, and that's something I'd like to help guide students through in future. The teachers were very pleased and have asked me to present to the staff, and potentially do more workshops in the same vein, which is very exciting. There's a lot more to explore.
     </p>
     </div><a href="javascript:void(0);" id="toggleLink6"><<</a>
+
+    <div id="social-icons"></div>
     <h3>RELATED CONTENT</h3>
     <ul>
         <li><a href="https://ncase.me/trust/" target="_blank">The Evolution of Trust</a> by Nicky Case is the best interactive exploration of the various strategies in the Prisoners Dilemma.</li>
@@ -254,8 +256,6 @@
 
 </footer>
 
-</body>
-</html>
 
     <div class="subscribe">
         <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
@@ -304,5 +304,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

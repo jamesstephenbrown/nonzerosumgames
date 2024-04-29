@@ -126,6 +126,7 @@
     <p>... in essense, non-zero-sum games are any situation where a positive payoff for a winner doesn't necessarily require an equally negative payoff for the loser. Non-zero-sum games are interactions that can be positive for everyone (a positive-sum game) or conversely, negative for all parties (a negative-sum game). But most interestingly, understanding <strong>non-zero-sumness</strong> can help us look at the complex multi-layered games (meta-games) that arise in our everyday lives, so we can better decide which games to create and play and which we might prefer to avoid.</p>
     
     <footer>
+        <div id="social-icons"></div>
             <h3>RELATED CONTENT</h3>
             <ul><li>
                 For a slightly higher-stakes example of a non-zero-sum meta-game see <a href="parableofapolyp.html">Parable of a Polyp</a>.
@@ -149,6 +150,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

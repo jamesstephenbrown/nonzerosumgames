@@ -63,6 +63,7 @@
     <h3>SO...</h3>
     <p>What can one person do? To be honest, I don't know, it will be difficult even to measure the impact of Navalny's actions, let alone those of us who are not on the front lines. I am interested to hear what you think on this dark day. I will continue to explore the many ways in which people can come together to achieve <a href="whatarenonzerosumgames.html">non-zero-sum games</a>, as that is ultimately the way to make meaningful change, but today I wanted to reflect on courage, conviction and sacrifice, and appreciate someone who gave their life in the service of those values.</p>
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED CONTENT</h3>
         <ul>
         <li>Our 3 part series on <a href="whoismoloch.html">Moloch</a> explains ways in which systems can become negative-sum games.</li>
@@ -70,5 +71,20 @@
     </ul>
     </footer>
     <div class="fb-comments" data-href="https://nonzerosum.games/oneperson.html" data-width="" data-numposts="25"></div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

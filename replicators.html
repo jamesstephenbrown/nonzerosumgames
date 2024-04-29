@@ -105,6 +105,7 @@
       </div>
 <br>
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED MATERIAL</h3>
         <ul>
             <li>This post was largely inspired by the work of Susan Blackmore, author of <a href="https://www.goodreads.com/book/show/254502.The_Meme_Machine">The Meme Machine</a> and many other tomes exploringt the nature of consciousness and the cosmos.</li>
@@ -114,5 +115,20 @@
     <div class="subscribe">
         <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

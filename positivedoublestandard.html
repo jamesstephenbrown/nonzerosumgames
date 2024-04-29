@@ -111,6 +111,7 @@
     <div class="fb-share-button" data-href="https://nonzerosum.games/positivedoublestandard.html" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnonzerosum.games%2Fpositivedoublestandard.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
 
     <footer>
+        <div id="social-icons"></div>
     <h2>RELATED MATERIAL</h2>
     <ul><li>If you're interested in the relationship between the individual and the collective, try <a href="alignment1.html">The Alignment Problem No One Is Talking About</a>.
     </li><li>For more about emergence phenomena, read our <a href="conwaysgame.html">Emergence</a> series.
@@ -119,5 +120,20 @@
     </li></ul>
     </footer>
     <div class="fb-comments" data-href="https://nonzerosum.games/positivedoublestandard.html" data-width="" data-numposts="25"></div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

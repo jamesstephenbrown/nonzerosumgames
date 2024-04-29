@@ -47,6 +47,7 @@
 
     <div id="related"></div>
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED MATERIAL</h3>
         <ul>
             <li>*The idea that a person must form concepts themselves rather than adopting them wholesale from others is a key feature of <a href="https://www.simplypsychology.org/constructivism.html">Constructivism</a> which is a scientific theory in the field of Education and Psychology originally developed by Psychologist <a href="https://www.teach-nology.com/currenttrends/constructivism/piaget/#:~:text=Piaget's%20theory%20of%20constructivism%20argues,teaching%20methods%2C%20and%20education%20reform.">Jean Piaget</a> (quoted at the beginning).</li>
@@ -80,6 +81,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

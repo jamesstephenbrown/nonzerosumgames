@@ -57,6 +57,7 @@
     <p>What I like about the traffic light example is that it's easy to delineate the actual self-interested motivations for each individual's behaviour from the legal motivations, and when we do so, we are also delineating the difference between a bottom-up Nash Equilibrium and a purely top-down legal authority. This helps us to not only understand what a Nash Equilibrium is but also what it is not.</p>
 
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED MATERIAL</h3>
         <ul>
             <li>Nash Equilibrium will be key to grasping our upcoming <b><i>alignment</i></b> series.</li>
@@ -83,6 +84,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

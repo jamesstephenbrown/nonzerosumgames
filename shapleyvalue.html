@@ -159,6 +159,7 @@
     <p>It's a reminder to bear in mind that theoretical models are tools that need to be used in the context of a world that isn't always purely rational and that sometimes those "irrational" aspects of humanity, like empathy, friendship and a sense of shared responsibility, are beautiful and can actually make negotiations easier.</p>
     
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED CONTENT</h3>
         <ul>
             <li>If you really had come here to understand how to use the Shapley Value, <a href="https://www.youtube.com/watch?v=UJeu29wq7d0">this video</a> presents it in a reasonably accessible way.</li>
@@ -184,6 +185,21 @@
             data-lang="en"
             crossorigin="anonymous"
             async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

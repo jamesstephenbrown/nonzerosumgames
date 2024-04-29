@@ -85,6 +85,7 @@
     <p>We are incredibly lucky to benefit from such a confluence of naturally occurring non-zero-sum games and in essence, the philosophy of this site is a call to action to build upon this<sub>•</sub> Let's challenge ourselves to find the "coral polyps" in our own lives - those opportunities to transform zero-sum scenarios into non-zero-sum games<sub>•</sub> We might discover that we're not only enhancing our own lives but also contributing to a better world<sub>•</sub></p><p>Phew, that's a better note to end on!</p>
     
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED CONTENT</h3>
         <ul>
             <li>If you want to learn more about polyps or get involved in building actual coral beds, check out <a href="https://savethecorals.club/corals-main" target="_blank">Save the Corals Club</a></li>
@@ -108,6 +109,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

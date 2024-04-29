@@ -97,7 +97,7 @@
   <p><b>Technology and Civilization: </b>Humanity lives in a feedback loop between culture and technology, which is the substrate for many new phenomena from the proliferation of agriculture, to cities, to the internet and to a potentially new paradigm shift with the emergence of...</p>
   <p><img src="./Images/Content/Substrates_AI.png" alt="A city of robots reproducing"></p>
   <p><b>Autonomous, self-replicating AI:</b> Now we are on the verge of a new phenomena, Artificial Intelligence, the development of which shows no signs of slowing––a testament to the power of emergence.</p>
-    
+
   <h3>SO...</h3>
   <p>We see a consistent pattern of emergence; a <b><i>phenomena-substrate-phenomena</i></b> cycle. An important factor in this cycle is replication. We will take a short detour into replication as a mechanism of emergence, focusing on genes, memes and Susan Blackmore's concept of <b><i>temes</i></b> and see what implications it has for our future. We will then complete this series with some fascinating artists and creators pushing emergence further with ever more impressive <i><b>games of life</b></i>.</p>
 
@@ -109,6 +109,7 @@
     </div>
 
   <footer><a name="RelatedMaterial"></a>
+    <div id="social-icons"></div>
     <h3>RELATED MATERIAL</h3>
     <ul>
         <li>* Unfortunately, along with brains come puns. Perhaps our robotic successors will succeed in overcoming this malady.</li>
@@ -365,5 +366,20 @@
 
   animate();
   </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

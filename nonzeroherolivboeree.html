@@ -72,6 +72,7 @@
 <p>Liv continues to raise the stakes through her work in philanthropy, education, and advocacy, actively utilising the principles of non-zero-sum games to drive positive change and challenge the pervasive influence of destructive forces like Moloch. She reminds us that together, we carry the potential to architect a more cooperative, compassionate world, and in this shared endeavour, we all stand to win.</p>
 
 <footer>
+    <div id="social-icons"></div>
     <h3>RELATED READING</h3>
     <ul>
         <li>Learn more about Liv Boeree's journey from physics and poker to effective altruism, in this long-form <a href="https://www.youtube.com/results?search_query=liv+boeree+lex+fridman" target="_blank">interview with Lex Fridman</a> </li>
@@ -101,5 +102,20 @@ data-lang="en"
 crossorigin="anonymous"
 async>
 </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

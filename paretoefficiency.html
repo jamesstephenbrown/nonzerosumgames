@@ -110,6 +110,7 @@
     
 
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED MATERIAL</h3>
         <ul><li>More about <a href="nashequilibrium.html">Nash Equilibrium</a></li>
             <li>This is one of the more <a href="gametheory.html">Game Theory</a> centered blogs - there are a couple of others, if you enjoyed this.</li>
@@ -136,6 +137,21 @@
         data-lang="en"
         crossorigin="anonymous"
         async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>
