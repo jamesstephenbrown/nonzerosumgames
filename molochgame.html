@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPITALISING ON TRUST ~ a karmic simulation ~</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/cooperationvsdefection.html" />
+    <meta name="description" content="A simulation demonstrating the long term dominance of a cooperative strategy in the prisoner's dilemma.">
+    <meta name="keywords" content="Prisoner's Dilemma, Simulation, Ethics, Debate, Discussion">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/cooperationvsdefection.png">
+    <meta property="og:title" content="CAPITALISING ON TRUST ~ a karmic simulation ~">
+    <meta property="og:description" content="A simulation demonstrating the long term dominance of a cooperative strategy in the prisoner's dilemma.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    
+</head>
+<body>
+    <!-- menu -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+    <h1 style="margin-bottom: 0;">CAPITALISING ON TRUST</h1>
+    <p style="margin-top: 0.2em;">~ a karmic simulation ~</p>
+
+    <div id="game">
+        <!-- Player 1 Grid -->
+        <div class="player-grid" id="player1">
+          <div class="row" id="player1-row">
+            <div class="cell" id="player1-card1">??</div>
+            <div class="cell" id="player1-card2">??</div>
+            <div class="cell" id="player1-card3">??</div>
+            <div class="cell" id="player1-card4">??</div>
+            <div class="cell" id="player1-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 2 Grid -->
+        <div class="player-grid" id="player2">
+          <div class="row" id="player2-row">
+            <div class="cell" id="player2-card1">??</div>
+            <div class="cell" id="player2-card2">??</div>
+            <div class="cell" id="player2-card3">??</div>
+            <div class="cell" id="player2-card4">??</div>
+            <div class="cell" id="player2-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 3 Grid -->
+        <div class="player-grid" id="player3">
+          <div class="row" id="player3-row">
+            <div class="cell" id="player3-card1">??</div>
+            <div class="cell" id="player3-card2">??</div>
+            <div class="cell" id="player3-card3">??</div>
+            <div class="cell" id="player3-card4">??</div>
+            <div class="cell" id="player3-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 4 Grid -->
+        <div class="player-grid" id="player4">
+          <div class="row" id="player4-row">
+            <div class="cell" id="player4-card1">??</div>
+            <div class="cell" id="player4-card2">??</div>
+            <div class="cell" id="player4-card3">??</div>
+            <div class="cell" id="player4-card4">??</div>
+            <div class="cell" id="player4-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 5 Grid -->
+        <div class="player-grid" id="player5">
+          <div class="row" id="player5-row">
+            <div class="cell" id="player5-card1">??</div>
+            <div class="cell" id="player5-card2">??</div>
+            <div class="cell" id="player5-card3">??</div>
+            <div class="cell" id="player5-card4">??</div>
+            <div class="cell" id="player5-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 6 Grid -->
+        <div class="player-grid" id="player6">
+          <div class="row" id="player6-row">
+            <div class="cell" id="player6-card1">??</div>
+            <div class="cell" id="player6-card2">??</div>
+            <div class="cell" id="player6-card3">??</div>
+            <div class="cell" id="player6-card4">??</div>
+            <div class="cell" id="player6-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 7 Grid -->
+        <div class="player-grid" id="player7">
+          <div class="row" id="player7-row">
+            <div class="cell" id="player7-card1">??</div>
+            <div class="cell" id="player7-card2">??</div>
+            <div class="cell" id="player7-card3">??</div>
+            <div class="cell" id="player7-card4">??</div>
+            <div class="cell" id="player7-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 8 Grid -->
+        <div class="player-grid" id="player8">
+          <div class="row" id="player8-row">
+            <div class="cell" id="player8-card1">??</div>
+            <div class="cell" id="player8-card2">??</div>
+            <div class="cell" id="player8-card3">??</div>
+            <div class="cell" id="player8-card4">??</div>
+            <div class="cell" id="player8-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 9 Grid -->
+        <div class="player-grid" id="player9">
+          <div class="row" id="player9-row">
+            <div class="cell" id="player9-card1">??</div>
+            <div class="cell" id="player9-card2">??</div>
+            <div class="cell" id="player9-card3">??</div>
+            <div class="cell" id="player9-card4">??</div>
+            <div class="cell" id="player9-card5">??</div>
+          </div>
+        </div>
+        <!-- Player 10 Grid -->
+        <div class="player-grid" id="player10">
+          <div class="row" id="player10-row">
+            <div class="cell" id="player10-card1">??</div>
+            <div class="cell" id="player10-card2">??</div>
+            <div class="cell" id="player10-card3">??</div>
+            <div class="cell" id="player10-card4">??</div>
+            <div class="cell" id="player10-card5">??</div>
+          </div>
+        </div>
+      </div>
+      <div id="molochs-guess"></div>
+      
+
+
+    <script>function generateRandomNumbers() {
+        return Array.from({ length: 50 }, () => Math.ceil(Math.random() * 50));
+      }
+      
+      function initializeGrid() {
+    let grid = Array.from({ length: 10 }, () => generateRandomNumbers());
+    grid.forEach((playerNumbers, playerIndex) => {
+        playerNumbers.forEach((number, numberIndex) => {
+            let cellId = `player${playerIndex + 1}-card${numberIndex + 1}`;
+            let cellElement = document.getElementById(cellId);
+            if (cellElement) {
+                cellElement.textContent = number;
+            } else {
+                console.error('Element not found:', cellId);
+            }
+        });
+    });
+    return grid;
+}
+
+      
+      function collectSubmissions(correctAnswers) {
+        let submissions = Array.from({ length: 10 }, () => new Array(50).fill(null));
+      
+        correctAnswers.forEach((playerNumbers, playerIndex) => {
+          let decision = confirm(`Player ${playerIndex + 1}: Will you Cooperate or Defect? OK for Cooperate, Cancel for Defect.`);
+          submissions[playerIndex] = playerNumbers.map((number, numberIndex) => {
+            return decision ? number : Math.ceil(Math.random() * 50); // Cooperate: keep number, Defect: randomize
+          });
+        });
+      
+        return submissions;
+      }
+      
+      function calculateMedian(values) {
+        values.sort((a, b) => a - b);
+        let half = Math.floor(values.length / 2);
+        return (values.length % 2) ? values[half] : (values[half - 1] + values[half]) / 2;
+      }
+      
+      function calculateMolochGuess(submissions) {
+        let molochGuess = new Array(50).fill(null);
+        for (let i = 0; i < 50; i++) {
+          let columnValues = submissions.map(submission => submission[i]);
+          molochGuess[i] = calculateMedian(columnValues);
+        }
+        return molochGuess;
+      }
+      
+      function displayMolochGuess(molochGuess) {
+        const molochDiv = document.getElementById("molochs-guess");
+        molochDiv.innerHTML = '<h3>Moloch\'s Guess:</h3>';
+        for (let i = 0; i < molochGuess.length; i++) {
+          if (i % 10 === 0) molochDiv.innerHTML += '<div class="row">';
+          molochDiv.innerHTML += `<div class="cell">${molochGuess[i]}</div>`;
+          if (i % 10 === 9) molochDiv.innerHTML += '</div>';
+        }
+      }
+      
+      function runGame() {
+        let correctAnswers = initializeGrid();
+        let playerSubmissions = collectSubmissions(correctAnswers);
+        let molochsGuess = calculateMolochGuess(playerSubmissions);
+        displayMolochGuess(molochsGuess);
+      }
+      
+      window.onload = runGame;
+      
+</script>
+
+
+
+</body>
+</html>

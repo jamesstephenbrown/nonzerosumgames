@@ -31,8 +31,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
-</body>
 <script>
     $(document).ready(function() {
         $("#menu").load("menu.html", function() {
@@ -123,6 +121,7 @@
 <p>Addressing global inequality in this way not only lifts people out of poverty but also promotes interdependence rather than division, which is vital to tackling the global issues we face.</p>
 
 <footer>
+    <div id="social-icons"></div>
 <h3>RELATED MATERIAL</h3>
 <ul>
 <li>While there has been corporate changes among multi-nationals, and some government progress around labour rights, <a href="https://data.unicef.org/topic/child-protection/child-labour/?_gl=1*1xqwvk3*_ga*MjY1MzE2OTkwLjE3MDUxMDQ0Mjg.*_ga_ZEPV2PX419*MTcwNTEwNDQyNy4xLjAuMTcwNTEwNDQyNy42MC4wLjA." target="_blank">exploitation</a>
@@ -136,5 +135,20 @@
 </div>
 <div class="fb-like" data-href="https://nonzerosum.games/globalisation.html" data-width="10" data-layout="" data-action="" data-size="" data-share="true"></div>
 <div class="fb-comments" data-href="https://nonzerosum.games/globalisation.html" data-numposts="25"></div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

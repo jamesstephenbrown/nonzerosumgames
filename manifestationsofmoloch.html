@@ -92,6 +92,7 @@
     </div>
 
     <footer>
+        <div id="social-icons"></div>
     <h3>RELATED READING</h3>
     <br>This was part 2 of our series on Moloch. Check out the other parts below:
     <ul>
@@ -124,5 +125,20 @@ data-lang="en"
 crossorigin="anonymous"
 async>
 </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

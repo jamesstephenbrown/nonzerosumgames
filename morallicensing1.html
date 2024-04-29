@@ -105,6 +105,7 @@
 </div>
 
     <footer>
+        <div id="social-icons"></div>
         <h3>RELATED CONTENT</h3>
         <ul>
             <li>Sam Harris' views on how morality can be effectively built upon reason can be found in his book <a href="https://www.samharris.org/books/the-moral-landscape" target="_blank">The Moral Landscape</a>.</li>
@@ -129,6 +130,21 @@
     data-lang="en"
     crossorigin="anonymous"
     async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
     </script>
 </body>
 </html>

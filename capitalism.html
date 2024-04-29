@@ -136,6 +136,7 @@
         <img src="./Images/Content/Capitalism_Gecko.png" alt="a gecko wearing a top hat">
     
         <footer>
+            <div id="social-icons"></div>
             <h3>RELATED CONTENT</h3>
             <ul>
                 <li>If you're interested economics... you should probably visit an economics website, but if you want more unqualified speculations from me, you might enjoy <a href="globalisation">Evil Globalisation ~ and how it is eliminating poverty</a></li>
@@ -148,5 +149,20 @@
     </div>
     <div class="fb-comments" data-href="https://nonzerosum.games/capitalism.html" data-width="" data-numposts="25"></div>
 
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIMINISHING RETURNS - A Path to Shared Joy?</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="canonical" href="https://nonzerosum.games/diminishingreturns.html" />
     <meta name="description" content="Learn about the Law of Diminishing Returns and its implications for redistribution of wealth and shared happiness.">
     <meta name="keywords" content="Diminishing Returns, Economics, Happiness, Wealth, Redistribution, Joy, Charity">
     <meta name="robots" content="index, follow">
@@ -112,6 +113,7 @@
 <p>Purr-fect.</p>
 
 <footer>
+    <div id="social-icons"></div>
     <h3>RELATED MATERIAL</h3>
     <ul>
         <li><a href="https://www.hbs.edu/ris/Publication%20Files/10-012_0350a55d-585b-419d-89e7-91833a612fb5.pdf">Feeling Good about Giving: The Benefits (and Costs) of Self-Interested Charitable Behaviour</a> is a study by Harvard Business School Professor Michael Norton which involved giving participants an amount of money. Half of the participants were told to spend the money on themselves, and the other half were instructed to spend the money on someone else. The researchers found that those who spent money on others reported significantly greater happiness.</li>
@@ -139,5 +141,20 @@ data-lang="en"
 crossorigin="anonymous"
 async>
 </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -346,6 +346,7 @@ An additional rule is that when an agent gets very low in health, they can no lo
     We can see that over time, cooperation is the <a href="gametheory.html#DominantStrategy">dominant strategy</a>, even if it doesn't appear to be in the short term. This is because of the presence of trust, that might be interpersonal trust, or trust in a system. It also shows that a system can still thrive despite the persistent presence of defectors - in saying that, there is a limit, when the number of defectors goes over 20% you end up with a system wide crash, a negative sum game, where no one has anything left to give, making defection an absolutely <a href="gametheory.html#DominatedStrategy">dominated strategy</a>. Cooperation, on the other hand, breeds trust and trust breeds cooperation in a virtuous cycle that can be capitalised on sustainably, which leads to <a href="whatarenonzerosumgames.html#PositiveSumGames">positive-sum</a> outcomes.
 </p>
 <footer>
+    <div id="social-icons"></div>
     <h3>RELATED CONTENT</h3>
     <ul>
         <li>Our series on <a href="morallicensing1.html">Moral Licensing</a>.
@@ -373,5 +374,20 @@ An additional rule is that when an agent gets very low in health, they can no lo
         crossorigin="anonymous"
         async>
 </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 </body>
 </html>
