@@ -1,3 +1,30 @@
+<style>
+    
+.social-share a {
+  margin: 0 5px;
+  display: inline-block;
+  opacity: 1;
+  animation-fill-mode: forwards;
+}
+
+.social-share img {
+  width: 30px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.social-share img:hover {
+  transform: scale(1.2);
+}
+
+
+.social-share {
+  text-align: center; /* Centers the share icons */
+  padding: 10px 0; /* Adds some spacing around the icons */
+}
+
+</style>
+
 <div class="social-share">
     <p>Thanks for reading—<i>Did you find it interesting?</i></p>
     <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PLACEHOLDER" target="_blank" class="no-outlink">
@@ -13,48 +40,42 @@
         <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
     </a>
     <p>Sharing good ideas is a win-win.<p>
-
-    <style>
-    .social-share img {
-        width: 30px; /* Size of the icons */
-        height: auto;
-        transition: transform 0.3s ease; /* Smooth scaling transition */
-        animation-fill-mode: forwards; /* Ensures the icon remains at final state post-animation */
-    }
-
-    @keyframes scaleUpDown {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.2);
-        }
-    }
-    </style>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const icons = document.querySelectorAll('.social-share img');
-
-        function startScaling() {
-            icons.forEach((icon, index) => {
-                // Delay calculation to sequence the scaling effect
-                setTimeout(function scaleIcon() {
-                    icon.style.animation = 'scaleUpDown 1s ease-in-out';
-
-                    // Once the animation is complete, reset to potentially restart after all icons are done
-                    setTimeout(() => {
-                        icon.style.animation = 'none';
-                        // Check if this is the last icon, if so, restart the cycle after a 5-second wait
-                        if (index === icons.length - 1) {
-                            setTimeout(startScaling, 5000); // 5 seconds wait
-                        }
-                    }, 1000); // 1 second is the duration of the scaleUpDown animation
-                }, index * 500); // Each icon starts scaling 500ms after the previous one
-            });
-        }
-
-        startScaling(); // Initial call to start the scaling animation sequence
-    });
-    </script>
 </div>
+<script>
+    $(document).ready(function() {
+        $("#social-icons").load("social.html", function() {
+            // This callback ensures the script below runs after social.html is fully loaded
+            startAnimations();
+        });
+    });
+
+    function startAnimations() {
+        const icons = Array.from(document.querySelectorAll('.social-share a'));
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // swap elements
+            }
+        }
+
+        shuffle(icons); // Randomize the order of icons
+        icons.forEach((link, index) => {
+            let randomDelay = 1000 + Math.random() * 2000;
+
+            setTimeout(function animateIcon() {
+                link.style.animation = 'none'; // Reset animation to force restart
+                setTimeout(() => {
+                    link.style.animation = 'bounce 1s ease-in-out'; // Start bounce
+                }, 10); // Short delay to reapply animation
+                
+                setTimeout(animateIcon, randomDelay + 1000); // Schedule next bounce
+            }, randomDelay);
+        });
+    }
+
+</script>
+    
+    
+    
+    
