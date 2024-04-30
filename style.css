@@ -37,10 +37,10 @@
 }
 
 .social-share a {
-  margin: 0 5px; /* Spacing between each icon */
-  display: inline-block; /* Aligns icons in a row */
-  opacity: 0; /* Start with icons hidden */
-  animation-fill-mode: forwards; /* Keeps the animation state at the end of execution */
+  margin: 0 5px;
+  display: inline-block;
+  opacity: 1; /* Set to 1 for testing */
+  animation-fill-mode: forwards;
 }
 
 .social-share img {
