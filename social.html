@@ -17,39 +17,37 @@
 <script>
     $(document).ready(function() {
         $("#social-icons").load("social.html", function() {
-            const icons = document.querySelectorAll('.social-share a');
-            
-            // Function to shuffle an array
-            function shuffle(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]]; // swap elements
-                }
-            }
-    
-            // Start animations with random order and timing
-            function startAnimations() {
-                shuffle(icons); // Randomize the order of icons
-                icons.forEach((link, index) => {
-                    // Generate a random delay between 1s and 5s
-                    let randomDelay = 1000 + Math.random() * 3000;
-    
-                    setTimeout(function animateIcon() {
-                        link.style.animation = 'none'; // Reset animation to force restart
-                        setTimeout(() => {
-                            link.style.animation = 'bounce 1s ease-in-out'; // Start bounce
-                        }, 10); // Short delay to reapply animation
-                        
-                        // Schedule the next bounce for this icon with random delay
-                        setTimeout(animateIcon, randomDelay + 2000); // Ensure some minimum cycle time
-                    }, randomDelay);
-                });
-            }
-    
-            startAnimations(); // Start the bouncing sequence
+            // This callback ensures the script below runs after social.html is fully loaded
+            startAnimations();
         });
     });
-    </script>
+
+    function startAnimations() {
+        const icons = Array.from(document.querySelectorAll('.social-share a'));
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // swap elements
+            }
+        }
+
+        shuffle(icons); // Randomize the order of icons
+        icons.forEach((link, index) => {
+            let randomDelay = 1000 + Math.random() * 2000;
+
+            setTimeout(function animateIcon() {
+                link.style.animation = 'none'; // Reset animation to force restart
+                setTimeout(() => {
+                    link.style.animation = 'bounce 1s ease-in-out'; // Start bounce
+                }, 10); // Short delay to reapply animation
+                
+                setTimeout(animateIcon, randomDelay + 1000); // Schedule next bounce
+            }, randomDelay);
+        });
+    }
+
+</script>
     
     
     
