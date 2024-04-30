@@ -19,28 +19,20 @@
 
 
 
-.social-share {
-  text-align: center; /* Centers the share icons */
-  padding: 10px 0; /* Adds some spacing around the icons */
-}
-
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%, 100% {
     transform: translateY(0);
   }
-  40% {
-    transform: translateY(-30px);
-  }
-  60% {
-    transform: translateY(-15px);
+  50% {
+    transform: translateY(-10px); 
   }
 }
 
 .social-share a {
-  margin: 0 5px;
-  display: inline-block;
-  opacity: 1; /* Set to 1 for testing */
-  animation-fill-mode: forwards;
+  margin: 0 5px; /* Spacing between each icon */
+  display: inline-block; /* Aligns icons in a row */
+  opacity: 1; /* Icons are always visible */
+  animation: bounce 2s ease-in-out infinite; /* Placeholder animation */
 }
 
 .social-share img {
@@ -54,10 +46,10 @@
 }
 
 
-
-
-
-
+.social-share {
+  text-align: center; /* Centers the share icons */
+  padding: 10px 0; /* Adds some spacing around the icons */
+}
 
 
 
