@@ -13,8 +13,48 @@
         <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
     </a>
     <p>Sharing good ideas is a win-win.<p>
+
+    <style>
+    .social-share img {
+        width: 30px; /* Size of the icons */
+        height: auto;
+        transition: transform 0.3s ease; /* Smooth scaling transition */
+        animation-fill-mode: forwards; /* Ensures the icon remains at final state post-animation */
+    }
+
+    @keyframes scaleUpDown {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const icons = document.querySelectorAll('.social-share img');
+
+        function startScaling() {
+            icons.forEach((icon, index) => {
+                // Delay calculation to sequence the scaling effect
+                setTimeout(function scaleIcon() {
+                    icon.style.animation = 'scaleUpDown 1s ease-in-out';
+
+                    // Once the animation is complete, reset to potentially restart after all icons are done
+                    setTimeout(() => {
+                        icon.style.animation = 'none';
+                        // Check if this is the last icon, if so, restart the cycle after a 5-second wait
+                        if (index === icons.length - 1) {
+                            setTimeout(startScaling, 5000); // 5 seconds wait
+                        }
+                    }, 1000); // 1 second is the duration of the scaleUpDown animation
+                }, index * 500); // Each icon starts scaling 500ms after the previous one
+            });
+        }
+
+        startScaling(); // Initial call to start the scaling animation sequence
+    });
+    </script>
 </div>
-    
-    
-    
-    

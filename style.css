@@ -18,12 +18,12 @@
 }
 
 
-@keyframes bounce {
+@keyframes scaleUpDown {
   0%, 100% {
-    transform: translateY(0);
+    transform: scale(1);  // Normal scale
   }
   50% {
-    transform: translateY(-8px);
+    transform: scale(1.2);  // Scaled up
   }
 }
 
@@ -34,17 +34,9 @@
   animation-fill-mode: forwards;
 }
 
-.social-share img {
-  width: 30px;
-  height: auto;
-  transition: transform 0.3s ease;
-}
-
 .social-share img:hover {
   transform: scale(1.2);
 }
-
-
 
 
 
