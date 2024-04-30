@@ -23,15 +23,15 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-8px);
   }
 }
 
 .social-share a {
   margin: 0 5px;
   display: inline-block;
-  opacity: 1; // Make sure icons are visible
-  animation-fill-mode: forwards; // Animation stays at the last keyframe when finished
+  opacity: 1;
+  animation-fill-mode: forwards;
 }
 
 .social-share img {
@@ -41,7 +41,7 @@
 }
 
 .social-share img:hover {
-  transform: scale(1.2); // Scales the icon on hover
+  transform: scale(1.2);
 }
 
 
