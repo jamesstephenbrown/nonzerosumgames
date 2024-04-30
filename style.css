@@ -18,32 +18,38 @@
 }
 
 
-
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px); 
+    transform: translateY(-20px);
   }
 }
 
 .social-share a {
-  margin: 0 5px; /* Spacing between each icon */
-  display: inline-block; /* Aligns icons in a row */
-  opacity: 1; /* Icons are always visible */
-  animation: bounce 2s ease-in-out infinite; /* Placeholder animation */
+  margin: 0 5px;
+  display: inline-block;
+  opacity: 1; // Make sure icons are visible
+  animation-fill-mode: forwards; // Animation stays at the last keyframe when finished
 }
 
 .social-share img {
-  width: 30px; /* Set the size of the icons */
+  width: 30px;
   height: auto;
-  transition: transform 0.3s ease; /* Smooth scaling on hover */
+  transition: transform 0.3s ease;
 }
 
 .social-share img:hover {
-  transform: scale(1.2); /* Scales the icon on hover */
+  transform: scale(1.2); // Scales the icon on hover
 }
+
+
+
+
+
+
+
 
 
 .social-share {
