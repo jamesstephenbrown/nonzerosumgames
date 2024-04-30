@@ -14,3 +14,22 @@
     </a>
     <p>Sharing good ideas is a win-win.<p>
 </div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+    
+            document.querySelectorAll('.social-share a').forEach(function(link, index) {
+                const bounds = link.getBoundingClientRect();
+    
+                // Check if the icon is within the visible viewport
+                if (bounds.top < windowHeight && bounds.bottom >= 0) {
+                    // Delay each icon's animation slightly more than the previous one
+                    link.style.animation = `bounce 0.9s ease ${index * 0.1}s`;
+                    link.style.opacity = 1; // Make the icon visible
+                }
+            });
+        });
+    });
+    </script>
+    

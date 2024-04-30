@@ -16,14 +16,31 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+
+
+
 .social-share {
   text-align: center; /* Centers the share icons */
   padding: 10px 0; /* Adds some spacing around the icons */
 }
 
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
 .social-share a {
   margin: 0 5px; /* Spacing between each icon */
   display: inline-block; /* Aligns icons in a row */
+  opacity: 0; /* Start with icons hidden */
+  animation-fill-mode: forwards; /* Keeps the animation state at the end of execution */
 }
 
 .social-share img {
@@ -35,6 +52,15 @@
 .social-share img:hover {
   transform: scale(1.2); /* Scales the icon on hover */
 }
+
+
+
+
+
+
+
+
+
 
 
 
