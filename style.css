@@ -18,6 +18,37 @@
 }
 
 
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.social-share a {
+  margin: 0 5px;
+  display: inline-block;
+  opacity: 1;
+  animation-fill-mode: forwards;
+}
+
+.social-share img {
+  width: 30px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.social-share img:hover {
+  transform: scale(1.2);
+}
+
+
+.social-share {
+  text-align: center; /* Centers the share icons */
+  padding: 10px 0; /* Adds some spacing around the icons */
+}
 
 
 
