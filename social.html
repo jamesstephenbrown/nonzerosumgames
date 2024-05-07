@@ -14,16 +14,14 @@
         <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
     </a><p>Sharing good ideas is a win-win.<p>
 </div>
-<script>
-    function trackSocialClick(socialNetwork) {
-        // Assuming gtag.js is already loaded and initialized
-        gtag('event', 'click', {
-            'event_category': 'Social Media',
-            'event_label': socialNetwork
-        });
-    }
-    </script>
-    
+    <script>
+        function trackSocialClick(socialNetwork) {
+            gtag('event', 'click', {
+                'event_category': 'Social Media',
+                'event_label': socialNetwork
+            });
+        }
+        </script>
     
     
     
