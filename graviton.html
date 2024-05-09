@@ -39,13 +39,16 @@
     body {
       text-decoration-color: #ffffff;
     }
-
+    /* Ensure the canvas is behind other elements */
     .full-width {
-      position: relative; /* Position relative to its normal position */
-      width: 100vw; /* Full viewport width */
-      left: 50%; /* Move to the middle of the viewport */
-      transform: translateX(-50%); /* Center the div */
-      background-color: lightblue; /* Just for demonstration */
+        position: absolute; /* Changed from relative to absolute for layering */
+        width: 100vw;
+        height: 100vh; /* Ensure it covers the full viewport height */
+        top: 0;
+        left: 0;
+        z-index: -1; /* Place it behind other elements */
+        pointer-events: none; /* Disable pointer events to prevent click interception */
+        background-color: lightblue;
     }
 
     .centered-text {
@@ -74,12 +77,6 @@
     <h1 style="margin-bottom: 0;color: #55AAE3">EMERGENT GRAVITY</h1>
     <p style="margin-top: 0.2em;color: #55AAE3">~ refresh page to generate a new universe ~</p></div>
 
-    <!-- <div id="controls">
-      <button id="decrease">-</button>
-      <span id="valueDisplay">8</span>
-      <button id="increase">+</button>
-      <button id="goButton">Go</button>
-    </div> -->
     <script src="js/graviton.js"></script>
     
     <!-- <script src="js/gravitoroidal.js"></script> -->
