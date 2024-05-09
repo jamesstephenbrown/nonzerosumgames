@@ -60,18 +60,16 @@
     text-align: center; /*inherits the centering*/
     }
   </style>
-  <script>
-    $(document).ready(function() {
-        $("#menu").load("menu.html", function() {
-            var pageName = window.location.pathname.split("/").pop();
-            var menuLink = $("a[href='" + pageName + "']");
-            menuLink.parent().remove();
-        });
-    });
-  </script>
 </head>
 <body style="background-color:black;color: #55AAE3;">
-  <div id="menu"></div>
+  <div class="menuColumn">
+  <p>
+      <a href="/">Home</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/arcade.html">Games</a>
+      <a href="/aboutme.html">About</a>
+  </p>
+</div>
     <canvas class="full-width"></canvas>
   <div class="centered-text">
     <h1 style="margin-bottom: 0;color: #55AAE3">EMERGENT GRAVITY</h1>
