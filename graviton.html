@@ -39,17 +39,17 @@
     body {
       text-decoration-color: #ffffff;
     }
-    /* Ensure the canvas is behind other elements */
+
     .full-width {
-        position: absolute; /* Changed from relative to absolute for layering */
-        width: 100vw;
-        height: 100vh; /* Ensure it covers the full viewport height */
-        top: 0;
-        left: 0;
-        z-index: -1; /* Place it behind other elements */
-        pointer-events: none; /* Disable pointer events to prevent click interception */
-        background-color: lightblue;
+      position: relative; /* Position relative to its normal position */
+      width: 100vw; /* Full viewport width */
+      left: 50%; /* Move to the middle of the viewport */
+      transform: translateX(-50%); /* Center the div */
+      z-index: -1; /* Place it behind other elements */
+      pointer-events: none; /* Disable pointer events to prevent click interception */
+      background-color: lightblue; /* Just for demonstration */
     }
+
 
     .centered-text {
     position: absolute;
