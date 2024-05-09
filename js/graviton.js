@@ -45,10 +45,10 @@ const navy = 'rgb(0,0,180)'
 
 
 // Event Listeners
-addEventListener('mousemove', (event) => {
-  mouse.x = event.clientX
-  mouse.y = event.clientY
-})
+// addEventListener('mousemove', (event) => {
+//   mouse.x = event.clientX
+//   mouse.y = event.clientY
+// })
 
 addEventListener('resize', () => {
   canvas.width = innerWidth
