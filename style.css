@@ -338,7 +338,7 @@ text-align: center;
 }
 #mce-EMAIL {
   width: 80%; /* you can adjust this value according to your needs */
-  color: #55AAE3;
+  color:  var(--body-bg-color);
   background-color: rgba(255, 255, 255, 0.3); /* semi-transparent white */
   border: none;  /* Add a light grey border */
   outline: none;  /* Disable the default outline */
@@ -354,6 +354,9 @@ text-align: center;
   align-items: center;
   align-content: center;
   align-self: center;
+}
+input::placeholder, textarea::placeholder {
+  color:  var(--body-bg-color);
 }
 .giscus {
   font-size: 100%;
