@@ -91,10 +91,14 @@ a[target="_blank"]:not(.no-outlink)::after {
   padding: 0 15px;
 }
 
+:root {
+  --body-bg-color: #55AAE3;
+}
+
 body {
   word-wrap: break-word;
   font-size: 125%;
-  background-color: #55AAE3;
+  background-color: var(--body-bg-color);
   max-width: 800px;
   padding: 20px 20px 0 20px;
   margin: 0 auto;
@@ -278,7 +282,7 @@ position: relative;
 text-align: center;
 }
 #mc_embed_signup {
-  /* background: #55AAE3; */
+  background-color: var(--body-bg-color); /* inherits background color */
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
   border-radius: 50px;
@@ -295,7 +299,7 @@ text-align: center;
   align-self: center;
 }
 #mc_embed_signup p {
-  /* background:#55AAE3; */
+  background-color: var(--body-bg-color); /* inherits background color */
   position: relative;
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
@@ -334,6 +338,7 @@ text-align: center;
 }
 #mce-EMAIL {
   width: 80%; /* you can adjust this value according to your needs */
+  color: #55AAE3;
   background-color: rgba(255, 255, 255, 0.3); /* semi-transparent white */
   border: none;  /* Add a light grey border */
   outline: none;  /* Disable the default outline */
@@ -344,6 +349,7 @@ text-align: center;
 /* Focused state of the input field */
 #mce-EMAIL:focus {
   background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
+  color: black;
   border: none;  /* Change border to a different color if you like */
   align-items: center;
   align-content: center;

@@ -41,13 +41,20 @@
     </script>
 </head>
 <style>
-#mc_embed_signup {
-  /* background: #55AAE3; */
-  background:rgb(53, 45, 121)
+:root {
+    --body-bg-color: rgb(53, 45, 121); /* Define the color once */
+    --body-color: #ff9b5a;
 }
-
+body {
+    background-color: var(--body-bg-color); /* Use the variable for the body */
+    color: var(--body-color);
+}
+#mc_embed_signup p {
+    background-color: var(--body-bg-color); /* Use the same variable for your element */
+    color: var(--body-color);
+}
 </style>
-<body style="background-color:rgb(53, 45, 121);color: #ff9b5a;">
+<body>
     <!-- <body style="background-color:rgb(53, 45, 121);color: #ff9b5a;"> -->
     <div id="menu"></div>
 
