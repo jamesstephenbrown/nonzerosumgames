@@ -31,6 +31,9 @@
     font-weight: bold;
     font-style: bold;
   }
+      :root {
+          --body-bg-color: #7380b7; /* Define the color once */
+      }
     body {
         touch-action: manipulation; /* Disables double-tap zooming */
         display: flex;
@@ -38,7 +41,7 @@
         align-items: center;
         height: 100vh;
         margin: 0;
-        background-color: #55AAE3;
+        background-color: var(--body-bg-color);
         overflow: hidden;
         font-family: 'MoreSugar';
     }
