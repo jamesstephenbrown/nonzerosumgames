@@ -278,7 +278,7 @@ position: relative;
 text-align: center;
 }
 #mc_embed_signup {
-  background: #55AAE3;
+  /* background: #55AAE3; */
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
   border-radius: 50px;
@@ -295,7 +295,7 @@ text-align: center;
   align-self: center;
 }
 #mc_embed_signup p {
-  background:#55AAE3;
+  /* background:#55AAE3; */
   position: relative;
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
