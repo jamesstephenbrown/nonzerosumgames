@@ -202,7 +202,13 @@ background-color: #55AAE3;
 margin-right: 50px;
 margin-left: 50px;
 }
-
+.gif-container img {
+  height: 200px;
+  display: inline-block;
+}
+.gif-container {
+  text-align: center;
+}
 #circle > div {
 height: 200px;
 background-color: red;
