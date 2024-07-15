@@ -17,6 +17,75 @@
   font-style: normal;
 }
 
+.expandable-word {
+  position: relative;
+  display: inline-block;
+  color: black; /* Set the word color to black */
+  /* border: 2px solid #3388C2; */
+  /* background-color:  #81cafc; */
+   /* Thicker border */
+  /* padding: 0px 4px; */
+  /* border-radius: 10px; */
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.expandable-word:hover {
+  border-color: #55AAE3;
+  background-color: rgba(85, 170, 227, 0.2);
+}
+
+.expandable-word::after {
+  content: attr(data-info);
+  /* visibility: hidden;
+  opacity: 0; */
+  width: 95%;
+  height: 0%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: #3388C2;
+  color: rgba(255, 255, 255, 0.8); /* Set the description text color to black */
+  text-align: center;
+  border: 1px solid #3388C2; /* Thicker border for the floating box */
+  border-radius: 10px;
+  padding: 1px; /* Less padding */
+  position: absolute;
+  z-index: 0; /* Ensure it's behind the text initially */
+  top: 26px;
+  /* Position below the original word with a small gap */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-size: 0.8em; /* Smaller font size for the description text */
+  transition: all 0.3s ease;
+}
+
+.expandable-word:hover::after {
+  visibility: visible;
+  opacity: 1;
+  width: 200px;
+  height: auto;
+  max-width: 300px; /* Adjust as needed */
+  white-space: normal;
+  padding: 5px; /* Add padding for the expanded box */
+  top: 26px;
+  z-index: 1; /* Ensure it's behind the text initially */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .social-share {
   text-align: center; /* Centers the share icons */
