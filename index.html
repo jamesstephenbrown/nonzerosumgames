@@ -81,38 +81,49 @@
         <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
     </div>
     <script>
-        // Number of frames in the animation
         const totalFrames = 26;
         const framePrefix = 'Images/Content/Frames_Rabbits_';
         const frameSuffix = '.png';
         const frameElement = document.getElementById('animation-frame');
         let currentFrame = 0;
-        
+        let framesLoaded = 0;
+        const frames = [];
+
+        // Preload images
+        for (let i = 0; i <= totalFrames; i++) {
+            const img = new Image();
+            const frameNumber = i.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            img.src = filename;
+            img.onload = () => {
+                framesLoaded++;
+                if (framesLoaded === totalFrames + 1) {
+                    // All frames are loaded, start the animation
+                    startAnimation();
+                }
+            };
+            frames.push(img);
+        }
+
         // Function to update the image source
         function updateFrame() {
-            // Create the filename using the current frame index
             const frameNumber = currentFrame.toString().padStart(4, '0');
             const filename = framePrefix + frameNumber + frameSuffix;
-            console.log("Updating to frame:", filename); // Debugging message
-        
-            // Update the image source
             frameElement.src = filename;
-        
-            // Increment the frame index
+
             currentFrame++;
-        
-            // If we've reached the last frame, stop the animation
+
             if (currentFrame > totalFrames) {
                 currentFrame = totalFrames; // Ensure it stops on the last frame
-                console.log("Reached the last frame:", filename); // Debugging message
             } else {
-                // Schedule the next frame update
                 setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
             }
         }
-        
+
         // Start the animation
-        updateFrame();
+        function startAnimation() {
+            updateFrame();
+        }
     </script>
 
 
