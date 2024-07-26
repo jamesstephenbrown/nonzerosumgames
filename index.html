@@ -89,6 +89,9 @@
         let framesLoaded = 0;
         const frames = [];
 
+        // Display the first frame immediately
+        frameElement.src = framePrefix + '0000' + frameSuffix;
+
         // Preload images
         for (let i = 0; i <= totalFrames; i++) {
             const img = new Image();
