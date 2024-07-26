@@ -28,57 +28,94 @@
 
 
 
-            <div class="animation-container">
-                <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
-            </div>
-            <script>
-                const totalFrames = 26;
-                const framePrefix = 'Images/Content/Frames_Rabbits_';
-                const frameSuffix = '.png';
-                const frameElement = document.getElementById('animation-frame');
-                let currentFrame = 0;
-                let framesLoaded = 0;
-                const frames = [];
-        
-                // Display the first frame immediately
-                frameElement.src = framePrefix + '0000' + frameSuffix;
-        
-                // Preload images
-                for (let i = 0; i <= totalFrames; i++) {
-                    const img = new Image();
-                    const frameNumber = i.toString().padStart(4, '0');
-                    const filename = framePrefix + frameNumber + frameSuffix;
-                    img.src = filename;
-                    img.onload = () => {
-                        framesLoaded++;
-                        if (framesLoaded === totalFrames + 1) {
-                            // All frames are loaded, start the animation
-                            startAnimation();
-                        }
-                    };
-                    frames.push(img);
-                }
-        
-                // Function to update the image source
-                function updateFrame() {
-                    const frameNumber = currentFrame.toString().padStart(4, '0');
-                    const filename = framePrefix + frameNumber + frameSuffix;
-                    frameElement.src = filename;
-        
-                    currentFrame++;
-        
-                    if (currentFrame > totalFrames) {
-                        currentFrame = totalFrames; // Ensure it stops on the last frame
+            
+    <div class="animation-container">
+        <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
+    </div>
+    <script>
+        const totalFrames = 26;
+        const framePrefix = 'Images/Content/Frames_Rabbits_';
+        const frameSuffix = '.png';
+        const frameElement = document.getElementById('animation-frame');
+        let currentFrame = 0;
+        let framesLoaded = 0;
+        const frames = [];
+        let animationStarted = false;
+
+        // Display the first frame immediately
+        frameElement.src = framePrefix + '0000' + frameSuffix;
+
+        // Preload images
+        for (let i = 0; i <= totalFrames; i++) {
+            const img = new Image();
+            const frameNumber = i.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            img.src = filename;
+            img.onload = () => {
+                framesLoaded++;
+                if (framesLoaded === totalFrames + 1) {
+                    // All frames are loaded
+                    if (isElementInViewport(frameElement)) {
+                        startAnimation();
                     } else {
-                        setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
+                        observer.observe(frameElement);
                     }
                 }
-        
-                // Start the animation
-                function startAnimation() {
-                    updateFrame();
+            };
+            frames.push(img);
+        }
+
+        // Function to update the image source
+        function updateFrame() {
+            const frameNumber = currentFrame.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            frameElement.src = filename;
+
+            currentFrame++;
+
+            if (currentFrame > totalFrames) {
+                currentFrame = totalFrames; // Ensure it stops on the last frame
+            } else {
+                setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
+            }
+        }
+
+        // Start the animation
+        function startAnimation() {
+            if (!animationStarted) {
+                animationStarted = true;
+                updateFrame();
+            }
+        }
+
+        // Check if element is in viewport
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Create an Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    startAnimation();
+                    observer.unobserve(frameElement);
                 }
-            </script>
+            });
+        });
+
+        // Observe the animation container
+        if (isElementInViewport(frameElement)) {
+            startAnimation();
+        } else {
+            observer.observe(frameElement);
+        }
+    </script>
 
 
             <p>To get updated with next week's blog...</p>
