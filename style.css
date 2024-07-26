@@ -16,7 +16,19 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+.animation-container {
+  /* width: 100%; */
+  /* height: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+#animation-frame {
+  max-width: 130%;
+  transform: translateX(-10%); /* Center and offset by 100px to the left */
+  height: auto;
+}
 .expandable-word {
   position: relative;
   display: inline-block;
