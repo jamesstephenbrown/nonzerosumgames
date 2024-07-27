@@ -25,7 +25,7 @@
 }
 
 #animation-frame {
-  max-width: 130%;
+  max-width: 120%;
   transform: translateX(-10%); /* Center and offset by 100px to the left */
   height: auto;
 }
@@ -376,7 +376,7 @@ text-align: center;
   background-color: var(--body-bg-color); /* inherits background color */
   text-align: center;
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-  border-radius: 50px;
+  border-radius: 30px;
   align-items: center;
   align-content: center;
   align-self: center;
