@@ -268,9 +268,6 @@ aside {
 
 
 
-
-
-
 /* Apply custom font */
 .gsc-input, .gsc-search-button, .gs-title, .gs-bidi-start-align {
   font-family: 'MoreSugar', sans-serif;
@@ -328,12 +325,42 @@ input.gsc-search-button:hover {
   color: #555; /* Grey color for the snippet */
 }
 
+/* Style the URL */
+.gsc-webResult .gsc-url-top {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Style the snippet */
+.gsc-webResult .gs-snippet {
+  font-size: 14px;
+  color: #333;
+}
+
 /* Hide thumbnails if not needed */
 .gsc-results .gsc-thumbnail-inside {
   display: none;
 }
 
+/* Style pagination */
+.gsc-cursor-page {
+  font-family: 'MoreSugar', sans-serif;
+  font-size: 16px;
+  color: #3388C2;
+  cursor: pointer;
+}
 
+.gsc-cursor-page.gsc-cursor-current-page {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Container for the results */
+.gsc-results-wrapper-overlay {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
 
 
