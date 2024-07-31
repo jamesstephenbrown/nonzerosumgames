@@ -263,6 +263,127 @@ aside {
   font-family: 'MoreSugarExtras', fallback, sans-serif;
 }
 
+
+
+
+
+
+
+
+
+/* Apply custom font */
+.gsc-input, .gsc-search-button, .gs-title, .gs-bidi-start-align {
+  font-family: 'MoreSugar', sans-serif;
+}
+
+/* Style the search box */
+input.gsc-input {
+  width: calc(100% - 60px); /* Adjust width to fit the search button */
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #3388C2;
+  border-radius: 20px 0 0 20px; /* Rounded corners for the left side */
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+}
+
+/* Style the search button */
+input.gsc-search-button {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #3388C2;
+  border-radius: 0 20px 20px 0; /* Rounded corners for the right side */
+  background-color: #55AAE3; /* Matching background color */
+  color: #fff; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+input.gsc-search-button:hover {
+  background-color: #3388C2; /* Darker background on hover */
+}
+
+/* Style the search results */
+.gsc-webResult.gsc-result {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.gsc-webResult.gsc-result .gs-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3388C2; /* Matching link color */
+  text-decoration: none;
+}
+
+.gsc-webResult.gsc-result .gs-title:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.gsc-webResult.gsc-result .gs-bidi-start-align {
+  font-size: 14px;
+  color: #555; /* Grey color for the snippet */
+}
+
+/* Hide thumbnails if not needed */
+.gsc-results .gsc-thumbnail-inside {
+  display: none;
+}
+
+
+
+
+
+
+
+
+        /* Basic styling for the search box and results */
+        .gcse-search {
+          width: 100%;
+          margin: 0 auto;
+          max-width: 600px;
+      }
+      .gsc-control-cse {
+          padding: 10px;
+      }
+      input.gsc-input {
+          width: calc(100% - 50px);
+          padding: 10px;
+          font-size: 16px;
+      }
+      input.gsc-search-button {
+          padding: 10px;
+          font-size: 16px;
+      }
+      .gsc-results .gsc-thumbnail-inside {
+          display: none;
+      }
+      .gsc-webResult.gsc-result {
+          border-bottom: 1px solid #ddd;
+          padding: 10px 0;
+      }
+      .gsc-webResult.gsc-result .gs-title {
+          font-size: 18px;
+          font-weight: bold;
+      }
+      .gsc-webResult.gsc-result .gs-bidi-start-align {
+          font-size: 14px;
+          color: #555;
+      }
+
+
+
+
+
+
+
+
+
+
+
 .portraits, .rounded_outlined {
 border-radius: 50px;
 display: block;
