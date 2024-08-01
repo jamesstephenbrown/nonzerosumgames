@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="style.css"> <!-- Replace with the actual path -->
+</head>
+<body>
+    <div id="mc_embed_signup">
+        <form id="search-form" onsubmit="executeSearch(); return false;" style="text-align: center;">
+            <h3>WHAT ARE YOU LOOKING FOR?...</h3><br>
+            <input type="text" id="search-input" required placeholder="Enter your search term" style="display: block; margin: auto;">
+            <br>
+            <div class="clear">
+                <input type="submit" value="Search" class="button">
+            </div>
+            <br>
+        </form>
+    </div>
+    <div class="content">
+        <iframe id="search-results" src="" style="width: 100%; height: 800px; border: none; margin-top: 20px;"></iframe>
+    </div>
+
+    <!-- Include the Google Custom Search Engine script -->
+    <script async src="https://cse.google.com/cse.js?cx=356d26fd2e9ff46e7"></script>
+    <script>
+        function executeSearch() {
+            var query = document.getElementById('search-input').value;
+            var iframe = document.getElementById('search-results');
+            iframe.src = `https://cse.google.com/cse?cx=356d26fd2e9ff46e7&q=${query}`;
+        }
+
+        document.getElementById('search-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                executeSearch();
+                event.preventDefault(); // Prevent the default form submission
+            }
+        });
+    </script>
+</body>
+</html>
