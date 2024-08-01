@@ -267,7 +267,13 @@ footer {
   text-align: center; /* Ensure content is centered */
 }
 
-.menuColumn a, .menuColumn aside {
+.menuColumn a {
+  display: inline-block; /* Consistent display properties */
+  vertical-align: middle; /* Align elements vertically in the middle */
+  margin-right: 10px; /* Space between items */
+}
+
+.menuColumn aside {
   display: inline-block; /* Consistent display properties */
   vertical-align: middle; /* Align elements vertically in the middle */
   margin-right: 10px; /* Space between items */
