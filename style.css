@@ -258,13 +258,27 @@ footer {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
-aside {
-  display: inline-block;
-  font-family: 'MoreSugarExtras', fallback, sans-serif;
+.menuColumn {
+  margin-top: -30px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  text-align: center; /* Ensure content is centered */
 }
 
+.menuColumn a, .menuColumn aside {
+  display: inline-block; /* Consistent display properties */
+  vertical-align: middle; /* Align elements vertically in the middle */
+  margin-right: 10px; /* Space between items */
+  text-decoration: none; /* Remove underline from links */
+}
 
-
+aside {
+  font-family: 'MoreSugarExtras', sans-serif; /* Specific font for <aside> */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+}
 
 
 
@@ -363,13 +377,6 @@ border-radius: 50px;
 .darkColumn, .lightColumn {
 flex: 33.33%;
 margin: 10px;
-}
-.menuColumn {
-margin-top: -30px;
-border-bottom-left-radius: 50px;
-border-bottom-right-radius: 50px;
-border-top-left-radius: 0px;
-border-top-right-radius: 0px;
 }
 
 .lightColumn {
