@@ -259,7 +259,7 @@ footer {
 }
 
 aside {
-  display: inline;
+  display: inline-block;
   font-family: 'MoreSugarExtras', fallback, sans-serif;
 }
 
