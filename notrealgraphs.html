@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Graphs: Insights and Visual Stories</title>
+    <meta name="description" content="A visual journey through key concepts with graphs from our blog.">
+    <meta name="keywords" content="Graphs, Data Visualization, Insights, Diminishing Returns, Creative Failure, Local Minima, Dopamine, Adrenaline, Relative Value, Social Mobility, Gini Index">
+    <meta name="author" content="NonZeroSumJames">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/graphs.png">
+    <meta property="og:title" content="Exploring Graphs: Insights and Visual Stories">
+    <meta property="og:description" content="A visual journey through key concepts with graphs from our blog.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include any additional JS libraries for graphs -->
+    <script src="https://www.graphcomment.com/js/integration.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        function swap(imageElement, src1, src2) {
+            if (imageElement.src.match(src1)) {
+                imageElement.src = src2;
+            } else {
+                imageElement.src = src1;
+            }
+        }
+    </script>
+    <div id="menu"></div>
+    <!-- Header blockquote -->
+    <h1 style="margin-bottom: 0;">NOT REAL GRAPHS</h1><p style="margin-top: 0.2em;">~ trying to understand the world through (not-real) graphs ~</p>
+    
+    <p><img src="./Images/Content/Hog_TimeScale.png" alt="Hog Time Scale"></p>
+
+    <p>These are a random assortment of (not real) graphs—visual stories that help me understand the world, which are collected from all the posts. They are not always based on real data, but rather on my insights and experiences, like the one above that shows the <span class="expandable-word" data-info="A word I made up to describe humanity's point of view (scope) as beginning in the middle (meso) as opposed to microscopic or macroscopic views">mesoscopic</span> position of humans in relation to time and the scale of the Universe, from <a href="itssubjective.html">it's subjective</a>. </p><p>I hope you find them interesting and thought-provoking.</p>
+    <!-- Graph blockquotes -->
+    <blockquote>
+        <p>
+            <img id="imageToSwap" src="./Images/Content/NRGs_DiminishingReturns.png" onclick="swapImage()"/>
+
+            <script>
+                // Image sources array
+                let imageSources = [
+                    "./Images/Content/NRGs_DiminishingReturns.png",
+                    "./Images/Content/NRGs_DiminishingReturns_ExerciseFitness.png",
+                    "./Images/Content/NRGs_DiminishingReturns_DopamineScroll.png",
+                    "./Images/Content/NRGs_DiminishingReturns_ProfitEmployee.png",
+                    "./Images/Content/NRGs_DiminishingReturns_CocktailBuzz.png",
+                    "./Images/Content/NRGs_DiminishingReturns_SatisfactionPizza.png",
+                    "./Images/Content/NRGs_DiminishingReturns_JoyWealth.png"];
+                
+
+                function swapImage() {
+                    // Reference to the image element
+                    let imageElement = document.getElementById("imageToSwap");
+
+                    // Get current index of image from array
+                    let currentIndex = imageSources.indexOf(imageElement.getAttribute('src'));
+                    
+                    // If image source was found and it's not the last one
+                    if (currentIndex !== -1 && currentIndex !== imageSources.length - 1) {
+                        // Set the next image source
+                        imageElement.src = imageSources[currentIndex + 1];
+                    }
+                }
+            </script>
+        </p>
+    <p>From <a href="diminishingreturns.html">Diminishing Returns on Happiness</a>, this is an interactive not real graph—tap to see the different applications.</p>
+</blockquote>
+    
+    <!-- <footer id="creative-failure"> -->
+        <img src="./Images/Content/howtofailcreatively.png" alt="Creative Failure Graph">
+    <p>After starting about 50 game dev projects and only getting a couple published, I thought I'd distill my insights about exactly how I fail so consistently.</p>
+<!-- </footer> -->
+
+    <blockquote id="local-minima-maxima">
+        <h3>MY UNDERSTANDING OF LOCAL MINIMA & MAXIMA</h3>
+        <img src="./Images/Content/NotRealGraphs_LocalMaximaMinima.png" alt="Local Minima and Maxima Graph">
+    <p>This is a sketch in lieu of a post—the concept of local minima and maxima is a mental model I often use to understand inefficiencies in the world. The basic idea is that many solutions to a problem aren't actually <span class="expandable-word" data-info="Optimised for a balance of various priorities">satisficing</span>, but people fail to deviate from those solutions because, in order to travel to a satisficing solution, they have to traverse negative terrain.</p>
+    
+    <p>A good example would be the transfer from fossil fuels to renewables. Before getting to the more satisficing solution, you have to bear the costs associated with R&D, social inertia, early inefficiencies, regulations etc. And so the development of renewables has been slower than necessary due to a reluctance to traverse that terrain.</p>
+</blockquote>
+
+    <footer id="dopamine-adrenal-response">
+        <h3>MY UNDERSTANDING OF DOPAMINURGIC VS ADRENAL RESPONSE</h3>
+        <img src="./Images/Content/NotRealGraphs_DopamineVsAdrenaline.png" alt="Dopamine vs Adrenal Response Graph">
+    <p>This was one that I sketched out based on what I'd learned about the different physiological responses one has to adrenaline and dopamine. I had previously thought that the responses were essentially synonymous. But apparently, while dopamine spikes make you less sensitive to dopamine, adrenaline spikes actually make you more responsive to adrenaline. Meaning that if you continually spike your adrenaline in order to enjoy the dopamine high that comes with it, you simultaneously make yourself more stressed and less motivated.</p><p>This has helped me make sense of my increased anxiety when I indulge the vices of driving fast, playing speed chess or arguing online.</p>
+</footer>
+
+    <blockquote id="relative-absolute-value">
+        <img src="./Images/Content/Relative_AbsoluteGlasses.png" alt="Relative Value vs Absolute Value Graph">
+       
+        <h3> ABSOLUTE VALUE vs  RELATIVE VALUE</h3>
+    <p>In our post on <a href="absolutevsrelative.html">relative gains</a> we explore the problem with judging value relative to others.</p>
+    <img src="./Images/Content/Relative_AbsoluteGraph.png" alt="Relative Value vs Absolute Value Graph">
+    <p>These graphs show the negative results of comparison (the thief of joy) with a story about Metallica and Megadeath.</p>
+        <img src="./Images/Content/Relative_AbsoluteGraphMetallica.png" alt="Relative Value vs Absolute Value Graph">
+    </blockquote>
+<br>
+    <!-- <footer id="social-mobility"> -->
+        <h3>SOCIAL MOBILITY IN THE STATES</h3>
+        <img src="./Images/Content/Positive_SocialMobilityGraph.png" alt="Social Mobility Graph">
+    <!-- </footer> -->
+    <p>In exploring the idea of a <a href="positivedoublestandard.html">positive double standard</a> this graph shows the lack of social mobility in the States, demonstrating the lack of a meritocracy.</p>
+<br>
+    <blockquote id="gini-index">
+        <h3>GINI INDEX</h3>
+        <img src="./Images/Content/Globalisation_Gini.png" alt="Gini Index Graph">
+    <p>One of the counterintuitive insights I've had is that <a href="globalisation.html">globalisation</a>, despite its exploitative beginnings, has yielded gains for the developing world in reducing extreme poverty. This is reflected in the Gini index (the graph is actually based on a <a href="https://www.axios.com/2023/06/14/global-economic-inequality" target="_blank">real graph</a>).</p>
+</blockquote>
+
+<footer>
+    <div id="social-icons"></div>
+<h3>MORE TO COME</h3>
+<br>
+<p>This is a growing page, which I'll update with new not real graphs as they feature on the blog—for those interested in the understanding the world graphically.</p>
+</footer>
+
+<div class="subscribe">
+<a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#social-icons").load("social.html", function() {
+            // Get the current page URL and title
+            var pageUrl = window.location.href;
+            var pageTitle = document.title;
+
+            // Replace placeholders in the loaded HTML
+            $(this).find("a").each(function() {
+                this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+            });
+        });
+    });
+</script>
+
+<div id="graphcomment"></div>
+<script type="text/javascript">
+  /* - - - CONFIGURATION VARIABLES - - - */
+  var __semio__params = {
+    graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+    behaviour: {
+      // Extract the filename from the URL path and use it as the UID
+      uid: window.location.pathname.split('/').pop().split('.')[0],
+    },
+    // Configure your variables here
+  }
+  /* - - - DON'T EDIT BELOW THIS LINE - - - */
+  function __semio__onload() {
+    __semio__gc_graphlogin(__semio__params)
+  }
+  (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.onload = __semio__onload; gc.defer = true;
+    gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+  })();
+</script>
+</body>
+</html>
