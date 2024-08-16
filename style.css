@@ -259,7 +259,8 @@ footer {
 }
 
 .menuColumn {
-  margin-top: -30px;
+  margin-top: -80px;
+  padding: 10px;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   border-top-left-radius: 0px;
@@ -356,8 +357,8 @@ text-align: center;
   font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
   margin: 20px;
   position: fixed;
-  right: 0;
-  top: 0;
+  left: 0;
+  bottom: 0;
 }
 .container {
   display: flex;
