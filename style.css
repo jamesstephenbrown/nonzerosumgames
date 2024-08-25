@@ -63,7 +63,7 @@
   padding: 1px; /* Less padding */
   position: absolute;
   z-index: 0; /* Ensure it's behind the text initially */
-  top: 26px;
+  top: 24px;
   /* Position below the original word with a small gap */
   left: 50%;
   transform: translateX(-50%);
@@ -580,6 +580,14 @@ input::placeholder, textarea::placeholder {
 
 /* Computer */
 @media only screen and (min-device-width: 500px) {
+
+
+  .expandable-word::after {
+    top: 26px;
+  }
+
+
+
 
   .gif-container img {
     height: 200px;
