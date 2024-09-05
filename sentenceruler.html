@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Length Colorizer</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            color: white;
+        }
+
+        #title {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #textInput {
+            width: 100%;
+            height: calc(100% - 50px);
+            background-color: #333; /* Dark grey background */
+            color: white; /* Default text color */
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            white-space: pre-wrap; /* Preserve spaces and line breaks */
+            outline: none;
+            border: none;
+            word-wrap: break-word;
+        }
+
+        .output {
+            white-space: pre-wrap; /* Preserve formatting */
+        }
+    </style>
+</head>
+<body>
+
+<div id="title">
+    <p><a href="index.html">Home</a></p>TEXT COLORIZER: Paste text below and sentences will be colored based on length<br><span style="font-size: 70%;">(please note: while you can do minor edits, this is not intended as a word-processor, there is no undo...).</span></div>
+<div id="textInput" contenteditable="true" oninput="colorizeText()" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)"></div>
+
+<script>
+function colorizeText() {
+    const textInput = document.getElementById("textInput");
+    const caretPosition = saveCaretPosition(textInput); // Save the caret position
+
+    let text = textInput.innerText; // Get the text content of the div
+    text = text.replace(/&nbsp;/g, ' '); // Replace non-breaking spaces with normal spaces
+
+    // Use match to capture sentences, including punctuation and newlines as sentence boundaries
+    const sentences = text.split(/(?<!https?:\/\/[\S]+)([.!?]["')]*\s|\n)/g);
+
+    let coloredHTML = '';
+
+    if (sentences) {
+        sentences.forEach((sentence, index) => {
+            const sentenceLength = sentence.trim().split(/\s+/).length;
+            const color = getDiscreteColor(sentenceLength);
+
+            // Wrap the sentence with a span of the correct color, preserving the punctuation and line breaks
+            coloredHTML += `<span style="color: ${color};">${sentence.trim()}</span>`;
+            
+            // If the sentence ends with a newline, preserve it
+            if (sentence.endsWith("\n")) {
+                coloredHTML += "<br>";
+            } else if (sentence.endsWith(". ") || sentence.endsWith("! ") || sentence.endsWith("? ")) {
+                coloredHTML += " ";  // Preserve the space after a sentence unless it's a newline
+            } else {
+                coloredHTML += ""; // Add no space after the sentence
+            }
+        });
+    }
+
+    // Set the inner HTML of the content-editable div to the colored text
+    textInput.innerHTML = coloredHTML;
+
+    restoreCaretPosition(textInput, caretPosition); // Restore the caret position
+}
+
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const textInput = document.getElementById("textInput");
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+
+            // Create a new line break element and insert it
+            const br = document.createElement('br');
+            range.deleteContents();
+            range.insertNode(br);
+
+            // Move the cursor after the new line break
+            const newRange = document.createRange();
+            newRange.setStartAfter(br);
+            newRange.setEndAfter(br);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        }
+    }
+
+    // Handle pasted content and preserve newlines as <br> or paragraphs
+    function handlePaste(event) {
+        event.preventDefault();
+
+        const text = (event.clipboardData || window.clipboardData).getData('text'); // Get pasted text
+        const textWithBreaks = text.replace(/\n/g, '<br>'); // Replace newlines with <br> tags
+
+        // Insert the modified text with breaks into the div
+        document.execCommand('insertHTML', false, textWithBreaks);
+    }
+
+    // Function to return discrete pastel colors based on sentence length with increments of 7
+    function getDiscreteColor(sentenceLength) {
+        const colors = [
+            '#fdfd96', // Pastel Yellow (0-7 words)
+            '#77dd77', // Pastel Green (8-14 words)
+            '#aeeeee', // Pastel Turquoise (15-21 words)
+            '#6fb7ff', // Brighter Blue (22-28 words)
+            '#c3b1e1', // Pastel Purple (29-35 words)
+            '#d8a9d8', // Pastel Reddish Purple (36-42 words)
+            '#ff6961'  // Pastel Red (43+ words)
+        ];
+
+        // Determine the index based on the sentence length in increments of 7
+        const index = Math.min(Math.floor(sentenceLength / 7), colors.length - 1);
+
+        return colors[index];
+    }
+
+    // Save the current caret position
+    function saveCaretPosition(el) {
+        let range = window.getSelection().getRangeAt(0);
+        let preCaretRange = range.cloneRange();
+        preCaretRange.selectNodeContents(el);
+        preCaretRange.setEnd(range.endContainer, range.endOffset);
+        return preCaretRange.toString().length;
+    }
+
+    // Restore the caret position after updating content
+    function restoreCaretPosition(el, position) {
+        let charIndex = 0;
+        let range = document.createRange();
+        range.setStart(el, 0);
+        range.setEnd(el, 0);
+        let nodeStack = [el], node, foundStart = false, stop = false;
+
+        while (!stop && (node = nodeStack.pop())) {
+            if (node.nodeType == 3) {
+                let nextCharIndex = charIndex + node.length;
+                if (!foundStart && position >= charIndex && position <= nextCharIndex) {
+                    range.setStart(node, position - charIndex);
+                    range.setEnd(node, position - charIndex);
+                    foundStart = true;
+                    stop = true;
+                }
+                charIndex = nextCharIndex;
+            } else {
+                let i = node.childNodes.length;
+                while (i--) {
+                    nodeStack.push(node.childNodes[i]);
+                }
+            }
+        }
+
+        let sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+</script>
+
+</body>
+</html>
