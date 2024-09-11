@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+/* p {
+  text-align: justify;
+} */
+
 #animation-frame {
   max-width: 120%;
   transform: translateX(-10%); /* Center and offset by 100px to the left */
@@ -279,7 +283,46 @@ aside {
   text-decoration: none;
 }
 
+.outline {
+  padding-left: 20px;
+}
 
+.outline body {
+  text-align: left;
+  margin-left: 20px;
+  flex-direction: column; /* Stack items vertically for mobile */
+  align-items: flex-start; /* Align to the start instead of center */
+}
+.outline section {
+  text-align: left;
+  margin-left: -20px;
+}
+
+details {
+  text-align: left;
+    position: relative;
+    margin-left: 20px;
+}
+
+summary {
+  text-align: left;
+    cursor: pointer;
+    position: relative;
+    list-style: none;
+    margin-left: -20px;
+}
+
+/* Vertical line directly below the arrow when open */
+details[open] > details::after {
+content: '';
+position: absolute;
+left: -35px; /* Aligns the line directly under the arrow */
+top: 0px; /* Starts the line just below the text */
+width: 3px;
+height: 100%; /* Allow height to be adjusted dynamically */
+border-left: 3px solid rgba(0, 0, 0, 0.10);
+bottom: 0; /* Extend line to bottom */
+}
 
 
 
