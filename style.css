@@ -195,7 +195,7 @@ strong {
   font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
 }
 
-h1, h2, h3 {
+h1, h3 {
   font-family: 'MoreSugar', fallback, sans-serif;
   font-weight: bold;
   text-align: center;
@@ -209,15 +209,26 @@ h1 {
 }
 h2 {
   font-size: 125%;
-
+  font-weight: normal !important;
+  font-style: normal;
+  font-family: 'MoreSugar', fallback, sans-serif;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1px;
 }
 
 h3 {
   font-size: 120%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -10px;
 }
 
 a {
 color: white;
+text-decoration: none;
 }
 
 a:hover {
