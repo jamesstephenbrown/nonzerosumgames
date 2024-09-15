@@ -44,10 +44,8 @@
 <body>
     <!-- Menu and Header -->
     <div id="menu"></div>
-    <header>
         <h1>COACH KROHN ON LEADERSHIP</h1><aside>E</aside>
         <h2>lessons from a life lived leading and developing leaders</h2>
-    </header>
 
     <!-- Content Sections -->
     <section id="introducing-stuart">
@@ -145,11 +143,30 @@
         <p>That brings me to what makes Stuart such a special leader. By creating the conditions for leadership, by throwing people in the deep end, but with relentless encouragement and trust, Coach Krohn makes leaders of people who had never seen that capacity in themselves—<strong>even me!</strong></p>
     </section>
     <footer>
+        <div id="social-icons"></div>
     <h3>RELATED MATERIAL</h3>
     <ul><li>The 8 part series has been on Fox Sports in the US for the last few years, and the first feature film <a href="https://www.amazon.com/Red-White-Black-Blue-Odyssey/dp/B0747B7GDB/ref=sr_1_1?crid=15TLEEE1TI720&dib=eyJ2IjoiMSJ9.PzXdMicr0OWjuHKYZZ2WxnYIOjOioTI8JRaGG5Zzu1XLBeOyyW4Aejn6yJZ_yia13xAwe4Lmzh1lu3hn8aaxvcp1vc-XvuveAiMBpBNZ2pRlf2xBXQiZdT5qj6ZNzVfZH17wNZQAurMLH83uv5GhZ5g4xfvY4kRbImgLsmoChT8nIsI387_2f3D9tWCL8LfeJ9H5E37w7EhSSald_FUzSs59jMmVrmqVXl7Yo8xHr7U.LMbzlNXWgiqWtJvWLifMI9XltV_QxIpKJh1S6UpC1ug&dib_tag=se&keywords=Red%2C+white%2C+black+and+Blue+Odyssey&qid=1723014844&sprefix=red%2C+white%2C+black+and+blue+odyssey%2Caps%2C303&sr=8-1">Red White Black & Blue Odyssey</a> is available on Amazon Prime.</li>
         <li>To learn more, visit <a href="https://www.icefps.org">ICEF Public Schools</a> and <a href="https://www.icefps.org/apps/pages/index.jsp?uREC_ID=1302715&type=d&pREC_ID=2537231">ICEF Rugby</a>, or follow them on <a href="https://www.facebook.com/ICEFRugby/">facebook</a>.</li>
     </ul>
     </footer>
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 
     
     <!-- Comments and Subscription Section -->
@@ -175,9 +192,5 @@
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
       })();
     </script>
-    
-        <div class="subscribe">
-            <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
-        </div>
 </body>
 </html>
