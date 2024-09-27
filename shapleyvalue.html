@@ -161,6 +161,9 @@
     <h1>SHAPLEY VALUE CALCULATOR</h1>
     <aside>E</aside>
     <h2>a tool for fair allocation</h2>
+    <img src="./Images/Content/Shapley_Coalition.png" alt="Shapley value formula">
+    <p>In <a href="whatarenonzerosumgames.html">non-zero-sum games</a>, individuals can work together to achieve a result that's greater than the sum of their parts—which is great. But what happens when it comes to divvying up those gains, if some players have contributed more than others?
+    </p>
     <p>
         <img id="imageToSwap" src="./Images/Content/Shapley_Unexploded.png" alt="Graph before swap" onclick="swap(this, './Images/Content/Shapley_Unexploded.png', './Images/Content/Shapley_Exploded.png')" style="cursor:pointer;">
     </p>
@@ -186,8 +189,6 @@
             </span>
 
         </blockquote>
-        
-        <img src="./Images/Content/Shapley_CalmDown.png" alt="Let's calm down, here's a kitten">
 
         <h3>WHAT'S MARGINAL CONTRIBUTION?</h3>
         <p>A player's marginal contribution to a <span class="expandable-word" data-info="In game theory we call groups or teams 'coalitions'—these can be groups but can also be comprised of only one individual—in fact when calculating Shapley Values we even consider the value of an empty coalition (0) before a member joins.">coalition</span> is the difference between the value of the coalition with and without them. So, if a coalition is worth $70 with a given player and $30 without, that player's marginal contribution is $40</p>
@@ -286,7 +287,7 @@
 
             const playerNamesSection = document.getElementById('playerNamesSection');
             const playerNamesInputs = document.getElementById('playerNamesInputs');
-            playerNamesInputs.innerHTML = '<h2><p><img src="./Images/Content/Shapley_Coalition.png" alt="Shapley value formula"></p><b>Name your players</b></h2>';
+            playerNamesInputs.innerHTML = '<h2><br><b>Name your players</b></h2>';
 
             for (let i = 1; i <= numPlayers; i++) {
                 const label = document.createElement('label');
@@ -550,11 +551,7 @@
                 <p>Now, this is where it gets a bit tricky. Shapley Value doesn't just account for every coalition, it actually accounts for every possible order of every coalition. We then weight these contributions based on the number of possible orders in which players can join a coalition. To do this we use...</p>
                 <h3>... FACTORIALS</h3>
                 <p>
-                    Factorials are used in the weighting formula to account for all possible orders in which players can join a coalition. So, we're not just dealing with how many coalitions ${playerNames[0]} can be a part of, but also the different ways ${playerNames[0]} can join.
-                </p>
-
-                <p>
-                    Factorials use the notation n<strong>!</strong> meaning multiplying all the numbers from 1 to n.
+                    Factorials are used in the weighting formula to account for all possible orders in which players can join a coalition. Factorials use the notation n<strong>!</strong> meaning multiplying all the numbers from 1 to n.</p><p>
                     For example, 3! = 3 × 2 × 1 = 6.
                 </p>
                 <blockquote>
