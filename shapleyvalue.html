@@ -168,15 +168,26 @@
     <p>
         This is the Shapley Value—a method in <a href="gametheory.html">Game Theory</a> to fairly distribute the total gains or costs among players, based on their contributions. Previously, I've dismissed this convoluted formula as <a href="shapleyvalueisridiculous.html">ridiculous</a>. But, given it did win Lloyd Shapley a <a href="https://www.nobelprize.org/prizes/economic-sciences/2012/shapley/facts/" target="_blank">Nobel Prize</a>, I've created a Shapley Value calculator to demystify this enigmatic algorithm.</p>
         
+        <p>First let's try to understand it in plain english.</p>
+        
+        <blockquote>
+            
+            <span style="font-size: 100%;">My Shapley Value = Sum of (<span style="color: #801484;">Weight</span> x <span style="color: #005140;">Each of my marginal contributions</span>)
+            </span>
+
+            <p><i>... or in more detail...</i></p>
+            
+            <span style="font-size: 75%;">Sum of (
+                <span class="fraction" style="color: #801484;">
+                    <span class="top">Number of ways I can join a coalition</span>
+                    <span class="bottom">Total number of possible coalitions</span>
+                </span>
+                x <span style="color: #005140;">(Each coalition's value with me - without me))</span>
+            </span>
+
+        </blockquote>
+        
         <img src="./Images/Content/Shapley_CalmDown.png" alt="Let's calm down, here's a kitten">
-        
-        <p>First let's try to understand a <span class="expandable-word" data-info="Just a note, this form is not entirely accurate, but gives the basic idea—later on we'll get into the detail.">simplified</span> version, in plain english.</p>
-        
-        <blockquote>Shapley Value ≈ 
-            <span class="fraction">
-                <span class="top">Sum of Player's Marginal Contributions</span>
-                <span class="bottom">Number of Player's Contributions</span>
-            </span></blockquote>
 
         <h3>WHAT'S MARGINAL CONTRIBUTION?</h3>
         <p>A player's marginal contribution to a <span class="expandable-word" data-info="In game theory we call groups or teams 'coalitions'—these can be groups but can also be comprised of only one individual—in fact when calculating Shapley Values we even consider the value of an empty coalition (0) before a member joins.">coalition</span> is the difference between the value of the coalition with and without them. So, if a coalition is worth $70 with a given player and $30 without, that player's marginal contribution is $40</p>
@@ -248,7 +259,7 @@
             </tbody>
         </table>
     </div>
-    
+    <!--  -->
     <div id="stepsSection" class="step-details" style="display: none;">
         <h3>STEP 2: DETAILED CALCULATIONS</h3>
         <p>
@@ -604,7 +615,7 @@ table.className = 'calculation-table';
 
 const thead = document.createElement('thead');
 const headerRow = document.createElement('tr');
-['Coalition', `${firstPlayer}'s Contribution`, 'Weight', 'Weighted<br>Contribution'].forEach(text => {
+['Coalitions', `${firstPlayer}'s Marginal<br>Contributions`, 'Weights', 'Weighted<br>Contributions'].forEach(text => {
     const th = document.createElement('th');
     th.innerHTML = text;
     headerRow.appendChild(th);
@@ -671,7 +682,7 @@ stepsContent.appendChild(playerDiv);
     <img src="./Images/Content/Shapley_Kitten.png" alt="Shapley value formula">
                 <h3>SO...</h3>
                 <p>
-                    While, this exploration hasn't changed my mind that the Shapley Value is convoluted, it does ensures that each player receives a share proportional to their impact. It's a complex formula, and so the calculator at the very least makes calculation simple, and hopefully has helped you understand the Shapley Value a little better.
+                    While, this exploration hasn't changed my mind that the Shapley Value is convoluted, it does ensure that each player receives a share proportional to their impact. It's a complex formula, and so the calculator at the very least makes calculation simple, and hopefully has helped you understand the Shapley Value a little better.
                 </p>
             `;
             stepsContent.appendChild(summarySection);
@@ -684,6 +695,7 @@ stepsContent.appendChild(playerDiv);
                 <ul>
                     <li>If you'd like a deeper understanding of the Shapley Value, <a href="https://www.youtube.com/watch?v=UJeu29wq7d0" target="_blank">this video</a> presents it in an accessible way.</li>
                     <li>Learn about the applications of the Shapley Value in machine learning <a href="https://shap.readthedocs.io/en/latest/" target="_blank">here</a>.</li>
+                    <li>For a bit of fun, you can read my <a href="shaplevalueisridiculous.html">rant</a>.</li>
                     <li>Explore more topics on game theory on our <a href="gametheory.html">Game Theory page</a>.</li>
                 </ul>
             `;
