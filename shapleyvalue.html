@@ -264,7 +264,7 @@
     <div id="stepsSection" class="step-details" style="display: none;">
         <h3>STEP 2: DETAILED CALCULATIONS</h3>
         <p>
-            Let's have a look, in detail, at how the Shapley Value for each player is calculated.
+            Now we'll have a look, in detail, at how the Shapley Value for each player is calculated.
         </p>
         <div id="stepsContent">
             <!-- Simplified explanation will be injected here by JavaScript -->
@@ -541,10 +541,12 @@
             const factorialExplanation = document.createElement('div');
             factorialExplanation.innerHTML = `
 
-                <p>We first calculate ${players[0]}'s <b>marginal contribution</b>—the difference in the value of the every possible coalition with and without each player. Let's focus on ${players[0]}.</p>
-
-
+             <p>Let's focus on ${players[0]}.</p>
                 <img src="./Images/Content/Shapley_JoinCoalition.png" alt="A kitten waiting to join 3 others">
+
+                <p>We first calculate ${players[0]}'s <b>marginal contribution</b>—the difference in the value of the every possible coalition with and without each player.</p>
+
+
             
                 <blockquote>Value with ${playerNames[0]} - Value without ${playerNames[0]} = ${playerNames[0]}'s Marginal Contribution</blockquote>
 
