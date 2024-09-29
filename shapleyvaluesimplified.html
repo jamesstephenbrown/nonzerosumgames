@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shapley Value Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #inputs {
+            margin-bottom: 20px;
+        }
+        #inputs label {
+            display: inline-block;
+            width: 300px;
+            margin-right: 10px;
+        }
+        #inputs input {
+            width: 100px;
+            margin-bottom: 5px;
+        }
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        td:first-child {
+            text-align: left;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shapley Value and Alternative Method Comparison</h1>
+
+    <!-- Input for number of players -->
+    <div id="player-number-input">
+        <label for="numPlayers">Number of Players:</label>
+        <input type="number" id="numPlayers" min="1" max="10" value="3">
+        <button onclick="generateInputs()">Generate Input Fields</button>
+    </div>
+
+    <div id="inputs">
+        <!-- Coalition value inputs will be generated here -->
+    </div>
+    <button onclick="calculateAndDisplayValues()">Calculate Values</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Shapley Value</th>
+                <th>Alternative Method Value</th>
+            </tr>
+        </thead>
+        <tbody id="results-table">
+            <!-- Results will be displayed here -->
+        </tbody>
+    </table>
+
+    <script>
+        let players = [];
+        let sanitizedPlayers = [];
+        let coalitions = [];
+
+        // Function to sanitize strings for use in HTML IDs
+        function sanitizeForId(str) {
+            return str.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
+        }
+
+        // Function to generate all coalitions (excluding the empty set) and sort them
+        function generateAllCoalitions(players) {
+            const coalitions = [];
+            const n = players.length;
+            const totalCombinations = Math.pow(2, n);
+
+            for (let i = 1; i < totalCombinations; i++) {
+                const coalition = [];
+                for (let j = 0; j < n; j++) {
+                    if (i & (1 << j)) {
+                        coalition.push(players[j]);
+                    }
+                }
+                coalitions.push(coalition);
+            }
+            // Sort coalitions by size, then alphabetically
+            coalitions.sort((a, b) => a.length - b.length || a.join().localeCompare(b.join()));
+            return coalitions;
+        }
+
+        // Function to create input fields for coalition values
+        function createCoalitionInputs() {
+            const inputsDiv = document.getElementById('inputs');
+            inputsDiv.innerHTML = ''; // Clear previous inputs
+
+            coalitions.forEach(coalition => {
+                const key = getCoalitionKey(coalition);
+                const label = document.createElement('label');
+                label.textContent = `Value of coalition {${coalition.slice().sort().join(', ')}}: `;
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `coalition-value-${key}`;
+                input.value = 0;
+                inputsDiv.appendChild(label);
+                inputsDiv.appendChild(input);
+                inputsDiv.appendChild(document.createElement('br'));
+            });
+        }
+
+        // Function to create the results table
+        function createResultsTable() {
+            const resultsTable = document.getElementById('results-table');
+            resultsTable.innerHTML = ''; // Clear previous results
+
+            players.forEach((player, index) => {
+                const sanitizedPlayer = sanitizedPlayers[index];
+                const row = document.createElement('tr');
+
+                const nameCell = document.createElement('td');
+                nameCell.textContent = player;
+
+                const shapleyCell = document.createElement('td');
+                shapleyCell.id = `shapley-value-${sanitizedPlayer}`;
+
+                const alternativeCell = document.createElement('td');
+                alternativeCell.id = `alternative-value-${sanitizedPlayer}`;
+
+                row.appendChild(nameCell);
+                row.appendChild(shapleyCell);
+                row.appendChild(alternativeCell);
+                resultsTable.appendChild(row);
+            });
+        }
+
+        // Function to get a safe key for coalition IDs
+        function getCoalitionKey(coalition) {
+            return coalition.slice().sort().map(player => sanitizeForId(player)).join('_');
+        }
+
+        // Function to get the value of a coalition
+        function getCoalitionValue(coalition) {
+            const key = getCoalitionKey(coalition);
+            const valueInput = document.getElementById(`coalition-value-${key}`);
+            if (!valueInput) {
+                console.warn(`No input found for key: coalition-value-${key}`);
+                return 0;
+            }
+            return parseFloat(valueInput.value) || 0;
+        }
+
+        // Function to calculate both Shapley Values and your method's values
+        function calculateValues(players, coalitions) {
+            const shapleyValues = {};
+            const alternativeValues = {};
+            const n = players.length;
+
+            // Initialize values
+            players.forEach(player => {
+                shapleyValues[player] = 0;
+                alternativeValues[player] = 0;
+            });
+
+            // Calculate factorial of n
+            const nFactorial = factorial(n);
+
+            // Generate all permutations of players
+            const permutations = permute(players);
+
+            // Calculate Shapley Values
+            players.forEach(player => {
+                let totalMarginalContribution = 0;
+
+                permutations.forEach(permutation => {
+                    const precedingPlayers = [];
+                    let coalitionValueWithPlayer = 0;
+                    let coalitionValueWithoutPlayer = 0;
+
+                    for (let i = 0; i < permutation.length; i++) {
+                        const currentPlayer = permutation[i];
+                        if (currentPlayer === player) {
+                            // Coalition before player joins
+                            coalitionValueWithoutPlayer = getCoalitionValue(precedingPlayers);
+                            // Coalition after player joins
+                            const coalitionWithPlayer = precedingPlayers.concat(player);
+                            coalitionValueWithPlayer = getCoalitionValue(coalitionWithPlayer);
+                            break;
+                        }
+                        precedingPlayers.push(currentPlayer);
+                    }
+
+                    const marginalContribution = coalitionValueWithPlayer - coalitionValueWithoutPlayer;
+                    totalMarginalContribution += marginalContribution;
+                });
+
+                shapleyValues[player] = totalMarginalContribution / nFactorial;
+            });
+
+            // Calculate Alternative Method Values
+            let totalMarginalContributions = 0;
+            const playerMarginalContributions = {};
+
+            players.forEach(player => {
+                let marginalContributionsSum = 0;
+                coalitions.forEach(coalition => {
+                    if (coalition.includes(player)) {
+                        // Coalition value with the player
+                        const coalitionValue = getCoalitionValue(coalition);
+
+                        // Coalition value without the player
+                        const coalitionWithoutPlayer = coalition.filter(p => p !== player);
+                        const coalitionWithoutPlayerValue = getCoalitionValue(coalitionWithoutPlayer);
+
+                        // Marginal contribution of the player
+                        const marginalContribution = coalitionValue - coalitionWithoutPlayerValue;
+                        marginalContributionsSum += marginalContribution;
+                    }
+                });
+                playerMarginalContributions[player] = marginalContributionsSum;
+                totalMarginalContributions += marginalContributionsSum;
+            });
+
+            // Get the grand coalition value
+            const grandCoalitionValue = getCoalitionValue(players);
+
+            // Calculate scaling factor
+            const scalingFactor = totalMarginalContributions !== 0 ? grandCoalitionValue / totalMarginalContributions : 0;
+
+            // Assign scaled values to players
+            players.forEach(player => {
+                alternativeValues[player] = playerMarginalContributions[player] * scalingFactor;
+            });
+
+            return {
+                shapleyValues: shapleyValues,
+                alternativeValues: alternativeValues
+            };
+        }
+
+        // Function to display the calculated values
+        function displayValues(results) {
+            const { shapleyValues, alternativeValues } = results;
+            players.forEach((player, index) => {
+                const sanitizedPlayer = sanitizedPlayers[index];
+                // Display Shapley Value
+                const shapleyValueElement = document.getElementById(`shapley-value-${sanitizedPlayer}`);
+                if (shapleyValueElement) {
+                    shapleyValueElement.textContent = shapleyValues[player].toFixed(2);
+                }
+
+                // Display Alternative Method Value
+                const alternativeValueElement = document.getElementById(`alternative-value-${sanitizedPlayer}`);
+                if (alternativeValueElement) {
+                    alternativeValueElement.textContent = alternativeValues[player].toFixed(2);
+                }
+            });
+        }
+
+        // Function to calculate and display values when the button is clicked
+        function calculateAndDisplayValues() {
+            if (players.length === 0 || coalitions.length === 0) {
+                alert("Please generate inputs first by specifying the number of players.");
+                return;
+            }
+            const results = calculateValues(players, coalitions);
+            displayValues(results);
+        }
+
+        // Helper function to compute factorial
+        function factorial(num) {
+            if (num <= 1) return 1;
+            return num * factorial(num - 1);
+        }
+
+        // Helper function to generate all permutations of players
+        function permute(arr) {
+            const result = [];
+
+            if (arr.length === 0) return [[]];
+            if (arr.length === 1) return [arr];
+
+            for (let i = 0; i < arr.length; i++) {
+                const current = arr[i];
+                const remaining = arr.slice(0, i).concat(arr.slice(i + 1));
+                const remainingPermuted = permute(remaining);
+                for (let j = 0; j < remainingPermuted.length; j++) {
+                    result.push([current].concat(remainingPermuted[j]));
+                }
+            }
+            return result;
+        }
+
+        // Function to generate inputs based on the number of players
+        function generateInputs() {
+            const numPlayers = parseInt(document.getElementById('numPlayers').value);
+            if (isNaN(numPlayers) || numPlayers < 1 || numPlayers > 10) {
+                alert("Please enter a valid number of players between 1 and 10.");
+                return;
+            }
+
+            // Define the players
+            players = [];
+            for (let i = 1; i <= numPlayers; i++) {
+                players.push('Player ' + i);
+            }
+
+            // Sanitize player names for use in IDs
+            sanitizedPlayers = players.map(player => sanitizeForId(player));
+
+            // Generate all possible coalitions and sort them
+            coalitions = generateAllCoalitions(players);
+
+            // Create coalition value inputs
+            createCoalitionInputs();
+
+            // Create results table
+            createResultsTable();
+        }
+    </script>
+</body>
+</html>
