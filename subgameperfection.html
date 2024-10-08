@@ -43,81 +43,101 @@
     <!-- Content -->
     <h1 style="margin-bottom: 0;">SUBGAME PURRRFECTION</h1>
     <aside>E</aside>
-    <h2>guest writer <b>Jaiveer Singh</b> explores subgame perfect Nash equilibrium</h2>
-
-    <p><img src="./Images/Content/Subgame_Prisoner1.png" alt="A game tree representing the Ultimatum Game"></p>
+    <h2>guest writer <b>Jaiveer Singh</b> explores subgame-perfect Nash equilibrium</h2>
+    <img src="./Images/Content/Subgame_CatBrain.png" alt="A cat's thinking process">
     
-<h3>NORMAL FORM GAMES</h3>
+    <h3>NORMAL-FORM GAMES</h3>
 
-    <p>Whenever you see the phrase "game theory”, the infamous prisoner’s dilemma example probably pops up in your mind; two prisoners under interrogation, can either cooperate or defect to get an associated payoff.</p>
-    <p><img src="./Images/Content/Subgame_Prisoner2Small.png" alt="A game tree representing the Ultimatum Game"></p>
+    <p>Whenever you see the phrase "game theory", the infamous prisoner’s dilemma example probably pops up in your mind; two prisoners, under interrogation, can either cooperate or defect to get an associated payoff.</p>
+
+    <img src="./Images/Content/Subgame_PrisonersDilemma.png" alt="A prisoners back to back in the prisoner's dilemma">
     
-    <p>This, and most games that we study when first introduced to <a href="">game theory</a>, is an example of a normal-form game—where <a href="https://doi.org/10.1016/b978-0-444-53766-9.00012-4" target="_blank">players must act simultaneously</a> in order to analyze their payoffs. In the prisoner's dilemma, if one player acted after the other, with knowledge of the first players’ actions, the second player would have a clear advantage. This change affects the <a href="nashequilibrium.html">Nash Equilibrium</a>…</p>
+    <p>As with most games that we study when first introduced to <a href="gametheory.html">game theory</a>, the prisoner's dilemma is an example of a normal-form game—where players must act simultaneously in order to analyze their payoffs<a href="#references" style="text-decoration: none;"><sup>1</sup></a>. In the prisoner's dilemma, if one player acted after the other, with knowledge of the first players’ actions, the second player would have a clear advantage. This change affects the <a href="nashequilibrium.html">Nash Equilibrium</a>…</p>
     
     <blockquote>
         A <b>Nash Equilibrium</b> is a situation where no player can improve their payoff by unilaterally changing their strategy.
     </blockquote>
 
-    <h3>EXTENSIVE FORM GAMES</h3>
+    <h3>EXTENSIVE-FORM GAMES</h3>
     <p>Extensive-form games, on the other hand, explore situations where there is a passage of time between decisions—decisions aren’t made simultaneously.</p>
     
     <p><img src="./Images/Content/Subgame_Clock.png" alt="A game tree representing the Ultimatum Game"></p>
 
-    <p>In <a href="https://econ4everyone.uchicago.edu/game-theory-key-terms/" target="_blank">perfect-information extensive form games</a> (which are what this piece analyzes), players have perfect knowledge of all past actions, both by themselves and their opponents, while making a decision. Take chess—a player knows all of their opponent’s past moves and makes their decision accordingly. Another example of an extensive-form game is ultimatum bargaining, which I’ll use later to explain the concept of subgame perfection. But first we need to understand…</p>
+    <p>In <i>perfect-information</i> extensive-form games (which are what this piece analyzes), players have perfect knowledge of all past actions, both by themselves and their opponents, while making a decision<a href="#references" style="text-decoration: none;"><sup>2</sup></a>. Take chess—a player knows all of their opponent’s past moves and makes their decision accordingly. Another example of an extensive-form game is ultimatum bargaining, which I’ll use later to explain the concept of subgame perfection. But first we need to understand…</p>
 
     <p><img src="./Images/Content/MoralLicensing_String.png" alt="A game tree representing the Ultimatum Game"></p>
 
     <h3>GAME TREES</h3>
-    <p>In order to clearly represent the sequence of decisions by participating players, their options, the associated payoffs, as well as the information available, we use <a href="https://ocw.mit.edu/courses/14-12-economic-applications-of-game-theory-fall-2012/b90ef0b930888cc7a1828d5eaf91f5c9_MIT14_12F12_chapter3.pdf" target="_blank">game trees</a>. Nodes make up these trees, with each node representing a point where a decision has to be made. Each node further branches out, showing the outcomes associated with decisions made, as shown below:</p>
+    <p>In order to clearly represent the sequence of decisions by participating players, their options, the associated payoffs, as well as the information available, we use game trees<a href="#references" style="text-decoration: none;"><sup>3</sup></a>. Nodes make up these trees, with each node representing a point where a decision has to be made. Each node further branches out, showing the outcomes associated with decisions made, as shown below:</p>
 
     <p><img src="./Images/Content/Subgame_Trees.png" alt="A game tree representing the Ultimatum Game"></p>
 
     <h3>SUBGAME PERFECTION</h3>
     <p>Having understood extensive-form games and their representation through game trees, we can now proceed to subgame perfect Nash Equilibriums.</p>
 
-    <p>A subgame-perfect Nash Equilibrium <a href="https://www.sciencedirect.com/topics/engineering/subgame-perfect-equilibrium" target="_blank">occurs in an extensive-form game when each individual node or subgame represents a Nash Equilibrium</a>. In other words, each player’s decision at an individual node can be thought of as a subgame and their best response considered a Nash Equilibrium of that subgame. When this holds true for all subgames and the overall outcome, the Nash Equilibrium is said to be subgame-perfect.</p>
+    <p>A <i>subgame-perfect Nash Equilibrium</i> occurs in an extensive-form game when each individual node or subgame represents a Nash Equilibrium<a href="#references" style="text-decoration: none;"><sup>4</sup></a>. In other words, each player’s decision at an individual node can be thought of as a subgame and their best response considered a Nash Equilibrium of that subgame. When this holds true for all subgames and the overall outcome, the Nash Equilibrium is said to be subgame-perfect.</p>
     <p><img src="./Images/Content/Relative_CatsCash.png" alt="A game tree representing the Ultimatum Game"></p>
 
     <h3>ULTIMATUM GAME</h3>
     <p>Imagine you are given $10. To keep the money, you have to give a portion of this $10 away to another player. Sounds simple enough. Give the other player as little as possible. The catch is, if the other player rejects your offer, you both get nothing. This is the Ultimatum game, a form of take-it-or-leave-it bargaining.</p>
 
-    <p><img src="./Images/Content/Subgame_UltimatumTree.png" alt="A game tree representing the Ultimatum Game"></p>
+    <a href="#references"><img src="./Images/Content/Subgame_UltimatumTree.png" alt="A game tree representing the Ultimatum Game"></a>
 
-    <p>In the image, the first node shows the 11 options available to player 1 and the subsequent 2 branches at each of the 11 second row nodes show player 2’s available decisions with the associated payoffs. What would you do as player 1?</p>
+    <p>In the image, the first node shows the eleven options available to player 1 and the subsequent 2 branches at each of the eleven second row nodes show player 2’s available decisions with the associated payoffs (player 2 payoff, player 1 payoff). What would you do as player 1?</p>
 
-    <p>Assuming player 2 is perfectly rational, the right offer to make is never more than $1. Why? Looking at each of player 2’s payoffs ignoring the total sum of money and fairness, it is always a best response to accept any offer more than zero. Is this a subgame-perfect Nash Equilibrium? You get $9! Player 2 gets only $1. The answer is yes, it is subgame perfect, because player 2 is playing a rational best response in his individual subgame, with only 2 possible outcomes: 0 and 1.</p>
+    <p>Assuming player 2 is perfectly rational and aiming to maximise their own payoff, the right offer to make is never more than $1.</p>
+    
+    <a href="#references"><img src="./Images/Content/Subgame_UltimatumTreeNotes.png" alt="A game tree representing the Ultimatum Game with sub-game perfect choices"></a>
+    
+    <p>Why? Looking at each of player 2’s payoffs, ignoring the total sum of money and fairness, it is <b>always</b> a best response to accept any offer more than zero. Is this a subgame-perfect Nash Equilibrium? You get $9! Player 2 gets only $1. The answer is yes, it is subgame perfect, because player 2 is playing a rational best response in his individual subgame, with only 2 possible outcomes: 0 and 1.</p>
+
+    <p><img src="./Images/Content/MoralLicensing_CatHiss.png" alt="A cat hissing"></p>
 
     <h3>BEHAVIORAL IDEAS</h3>
-    <p>Does this really happen? Let’s change the scenario. Put yourself in player 2’s shoes - would you accept $1, setting aside all theoretical notions? Turns out most people aren't rational, and normative ideas of fairness and social preferences permeate through real people’s decisions. According to a study by Haselhuhn & Mellers in 2005 conducted on UC Berkeley undergraduate business students, around 75-80 percent of participants rejected an offer of $1. Almost no one rejected an offer of $5, but some even rejected an offer of the full $10! Social norms here lead to irrationality.</p>
+    <p>Does this really happen? Let’s change the scenario. Put yourself in player 2’s shoes—would you accept 1 dollar, when the other gets $9, even though a dollar is better than none? According to <a href="https://doi.org/10.1016/j.cogbrainres.2005.01.005" target="_blank">a study</a> by Haselhuhn & Mellers in 2005 conducted on UC Berkeley undergraduate business students, around 75-80 percent of participants rejected an offer of $1. Almost no one rejected an offer of $5, but some even rejected an offer of the full $10!</p>
 
-    <p><img src="./Images/Content/Subgame_CatsCashWad.png" alt="A game tree representing the Ultimatum Game"></p>
+    <p><img src="./Images/Content/Subgame_CatsCashWad.png" alt="A cat surprised that their opponent is rejecting an offer of $10"></p>
+
+    <p>Turns out most people <i>aren't</i> the perfectly rational, self-interested “homo economicus” that game theorists and economists might assume. Normative ideas of fairness and social preferences permeate through real people’s decisions, especially in repeated games. If the situation above is iterated, then the strategy profiles would change, even for perfectly rational individuals. If player 2 repeatedly rejects unfair offers, player one may alter their strategy to avoid future “punishment”. Player 1, now analyzing their average payoff over a number of games, may be willing to offer a higher amount.</p>
+
+    <p><img src="./Images/Content/MoralLicensing_CatAffection.png" alt="A cat caressing a leg"></p>
+    
+    <h3>SO...</h3>
+    <p>
+        In the Ultimatum Game, sub-game perfection holds that Player 1 offers the smallest amount, and Player 2 accepts to avoid getting nothing. However, in iterated versions, considering the opponent's interests becomes a rational part of a player's self-interest, much like in real life.
+    </p>
+
+
+    <p><img src="./Images/Content/MoralLicensing_Pat.png" alt="A cat being petted"></p>
 
     <!-- References Section -->
      <footer>
+        <div id="social-icons"></div>
         <h3>RELATED MATERIAL</h3>
         <ul>
             <li>It's interesting to note that, in order to apply "rational" behaviour to the Ultimatum Game, a player needs to view winnings in <i>absolute</i> terms rather than relative (they're trying to maximise their payoff, not "win" relative to the other player). You can read about this more in <a href="absolutevsrelative.html">Relative Gains—how not to measure success</a></li>
             <li>To explore more about how notions of fairness and cooperation arise, read Andrew Tane Glen's <a href="whycooperate1.html">Why Cooperate</a> which introduces the idea of the 'super-defector'.</li>
             <li>You can also explore <a href="nashequilibrium.html">Nash Equilibrium</a>.</li>
+            <li><a href="https://www.youtube.com/watch?v=J-Zq80muaXk" target="_blank">Game Theory Online – GTO-4-03: Perfect Information Extensive Form</a> informed the explanation of Nash Equilibrium in the context of perfect information games.</li>
         </ul>
 
-        <h3>REFERENCES</h3>
-    <ul>
-        <li>Jaiveer used <a href="https://ocw.mit.edu/courses/14-12-economic-applications-of-game-theory-fall-2012/b90ef0b930888cc7a1828d5eaf91f5c9_MIT14_12F12_chapter3.pdf" target="_blank">Chapter 3 Representation of Games</a> to explain how game trees are used to represent the decisions in extensive-form games.</li>
-    
+        <h3 id="references">REFERENCES</h3>
+    <ol>
         <li><a href="https://doi.org/10.1016/b978-0-444-53766-9.00012-4" target="_blank">Dekel, E., & Siniscalchi, M. (2015). Epistemic Game Theory</a> was used to provide a foundation on the simultaneous action and payoff structure of normal-form games.</li>
-    
-        <li><a href="https://www.youtube.com/watch?v=J-Zq80muaXk" target="_blank">Game Theory Online – GTO-4-03: Perfect Information Extensive Form</a> was used as a reference to explain Nash Equilibrium in the context of perfect information games.</li>
     
         <li>The definition of extensive-form games comes from <a href="https://econ4everyone.uchicago.edu/game-theory-key-terms/" target="_blank">Game Theory: Key Terms – Economics for Everyone</a>, which outlines how players have perfect knowledge of past actions in these games.</li>
     
-        <li>Behavioral studies, such as <a href="https://doi.org/10.1016/j.cogbrainres.2005.01.005" target="_blank">Haselhuhn, M. P., & Mellers, B. A. (2005). Emotions and Cooperation in Economic Games</a>, were used to illustrate how real-world decision-making often deviates from theoretical predictions.</li>
-    
-        <li>The concept of fairness in the Ultimatum Game was explained using insights from <a href="https://doi.org/10.1038/s41598-017-05122-5" target="_blank">Schuster, S. (2017). A New Solution Concept for the Ultimatum Game Leading to the Golden Ratio</a>.</li>
+        <li><a href="https://ocw.mit.edu/courses/14-12-economic-applications-of-game-theory-fall-2012/b90ef0b930888cc7a1828d5eaf91f5c9_MIT14_12F12_chapter3.pdf" target="_blank">Chapter 3 Representation of Games</a> was used to explain how game trees are used to represent the decisions in extensive-form games, this informed tree diagram illustration.</li>
     
         <li>The formal definition of subgame perfection can be found in <a href="https://www.sciencedirect.com/topics/engineering/subgame-perfect-equilibrium" target="_blank">Subgame Perfect Equilibrium – an Overview</a>.</li>
-    </ul>
-    </footer
+    
+        <li>The Ultimatum Game tree diagram was adapted from <a href="https://doi.org/10.1038/s41598-017-05122-5" target="_blank">Schuster, S. (2017). A New Solution Concept for the Ultimatum Game Leading to the Golden Ratio</a>.</li>
+
+        <li>Behavioral studies, such as <a href="https://doi.org/10.1016/j.cogbrainres.2005.01.005" target="_blank">Haselhuhn, M. P., & Mellers, B. A. (2005). Emotions and Cooperation in Economic Games</a>, were used to illustrate how real-world decision-making often deviates from theoretical predictions.</li>
+    
+    
+    </ol>
+</footer>
 
     <div id="graphcomment"></div>
     <script type="text/javascript">
