@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CONTAGIOUS BELIEFS: simulating the spread of ideas</title>
+        <meta name="description" content="Exploring how beliefs spread and the emergence of unexpected correlations in political clusters.">
+        <meta name="keywords" content="Political alignment, belief spread, simulation, cognitive coherence, valence matrix">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="NonZeroSumJames">
+        <!-- Social Media Meta Tags -->
+        <meta property="og:image" content="https://nonzerosum.games/Images/Social/beliefs.png">
+        <meta property="og:title" content="CONTAGIOUS BELIEFS: Simulating Political Alignment">
+        <meta property="og:description" content="Understanding how beliefs align and spread using a valence matrix in a belief simulation.">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@NonZeroSumJames">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        @import url('style.css');
+        /* Import your style.css for global styles */
+
+        @font-face {
+            font-family: 'MoreSugar';
+            src: url('https://nonzerosum.games/MoreSugar-Thin.otf') format('opentype'),
+                url('MoreSugar-Thin.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            align-content: center;
+            font-family: 'MoreSugar', Arial, sans-serif;
+            /* Apply the MoreSugar font */
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+        #tooltip {
+            position: absolute;
+            background-color: rgba(50, 50, 50, 0.9);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 1000;
+            pointer-events: none; /* So it doesn't interfere with mouse events */
+            max-width: 200px;
+            word-wrap: break-word;
+        }
+        #matrix-container,
+        #grid-container,
+        #inspector-container,
+        #instructions-container {
+            margin: 10px auto;
+        }
+
+        #matrix-container table {
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        #matrix-container input[type="text"] {
+            width: 25px;
+            text-align: center;
+            background-color: inherit;
+            border: none;
+            font-family: 'MoreSugar', Arial, sans-serif;
+            font-size: 14px;
+            /* Adjusted font size */
+        }
+
+        #matrix-container input[type="color"] {
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            border: none;
+            background-color: inherit;
+        }
+
+        #matrix-container th,
+        #matrix-container td {
+            border: none;
+            position: relative;
+            background-color: inherit;
+            text-align: center;
+            padding: 2px;
+        }
+
+        #matrix-container th.side-input {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        #matrix-container th.side-input>input[type="text"] {
+            margin-right: 5px;
+            width: 120px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        #matrix-container th.side-input>input[type="color"] {
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            border: none;
+            background-color: inherit;
+            margin-right: 2px;
+        }
+
+        #matrix-container th.vertical-text {
+            font-family: 'MoreSugar', Arial, sans-serif;
+            height: 200px;
+            vertical-align: bottom;
+            position: relative;
+        }
+
+        #matrix-container th.vertical-text>div {
+            font-family: 'MoreSugar', Arial, sans-serif;
+            transform: rotate(-90deg);
+            transform-origin: bottom left;
+            position: absolute;
+            bottom: 0;
+            left: 30px;
+            /* Moved 20px to the right */
+            white-space: nowrap;
+            font-size: 14px;
+            /* Adjusted font size */
+        }
+
+        /* Removed blockquote and footer styling to allow style.css to control them */
+
+        #correlations-log-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            text-align: right;
+            /* Right-align the text */
+        }
+
+        /* Ensure the Correlations Log table inherits the body's font size */
+        #correlations-log {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            /* Center the table horizontally */
+            font-size: inherit;
+            /* Match the body's font size */
+            border-collapse: collapse;
+            /* Optional: for better aesthetics */
+        }
+
+        /* Style table headers and cells for better readability */
+        #correlations-log th,
+        #correlations-log td {
+            border: 1px solid #ccc;
+            /* Optional: adds borders to table cells */
+            padding: 8px;
+            /* Optional: adds padding for better spacing */
+            text-align: right;
+            /* Right-align text */
+        }
+
+        /* Optional: Differentiate header row */
+        #correlations-log th {
+            background-color: #f2f2f2;
+            /* Light gray background */
+            font-weight: bold;
+        }
+
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(28, 24px);
+            /* Reduced grid size */
+            grid-gap: 3px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .node {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+            margin-top: -6px;
+        }
+
+        .node.odd-row {
+            margin-left: 12px;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 11px;
+            /* Adjusted for alignment */
+            left: 11px;
+            /* Adjusted for alignment */
+        }
+
+        .ring {
+            position: absolute;
+            border: 1.5px solid transparent;
+            border-radius: 50%;
+        }
+
+        #inspector {
+            padding: 10px;
+        }
+
+        #button-container {
+            text-align: center;
+            /* Center the buttons */
+            margin: 10px auto;
+        }
+
+        #button-container button {
+            display: inline-block;
+            /* Align buttons horizontally */
+            margin: 5px;
+        }
+
+        #speed-control {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #speed-control label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+
+    <h1 style="margin-bottom: 0;">CONTAGIOUS BELIEFS</h1>
+    <aside>E</aside>
+    <h2>simulating the spread of ideas</h2>
+    <img src="./Images/Content/Substrates_Memes.png" alt="Lots of ideas being shared">
+
+    <p>Humans are social animals, and as such we are influenced by the beliefs of those around us. This simulation explores how beliefs can spread through a population, and how indirect relationships between beliefs can lead to unexpected correlations.</p>
+
+    <h3>STRANGE BED-FELLOWS</h3>
+    <p>There are some strange ideological bed-fellows that emerge in the realm of human beliefs. Social scientists grapple with the strong correlation between <a href="https://www.cambridge.org/core/journals/politics-and-religion/article/abs/clinging-to-guns-and-religion-a-research-note-testing-the-role-of-protestantism-in-shaping-gun-identity-in-the-united-states/EE95D4DA255B3D169077AF507443346D" target="_blank">Christianity and gun ownership</a> when the "Prince of Peace" lived in a world without guns. Similarly there are other correlations between <a href="https://staff.najah.edu/media/published_research/2020/06/16/2476--4563-1-10-20200529.pdf" target="_blank">atheism and globalisation</a> or pro-regulation leftists who are also pro-choice, and then we have the anti-vax movement infiltrating both the far-left and far-right of politics.</p>
+
+    <img src="./Images/Content/Globalisation_Anthills.png" alt="Two ant hill agreeing that globalisation is bad for different reasons.">
+
+    <p><i>Does this all mean that people are just confused?</i></p>
+
+    <p>The simulation explores the network effects of belief transmission and runs on the principle that humans adopt beliefs that align with their pre-existing beliefs, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0165910" target="_blank">seeking cognitive coherence over cognitive dissonance</a>.</p>
+
+    <blockquote>"A receiver of a belief either accepts the incoming belief or not based on the context of their own belief system (internal coherency)..."<br>- <b>Rodriguez et al</b></blockquote>
+
+    <p>Each belief in this simulation has a <span class="expandable-word" data-info="The connective property of a belief—how aligned it is with another">valence</span> with each other belief—with those sharing a positive valence being complementary ideas, and those with a negative valence being dissonant. The simulation doesn't specifically model bias, but apparent bias is an emergent property of the system.</p>
+
+    <img src="./Images/Content/HH_Sharing.png" alt="Hedgehog trying to convince another hedgehog of something">
+
+    <h3>INSTRUCTIONS</h3>
+    <p>The opening sample is simply my own intuitions about what direct valences beliefs have with one another on some religious and political issues. I have purposefully left anything not directly connected as zero. You can edit these valence values or categories to reflect your own intuitions, or the issues important to you.</p><p>It's a bit of a learning curve thinking about valences, as each belief here is actually a pair—the belief an its opposite, so if you have have a single issue like "taxes" this will be interpretted as "Pro-Tax"/"Anti-Tax". When relating this to another related factor "Right Wing/"Left Wing" you are looking for <b>one</b> value to describe how aligned are "Pro-Tax" and "Right-Wing" and also how aligned are "Anti-Tax" and "Left Wing". So in this case, you might say -75.</p>
+
+    <footer id="matrix-container">
+        <h3 id="matrix-title">VALENCE MATRIX</h3>
+        <div id="belief-count-container" style="text-align: center; margin: 10px;"></div>
+        <label for="belief-count">Number of Beliefs (2-16):</label>
+        <input type="number" id="belief-count" name="belief-count" min="2" max="16" value="16" style="width: 50px;">
+        <button id="set-belief-count-button">Reset</button>
+        </div>
+        <table id="matrix-table">
+            <!-- Table content will be generated dynamically -->
+        </table>
+        <br>
+        <div id="button-container">
+            <button id="execute-button">RUN</button>
+            <button id="dither-button">DITHER</button>
+            <button id="randomize-button">RANDOMISE</button>
+            <!-- <button id="reset-button">Reset</button> -->
+            <button id="sample-button">SAMPLE</button> <!-- New Sample Button -->
+        </div>
+
+    </footer>
+
+    <p>You can also cycle through other samples to see how the matrix can be used for different topics, or do other stuff to the valences.</p>
+
+    <p>The node map below depicts nodes transmitting ideas (coloured rings). If an incoming idea increases the total valence value of the node it is adopted, if not then the most coherent set of beliefs is adopted, which might involve rejecting the incoming belief or ejecting a pre-existing belief.</p>
+    <img src="https://nonzerosum.games/Images/Content/HH_ThinkingTogether.png" alt="Hedgehog spreading an idea to another hedgehog">
+    
+    <p>The dot itself is coloured corresponding to its most aligned (strongest) belief.</p>
+
+    <footer id="grid-container">
+        <h2>Simulation Grid</h2>
+        <div id="grid"></div>
+    </footer>
+
+    <div id="speed-control">
+        <label for="speed-slider">Simulation Speed:</label>
+        <input type="range" id="speed-slider" min="0" max="100" value="50">
+    </div>
+
+
+    <h3>FINDING (CIRCUITOUSLY CAUSED) CORRELATIONS</h3>
+    <p>You can explore the correlations between beliefs, revealing how many familiar correlations arise even without a specific valence being ascribed.</p>
+    <p>Depending on how many beliefs or factors you're using this will make for a fairly long list, at the bottom of which will be the comments section, where I hope you'll post notes on your own explorations. <b>SO...</b> I intend to refine the model and write a much more detailed analysis of the mechanisms involved, and informed by your feedback, so please drop a comment with anything interesting you discovered.</p>
+
+    <div id="button-container">
+        <button id="correlations-button">Show Correlations</button> <!-- New Button -->
+    </div>
+
+    <div id="correlations-log-container">
+        <h2>Correlations Log</h2>
+        <table id="correlations-log">
+            <thead>
+                <tr>
+                    <th>Factor A</th>
+                    <th>Factor B</th>
+                    <th>Valence</th>
+                    <th>Correlation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Correlation rows will be generated dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Simulation Parameters
+        const GRID_SIZE = 28; // Adjusted grid size
+        //   const MAX_BELIEFS = 16;
+
+
+        let csvData = '';
+
+        // Entries for the valence matrix
+        const politicsData = `
+            POLITICAL-RELIGIOUS POSITIONS
+            ,Punisher/Rehabilitator,Pro-Life/Pro-Choice,Free Market/Price Controls,Agnostic/Dogmatist,Islam,Evidence/Faith,Capitalist/Socialist,Guns,Christian,Regulations,Taxes,Theist/Atheist,Liberal/Conservative,Environmentalist/Polluter,Right wing/Left wing,Globalist/Localist
+            Globalist/Localist,0,0,33,25,0,25,0,0,0,0,0,0,50,33,0
+            Right wing/Left wing,0,0,100,0,0,0,100,0,0,-100,-100,0,-100,0
+            Environmentalist/Polluter,0,0,0,0,0,50,0,0,0,100,0,0,0
+            Liberal/Conservative,-100,0,0,-100,-100,0,0,0,-100,0,-100
+            Theist/Atheist,0,100,0,0,100,-100,0,0,100,0,0
+            Taxes,0,0,-100,0,0,10,-100,0,25,0
+            Regulations,0,50,-100,0,0,0,0,0,0
+            Christian,55,100,0,-75,-95,-75,0,0
+            Guns,25,0,25,0,0,-33,0
+            Capitalist/Socialist,0,0,100,0,0,0
+            Evidence/Faith,-50,-75,0,100,-75
+            Islam,60,100,0,-75
+            Agnostic/Dogmatist,-25,-100,0
+            Free Market/Price Controls,0,0
+            Pro-Life/Pro-Choice,0
+            Punisher/Rehabilitator
+            `;
+
+            const coloursData = `
+            COLOURS
+            ,Purple/Grass,Violet/Canary Yellow,Ultramarine/Yellow,Blue/Orange,Sky Blue/Blood Orange,Cyan/Red,Turquoise/Crimson,Green/Pink
+            Purple/Grass,-75,-50,-25,0,25,50,75
+            Violet/Canary Yellow,-50,-25,0,25,50,75
+            Ultramarine/Yellow,-25,0,25,50,75
+            Blue/Orange,0,25,50,75
+            Sky Blue/Blood Orange,25,50,75
+            Cyan/Red,50,75
+            Turquoise/Crimson,75
+            Green/Pink
+            `;
+        const antiVaxData = `
+            FRINGE IDEAS
+            ,Evidence/Gut,Vax/Anti-Vax,Flat Earth,Intelligence,Fax News / Faux News,Exciting/Boring,Riches/Poverty,Social Media/Scientific Journals
+            Evidence/Gut,-90,0,-90,80,95,-100,80
+            Vax/Anti-Vax,-75,0,-100,50,50,0
+            Flat Earth,100,-50,-100,-100,-90
+            Intelligence,-75,20,0,100
+            Fax News / Faux News,-75,-95,-75
+            Exciting/Boring,100,100
+            Riches/Poverty,50
+            Social Media/Scientific Journals
+            `;
+
+        const colourSimpleData = `
+            SIMPLE COLOURS
+            ,Purple/Grass,Violet/Canary Yellow,Ultramarine/Yellow,Blue/Orange,Sky Blue/Blood Orange,Cyan/Red,Turquoise/Crimson,Green/Pink
+            Purple/Grass,-75,-50,-25,0,25,50,75
+            Violet/Canary Yellow,-50,0,0,0,0,0
+            Ultramarine/Yellow,-25,0,0,0,0
+            Blue/Orange,0,0,0,0
+            Sky Blue/Blood Orange,25,0,0
+            Cyan/Red,50,0
+            Turquoise/Crimson,75
+            Green/Pink
+            `;
+
+        // Data Structures
+        let valenceMatrix = {};
+        let beliefs = {};
+        let nodes = [];
+        let simulationSpeed = 50; // Default speed
+        let nodeQueue = [];
+        let beliefPairs = {}; // Map of belief to its opposite
+        let valenceValues = []; // Array of belief objects with values
+        let isUpdatingCorrelations = false;
+        let correlationUpdateInterval = null;
+
+        const csvDataArray = [];
+        const csvSamplesData = [
+            coloursData,colourSimpleData,politicsData, antiVaxData
+        ];
+
+        let currentSampleIndex = -1; // Start at -1 so the first click loads the first sample
+
+        // Set initial Sample button text
+        if (csvSamplesData.length > 0) {
+            const initialSampleIndex = 0; // Start with the first sample
+            const initialCsvData = csvSamplesData[initialSampleIndex];
+            const initialParsedData = parseCSVData(initialCsvData);
+            const initialSampleTitle = initialParsedData.title;
+            document.getElementById('sample-button').textContent = 'SAMPLE: ' + initialSampleTitle;
+        }
+
+        document.getElementById('sample-button').addEventListener('click', () => {
+            loadNextSample();
+            parseMatrix();
+            initializeBeliefs();
+            createGrid();
+            printValenceMatrixAsCSV();
+            runSimulation();
+        });
+
+        document.addEventListener('touchstart', function(event) {
+            if (!event.target.classList.contains('node')) {
+                hideTooltip(event);
+            }
+        });
+
+        function loadNextSample() {
+            // Cycle through the samples
+            currentSampleIndex = (currentSampleIndex + 1) % csvSamplesData.length;
+            csvData = csvSamplesData[currentSampleIndex];
+
+            // Recreate the matrix table with the new sample
+            createMatrixTable();
+
+            // Update the matrix title to the current sample title
+            const parsedData = parseCSVData(csvData);
+            const sampleTitle = parsedData.title;
+            document.getElementById('matrix-title').textContent = sampleTitle;
+
+            // Determine the next sample's title for the button text
+            const nextSampleIndex = (currentSampleIndex + 1) % csvSamplesData.length;
+            const nextCsvData = csvSamplesData[nextSampleIndex];
+            const nextParsedData = parseCSVData(nextCsvData);
+            const nextSampleTitle = nextParsedData.title;
+
+            // Update the "Sample" button text to show the next sample's title
+            document.getElementById('sample-button').textContent = 'SAMPLE: ' + nextSampleTitle;
+        }
+
+        
+
+        function generateCSVDataArray() {
+            for (let beliefCount = 2; beliefCount <= 16; beliefCount++) {
+                const factors = [];
+                for (let i = 1; i <= beliefCount; i++) {
+                    factors.push(`Factor ${i}`);
+                }
+                const reversedFactors = factors.slice().reverse(); // Columns in reverse order
+
+                let csvLines = [];
+                // Add the title line
+                csvLines.push('VALENCE MATRIX');
+                // Header row with reversed factors
+                csvLines.push(',' + reversedFactors.join(','));
+
+                // For each factor, create a row
+                for (let row = 0; row < beliefCount; row++) {
+                    const factorRow = factors[row];
+                    const numValues = beliefCount - row - 1; // Decreasing number of values
+                    if (numValues > 0) {
+                        const values = [];
+                        for (let col = 0; col < numValues; col++) {
+                            values.push('0'); // Editable cells
+                        }
+                        csvLines.push(factorRow + ',' + values.join(','));
+                    } else {
+                        // Last row with just the factor name
+                        csvLines.push(factorRow);
+                    }
+                }
+                // Combine the lines into a CSV string
+                const csvData = csvLines.join('\n');
+                // Add the CSV string to the array
+                csvDataArray.push(csvData);
+            }
+        }
+
+
+
+        generateCSVDataArray(); // Generate the CSV data at the start
+
+        // Set default csvData to 16 beliefs
+        csvData = politicsData; // Index 14 corresponds to 16 beliefs
+
+        // Initialize the Simulation
+        document.getElementById('execute-button').addEventListener('click', () => {
+            parseMatrix();
+            initializeBeliefs();
+            createGrid();
+            printValenceMatrixAsCSV();
+            runSimulation();
+        });
+        document.getElementById('correlations-button').addEventListener('click', () => {
+            const button = document.getElementById('correlations-button');
+
+            if (!isUpdatingCorrelations) {
+                // Start updating correlations
+                displayCorrelations(); // Initial display
+                correlationUpdateInterval = setInterval(displayCorrelations, 1000); // Update every second
+                isUpdatingCorrelations = true;
+                button.textContent = 'PAUSE';
+            } else {
+                // Pause updating correlations
+                clearInterval(correlationUpdateInterval);
+                correlationUpdateInterval = null;
+                isUpdatingCorrelations = false;
+                button.textContent = 'SHOW CORRELATIONS';
+            }
+        });
+        // Speed Slider Event Listener
+        document.getElementById('speed-slider').addEventListener('input', (event) => {
+            simulationSpeed = parseInt(event.target.value);
+        });
+
+        // Dither and Randomize Buttons Event Listeners
+        document.getElementById('dither-button').addEventListener('click', () => {
+            adjustValences(-2, 2);
+        });
+
+        document.getElementById('randomize-button').addEventListener('click', () => {
+            adjustValences(-100, 100, true);
+        });
+
+        document.getElementById('set-belief-count-button').addEventListener('click', () => {
+            const beliefCount = parseInt(document.getElementById('belief-count').value);
+            if (isNaN(beliefCount) || beliefCount < 2 || beliefCount > 16) {
+                alert('Please enter a valid number between 2 and 16.');
+                return;
+            }
+            // Select the CSV data from the array
+            csvData = csvDataArray[beliefCount - 2];
+            // Recreate the matrix table with the new belief count
+            createMatrixTable();
+
+            // Update the matrix title from the CSV data
+            const parsedData = parseCSVData(csvData);
+            const title = parsedData.title;
+            document.getElementById('matrix-title').textContent = title;
+
+            // Reset the Sample button text to the next sample's title
+            if (csvSamplesData.length > 0) {
+                const nextSampleIndex = currentSampleIndex === -1 ? 0 : (currentSampleIndex + 1) % csvSamplesData.length;
+                const nextCsvData = csvSamplesData[nextSampleIndex];
+                const nextParsedData = parseCSVData(nextCsvData);
+                const nextSampleTitle = nextParsedData.title;
+                document.getElementById('sample-button').textContent = 'SAMPLE: ' + nextSampleTitle;
+            }
+        });
+
+
+        function createMatrixTable() {
+            const table = document.getElementById('matrix-table');
+            table.innerHTML = '';
+
+            // Parse the CSV data
+            const parsedData = parseCSVData(csvData);
+            const title = parsedData.title; // Get the title
+            const beliefNames = parsedData.beliefs;
+            valenceValues = parsedData.valenceValues; // Assign to global variable
+
+            // Update the matrix title
+            document.getElementById('matrix-title').textContent = title;
+
+            const size = beliefNames.length;
+
+            // Create header row
+            const headerRow = document.createElement('tr');
+            const cornerCell = document.createElement('th');
+            headerRow.appendChild(cornerCell);
+            for (let i = 0; i < size; i++) {
+                const th = document.createElement('th');
+                th.classList.add('vertical-text');
+                const div = document.createElement('div');
+                div.textContent = beliefNames[i] || '';
+                th.appendChild(div);
+                headerRow.appendChild(th);
+            }
+            table.appendChild(headerRow);
+
+            // Create data rows
+            for (let i = 0; i < size; i++) {
+                const tr = document.createElement('tr');
+
+                // Side belief names (row labels)
+                const beliefNameCell = document.createElement('th');
+                beliefNameCell.classList.add('side-input');
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = valenceValues[i].belief || ''; // Use the belief from valenceValues
+                input.dataset.index = i;
+                input.addEventListener('input', updateRowBeliefName);
+                beliefNameCell.appendChild(input);
+
+                // Color Pickers for Pro and Anti beliefs (unchanged)
+                const colorInputPositive = document.createElement('input');
+                colorInputPositive.type = 'color';
+                colorInputPositive.value = getRandomColor(i * 2, size * 2);
+                colorInputPositive.dataset.index = i;
+                colorInputPositive.classList.add('color-positive');
+                beliefNameCell.appendChild(colorInputPositive);
+
+                const colorInputNegative = document.createElement('input');
+                colorInputNegative.type = 'color';
+                colorInputNegative.value = getOppositeColor(colorInputPositive.value);
+                colorInputNegative.dataset.index = i;
+                colorInputNegative.classList.add('color-negative');
+                beliefNameCell.appendChild(colorInputNegative);
+
+                tr.appendChild(beliefNameCell);
+
+                // Get values for this row
+                const values = valenceValues[i] ? valenceValues[i].values : [];
+
+                // Fill the row with values from the CSV data
+                for (let j = 0; j < size; j++) {
+                    const td = document.createElement('td');
+                    if (j < values.length) {
+                        // Editable input fields
+                        const cellInput = document.createElement('input');
+                        cellInput.type = 'text';
+                        const val = values[j] || '0';
+                        cellInput.value = val;
+                        td.appendChild(cellInput);
+                    } else {
+                        // Non-editable, hidden cells
+                        td.style.display = 'none'; // Hide the cell
+                    }
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+
+            // Add event listener to update opposite colors
+            table.addEventListener('input', function (event) {
+                if (event.target.classList.contains('color-positive')) {
+                    const negativeColorInput = event.target.parentElement.querySelector('.color-negative');
+                    negativeColorInput.value = getOppositeColor(event.target.value);
+                } else if (event.target.classList.contains('color-negative')) {
+                    const positiveColorInput = event.target.parentElement.querySelector('.color-positive');
+                    positiveColorInput.value = getOppositeColor(event.target.value);
+                }
+            });
+        }
+
+
+
+        function displayCorrelations() {
+            // Recalculate the correlation matrix to ensure it's up-to-date
+            calculateCorrelationMatrix();
+
+            // Retrieve all individual beliefs
+            const individualBeliefs = Object.keys(beliefs);
+            const size = individualBeliefs.length;
+            let tbodyContent = '';
+
+            // Iterate over unique belief pairs (i < j to avoid duplicates and self-pairs)
+            for (let i = 0; i < size; i++) {
+                for (let j = i + 1; j < size; j++) {
+                    const beliefAName = individualBeliefs[i];
+                    const beliefBName = individualBeliefs[j];
+
+                    // Retrieve valence value
+                    const valence = (valenceMatrix[beliefAName] && valenceMatrix[beliefAName][beliefBName] !== undefined)
+                        ? valenceMatrix[beliefAName][beliefBName]
+                        : 0;
+
+                    // Retrieve correlation value and round to nearest integer
+                    const correlation = (correlationMatrix[beliefAName] && correlationMatrix[beliefAName][beliefBName] !== undefined)
+                        ? Math.round(correlationMatrix[beliefAName][beliefBName])
+                        : 0;
+
+                    // Append a new row to the table body
+                    tbodyContent += `
+                <tr>
+                    <td>${beliefAName}</td>
+                    <td>${beliefBName}</td>
+                    <td>${valence}</td>
+                    <td>${correlation}</td>
+                </tr>
+            `;
+                }
+            }
+
+            // Insert the generated rows into the table body
+            const tbody = document.querySelector('#correlations-log tbody');
+            tbody.innerHTML = tbodyContent;
+
+            // Optionally, scroll to the correlations log for visibility
+            // Uncomment the following line if you want automatic scrolling
+            // document.getElementById('correlations-log-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+
+        function calculateCorrelationMatrix() {
+            correlationMatrix = {};
+            const beliefIds = Object.keys(beliefs);
+            const totalNodes = nodes.length;
+
+            // Initialize the matrix
+            beliefIds.forEach(beliefA => {
+                correlationMatrix[beliefA] = {};
+            });
+
+            // Calculate the correlations
+            for (let i = 0; i < beliefIds.length; i++) {
+                const beliefA = beliefIds[i];
+                for (let j = i; j < beliefIds.length; j++) {
+                    const beliefB = beliefIds[j];
+
+                    let coOccurCount = 0;
+                    let beliefACount = 0;
+                    let beliefBCount = 0;
+
+                    nodes.forEach(node => {
+                        const hasBeliefA = node.beliefs.has(beliefA);
+                        const hasBeliefB = node.beliefs.has(beliefB);
+
+                        if (hasBeliefA) beliefACount++;
+                        if (hasBeliefB) beliefBCount++;
+                        if (hasBeliefA && hasBeliefB) coOccurCount++;
+                    });
+
+                    // Calculate correlation coefficient (phi coefficient)
+                    const probA = beliefACount / totalNodes;
+                    const probB = beliefBCount / totalNodes;
+                    const probAB = coOccurCount / totalNodes;
+
+                    const numerator = probAB - probA * probB;
+                    const denominator = Math.sqrt(probA * (1 - probA) * probB * (1 - probB));
+
+                    let correlation = 0;
+                    if (denominator !== 0) {
+                        correlation = numerator / denominator;
+                    }
+
+                    // Normalize to range between -100 and 100
+                    correlation = correlation * 100;
+
+                    // Assign the correlation to the matrix
+                    correlationMatrix[beliefA][beliefB] = correlation;
+                    correlationMatrix[beliefB][beliefA] = correlation; // Symmetric matrix
+                }
+            }
+        }
+
+
+        
+
+        function parseCSVData(csvData) {
+            const lines = csvData.trim().split('\n');
+            const title = lines[0].trim(); // Extract the title
+            const beliefs = [];
+            valenceValues = []; // Reset global variable
+
+            // Get belief names from the header row (second line)
+            const header = lines[1].split(',').slice(1); // Exclude the empty first cell
+            header.forEach(belief => {
+                beliefs.push(belief.trim());
+            });
+
+            // Parse the valence values starting from the third line
+            for (let i = 2; i < lines.length; i++) {
+                const cells = lines[i].split(',');
+                const rowBelief = cells[0].trim();
+                const values = cells.slice(1).map(val => val.trim());
+                valenceValues.push({
+                    belief: rowBelief,
+                    values: values
+                });
+            }
+
+            return { title, beliefs, valenceValues };
+        }
+
+
+
+        function getOppositeColor(hex) {
+            // Convert hex to RGB
+            let r = parseInt(hex.substr(1, 2), 16);
+            let g = parseInt(hex.substr(3, 2), 16);
+            let b = parseInt(hex.substr(5, 2), 16);
+
+            // Invert colors
+            r = 255 - r;
+            g = 255 - g;
+            b = 255 - b;
+
+            // Convert back to hex
+            r = r.toString(16).padStart(2, '0');
+            g = g.toString(16).padStart(2, '0');
+            b = b.toString(16).padStart(2, '0');
+
+            return '#' + r + g + b;
+        }
+
+
+        function updateRowBeliefName(event) {
+            const index = parseInt(event.target.dataset.index);
+            const table = document.getElementById('matrix-table');
+            const headerDivs = Array.from(table.querySelectorAll('tr:first-child th.vertical-text div')).reverse();
+            const newValue = event.target.value;
+            if (headerDivs[index]) {
+                headerDivs[index].textContent = newValue;
+            }
+        }
+
+
+        function parseMatrix() {
+            valenceMatrix = {};
+            beliefs = {};
+            beliefPairs = {}; // Reset the belief pairs
+
+            const table = document.getElementById('matrix-table');
+            const rows = table.rows;
+            const size = rows.length - 1; // Exclude header row
+
+            // Get belief names from header row
+            const headerDivs = rows[0].querySelectorAll('th.vertical-text div');
+            const beliefNames = [];
+            for (let i = 0; i < headerDivs.length; i++) {
+                const div = headerDivs[i];
+                const beliefName = div.textContent.trim();
+                beliefNames.push(beliefName);
+            }
+
+            // Now, process each row
+            for (let i = 1; i <= size; i++) {
+                const beliefAInput = rows[i].cells[0].querySelector('input[type="text"]');
+                const colorInputPositive = rows[i].cells[0].querySelector('input.color-positive');
+                const colorInputNegative = rows[i].cells[0].querySelector('input.color-negative');
+                const beliefName = beliefAInput.value.trim();
+                if (!beliefName) continue; // Skip empty belief names
+
+                const parsedBeliefsA = parseBeliefName(beliefName);
+
+                // Map the opposing beliefs
+                beliefPairs[parsedBeliefsA[0]] = parsedBeliefsA[1];
+                beliefPairs[parsedBeliefsA[1]] = parsedBeliefsA[0];
+
+                // Add beliefs to the beliefs object with their respective colors
+                beliefs[parsedBeliefsA[0]] = {
+                    id: parsedBeliefsA[0],
+                    color: colorInputPositive.value,
+                };
+                beliefs[parsedBeliefsA[1]] = {
+                    id: parsedBeliefsA[1],
+                    color: colorInputNegative.value,
+                };
+
+                // Initialize valenceMatrix entries
+                valenceMatrix[parsedBeliefsA[0]] = {};
+                valenceMatrix[parsedBeliefsA[1]] = {};
+
+                // **Assign -100 Valence Between Opposing Beliefs**
+                valenceMatrix[parsedBeliefsA[0]][parsedBeliefsA[1]] = -100;
+                valenceMatrix[parsedBeliefsA[1]][parsedBeliefsA[0]] = -100;
+
+                const cells = rows[i].cells;
+
+                // Process the cells in this row
+                for (let j = 1; j < cells.length; j++) {
+                    const td = cells[j];
+                    const input = td.querySelector('input');
+                    if (input) {
+                        const val = input.value.trim();
+                        let valence = parseInt(val);
+                        if (isNaN(valence)) valence = 0;
+
+                        const beliefBName = beliefNames[j - 1];
+                        const parsedBeliefsB = parseBeliefName(beliefBName);
+
+                        // For each combination of beliefs in parsedBeliefsA and parsedBeliefsB, set valences
+                        parsedBeliefsA.forEach(beliefA => {
+                            parsedBeliefsB.forEach(beliefB => {
+                                // Determine if the signs of the beliefs are the same or different
+                                const isBeliefAPositive = isPositiveBelief(beliefA, parsedBeliefsA);
+                                const isBeliefBPositive = isPositiveBelief(beliefB, parsedBeliefsB);
+
+                                let adjustedValence = valence;
+
+                                // If the signs of beliefs are different, negate the valence
+                                if (isBeliefAPositive !== isBeliefBPositive) {
+                                    adjustedValence = -valence;
+                                }
+
+                                // **Avoid overwriting the -100 valence between opposing beliefs**
+                                if (!(beliefA === beliefPairs[beliefB] && valenceMatrix[beliefA][beliefB] === -100)) {
+                                    valenceMatrix[beliefA][beliefB] = adjustedValence;
+                                }
+
+                                // Ensure valenceMatrix[beliefB] is initialized
+                                if (!valenceMatrix[beliefB]) {
+                                    valenceMatrix[beliefB] = {};
+                                }
+
+                                // **Avoid overwriting the -100 valence between opposing beliefs**
+                                if (!(beliefB === beliefPairs[beliefA] && valenceMatrix[beliefB][beliefA] === -100)) {
+                                    valenceMatrix[beliefB][beliefA] = adjustedValence;
+                                }
+                            });
+                        });
+                    }
+                }
+            }
+        }
+
+
+
+
+        function printValenceMatrixAsCSV() {
+        const table = document.getElementById('matrix-table');
+        const rows = table.rows;
+        const size = rows.length - 1; // Exclude header row
+
+        // Get belief names from header row (in reverse order)
+        const headerCells = rows[0].cells;
+        const beliefNamesReversed = [];
+        for (let i = 1; i < headerCells.length; i++) {
+            const div = headerCells[i].querySelector('div');
+            const beliefName = div ? div.textContent.trim() : '';
+            beliefNamesReversed.push(beliefName);
+        }
+        const beliefNames = beliefNamesReversed.reverse(); // Correct order
+
+        // Start building the CSV content
+        let csvContent = ',' + beliefNamesReversed.join(',') + '\n';
+
+        for (let i = 1; i <= size; i++) {
+            const row = rows[i];
+            const beliefAInput = row.cells[0].querySelector('input[type="text"]');
+            const beliefAName = beliefAInput ? beliefAInput.value.trim() : '';
+            let rowContent = beliefAName;
+
+            // Calculate the number of values in this row
+            const numValues = beliefNamesReversed.length - i + 1;
+
+            const values = [];
+            for (let j = 1; j <= numValues; j++) {
+                const cell = row.cells[j];
+                const input = cell ? cell.querySelector('input') : null;
+                let valence = '';
+                if (input) {
+                    valence = input.value.trim();
+                }
+                values.push(valence);
+            }
+
+            // Remove trailing empty strings from values
+            while (values.length > 0 && values[values.length - 1] === '') {
+                values.pop();
+            }
+
+            if (values.length > 0) {
+                rowContent += ',' + values.join(',');
+            }
+            csvContent += rowContent + '\n';
+        }
+
+        // Include the title if you have one
+        const matrixTitle = document.getElementById('matrix-title').textContent;
+        csvContent = matrixTitle + '\n' + csvContent;
+
+        console.log('Valence Matrix CSV:');
+        console.log(csvContent);
+    }
+
+
+        function parseBeliefName(beliefName) {
+            if (beliefName.includes('/')) {
+                const [beliefPositive, beliefNegative] = beliefName.split('/').map(s => s.trim());
+                return [beliefPositive, beliefNegative];
+            } else {
+                const beliefPositive = 'Pro-' + beliefName;
+                const beliefNegative = 'Anti-' + beliefName;
+                return [beliefPositive, beliefNegative];
+            }
+        }
+        function isPositiveBelief(belief, parsedBeliefs) {
+            // Assuming the first belief in parsedBeliefs is the positive one
+            return belief === parsedBeliefs[0];
+        }
+
+        // Function to check if two beliefs are opposites
+        function isOppositeBeliefs(beliefA, beliefB, beliefPairs) {
+            return beliefPairs[beliefA] === beliefB;
+        }
+
+        function initializeBeliefs() {
+            nodes = [];
+            for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+                nodes.push({
+                    beliefs: new Set(),
+                });
+            }
+            // Seed initial beliefs in 25% of the nodes
+            const totalNodes = nodes.length;
+            const beliefKeys = Object.keys(beliefs).filter(b => b);
+            for (let belief of beliefKeys) {
+                let count = 0;
+                while (count < totalNodes * 0.25 / beliefKeys.length) {
+                    const index = Math.floor(Math.random() * totalNodes);
+                    const node = nodes[index];
+                    const oppositeBelief = beliefPairs[belief];
+
+                    // Check if node already has the opposite belief
+                    if (!node.beliefs.has(belief) && !node.beliefs.has(oppositeBelief)) {
+                        node.beliefs.add(belief);
+                        count++;
+                    }
+                }
+            }
+            // Initialize nodeQueue
+            updateNodeQueue();
+        }
+
+        function createGrid() {
+            const gridElement = document.getElementById('grid');
+            gridElement.innerHTML = '';
+            nodes.forEach((node, index) => {
+                const nodeElement = document.createElement('div');
+                nodeElement.classList.add('node');
+                nodeElement.dataset.index = index;
+                const row = Math.floor(index / GRID_SIZE);
+                if (row % 2 !== 0) {
+                    nodeElement.classList.add('odd-row');
+                }
+                // Event listeners for hover and tap
+                nodeElement.addEventListener('mouseover', showTooltip);
+                nodeElement.addEventListener('mouseout', hideTooltip);
+                nodeElement.addEventListener('touchstart', showTooltip);
+                nodeElement.addEventListener('touchend', hideTooltip);
+                gridElement.appendChild(nodeElement);
+                updateNodeDisplay(nodeElement, node);
+            });
+        }
+        function showTooltip(event) {
+            event.preventDefault();
+            const index = parseInt(event.currentTarget.dataset.index);
+            const node = nodes[index];
+            const beliefList = Array.from(node.beliefs).join(', ') || 'None';
+
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerText = beliefList;
+            tooltip.style.display = 'block';
+
+            // Position the tooltip under the node
+            const nodeRect = event.currentTarget.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+
+            // Calculate the position
+            let top = nodeRect.bottom + window.scrollY + 5; // 5px gap
+            let left = nodeRect.left + window.scrollX + (nodeRect.width - tooltipRect.width) / 2;
+
+            // Adjust if tooltip goes off the right edge
+            if (left + tooltipRect.width > window.innerWidth + window.scrollX) {
+                left = window.innerWidth + window.scrollX - tooltipRect.width - 10; // 10px from the edge
+            }
+
+            // Adjust if tooltip goes off the left edge
+            if (left < window.scrollX + 0) {
+                left = window.scrollX + 10; // 10px from the edge
+            }
+
+            // Adjust if tooltip goes off the bottom edge
+            if (top + tooltipRect.height > window.innerHeight + window.scrollY) {
+                top = nodeRect.top + window.scrollY - tooltipRect.height - 5; // Position above the node
+            }
+
+            tooltip.style.top = `${top}px`;
+            tooltip.style.left = `${left}px`;
+        }
+
+        function hideTooltip(event) {
+            event.preventDefault();
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.display = 'none';
+        }
+
+        function updateNodeDisplay(element, node) {
+            const beliefArray = Array.from(node.beliefs);
+            element.innerHTML = '';
+            if (beliefArray.length > 0) {
+                // Sort beliefs by marginal value (highest to lowest)
+                const sortedBeliefs = beliefArray.sort((a, b) => {
+                    return calculateMarginalValue(b, node.beliefs) - calculateMarginalValue(a, node.beliefs);
+                });
+                // Create the dot
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.style.backgroundColor = beliefs[sortedBeliefs[0]].color;
+                element.appendChild(dot);
+                // Add rings for other beliefs
+                sortedBeliefs.forEach((beliefId, index) => {
+                    if (index > 0) {
+                        const ring = document.createElement('div');
+                        ring.classList.add('ring');
+                        ring.style.borderColor = beliefs[beliefId].color;
+                        const size = 6 + (index - 1) * 3; // Adjust ring size
+                        ring.style.width = `${size}px`;
+                        ring.style.height = `${size}px`;
+                        ring.style.top = `${(24 - size) / 2}px`;
+                        ring.style.left = `${(24 - size) / 2}px`;
+                        element.appendChild(ring);
+                    }
+                });
+            } else {
+                element.style.backgroundColor = 'transparent';
+            }
+        }
+
+
+        function getStrongestBelief(beliefSet) {
+            let maxMarginalValue = -Infinity;
+            let strongestBelief = null;
+            beliefSet.forEach(beliefId => {
+                const marginalValue = calculateMarginalValue(beliefId, beliefSet);
+                if (marginalValue > maxMarginalValue) {
+                    maxMarginalValue = marginalValue;
+                    strongestBelief = beliefId;
+                }
+            });
+            return strongestBelief;
+        }
+
+        function calculateMarginalValue(beliefId, coalition) {
+            let sum = 0;
+            coalition.forEach(otherBeliefId => {
+                if (beliefId !== otherBeliefId) {
+                    sum += valenceMatrix[beliefId][otherBeliefId] || 0;
+                }
+            });
+            return sum;
+        }
+
+
+        function runSimulation() {
+            function simulationStep() {
+                if (nodeQueue.length === 0) {
+                    updateNodeQueue();
+                }
+                if (nodeQueue.length === 0) {
+                    // No nodes with beliefs, simulation ends
+                    return;
+                }
+
+                // Check if simulationSpeed is greater than 0
+                if (simulationSpeed > 0) {
+                    const nodeIndex = nodeQueue.shift();
+                    const node = nodes[nodeIndex];
+
+                    // Randomly select one belief to transmit
+                    const beliefsArray = Array.from(node.beliefs);
+                    const beliefToTransmit = beliefsArray[Math.floor(Math.random() * beliefsArray.length)];
+
+                    // Transmit to neighbors
+                    const neighbors = getHexNeighbors(nodeIndex);
+                    neighbors.forEach(neighborIndex => {
+                        const neighborNode = nodes[neighborIndex];
+                        if (!neighborNode.beliefs.has(beliefToTransmit)) {
+                            processIncomingBelief(neighborNode, beliefToTransmit);
+                            const nodeElement = document.querySelector(`.node[data-index='${neighborIndex}']`);
+                            updateNodeDisplay(nodeElement, neighborNode);
+                        }
+                    });
+
+                    // Recalculate correlations and update the table
+                    // calculateCorrelationMatrix();
+                    // createCorrelationTable();
+                }
+
+                // Schedule the next simulation step
+                setTimeout(() => {
+                    requestAnimationFrame(simulationStep);
+                }, simulationSpeed > 0 ? 100 - simulationSpeed : 100);
+            }
+
+            // Initial calculation and table creation
+            // calculateCorrelationMatrix();
+            // createCorrelationTable();
+
+            simulationStep();
+        }
+
+
+
+
+        function updateNodeQueue() {
+            nodeQueue = nodes
+                .map((node, index) => ({ node, index }))
+                .filter(item => item.node.beliefs.size > 0)
+                .map(item => item.index);
+            shuffleArray(nodeQueue);
+        }
+
+        // Fisher-Yates Shuffle
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                // Swap
+                [array[currentIndex], array[randomIndex]] = [
+                    array[randomIndex], array[currentIndex]];
+            }
+        }
+
+        function processIncomingBelief(node, beliefId) {
+            // Removed the check that deletes the opposite belief
+            const newBeliefSet = new Set([...node.beliefs, beliefId]);
+            const finalBeliefs = resolveConflicts(newBeliefSet, node);
+            node.beliefs = finalBeliefs;
+        }
+
+        function resolveConflicts(beliefSet, node) {
+            const beliefArray = Array.from(beliefSet);
+            let maxCoalitionStrength = -Infinity;
+            let bestCoalition = node.beliefs;
+            // Generate all possible coalitions that include existing beliefs
+            const coalitions = getAllCoalitions(beliefArray);
+            if (coalitions.length === 0) {
+                // If no valid coalitions, keep existing beliefs
+                return node.beliefs;
+            }
+            coalitions.forEach(coalition => {
+                const coalitionStrength = calculateCoalitionStrength(coalition);
+                if (
+                    coalitionStrength > maxCoalitionStrength ||
+                    (coalitionStrength === maxCoalitionStrength && coalition.length > bestCoalition.size)
+                ) {
+                    maxCoalitionStrength = coalitionStrength;
+                    bestCoalition = new Set(coalition);
+                }
+            });
+            return bestCoalition;
+        }
+
+        function calculateCoalitionStrength(coalition) {
+            let total = 0;
+            coalition.forEach(beliefId => {
+                total += calculateMarginalValue(beliefId, coalition);
+            });
+            return total;
+        }
+
+        function getAllCoalitions(beliefsArray) {
+            const results = [];
+            const total = Math.pow(2, beliefsArray.length);
+            for (let i = 1; i < total; i++) {
+                const coalition = [];
+                const beliefsInCoalition = new Set();
+                let hasOpposites = false;
+
+                for (let j = 0; j < beliefsArray.length; j++) {
+                    if (i & (1 << j)) {
+                        const belief = beliefsArray[j];
+                        const oppositeBelief = beliefPairs[belief];
+
+                        if (beliefsInCoalition.has(oppositeBelief)) {
+                            hasOpposites = true;
+                            break;
+                        }
+
+                        coalition.push(belief);
+                        beliefsInCoalition.add(belief);
+                    }
+                }
+
+                if (hasOpposites) continue;
+
+                const hasNegativeValence = coalition.some(beliefA => {
+                    return coalition.some(beliefB => {
+                        return beliefA !== beliefB && valenceMatrix[beliefA][beliefB] < 0;
+                    });
+                });
+                if (!hasNegativeValence) {
+                    results.push(coalition);
+                }
+            }
+            // If no positive coalitions found, include single beliefs
+            if (results.length === 0) {
+                beliefsArray.forEach(belief => {
+                    results.push([belief]);
+                });
+            }
+            return results;
+        }
+
+        function getHexNeighbors(index) {
+            const neighbors = [];
+            const row = Math.floor(index / GRID_SIZE);
+            const col = index % GRID_SIZE;
+            const isOddRow = row % 2 === 1;
+
+            // Neighboring positions
+            const directions = [
+                [-1, 0], // Up
+                [1, 0], // Down
+                [0, -1], // Left
+                [0, 1], // Right
+                [-1, isOddRow ? 1 : -1], // Up-Left or Up-Right
+                [1, isOddRow ? 1 : -1], // Down-Left or Down-Right
+            ];
+
+            directions.forEach(([dRow, dCol]) => {
+                const nRow = row + dRow;
+                const nCol = col + dCol;
+                if (nRow >= 0 && nRow < GRID_SIZE && nCol >= 0 && nCol < GRID_SIZE) {
+                    neighbors.push(nRow * GRID_SIZE + nCol);
+                }
+            });
+
+            return neighbors;
+        }
+
+        // function inspectNode(event) {
+        //     const index = parseInt(event.currentTarget.dataset.index);
+        //     const node = nodes[index];
+        //     const beliefList = Array.from(node.beliefs).join(', ') || 'None';
+        //     document.getElementById('inspector').innerText = `${beliefList}`;
+        // }
+
+        // New getRandomColor function to generate distinct colors
+        function getRandomColor(index, total) {
+            // Hue range from purple (270) to green (150)
+            const hueStart = 270;
+            const hueEnd = 150;
+            const hue = hueStart + (index * (hueEnd - hueStart) / (total - 1));
+            return hslToHex(hue, 100, 50);
+        }
+
+        function hslToHex(h, s, l) {
+            h = h % 360;
+            s /= 100;
+            l /= 100;
+
+            let c = (1 - Math.abs(2 * l - 1)) * s;
+            let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+            let m = l - c / 2;
+            let r = 0, g = 0, b = 0;
+
+            if (0 <= h && h < 60) {
+                r = c; g = x; b = 0;
+            } else if (60 <= h && h < 120) {
+                r = x; g = c; b = 0;
+            } else if (120 <= h && h < 180) {
+                r = 0; g = c; b = x;
+            } else if (180 <= h && h < 240) {
+                r = 0; g = x; b = c;
+            } else if (240 <= h && h < 300) {
+                r = x; g = 0; b = c;
+            } else if (300 <= h && h < 360) {
+                r = c; g = 0; b = x;
+            }
+            r = Math.round((r + m) * 255);
+            g = Math.round((g + m) * 255);
+            b = Math.round((b + m) * 255);
+
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        // Function to adjust valences
+        function adjustValences(min, max, isRandomize = false) {
+            const table = document.getElementById('matrix-table');
+            const rows = table.rows;
+            const size = rows.length - 1; // Exclude header row
+
+            for (let i = 1; i <= size; i++) {
+                const cells = rows[i].cells;
+                for (let j = 1; j < cells.length; j++) {
+                    const td = cells[j];
+                    const input = td.querySelector('input');
+                    if (input && !input.disabled) {
+                        let val = parseInt(input.value) || 0;
+                        if (isRandomize) {
+                            val = Math.floor(Math.random() * (max - min + 1)) + min;
+                        } else {
+                            val += Math.floor(Math.random() * (max - min + 1)) + min;
+                        }
+                        input.value = val;
+                    }
+                }
+            }
+        }
+
+
+
+
+        // Start the simulation on page load
+        createMatrixTable();
+        createGrid(); // Create the grid when the page loads
+        document.getElementById('execute-button').click();
+    </script>
+    <footer>
+        <div id="social-icons"></div>
+        <h3>RELATED MATERIAL</h3>
+        <ul>
+            <li>For those uber-nerds out there who want to send in their own tables, if you open your web inspector, there's a console log output of the current table in csv format made whenever you run the simulation. If you want to copy and paste that to me, I'll check it out and integrate it into the page.</li>
+        </ul>
+</footer>
+<div class="subscribe">
+    <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#social-icons").load("social.html", function() {
+            // Get the current page URL and title
+            var pageUrl = window.location.href;
+            var pageTitle = document.title;
+
+            // Replace placeholders in the loaded HTML
+            $(this).find("a").each(function() {
+                this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+            });
+        });
+    });
+</script>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games",
+        behaviour: {
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+      }
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
+
+
+
+
+
+<div id="tooltip" style="display: none;"></div>
+</body>
+
+</html>
