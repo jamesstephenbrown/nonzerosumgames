@@ -304,13 +304,6 @@
         </div>
     </footer>
 
-    <p>You can also cycle through other samples to see how the matrix can be used for different topics.</p>
-
-    <p>The simulation depicts nodes transmitting ideas (coloured rings). If an incoming idea increases the total valence value of the node it is adopted, if not then the most coherent set of beliefs is adopted, which might involve rejecting the incoming idea or ejecting a pre-existing belief.</p>
-    <img src="https://nonzerosum.games/Images/Content/HH_ThinkingTogether.png" alt="Hedgehog spreading an idea to another hedgehog">
-    
-    <p>The dot itself is coloured corresponding to its most aligned (strongest) belief.</p>
-
     <footer id="grid-container">
         <h3>SIMULATION GRID</h3>
         <br>
@@ -321,6 +314,13 @@
         <label for="speed-slider">Simulation Speed:</label>
         <input type="range" id="speed-slider" min="0" max="100" value="50">
     </div>
+
+    <p>You can also cycle through other samples to see how the matrix can be used for different topics.</p>
+
+    <p>The simulation depicts nodes transmitting ideas (coloured rings). If an incoming idea increases the total valence value of the node it is adopted, if not then the most coherent set of beliefs is adopted, which might involve rejecting the incoming idea or ejecting a pre-existing belief.</p>
+    <img src="https://nonzerosum.games/Images/Content/HH_ThinkingTogether.png" alt="Hedgehog spreading an idea to another hedgehog">
+    
+    <p>The dot itself is coloured corresponding to its most aligned (strongest) belief.</p>
 
 
     <h3>FINDING (CIRCUITOUSLY CAUSED) CORRELATIONS</h3>
@@ -1285,9 +1285,14 @@
 
         function calculateCoalitionStrength(coalition) {
             let total = 0;
-            coalition.forEach(beliefId => {
-                total += calculateMarginalValue(beliefId, coalition);
-            });
+            const beliefArray = Array.from(coalition);
+            for (let i = 0; i < beliefArray.length; i++) {
+                for (let j = i + 1; j < beliefArray.length; j++) {
+                    const beliefA = beliefArray[i];
+                    const beliefB = beliefArray[j];
+                    total += valenceMatrix[beliefA][beliefB] || 0;
+                }
+            }
             return total;
         }
 
@@ -1442,7 +1447,7 @@
     <footer>
         <div id="social-icons"></div>
         <h3>RELATED MATERIAL</h3>
-        <ul>
+        <ul><li>For (much) more detail on exactly how the model functions, check out the <a href="https://www.lesswrong.com/posts/mj68CsoLDoCfTgeiw/methodology-contagious-beliefs">methodology</a> on LessWrong.org</li>
             <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5094740/">Collective Dynamics of Belief Evolution under Cognitive Coherence and Social Conformity</a> by Rodriguez et al is a fascinating, evidence-based, look at the way ideas are transmitted, featuring accessible diagrams and explanations.</li>
             <li>For those uber-nerds out there who want to send in their own tables, if you open your web inspector, there's a console log output of the current table in csv format made whenever you run the simulation. If you want to copy and paste that to me, I'll check it out and integrate it into the page.</li>
             <li>If you're interested in the spread of ideas, check out our post on <a href="replicators.html">Genes, Memes and Susan Blackmore's concept of Temes</a>, or our post on originality—<a href="takingcredit.html">Taking Credit</a></li>
