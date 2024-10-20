@@ -20,16 +20,19 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <!-- Menu Items -->
-    <div class="menuColumn">
-      <br><br>
-        <p>
-            <a href="blog.html">Blog</a>
-            <a href="arcade.html">Games</a>
-            <a href="index.html">Home</a>
-            <a href="https://cse.google.com/cse?cx=356d26fd2e9ff46e7" style="font-family: 'MoreSugarExtras'; text-decoration: none;">'</a>
-        </p>
-    </div>
+    
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+    
     <div class="content">
         <a name="AboutMe"></a><br>
         <h3 style="margin-bottom: 0px;">ABOUT</h3>
