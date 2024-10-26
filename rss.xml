@@ -8,9 +8,17 @@
     <language>en-us</language>
 
     <item>
+      <title>REPEATED GAMES</title>
+      <link>https://nonzerosum.games/repeatedgames.html</link>
+      <description>guest writer Jaiveer Singh on finite vs infinite games</description>
+      <pubDate>Sat, 26 Oct 2024 12:00:00 +0000</pubDate>
+      <guid>https://nonzerosum.games/repeatedgames.html</guid>
+    </item>
+
+    <item>
       <title>CONTAGIOUS BELIEFS</title>
       <link>https://nonzerosum.games/beliefs.html</link>
-      <description>~ simulating political alignment ~</description>
+      <description>simulating political alignment</description>
       <pubDate>Sun, 20 Oct 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/beliefs.html</guid>
     </item>
@@ -18,7 +26,7 @@
     <item>
       <title>SUBGAME PURRRFECTION</title>
       <link>https://nonzerosum.games/subgameperfection.html</link>
-      <description>~ guest writer Jaiveer Singh explains subgame-perfect Nash equilibrium ~</description>
+      <description>guest writer Jaiveer Singh explains subgame-perfect Nash equilibrium</description>
       <pubDate>Tue, 09 Oct 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/subgameperfection.html</guid>
     </item>
@@ -26,7 +34,7 @@
     <item>
       <title>SHAPLEY VALUE CALCULATOR</title>
       <link>https://nonzerosum.games/shapleyvalue.html</link>
-      <description>~ a tool for fair allocation ~</description>
+      <description>a tool for fair allocation</description>
       <pubDate>Tue, 28 Sep 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/shapleyvalue.html</guid>
     </item>
@@ -34,7 +42,7 @@
     <item>
       <title>COULD THINGS BE VERY DIFFERENT?</title>
       <link>https://nonzerosum.games/inertia.html</link>
-      <description>~ how historical inertia might blind us to optimal solutions ~</description>
+      <description>how historical inertia might blind us to optimal solutions</description>
       <pubDate>Tue, 03 Sep 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/inertia.html</guid>
     </item>
@@ -42,7 +50,7 @@
     <item>
       <title>WE DON'T JUST LET PEOPLE DIE</title>
       <link>https://nonzerosum.games/wedontletpeopledie.html</link>
-      <description>~ so, what next? ~</description>
+      <description>so, what next?</description>
       <pubDate>Tue, 13 Aug 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/wedontletpeopledie.html</guid>
     </item>
@@ -50,7 +58,7 @@
     <item>
       <title>COACH KROHN ON LEADERSHIP</title>
       <link>https://nonzerosum.games/leadership.html</link>
-      <description>~ lessons from a life lived leading and developing leaders ~</description>
+      <description>lessons from a life lived leading and developing leaders</description>
       <pubDate>Tue, 06 Aug 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/leadership.html</guid>
     </item>
@@ -58,7 +66,7 @@
     <item>
       <title>UNLOCKING SOLUTIONS</title>
       <link>https://nonzerosum.games/unlockingsolutions.html</link>
-      <description>~ understanding coordination problems ~</description>
+      <description>understanding coordination problems</description>
       <pubDate>Tue, 23 Jul 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/unlockingsolutions.html</guid>
     </item>
@@ -66,7 +74,7 @@
     <item>
       <title>WHY PEOPLE IN POVERTY MAKE POOR DECISIONS</title>
       <link>https://nonzerosum.games/poverty.html</link>
-      <description>~ a case for giving more money to people who are bad with money ~</description>
+      <description>a case for giving more money to people who are bad with money</description>
       <pubDate>Tue, 16 Jul 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/poverty.html</guid>
     </item>
@@ -74,7 +82,7 @@
     <item>
       <title>SAVING LIVES REDUCES OVER-POPULATION</title>
       <link>https://nonzerosum.games/savinglives.html</link>
-      <description>~ a counter-intuitive win-win ~</description>
+      <description>a counter-intuitive win-win</description>
       <pubDate>Tue, 02 Jul 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/savinglives.html</guid>
     </item>
@@ -82,7 +90,7 @@
     <item>
       <title>CREATIVE PRINCIPLES</title>
       <link>https://nonzerosum.games/creativeprinciples.html</link>
-      <description>~ a behind-the-scenes look at nonzerosum.games ~</description>
+      <description>a behind-the-scenes look at nonzerosum.games</description>
       <pubDate>Tue, 25 Jun 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/creativeprinciples.html</guid>
     </item>
@@ -90,7 +98,7 @@
     <item>
       <title>MASCULINITY</title>
       <link>https://nonzerosum.games/masculinity.html</link>
-      <description>~ a case for courage ~</description>
+      <description>a case for courage</description>
       <pubDate>Tue, 11 Jun 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/masculinity.html</guid>
     </item>
@@ -98,7 +106,7 @@
     <item>
       <title>FURRY FRIENDS</title>
       <link>https://nonzerosum.games/furryfriends.html</link>
-      <description>~ the joy of interspecies camaraderie ~</description>
+      <description>the joy of interspecies camaraderie</description>
       <pubDate>Tue, 04 Jun 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/furryfriends.html</guid>
     </item>
@@ -106,7 +114,7 @@
     <item>
       <title>GOODHART'S LAW</title>
       <link>https://nonzerosum.games/goodhartslaw.html</link>
-      <description>~ the problem with singular goals ~</description>
+      <description>the problem with singular goals</description>
       <pubDate>Tue, 21 May 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/goodhartslaw.html</guid>
     </item>
@@ -114,7 +122,7 @@
     <item>
       <title>A POSITIVE DOUBLE STANDARD</title>
       <link>https://nonzerosum.games/positivedoublestandard.html</link>
-      <description>~ self-help principles work for individuals not populations ~</description>
+      <description>self-help principles work for individuals not populations</description>
       <pubDate>Tue, 14 May 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/positivedoublestandard.html</guid>
     </item>
@@ -122,7 +130,7 @@
     <item>
       <title>EMERGENCE IS BEAUTIFUL</title>
       <link>https://nonzerosum.games/emergenceisbeautiful.html</link>
-      <description>~ beauty and meaning in an entropic universe ~</description>
+      <description>beauty and meaning in an entropic universe</description>
       <pubDate>Tue, 30 Apr 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/emergenceisbeautiful.html</guid>
     </item>
@@ -130,7 +138,7 @@
     <item>
       <title>REPLICATORS</title>
       <link>https://nonzerosum.games/replicators.html</link>
-      <description>~ pandora's dangerous children ~</description>
+      <description>pandora's dangerous children</description>
       <pubDate>Tue, 16 Apr 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/replicators.html</guid>
     </item>
@@ -138,7 +146,7 @@
     <item>
       <title>ON THE SHOULDERS OF SUBSTRATES</title>
       <link>https://nonzerosum.games/substrates.html</link>
-      <description>~ how one phenomenon creates the foundation for the next ~</description>
+      <description>how one phenomenon creates the foundation for the next</description>
       <pubDate>Tue, 02 Apr 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/substrates.html</guid>
     </item>
@@ -146,7 +154,7 @@
     <item>
       <title>EMERGENT GRAVITY</title>
       <link>https://nonzerosum.games/graviton.html</link>
-      <description>~ create your own universe from chaos ~</description>
+      <description>create your own universe from chaos</description>
       <pubDate>Tue, 19 Mar 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/graviton.html</guid>
     </item>
@@ -154,7 +162,7 @@
     <item>
       <title>EMERGENCE VS ENTROPY</title>
       <link>https://nonzerosum.games/emergencevsentropy.html</link>
-      <description>~ a universal paradox ~</description>
+      <description>a universal paradox</description>
       <pubDate>Tue, 05 Mar 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/emergencevsentropy.html</guid>
     </item>
@@ -162,7 +170,7 @@
     <item>
       <title>CONWAY'S GAME</title>
       <link>https://nonzerosum.games/conwaysgame.html</link>
-      <description>~ how complexity emerges from simple rules ~</description>
+      <description>how complexity emerges from simple rules</description>
       <pubDate>Tue, 20 Feb 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/conwaysgame.html</guid>
     </item>
@@ -170,7 +178,7 @@
     <item>
       <title>WHAT CAN ONE PERSON DO?</title>
       <link>https://nonzerosum.games/oneperson.html</link>
-      <description>~ Alexei Navalny ~</description>
+      <description>Alexei Navalny</description>
       <pubDate>Tue, 06 Feb 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/oneperson.html</guid>
     </item>
@@ -178,7 +186,7 @@
     <item>
       <title>WHY I'M KEEPING MY CRAPPY DRAWINGS</title>
       <link>https://nonzerosum.games/crappydrawings.html</link>
-      <description>~ how ai art won't supplant... art ~</description>
+      <description>how ai art won't supplant... art</description>
       <pubDate>Tue, 23 Jan 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/crappydrawings.html</guid>
     </item>
@@ -186,7 +194,7 @@
     <item>
       <title>A KINDNESS EQUATION</title>
       <link>https://nonzerosum.games/kindnessequation.html</link>
-      <description>~ should you give to charity or volunteer? ~</description>
+      <description>should you give to charity or volunteer?</description>
       <pubDate>Tue, 09 Jan 2024 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/kindnessequation.html</guid>
     </item>
@@ -194,7 +202,7 @@
     <item>
       <title>CAPITALISM</title>
       <link>https://nonzerosum.games/capitalism.html</link>
-      <description>~ a zero-sum game? ~</description>
+      <description>a zero-sum game?</description>
       <pubDate>Tue, 26 Dec 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/capitalism.html</guid>
     </item>
@@ -202,7 +210,7 @@
     <item>
       <title>RELATIVE GAINS</title>
       <link>https://nonzerosum.games/absolutevsrelative.html</link>
-      <description>~ how not to measure success ~</description>
+      <description>how not to measure success</description>
       <pubDate>Tue, 19 Dec 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/absolutevsrelative.html</guid>
     </item>
@@ -210,7 +218,7 @@
     <item>
       <title>EVIL GLOBALISATION</title>
       <link>https://nonzerosum.games/globalisation.html</link>
-      <description>~ and how it is eliminating poverty ~</description>
+      <description>and how it is eliminating poverty</description>
       <pubDate>Tue, 12 Dec 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/globalisation.html</guid>
     </item>
@@ -218,7 +226,7 @@
     <item>
       <title>IT'S SUBJECTIVE</title>
       <link>https://nonzerosum.games/itssubjective.html</link>
-      <description>~ the end of the conversation? ~</description>
+      <description>the end of the conversation?</description>
       <pubDate>Tue, 05 Dec 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/itssubjective.html</guid>
     </item>
@@ -226,7 +234,7 @@
     <item>
       <title>CAPITALISING ON TRUST</title>
       <link>https://nonzerosum.games/cooperationvsdefection.html</link>
-      <description>~ a karmic simulation ~</description>
+      <description>a karmic simulation</description>
       <pubDate>Tue, 28 Nov 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/cooperationvsdefection.html</guid>
     </item>
@@ -234,7 +242,7 @@
     <item>
       <title>WHY IS MORAL LICENSING NEGATIVE-SUM?</title>
       <link>https://nonzerosum.games/morallicensing2.html</link>
-      <description>~ moral licensing - part 2 ~</description>
+      <description>moral licensing - part 2</description>
       <pubDate>Tue, 21 Nov 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/morallicensing2.html</guid>
     </item>
@@ -242,7 +250,7 @@
     <item>
       <title>THE END OF MORALITY</title>
       <link>https://nonzerosum.games/whycooperate3.html</link>
-      <description>~ why cooperate? part 3 ~</description>
+      <description>why cooperate? part 3</description>
       <pubDate>Tue, 14 Nov 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/whycooperate3.html</guid>
     </item>
@@ -250,7 +258,7 @@
     <item>
       <title>MORAL LICENSING</title>
       <link>https://nonzerosum.games/morallicensing1.html</link>
-      <description>~ the makings of a very negative-sum game ~</description>
+      <description>the makings of a very negative-sum game</description>
       <pubDate>Tue, 07 Nov 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/morallicensing1.html</guid>
     </item>
@@ -258,7 +266,7 @@
     <item>
       <title>NON-ZERO THINKING FOR KIDS</title>
       <link>https://nonzerosum.games/nonzerothinkingforkids.html</link>
-      <description>~ taking non-zero-sum thinking out into the world ~</description>
+      <description>taking non-zero-sum thinking out into the world</description>
       <pubDate>Tue, 31 Oct 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/nonzerothinkingforkids.html</guid>
     </item>
@@ -266,7 +274,7 @@
     <item>
       <title>IT'S EMOTIONAL</title>
       <link>https://nonzerosum.games/whycooperate2.html</link>
-      <description>~ why cooperate? part 2 ~</description>
+      <description>why cooperate? part 2</description>
       <pubDate>Tue, 24 Oct 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/whycooperate2.html</guid>
     </item>
@@ -274,7 +282,7 @@
     <item>
       <title>WHY COOPERATE?</title>
       <link>https://nonzerosum.games/whycooperate1.html</link>
-      <description>~ guest writer Andrew Tane Glen introduces the super-defector ~</description>
+      <description>guest writer Andrew Tane Glen introduces the super-defector</description>
       <pubDate>Tue, 17 Oct 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/whycooperate1.html</guid>
     </item>
@@ -282,7 +290,7 @@
     <item>
       <title>COSTLESS KINDNESS</title>
       <link>https://nonzerosum.games/paretoefficiency.html</link>
-      <description>~ how pareto efficiency can make everyone better off (sometimes) ~</description>
+      <description>how pareto efficiency can make everyone better off (sometimes)</description>
       <pubDate>Tue, 10 Oct 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/paretoefficiency.html</guid>
     </item>
@@ -290,7 +298,7 @@
     <item>
       <title>SHAPLEY VALUE IS RIDICULOUS</title>
       <link>https://nonzerosum.games/shapleyvalueisridiculous.html</link>
-      <description>~ where game theory fails in real world applications ~</description>
+      <description>where game theory fails in real world applications</description>
       <pubDate>Tue, 03 Oct 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/shapleyvalueisridiculous.html</guid>
     </item>
@@ -298,7 +306,7 @@
     <item>
       <title>COMBINATORIAL GAMES</title>
       <link>https://nonzerosum.games/combinatorialgames.html</link>
-      <description>~ games with perfect information ~</description>
+      <description>games with perfect information</description>
       <pubDate>Tue, 26 Sep 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/combinatorialgames.html</guid>
     </item>
@@ -306,7 +314,7 @@
     <item>
       <title>SOLUTIONS</title>
       <link>https://nonzerosum.games/alignment6.html</link>
-      <description>~ the alignment problem no one is talking about: part 6 ~</description>
+      <description>the alignment problem no one is talking about: part 6</description>
       <pubDate>Tue, 19 Sep 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/alignment6.html</guid>
     </item>
@@ -314,7 +322,7 @@
     <item>
       <title>CAN AI HELP?</title>
       <link>https://nonzerosum.games/alignment5.html</link>
-      <description>~ the alignment problem no one is talking about: part 5 ~</description>
+      <description>the alignment problem no one is talking about: part 5</description>
       <pubDate>Tue, 12 Sep 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/alignment5.html</guid>
     </item>
@@ -322,7 +330,7 @@
     <item>
       <title>THE SCALE OF THE ISSUE</title>
       <link>https://nonzerosum.games/alignment4.html</link>
-      <description>~ the alignment problem no one is talking about: part 4 ~</description>
+      <description>the alignment problem no one is talking about: part 4</description>
       <pubDate>Tue, 05 Sep 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/alignment4.html</guid>
     </item>
@@ -330,7 +338,7 @@
     <item>
       <title>GETTING ALIGNED THROUGH HISTORY</title>
       <link>https://nonzerosum.games/alignment3.html</link>
-      <description>~ the alignment problem no one is talking about: part 3 ~</description>
+      <description>the alignment problem no one is talking about: part 3</description>
       <pubDate>Tue, 29 Aug 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/alignment3.html</guid>
     </item>
@@ -338,7 +346,7 @@
     <item>
       <title>THE INDIVIDUAL AND THE COLLECTIVE</title>
       <link>https://nonzerosum.games/alignment2.html</link>
-      <description>~ the alignment problem no one is talking about: part 2 ~</description>
+      <description>the alignment problem no one is talking about: part 2</description>
       <pubDate>Tue, 22 Aug 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/alignment2.html</guid>
     </item>
@@ -346,7 +354,7 @@
     <item>
       <title>THE ALIGNMENT PROBLEM NO ONE IS TALKING ABOUT</title>
       <link>https://nonzerosum.games/alignment1.html</link>
-      <description>~ what is alignment? ~</description>
+      <description>what is alignment?</description>
       <pubDate>Tue, 15 Aug 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/alignment1.html</guid>
     </item>
@@ -354,7 +362,7 @@
     <item>
       <title>NASH EQUILIBRIUM</title>
       <link>https://nonzerosum.games/nashequilibrium.html</link>
-      <description>~ the real reason you stop at a red ~</description>
+      <description>the real reason you stop at a red</description>
       <pubDate>Tue, 08 Aug 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/nashequilibrium.html</guid>
     </item>
@@ -362,7 +370,7 @@
     <item>
       <title>LOOKING TO THE FUTURE</title>
       <link>https://nonzerosum.games/betterrecycling3.html</link>
-      <description>~ a simple recycling idea: part III ~</description>
+      <description>a simple recycling idea: part III</description>
       <pubDate>Tue, 01 Aug 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/betterrecycling3.html</guid>
     </item>
@@ -370,7 +378,7 @@
     <item>
       <title>TAKING CREDIT</title>
       <link>https://nonzerosum.games/takingcredit.html</link>
-      <description>~ the paradox of original ideas ~</description>
+      <description>the paradox of original ideas</description>
       <pubDate>Tue, 25 Jul 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/takingcredit.html</guid>
     </item>
@@ -378,7 +386,7 @@
     <item>
       <title>PUTTING IT ON PLASTIC</title>
       <link>https://nonzerosum.games/betterrecycling2.html</link>
-      <description>~ a simple recycling idea: part II ~</description>
+      <description>a simple recycling idea: part II</description>
       <pubDate>Tue, 18 Jul 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/betterrecycling2.html</guid>
     </item>
@@ -386,7 +394,7 @@
     <item>
       <title>A SIMPLE RECYCLING IDEA</title>
       <link>https://nonzerosum.games/betterrecycling.html</link>
-      <description>~ 8 bottles ~</description>
+      <description>8 bottles</description>
       <pubDate>Tue, 11 Jul 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/betterrecycling.html</guid>
     </item>
@@ -394,7 +402,7 @@
     <item>
       <title>THE TETRIS EFFECT</title>
       <link>https://nonzerosum.games/thetetriseffect.html</link>
-      <description>~ 3d minimalist tetris and the obscuring problem ~</description>
+      <description>3d minimalist tetris and the obscuring problem</description>
       <pubDate>Tue, 04 Jul 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/thetetriseffect.html</guid>
     </item>
@@ -402,7 +410,7 @@
     <item>
       <title>MOLOCH'S DEMISE</title>
       <link>https://nonzerosum.games/molochtheactualstory.html</link>
-      <description>~ solving the original problem ~</description>
+      <description>solving the original problem</description>
       <pubDate>Tue, 27 Jun 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/molochtheactualstory.html</guid>
     </item>
@@ -410,7 +418,7 @@
     <item>
       <title>LIV BOEREE</title>
       <link>https://nonzerosum.games/nonzeroherolivboeree.html</link>
-      <description>~ a non-zero hero ~</description>
+      <description>a non-zero hero</description>
       <pubDate>Tue, 20 Jun 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/nonzeroherolivboeree.html</guid>
     </item>
@@ -418,7 +426,7 @@
     <item>
       <title>4 WAYS MOLOCH IS RUINING YOUR LIFE!</title>
       <link>https://nonzerosum.games/manifestationsofmoloch.html</link>
-      <description>~ the god of negative-sum games: part II ~</description>
+      <description>the god of negative-sum games: part II</description>
       <pubDate>Tue, 13 Jun 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/manifestationsofmoloch.html</guid>
     </item>
@@ -426,7 +434,7 @@
     <item>
       <title>LOCKWISE</title>
       <link>https://nonzerosum.games/lockwise.html</link>
-      <description>~ a meta-game ~</description>
+      <description>a meta-game</description>
       <pubDate>Tue, 06 Jun 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/lockwise.html</guid>
     </item>
@@ -434,7 +442,7 @@
     <item>
       <title>DIMINISHING RETURNS</title>
       <link>https://nonzerosum.games/diminishingreturns.html</link>
-      <description>~ a path to shared joy? ~</description>
+      <description>a path to shared joy?</description>
       <pubDate>Tue, 30 May 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/diminishingreturns.html</guid>
     </item>
@@ -442,7 +450,7 @@
     <item>
       <title>WHO IS MOLOCH?</title>
       <link>https://nonzerosum.games/whoismoloch.html</link>
-      <description>~ the god of negative-sum games ~</description>
+      <description>the god of negative-sum games</description>
       <pubDate>Tue, 16 May 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/whoismoloch.html</guid>
     </item>
@@ -450,7 +458,7 @@
     <item>
       <title>PARABLE OF A POLYP</title>
       <link>https://nonzerosum.games/parableofapolyp.html</link>
-      <description>~ from zero-sum to non-zero-sum ~</description>
+      <description>from zero-sum to non-zero-sum</description>
       <pubDate>Tue, 02 May 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/parableofapolyp.html</guid>
     </item>
@@ -458,7 +466,7 @@
     <item>
       <title>WHAT ARE NON-ZERO-SUM GAMES?</title>
       <link>https://nonzerosum.games/whatarenonzerosumgames.html</link>
-      <description>~ an introduction ~</description>
+      <description>an introduction</description>
       <pubDate>Tue, 18 Apr 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/whatarenonzerosumgames.html</guid>
     </item>
@@ -466,7 +474,7 @@
     <item>
       <title>ARE YOU IN A CRAB BUCKET?</title>
       <link>https://nonzerosum.games/crabbucket.html</link>
-      <description>~ how to escape negative-sum games ~</description>
+      <description>how to escape negative-sum games</description>
       <pubDate>Tue, 04 Apr 2023 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/crabbucket.html</guid>
     </item>
