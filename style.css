@@ -26,7 +26,7 @@
 }
 
 p {
-  text-align: justify;
+  text-align: center;
 }
 
 #animation-frame {
@@ -646,6 +646,9 @@ input::placeholder, textarea::placeholder {
     top: 26px;
   }
 
+  p {
+    text-align: justify;
+  }
 
 
 
