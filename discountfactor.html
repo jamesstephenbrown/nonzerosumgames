@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISCOUNT FACTOR: INFINITELY REPEATED GAMES</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/discountfactor.html" />
+    <meta name="description" content="Exploring discount factor in infinitely repeated games, including practical applications like climate change." />
+    <meta name="keywords" content="Game Theory, Repeated Games, Discount Factor, Climate Change, Behavioral Economics" />
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/discountfactor.png">
+    <meta property="og:title" content="DISCOUNT FACTOR: INFINITELY REPEATED GAMES">
+    <meta property="og:description" content="Exploring discount factor in infinitely repeated games, including practical applications like climate change.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+
+    <!-- Styles and jQuery for Menu Loading -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#menu").load("menu.html", function () {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="menu"></div>
+    <h1 style="margin-bottom: 0;">DISCOUNT FACTOR</h1>
+    <aside>E</aside>
+    <h2>and how to apply it in repeated games</h2>
+
+    <p>In <a href="repeatedgames.html">repeated games</a> I explored how <em>finitely</em> repeated and <em>infinitely</em> repeated games require different strategies, and how humans intuitively deal with repeated games that are "almost" infinite. This post will explore a crucial concept that accounts for how we deal with future uncertainty with a concept that is more mathematically rigorous—the discount factor. I’ll explore how we can calculate it, its relevance in repeated games, and end by looking at climate change as a repeated game incorporating the discount factor.</p>
+
+    <h3>WHAT IS THE DISCOUNT FACTOR?</h3>
+    <p>Think about the following scenario: you’re offered a choice between $1000 today or a year later. You’d certainly take it today. But what about if the offer given for a year later is raised to $1010? Chances are you’d still take the $1000 today, as the upside isn’t worth a full year (you’d probably be better off earning interest from a bank) - but this could vary. The discount factor could be interpreted in two ways:</p>
+
+    <blockquote>
+        <ol>
+            <li>It allows models to factor in exactly how much more we value rewards today as compared to a fixed time period later.</li>
+            <li>It factors in the probability that a seemingly infinitely repeated game ends at some period (the end is not certain, which is why we can’t use backward induction).</li>
+        </ol>
+    </blockquote>
+
+    <h3>HOW TO CALCULATE IT?</h3>
+    <p>How can we determine exactly how much more we value payoffs today than a year later? Although an over-simplification (ignoring patience and presence bias), one way to consider this is the interest rate. The logic here is that we take an offer today as long as it’s more than the offer given for a year from now plus interest earned. Thus:</p>
+
+    <blockquote>The discount factor <strong>δ = 1 / (1 + r)<sup>t</sup></strong><br>(where r is the interest rate and t is time)</blockquote>
+
+    <p>So, if the interest rate r was 10%, δ would be 0.91. Multiplying this with the future option, we get the minimum value we would accept today. Thus, $1010 a year later with a 10% interest rate would be worth (1010 * 0.91) = $919.10; we would thus take the $1000 today.</p>
+
+    <p>However, the numerical value calculated in this way isn’t of much significance to game theorists as we’re more interested in its impacts on strategic analysis. What’s more useful is its impact on our strategy viability condition of a repeated game. We multiply the discount factor with the difference between future cooperation rewards and future deviation punishments - now, the condition for cooperation accounts for the possibility that the game could end. This balances both the benefits of cooperation (an infinite strategy), but also its risks (the possibility the game could end, meaning a finite strategy would have been optimal).</p>
+
+    <h3>WHY IS IT IMPORTANT IN REPEATED GAMES?</h3>
+    <p>Multiplying a player’s average expected reward in a repeated game with the discount factor gives us a future discounted reward. The discount factor always lies between 0 and 1 - the closer it is to 1, the more patient the player is or the lower the chance of the game ending (both are interpretations of the fact that current and future utilities are relatively closer if the discount factor is closer to 1). Both the present bias that human beings have as well as the indefinite nature of a game continually repeating are accounted for.</p>
+
+    <h3>PRACTICAL APPLICATION - CLIMATE CHANGE</h3>
+    <p>Climate change, one of the most pressing issues that the human race is facing, can also be modeled as a repeated game over a common access resource - natural resources that everyone has access to, are non-rivalrous, and non-excludable. How does the discount factor and its two interpretations come into this?</p>
+    <p>Our war against climate change can be seen as infinitely repeated - it continues until the human race becomes extinct. But there’s certainly a chance, no matter how small, that this war ends - a climatic catastrophe suddenly wiping us all out, or gradual global warming making the planet eventually uninhabitable. As for the other interpretation, differing attitudes of different countries, political administrations and even businesses mean they each have different perceptions of how important the future generation is relative to today. Both of these can be factored into this vital game, using the discount factor. A higher discount factor would indicate a greater importance placed on future generations, meaning stronger policies attempting to halt climate change, and vice versa.</p>
+
+    <footer>
+        <h3>REFERENCES</h3>
+        <ol>
+            <li><a href="https://www.theguardian.com/science/blog/2016/apr/13/can-game-theory-help-solve-the-problem-of-climate-change" target="_blank">Dyke, J. (2016). Can game theory help solve the problem of climate change?</a></li>
+            <li><a href="https://www.researchgate.net/figure/The-pay-off-matrix-in-the-Prisoners-Dilemma-game-The-first-entry-refers-to-Alices_fig1_2184338" target="_blank">FIG. 1. The pay-off matrix in the Prisoners’ Dilemma game</a></li>
+            <li><a href="http://www.jstor.org/stable/2117561" target="_blank">Rabin, M. (1993). Incorporating Fairness into Game Theory and Economics</a></li>
+            <li><a href="https://www.youtube.com/watch?v=uNPvZmEM9Hc&list=TLPQMTExMTIwMjTKe96AMS_Y4A&index=2" target="_blank">Stanford Game Theory Online Course (2013). GTO-5-02: Infinitely Repeated Games & Utility</a></li>
+        </ol>
+    </footer>
+
+    <div id="comments-section">
+        <div id="graphcomment"></div>
+        <script type="text/javascript">
+            (function () {
+                var app = {
+                    app_id: "your_app_id",
+                    token: "your_token",
+                };
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = "https://comments.graphcomment.com/js/script.js";
+                document.getElementsByTagName("head")[0].appendChild(script);
+                window.gc_params = app;
+            })();
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Eye Stationary Cube Autostereogram</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Magic Eye Stationary Cube</h1>
+  <p>To see the hidden cube, relax your eyes and let them focus beyond the image.</p>
+  <canvas id="canvas" width="800" height="600"></canvas>
+
+  <script>
+    // Get the canvas and context
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Canvas dimensions
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Parameters
+    const patternWidth = 100; // Width of the repeating pattern
+    const maxShift = 15;      // Maximum shift for the depth effect
+    const cubeSize = 150;     // Size of the cube
+    const cubePosition = { x: width / 2, y: height / 2, z: 0 };
+    const viewerDistance = 1000; // For perspective projection
+
+    // Create the base pattern
+    const patternCanvas = document.createElement('canvas');
+    patternCanvas.width = patternWidth;
+    patternCanvas.height = height;
+    const patternCtx = patternCanvas.getContext('2d');
+
+    // Generate the base pattern with grid points
+    function generateBasePattern() {
+      patternCtx.clearRect(0, 0, patternWidth, height);
+
+      // Draw the grid pattern
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < patternWidth; x++) {
+          if (x % 10 === 0 && y % 10 === 0) {
+            const isMajorX = x % 100 === 0;
+            const isMajorY = y % 100 === 0;
+            const isMajorPoint = isMajorX && isMajorY;
+            patternCtx.fillStyle = isMajorPoint ? '#FFFFFF' : '#888888';
+            patternCtx.fillRect(x, y, 1, 1);
+          }
+        }
+      }
+    }
+
+    // Generate depth map
+    const depthMap = new Float32Array(width * height);
+
+    function generateDepthMap() {
+      // Initialize depth map to zero
+      depthMap.fill(0);
+
+      // Cube parameters
+      const cubeHalfSize = cubeSize / 2;
+
+      // Define cube vertices
+      const vertices = [
+        { x: -cubeHalfSize, y: -cubeHalfSize, z: -cubeHalfSize },
+        { x: cubeHalfSize, y: -cubeHalfSize, z: -cubeHalfSize },
+        { x: cubeHalfSize, y: cubeHalfSize, z: -cubeHalfSize },
+        { x: -cubeHalfSize, y: cubeHalfSize, z: -cubeHalfSize },
+        { x: -cubeHalfSize, y: -cubeHalfSize, z: cubeHalfSize },
+        { x: cubeHalfSize, y: -cubeHalfSize, z: cubeHalfSize },
+        { x: cubeHalfSize, y: cubeHalfSize, z: cubeHalfSize },
+        { x: -cubeHalfSize, y: cubeHalfSize, z: cubeHalfSize },
+      ];
+
+      // Faces defined by vertex indices
+      const faces = [
+        [0, 1, 2, 3], // Front face
+        [4, 5, 6, 7], // Back face
+        [0, 1, 5, 4], // Bottom face
+        [2, 3, 7, 6], // Top face
+        [1, 2, 6, 5], // Right face
+        [0, 3, 7, 4], // Left face
+      ];
+
+      // For each face, rasterize and store depth values
+      faces.forEach(face => {
+        const projectedVertices = face.map(idx => {
+          const vertex = vertices[idx];
+          // Apply perspective projection
+          const z = vertex.z + viewerDistance;
+          const scale = viewerDistance / z;
+          const x = vertex.x * scale + cubePosition.x;
+          const y = vertex.y * scale + cubePosition.y;
+          return { x, y, z: vertex.z };
+        });
+        rasterizeFace(projectedVertices);
+      });
+    }
+
+    function rasterizeFace(vertices) {
+      // Get bounding box of the face
+      const minX = Math.max(0, Math.floor(Math.min(...vertices.map(v => v.x))));
+      const maxX = Math.min(width - 1, Math.ceil(Math.max(...vertices.map(v => v.x))));
+      const minY = Math.max(0, Math.floor(Math.min(...vertices.map(v => v.y))));
+      const maxY = Math.min(height - 1, Math.ceil(Math.max(...vertices.map(v => v.y))));
+
+      // Prepare edge functions
+      const [v0, v1, v2, v3] = vertices;
+
+      // Compute plane equation coefficients for depth interpolation
+      const A = ((v1.y - v0.y) * (v2.z - v0.z) - (v1.z - v0.z) * (v2.y - v0.y));
+      const B = ((v1.z - v0.z) * (v2.x - v0.x) - (v1.x - v0.x) * (v2.z - v0.z));
+      const C = ((v1.x - v0.x) * (v2.y - v0.y) - (v1.y - v0.y) * (v2.x - v0.x));
+      const D = -(A * v0.x + B * v0.y + C * v0.z);
+
+      // Rasterize the face
+      for (let y = minY; y <= maxY; y++) {
+        for (let x = minX; x <= maxX; x++) {
+          if (pointInPolygon({ x, y }, vertices)) {
+            // Compute depth (z value) at (x, y)
+            const z = (-A * x - B * y - D) / C;
+            const depth = z + cubeSize / 2;
+            const normalizedDepth = depth / cubeSize;
+
+            // Store depth in depth map
+            depthMap[y * width + x] = normalizedDepth;
+          }
+        }
+      }
+    }
+
+    // Function to check if a point is inside a polygon
+    function pointInPolygon(point, vertices) {
+      let inside = false;
+      for (let i = 0, j = vertices.length - 1; i < vertices.length; j = i++) {
+        const xi = vertices[i].x, yi = vertices[i].y;
+        const xj = vertices[j].x, yj = vertices[j].y;
+
+        const intersect = ((yi > point.y) !== (yj > point.y)) &&
+          (point.x < ((xj - xi) * (point.y - yi)) / (yj - yi + xi));
+        if (intersect) inside = !inside;
+      }
+      return inside;
+    }
+
+    // Generate autostereogram
+    function generateAutostereogram() {
+      ctx.clearRect(0, 0, width, height);
+
+      // For each row
+      for (let y = 0; y < height; y++) {
+        // Get the pattern row
+        const patternRow = patternCtx.getImageData(0, y, patternWidth, 1).data;
+
+        // Initialize the output row
+        const outputRow = ctx.createImageData(width, 1);
+        const outputData = outputRow.data;
+
+        // Initialize a map to hold the pixel indices
+        const indices = [];
+
+        // For each column
+        for (let x = 0; x < width; x++) {
+          const depth = depthMap[y * width + x] || 0;
+          const shift = Math.round(depth * maxShift);
+
+          if (x < patternWidth) {
+            // Use base pattern
+            const idx = (x % patternWidth) * 4;
+            indices[x] = x;
+            outputData[x * 4] = patternRow[idx];
+            outputData[x * 4 + 1] = patternRow[idx + 1];
+            outputData[x * 4 + 2] = patternRow[idx + 2];
+            outputData[x * 4 + 3] = 255;
+          } else {
+            // Shift pixel from earlier in the row
+            const idx = (x - shift >= 0) ? (x - shift) : x;
+            indices[x] = indices[idx];
+            outputData[x * 4] = outputData[idx * 4];
+            outputData[x * 4 + 1] = outputData[idx * 4 + 1];
+            outputData[x * 4 + 2] = outputData[idx * 4 + 2];
+            outputData[x * 4 + 3] = 255;
+          }
+        }
+        // Put the row into the canvas
+        ctx.putImageData(outputRow, 0, y);
+      }
+    }
+
+    // Initialize and generate the autostereogram
+    generateBasePattern();
+    generateDepthMap();
+    generateAutostereogram();
+  </script>
+</body>
+</html>

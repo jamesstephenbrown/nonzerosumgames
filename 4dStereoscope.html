@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4D Cube with Enhanced Rotation and Stereoscopic Effect</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    canvas {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Eye View -->
+  <canvas id="leftCanvas" width="500" height="500"></canvas>
+  <!-- Right Eye View -->
+  <canvas id="rightCanvas" width="500" height="500"></canvas>
+
+  <script>
+    // Get canvases and contexts
+    const leftCanvas = document.getElementById('leftCanvas');
+    const rightCanvas = document.getElementById('rightCanvas');
+    const leftCtx = leftCanvas.getContext('2d');
+    const rightCtx = rightCanvas.getContext('2d');
+
+    // Parameters
+    const width = leftCanvas.width;
+    const height = leftCanvas.height;
+    const rotationSpeed = 0.02; // Speed of rotation in 4D
+    const maxDisparity = 20;    // Increased from 10 to 20
+
+    // Initialize points array
+    let points = [];
+
+    // Function to generate a lattice within a cube
+    function generateLattice() {
+      points = [];
+      const size = 1; // Size of the cube
+      const step = 0.5; // Step size for lattice density
+      for (let x = -size; x <= size; x += step) {
+        for (let y = -size; y <= size; y += step) {
+          for (let z = -size; z <= size; z += step) {
+            points.push({ x, y, z, w: 0 });
+          }
+        }
+      }
+    }
+
+    // Function to apply initial rotation to the cube
+    function applyInitialRotation(point) {
+      // Convert degrees to radians
+      const angleY = (20 * Math.PI) / 180; // Changed from 45 to 20 degrees
+      const angleX = (35 * Math.PI) / 180; // Changed from 2 to 35 degrees
+
+      // Rotation around Y-axis
+      let sinY = Math.sin(angleY);
+      let cosY = Math.cos(angleY);
+      let x = point.x * cosY + point.z * sinY;
+      let z = -point.x * sinY + point.z * cosY;
+
+      // Rotation around X-axis
+      let sinX = Math.sin(angleX);
+      let cosX = Math.cos(angleX);
+      let y = point.y * cosX - z * sinX;
+      z = point.y * sinX + z * cosX;
+
+      return { x, y, z, w: point.w };
+    }
+
+    // Rotation function in 4D space (w-coordinate changes)
+    function rotate4D(point, angle) {
+      const sin = Math.sin(angle);
+      const cos = Math.cos(angle);
+      // Rotate in x-w plane (x remains constant to keep cube stationary in 3D)
+      const w = point.w * cos - point.x * sin;
+      return { x: point.x, y: point.y, z: point.z, w };
+    }
+
+    // Project 3D point to 2D (common for both eyes)
+    function project3Dto2D(point) {
+      const scale = 300; // Adjust for zoom
+      const zOffset = 5; // Camera distance
+
+      const x = point.x / (zOffset - point.z) * scale + width / 2;
+      const y = point.y / (zOffset - point.z) * scale + height / 2;
+
+      return { x, y, depth: zOffset - point.z };
+    }
+
+    // Draw points on canvas with brightness based on depth
+    function draw(points2D, ctx) {
+      ctx.clearRect(0, 0, width, height);
+      points2D.forEach(point => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+        // Adjust brightness based on depth (closer points are brighter)
+        const brightness = Math.max(0, Math.min(255, 255 - (point.depth * 40)));
+        ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
+        ctx.fill();
+      });
+    }
+
+    // Animation loop
+    let angle = 0;
+    function animate() {
+      angle += rotationSpeed;
+
+      // Arrays to hold projected points for left and right eyes
+      const leftPoints2D = [];
+      const rightPoints2D = [];
+
+      points.forEach(point => {
+        // Apply initial rotation once
+        const rotated3DPoint = applyInitialRotation(point);
+
+        // Rotate in 4D space (only w-coordinate changes)
+        const rotatedPoint = rotate4D(rotated3DPoint, angle);
+
+        // Project from 3D to 2D (common projection)
+        const projected2DPoint = project3Dto2D(rotatedPoint);
+
+        // Compute stereoscopic disparity based on w-coordinate
+        const normalizedW = Math.tanh(rotatedPoint.w);
+        const disparity = normalizedW * maxDisparity;
+
+        // Apply disparity to left and right eye views
+        const leftPoint = {
+          x: projected2DPoint.x - disparity / 2,
+          y: projected2DPoint.y,
+          depth: projected2DPoint.depth
+        };
+        const rightPoint = {
+          x: projected2DPoint.x + disparity / 2,
+          y: projected2DPoint.y,
+          depth: projected2DPoint.depth
+        };
+
+        leftPoints2D.push(leftPoint);
+        rightPoints2D.push(rightPoint);
+      });
+
+      // Draw on canvases
+      draw(leftPoints2D, leftCtx);
+      draw(rightPoints2D, rightCtx);
+
+      requestAnimationFrame(animate);
+    }
+
+    // Initialize and start animation
+    generateLattice();
+    animate();
+  </script>
+</body>
+</html>

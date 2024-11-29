@@ -178,7 +178,7 @@
             <span style="font-size: 100%;">My Shapley Value = Sum of (<span style="color: #801484;">Weight</span> x <span style="color: #005140;">Each of my marginal contributions</span>)
             </span>
 
-            <p><i>... or in more detail...</i></p>
+            <p><em>... or in more detail...</em></p>
             
             <span style="font-size: 75%;">Sum of (
                 <span class="fraction" style="color: #801484;">
@@ -202,13 +202,13 @@
 
         <h3>... WEIGHTING</h3>
         
-        <p>In order to apportion a player's marginal contribution correctly, we <span class="expandable-word" data-info="This is a simplification, Shapley Value actually takes into account every different order of every coalition a player could join. To do this we use factorials, which I'll introduce later on when we get into the detail.">essentially</span> divide each of their marginal contributions by the number of coalitions they can join. This gives us their <b><i>weighted</i> marginal contributions</b>. Add these all up, and you have their Shapley Value—their fair share of the payoff from the <span class="expandable-word" data-info="The coalition of all players.">grand coalition</span>.</p>
+        <p>In order to apportion a player's marginal contribution correctly, we <span class="expandable-word" data-info="This is a simplification, Shapley Value actually takes into account every different order of every coalition a player could join. To do this we use factorials, which I'll introduce later on when we get into the detail.">essentially</span> divide each of their marginal contributions by the number of coalitions they can join. This gives us their <strong><em>weighted</em> marginal contributions</strong>. Add these all up, and you have their Shapley Value—their fair share of the payoff from the <span class="expandable-word" data-info="The coalition of all players.">grand coalition</span>.</p>
 
         <p>Let's go through a scenario, this could be sharing the cost savings of sharing a taxi, or sharing the profits of a joint investment, Shapley Value works for both.
     </p>
 
     <div class="player-input">
-        <label for="numPlayers"><b>Enter number of players (2 to 5):</b></label>
+        <label for="numPlayers"><strong>Enter number of players (2 to 5):</strong></label>
         <input type="number" id="numPlayers" name="numPlayers" min="2" max="5" value="3"><br>
         <button class="button" onclick="generatePlayerNames()">Create Players</button>
     </div>
@@ -287,7 +287,7 @@
 
             const playerNamesSection = document.getElementById('playerNamesSection');
             const playerNamesInputs = document.getElementById('playerNamesInputs');
-            playerNamesInputs.innerHTML = '<h2><br><b>Name your players</b></h2>';
+            playerNamesInputs.innerHTML = '<h2><br><strong>Name your players</strong></h2>';
 
             for (let i = 1; i <= numPlayers; i++) {
                 const label = document.createElement('label');
@@ -544,7 +544,7 @@
              <p>Let's focus on ${players[0]}.</p>
                 <img src="./Images/Content/Shapley_JoinCoalition.png" alt="A kitten waiting to join 3 others">
 
-                <p>We first calculate ${players[0]}'s <b>marginal contribution</b>—the difference in the value of the every possible coalition with and without each player.</p>
+                <p>We first calculate ${players[0]}'s <strong>marginal contribution</strong>—the difference in the value of the every possible coalition with and without each player.</p>
 
 
             
@@ -561,12 +561,12 @@
 
                 <p>So, for a coalition of 3 players you have (3)! orders the players can join.</p>
                     <ul>
-                    <li><b>${playerNames[0]}</b>, <i>${playerNames[1]}, ${playerNames[2]}</i></li>
-                    <li><b>${playerNames[0]}</b>, <i>${playerNames[2]}, ${playerNames[1]}</i></li>
-                    <li>${playerNames[1]}, <b>${playerNames[0]}</b>, <i>${playerNames[2]}</i></li>
-                    <li>${playerNames[2]}, <b>${playerNames[0]}</b>, <i>${playerNames[1]}</i></li>
-                    <li>${playerNames[1]}, ${playerNames[2]}, <b>${playerNames[0]}</b></li>
-                    <li>${playerNames[2]}, ${playerNames[1]}, <b>${playerNames[0]}</b></li>
+                    <li><strong>${playerNames[0]}</strong>, <em>${playerNames[1]}, ${playerNames[2]}</em></li>
+                    <li><strong>${playerNames[0]}</strong>, <em>${playerNames[2]}, ${playerNames[1]}</em></li>
+                    <li>${playerNames[1]}, <strong>${playerNames[0]}</strong>, <em>${playerNames[2]}</em></li>
+                    <li>${playerNames[2]}, <strong>${playerNames[0]}</strong>, <em>${playerNames[1]}</em></li>
+                    <li>${playerNames[1]}, ${playerNames[2]}, <strong>${playerNames[0]}</strong></li>
+                    <li>${playerNames[2]}, ${playerNames[1]}, <strong>${playerNames[0]}</strong></li>
                     </ul>
                 <p>So, in a game of 3 players, there are 2 coalitions where ${playerNames[0]} is the first to join, 2 where ${playerNames[0]} is the second to join, and 2 where ${playerNames[0]} is the last to join.</p>
 
@@ -674,7 +674,7 @@ stepsContent.appendChild(playerDiv);
                 The number of coalitions grow exponentially with the number of players, making it computationally expensive for large groups.
             </li>
             <li>
-                The factorial method of weighting makes manual computation <i>unnecessarily</i> (IMO) complicated in order to adhere to a questionable definition of "fairness" based on joining-order. If someone can explain to me why <i>player's marginal contributions / total marginal conributions</i> (much easier to back-of-envelope) is a less "fair" way of weighting, please enlighten me in the comments.</li>
+                The factorial method of weighting makes manual computation <em>unnecessarily</em> (IMO) complicated in order to adhere to a questionable definition of "fairness" based on joining-order. If someone can explain to me why <em>player's marginal contributions / total marginal conributions</em> (much easier to back-of-envelope) is a less "fair" way of weighting, please enlighten me in the comments.</li>
             </ol>
             </blockquote>
 

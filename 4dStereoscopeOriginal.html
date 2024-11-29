@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stereoscopic Cube with Correct Faces</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .top-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px; /* Space between top and bottom sections */
+    }
+    .top-section canvas {
+      margin: 0 50px; /* Gap between left and right canvases */
+    }
+    .bottom-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .bottom-section canvas {
+      margin-top: 20px;
+    }
+    h1 {
+      color: #fff;
+      text-align: center;
+      margin-top: 20px;
+    }
+    p {
+      color: #ccc;
+      text-align: center;
+      max-width: 600px;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Stereoscopic Cube Visualization</h1>
+    <p>Cross your eyes to merge the top two images into one 3D cube. Observe the cube with the front face, left face, and top face.</p>
+
+    <!-- Top Section: Left and Right Eye Views -->
+    <div class="top-section">
+      <canvas id="leftCanvas" width="500" height="500"></canvas>
+      <canvas id="rightCanvas" width="500" height="500"></canvas>
+    </div>
+
+    <!-- Bottom Section: Rotating Cube -->
+    <div class="bottom-section">
+      <canvas id="rotatingCanvas" width="800" height="800"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Get canvases and contexts
+    const leftCanvas = document.getElementById('leftCanvas');
+    const rightCanvas = document.getElementById('rightCanvas');
+    const rotatingCanvas = document.getElementById('rotatingCanvas');
+    const leftCtx = leftCanvas.getContext('2d');
+    const rightCtx = rightCanvas.getContext('2d');
+    const rotatingCtx = rotatingCanvas.getContext('2d');
+
+    // Parameters
+    const width = leftCanvas.width;
+    const height = leftCanvas.height;
+    const numPointsPerEdge = 12; // Doubled lattice density
+    const pointSize = 2; // Increased size of the lattice points
+    const tiltAngleX = Math.PI / 3; // Tilt angle around X-axis
+    const tiltAngleY = Math.PI / 6; // Tilt angle around Y-axis
+    const rotationSpeed = 0.02; // Speed of rotation for the bottom cube
+    const parallaxScale = 4; // Reduced scale for depth-based parallax adjustment
+    const eyeSeparation = 0.02; // Reduced eye separation for stereoscopic effect
+
+    // Initialize cube points
+    let cubePoints = [];
+    let rotatingCubePoints = [];
+
+    // Function to generate lattice points for the cube faces
+    function generateCubeLattice() {
+      cubePoints = [];
+      rotatingCubePoints = [];
+
+      const step = 2 / (numPointsPerEdge - 1);
+      const positions = [];
+
+      // Front face (z = 1)
+      for (let x = -1; x <= 1.0001; x += step) {
+        for (let y = -1; y <= 1.0001; y += step) {
+          positions.push({ x, y, z: 1 });
+        }
+      }
+
+      // Left face (x = -1)
+      for (let y = -1; y <= 1.0001; y += step) {
+        for (let z = -1; z <= 1.0001; z += step) {
+          positions.push({ x: -1, y, z });
+        }
+      }
+
+      // Top face (y = 1)
+      for (let x = -1; x <= 1.0001; x += step) {
+        for (let z = -1; z <= 1.0001; z += step) {
+          positions.push({ x, y: 1, z });
+        }
+      }
+
+      // Remove duplicate points if any
+      const uniquePositions = positions.filter((v, i, a) => a.findIndex(t => (t.x === v.x && t.y === v.y && t.z === v.z)) === i);
+
+      // Apply tilt to the cube for the top images
+      uniquePositions.forEach(pos => {
+        const tiltedPoint = rotateY(rotateX(pos, tiltAngleX), tiltAngleY);
+        cubePoints.push(tiltedPoint);
+
+        // Corresponding point for the rotating cube (initially same position)
+        rotatingCubePoints.push(pos);
+      });
+    }
+
+    // Rotation function around X-axis
+    function rotateX(point, angle) {
+      const sin = Math.sin(angle);
+      const cos = Math.cos(angle);
+      const y = point.y * cos - point.z * sin;
+      const z = point.y * sin + point.z * cos;
+      return { x: point.x, y, z };
+    }
+
+    // Rotation function around Y-axis
+    function rotateY(point, angle) {
+      const sin = Math.sin(angle);
+      const cos = Math.cos(angle);
+      const x = point.x * cos + point.z * sin;
+      const z = -point.x * sin + point.z * cos;
+      return { x, y: point.y, z };
+    }
+
+    // Projection function to 2D
+    function project(point) {
+      const distance = 5;
+      const fov = 400; // Doubled field of view for larger cube
+      const scale = fov / (distance - point.z);
+      return {
+        x: point.x * scale + width / 2,
+        y: -point.y * scale + height / 2, // Negative to flip y-axis for proper orientation
+      };
+    }
+
+    // Animation loop
+    let angle = 0;
+    function animate() {
+      angle += rotationSpeed;
+
+      // Rotate the bottom cube around the X-axis
+      const rotatedBottomCubePoints = rotatingCubePoints.map(point => rotateX(point, angle));
+
+      // Arrays to hold projected points for left and right eyes
+      const leftPoints2D = [];
+      const rightPoints2D = [];
+
+      // For each point, adjust parallax based on depth difference
+      for (let i = 0; i < cubePoints.length; i++) {
+        const topPoint = cubePoints[i];
+        const bottomPoint = rotatedBottomCubePoints[i];
+
+        // Calculate depth difference (z difference)
+        const depthDifference = bottomPoint.z - topPoint.z;
+
+        // Calculate parallax shift based on depth difference
+        const parallaxShift = depthDifference * parallaxScale;
+
+        // Project top point to 2D for left and right eyes
+        const projectedLeftPoint = project({ x: topPoint.x - eyeSeparation / 2, y: topPoint.y, z: topPoint.z });
+        const projectedRightPoint = project({ x: topPoint.x + eyeSeparation / 2, y: topPoint.y, z: topPoint.z });
+
+        // Adjust x positions based on parallax shift
+        const xLeft = projectedLeftPoint.x - parallaxShift;
+        const xRight = projectedRightPoint.x + parallaxShift;
+
+        leftPoints2D.push({ x: xLeft, y: projectedLeftPoint.y });
+        rightPoints2D.push({ x: xRight, y: projectedRightPoint.y });
+      }
+
+      // Draw on left and right canvases
+      drawPoints(leftPoints2D, leftCtx);
+      drawPoints(rightPoints2D, rightCtx);
+
+      // Draw the rotating cube in the bottom canvas
+      drawRotatingCube(rotatedBottomCubePoints);
+
+      requestAnimationFrame(animate);
+    }
+
+    // Function to draw points on a canvas
+    function drawPoints(points2D, ctx) {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#FFFFFF';
+      points2D.forEach(point => {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, pointSize, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    // Function to draw the rotating cube in the bottom canvas
+    function drawRotatingCube(points) {
+      const ctx = rotatingCtx;
+      const canvasWidth = rotatingCanvas.width;
+      const canvasHeight = rotatingCanvas.height;
+
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+      ctx.fillStyle = '#FFFFFF';
+
+      points.forEach(point => {
+        const projectedPoint = project(point);
+        ctx.beginPath();
+        ctx.arc(projectedPoint.x, projectedPoint.y, pointSize, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    // Initialize and start animation
+    generateCubeLattice();
+    animate();
+  </script>
+</body>
+</html>
