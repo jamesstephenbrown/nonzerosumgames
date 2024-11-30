@@ -49,75 +49,120 @@
     <aside>E</aside>
     <h2><b>Jaiveer</b> explores an important consideration in repeated games and real life</h2>
 
-    <p>In <a href="repeatedgames.html">repeated games</a> I explored how <em>finitely</em> repeated and <em>infinitely</em> repeated games require different strategies, and how humans intuitively deal with repeated games that are "almost" infinite. This post will explore a crucial concept that accounts for how we deal with future uncertainty with a concept that is more mathematically rigorous—the discount factor. I'll explore how we can calculate it, its relevance in repeated games, and end by looking at climate change as a repeated game incorporating the discount factor.</p>
+    <img src="Images/Content/DiscountFactor_BirdInTheHand.png" alt="A falcon in on a glove">
+
+    <p>In <a href="repeatedgames.html">repeated games</a> I showed how <em>finitely</em> repeated and <em>infinitely</em> repeated games require different strategies, and how humans intuitively deal with games that are "almost" infinite. This post will explore a crucial concept that accounts for how we deal with future uncertainty with a concept that is more mathematically rigorous—the discount factor. We'll see how we can calculate it, its relevance in repeated games, and end by looking at climate change as a repeated game incorporating the discount factor.</p>
 
     <h3>WHAT IS THE DISCOUNT FACTOR?</h3>
-    <p>Think about the following scenario: you're offered a choice between $1000 today or a year later. You'd certainly take it today. But what about if the offer given for a year later is raised to $1010? Chances are you'd still take the $1000 today, as the upside isn't worth a full year—you'd probably be better off earning interest from a bank).</p>
+    <p>Think about the following scenario: you're offered a choice between $1000 today or a year later. You'd certainly take it today. But what about if the offer given for a year later is raised to $1010? Chances are you'd still take the $1000 today, as the upside isn't worth a full year (you'd probably be better off earning interest from a bank).</p>
 
     <blockquote><p>The discount factor can be interpreted in two ways:</p>
         <ol>
-            <li><strong>Present Bias</strong>: It allows models to factor in how much more we value rewards today as compared to a fixed time period later.</li>
-            <li><strong>Indefinite Ending</strong>: It accounts for the probability that a repeated game may end at some time, prompting a shift in strategy.</li>
+            <li><strong>Present Bias</strong>: Factoring in how much more we value rewards today as compared to a fixed time period later.</li>
+            <li><strong>Indefinite Ending</strong>: Accounting for the probability that a repeated game may end at some time—prompting a shift in strategy.</li>
         </ol>
     </blockquote>
 
     <h3>HOW TO CALCULATE IT?</h3>
-    <p>How can we determine exactly how much more we value payoffs today than a year later? Although an over-simplification (ignoring patience and presence bias), one way to consider this is the interest rate. The logic here is that we take an offer today as long as it's more than the offer given for a year from now plus interest earned. Thus:</p>
+    <p>How can we determine how much more we value payoffs today than a year later? Although an <span class="expandable-word" data-info="Putting aside presence and patience bias for a moment">over-simplication</span>, one way to consider this is the interest rate. The logic here is that we take an offer today as long as it's more than the offer given for a year from now plus interest earned. Thus:</p>
 
     <blockquote><strong>δ = 1 / (1 + r)<sup>t</sup></strong><br>(where r is the interest rate and t is time)</blockquote>
 
     <p>So, if the interest rate r was 10%, the discount factor δ would be 0.91. Multiplying this with the future option, we get the minimum value we would accept today. Thus, $1010 a year later with a 10% interest rate would be worth (1010 * 0.91) = $919.10, significantly lower than the offer of $1000 today.</p>
 
+    <img src="Images/Content/DiscountFactor_1000Now.png" alt="A cityscape with a banner in the foreground saying $1000 Now, and one in the background saying $1010 Later">
 
     <h3>CONFIDENCE</h3>
-    <p>Here we have been using the interest rate to determine the discount factor, but the discount factor can be anywhere between 0 and 1—it is simply a measure of the player's confidence in future rewards. The more confident the player is, the closer the discount factor will be to 1. In repeated games, the chance of the game ending is a crucial consideration in determining how much confidence (or trust) one player has in the other cooperating, because if the game is about to end a cooperative (infinite) strategy can become suboptimal and a non-cooperative (finite) strategy may be preferable (via backward induction). The discount factor balances the benefits of cooperation but also its risks.</p>
+    <p>Here we have been using the interest rate to determine the discount factor, but the discount factor can be anywhere between 0 and 1—it is simply a measure of the player's confidence in future rewards. The more confident the player is, the closer the discount factor will be to 1. In repeated games, the chance of the game ending is a crucial consideration in determining how much confidence (or trust) one player has in the other cooperating, because if the game is about to end a infinite (cooperative) strategy can become sub-optimal and a finite (non-cooperative) strategy may be preferable (via backward induction). The discount factor balances the benefits of cooperation but also its risks.</p>
     
     <p>Both the present bias that human beings have as well as the indefinite nature of a repeating game are accounted for.</p>
 
     <h3>WHY IS IT IMPORTANT IN REPEATED GAMES?</h3>
-    <p>To understand why discount factor is important in repeated games, let’s use the classic example of an infinitely repeated prisoner's dilemma game with the following matrix:</p>
+    <p>To understand why discount factor is important in repeated games, let's use the classic example of an infinitely repeated prisoner's dilemma game with the following matrix:</p>
 
-    <img src="Images/Content/DiscountFactor_Matrix.png" alt="Prisoner's Dilemma Payoff Matrix" style="width: 100%; max-width: 500px;">
+    <img src="Images/Content/DiscountFactor_PrisonersMatrix.png" alt="Prisoner's Dilemma Payoff Matrix">
 
-    <p>Let’s consider player 1’s best case payoff (5) and second best payoff (3). Intuitively, we can see that if repeated infinitely both would sum to infinity, despite a clear difference in the payoffs in each stage game. This makes it both mathematically tougher while modeling and fails to account for the practical possibility of the game ending, perhaps drawing on the rather gloomy idea that life itself is finite or, in other interactions that can be modeled as repeated games, simply that the players may stop playing. Thus, by introducing the discount factor, we account for this probability and for the players’ preference for rewards today.</p>
+    <p>Let's consider player 1's best case payoff (5) and second best payoff (3). Intuitively, we can see that, if repeated infinitely, both would sum to infinity, despite a clear difference in the payoffs in each stage game. This makes it both mathematically tougher while modeling and fails to account for the practical possibility of the game ending, perhaps drawing on the rather gloomy idea that life itself is finite or, in other interactions that can be modeled as repeated games, simply that the players may stop playing. Thus, by introducing the discount factor, we account for this probability and for the players' preference for rewards today.</p>
 
-    <h3>PRACTICAL APPLICATION - CLIMATE CHANGE</h3>
-    <p>Climate change, of the most pressing issues that the human race is facing, can also be modeled as a repeated game over a common access resource - natural resources that everyone has access to, are non-rivalrous, and non-excludable. How does the discount factor and its 2 interpretations come into this? Our war against climate change can be seen as infinitely repeated - it continues until the human race becomes extinct (Dyke, 2016). But there’s certainly a chance, no matter how small, that this war ends - a climatic catastrophe suddenly wiping us all out, or gradual global warming making the planet eventually inhabitable. As for the other interpretation, differing attitudes of different countries, political administrations and even businesses mean they each have different perceptions of how important the future generation is relative to today. Both of these can be factored into this vital game, using the discount factor. A higher discount factor would indicate a greater importance placed on future generations, meaning stronger policies attempting to halt climate change, and vice versa. Let’s end, as usual, with some behavioral economic considerations...</p>
+    <img src="Images/Content/DiscountFactor_CoopDefect.png" alt="A bird deciding whether to cooperate or defect">
+
+    <h3>PRACTICAL APPLICATION—CLIMATE CHANGE</h3>
+    <p>Climate change, of the most pressing issues that the human race is facing, can also be modeled as a repeated game. How does the discount factor and its 2 interpretations come into this? Our war against climate change <a href="https://www.theguardian.com/science/blog/2016/apr/13/can-game-theory-help-solve-the-problem-of-climate-change" target="_blank">can be seen as infinitely repeated</a>—it continues until the human race becomes extinct. But there's certainly a chance, no matter how small, that this war ends—a climatic catastrophe suddenly wiping us all out, or gradual global warming making the planet eventually uninhabitable.</p>
+    
+    <img src="Images/Content/DiscountFactor_ClimateChange.png" alt="A cityscape with a banner in the foreground saying $1000 Now, but the buildings are underwater">
+    
+    <p>As for the other interpretation, differing attitudes of different countries, political administrations and even businesses mean they each have different perceptions of how important future generations are relative to today. Both of these can be factored into this vital game, using the discount factor. A higher discount factor would indicate a greater importance placed on future generations, meaning stronger policies attempting to halt climate change, and vice versa. Let's end, as usual, with some behavioral economic considerations...</p>
+
+    <img src="Images/Content/Entropy_GlobeRadiation.png" alt="A globe with heat radiating">
 
     <h3>RECIPROCITY AND SOCIAL NORMS</h3>
 
-    <p>If the infinitely repeated climate change game is seen as one being played with other countries (for example, through contracts such as the Paris Agreement), then Rabin’s ideas of fairness equilibria and reciprocity could come into the picture (Rabin, 1993). Viewed in isolation and from a completely self-interested viewpoint, measures that promote sustainability may not make rational economic sense if the discount factor that policy-makers have is relatively low. However, agreements like these and the idea that players often make decisions considering past decisions by other players (perhaps achieving a “fair” outcome) could either help or seriously harm our efforts. If other countries prioritize current growth and don’t meet targets, others may reciprocate by not meeting theirs even though it was possible, merely as a deterrent. But all it takes is a few administrations with higher discount factors to set off a chain of reciprocity, before the ultimate title of a social norm is achieved and sustainable practices become commonplace (Dyke, 2016).</p>
+    <p>The infinitely repeated climate change game is being played out between countries. Viewed in isolation, and from a completely self-interested viewpoint, measures that promote sustainability may not make rational economic sense for policy-makers, meaning their discount factor will be relatively low. However, agreements like the Paris Agreement, in game theoretical terms, are an attempt to <span class="expandable-word" data-info="It's important to note that increasing the discount factor brings it closer to 1, meaning that it is actually decreasing the amount the future rewards are discounted.">increase</span> the discount factor, by increasing confidence between countries. It is always possible that, if other countries prioritize current growth and don't meet targets, <a href="http://www.jstor.org/stable/2117561" target="_blank">others may reciprocate</a> by not meeting theirs even though it was possible, merely as a deterrent, creating a downward spiral of mistrust. But all it takes is a few administrations with higher discount factors to set off a chain of reciprocity, before the ultimate title of a <b>social norm</b> is achieved and sustainable practices <a href="https://www.theguardian.com/science/blog/2016/apr/13/can-game-theory-help-solve-the-problem-of-climate-change" target="_blank">become commonplace</a>.</p>
 
     <h3>SO...</h3>
 
-    <p>Beyond a complicated-looking formula, the discount factor is simply an indication of how much we value the future. When analyzing repeated games, we can now add in a practical consideration - differing human attitudes. In repeated games like tackling climate change, this can make all the difference in the outcomes - what’s essential is common knowledge. If we know others have a high discount factor (perhaps through clearly articulated stances), this can assure us of mutual cooperation or even impact our own perception of its importance. </p>
+    <p>Beyond a complicated-looking formula, the discount factor is simply an indication of how much we prioritise the future. When analyzing repeated games, we can now add a practical consideration—differing human attitudes. In repeated games like tackling climate change, this can make all the difference in the outcomes—what's essential is common knowledge. If we know others have a high discount factor (perhaps through clearly articulated stances), this can assure us of mutual cooperation or even impact our own perception of its importance. </p>
+
+    <img src="Images/Content/DiscountFactor_TwoInTheBush.png" alt="Two birds in a bush, one is complaining about feeling undervalued">
 
     <footer>
-        <h3>REFERENCES</h3>
-        <ol>
-            <li><a href="https://www.theguardian.com/science/blog/2016/apr/13/can-game-theory-help-solve-the-problem-of-climate-change" target="_blank">Dyke, J. (2016). Can game theory help solve the problem of climate change?</a></li>
-            <li><a href="https://www.researchgate.net/figure/The-pay-off-matrix-in-the-Prisoners-Dilemma-game-The-first-entry-refers-to-Alices_fig1_2184338" target="_blank">FIG. 1. The pay-off matrix in the Prisoners' Dilemma game</a></li>
-            <li><a href="http://www.jstor.org/stable/2117561" target="_blank">Rabin, M. (1993). Incorporating Fairness into Game Theory and Economics</a></li>
-            <li><a href="https://www.youtube.com/watch?v=uNPvZmEM9Hc&list=TLPQMTExMTIwMjTKe96AMS_Y4A&index=2" target="_blank">Stanford Game Theory Online Course (2013). GTO-5-02: Infinitely Repeated Games & Utility</a></li>
-        </ol>
-    </footer>
+        <div id="social-icons"></div>
+        <h3>RELATED MATERIAL</h3>
+        <div id="RelatedMaterial"></div>
+        <ul>
+            <li>If you're interested in more of Jaiveer's work, check out his previous pieces on <a href="subgameperfection.html">Subgame Perfection</a> and <a href="repeatedgames.html">Repeated Games</a>.</li>
+            <li>On our <a href="gametheory.html">Game Theory</a> page you'll find learning resources and links to game theory related posts.</li>
+        </ul>
 
-    <div id="comments-section">
-        <div id="graphcomment"></div>
-        <script type="text/javascript">
-            (function () {
-                var app = {
-                    app_id: "your_app_id",
-                    token: "your_token",
-                };
-                var script = document.createElement("script");
-                script.type = "text/javascript";
-                script.src = "https://comments.graphcomment.com/js/script.js";
-                document.getElementsByTagName("head")[0].appendChild(script);
-                window.gc_params = app;
-            })();
-        </script>
+        <h3>REFERENCES</h3>
+        <ul>
+            <li>James Dyke's Guardian article<a href="https://www.theguardian.com/science/blog/2016/apr/13/can-game-theory-help-solve-the-problem-of-climate-change" target="_blank">Can game theory help solve the problem of climate change?</a> helped inform the section on climate.</li>
+            <li>The payoff matrix used is referenced from <a href="https://www.researchgate.net/figure/The-pay-off-matrix-in-the-Prisoners-Dilemma-game-The-first-entry-refers-to-Alices_fig1_2184338" target="_blank">Research Gate</a></li>
+            <li>Matthew Rabin's ideas in <a href="http://www.jstor.org/stable/2117561" target="_blank">Incorporating Fairness into Game Theory and Economics</a> take into account human tendences for reciprocy, and use <a href="nashequilibrium.html">Nash Equilibria</a> to account for fairness.</li>
+            <li>The <a href="https://www.youtube.com/watch?v=uNPvZmEM9Hc&list=TLPQMTExMTIwMjTKe96AMS_Y4A&index=2" target="_blank">Stanford Game Theory Online Course (2013). GTO-5-02: Infinitely Repeated Games & Utility</a> was also helpful.</li>
+        </ul>
+    </footer>
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /*—-—CONFIGURATION VARIABLES—-—*/
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+        behaviour: {
+          // Extract the filename from the URL path and use it as the UID
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+        // Configure your variables here
+      }
+      /*—-—DON'T EDIT BELOW THIS LINE—-—*/
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
     </div>
 </body>
-
 </html>
