@@ -78,19 +78,22 @@
     <footer>
         <h3 id="BasicConcepts">BASIC CONCEPTS</h3>
         <ul>
-            <li id="Player"><strong>Player:</strong> Anyone with skin in the game, like a team member in a football game, a CEO in corporate politics, or even countries in global diplomacy.</li>
+            <li id="Player"><strong>Player:</strong> Anyone with skin in the game, like a team member in a football game, a CEO in corporate politics, or even countries in global diplomacy. In Game Theory, players are expected to act rationally, strictly within the parameters of the game, this can lead to behaviours that don't reflect social norms.</li>
 
             <img src="./Images/Content/Liv_HawkAndDove.png" alt="Game chips">
+            <li><strong>Agent:</strong> Can be used interchangeably with player, but often refers to a non-human player in a multi-<i>agent</i> simulation. Agents are often used to trial a given behaviour, and so are not necessarily rational, rather they used to find the most effective <span class="expandable-word" data-info="Axelrod's simulations showed a cooperative tit-for-tat strategy was the most effective for a multi-agent iterated prisoner's dilemma.">response</span> to a complex situation.</li>
             <li id="Strategy"><strong>Strategy:</strong> Your plan of action, whether you're lining up behind a spawn point or planning a long-term business model.</li>
-            <li id="Payoff"><strong>Payoff:</strong> What you get out of it, from winning a bet to securing a long-term business contract.</li>
+            <li id="Payoff"><strong>Payoff:</strong> What you get out of it, from winning a bet to securing a long-term business contract. This is defined in a...</li>
+            <li><strong>Payoff Matrix:</strong> A table that shows the payoffs for each player for each possible combination of strategies, like the one below:</li>
+            <img src="./Images/Content/Confidence_Matrix.png" alt="Toastmaster's Dilemma Payoff Matrix">
         </ul>
     </footer>
     
     <footer>
         <h3 id="TypesOfGames">TYPES OF GAMES</h3>
         <ul>
-            <li id="ZeroSumGame"><strong><a href="whatarenonzerosumgames.html#ZeroSumGames">Zero-Sum Game</a>:</strong> Where one's loss is another's gain, from a tug-of-war to legal battles.</li>
-            <li id="NonZeroSumGame"><strong><a href="whatarenonzerosumgames.html">Non-Zero-Sum Game</a>:</strong> Win-win situations, like mutually beneficial trade agreements or collaborative research projects.</li>
+            <li id="ZeroSumGame"><strong><a href="whatarenonzerosumgames.html#ZeroSumGames">Zero-Sum Game</a>:</strong> Where one's loss is another's gain, from tug-of-war to legal battles. Zero-sum is also often used to refer to <i><b>constant</b></i>-sum situations, like if I say "winner gets five bucks", the <i>sum</i> is technically $5, but there is no outcome where completing the game leads to the share of winnings being lesser or greater than $5.</li>
+            <li id="NonZeroSumGame"><strong><a href="whatarenonzerosumgames.html">Non-Zero-Sum Game</a>:</strong> Usually used to describe win-win situations, like mutually beneficial trade agreements or collaborative research projects. But, it can also refer to any game that is not constant-sum, including lose-lose situations.</li>
             
             <img src="./Images/Content/CrabBucket.png" alt="Crabs in a bucket saying - pull">
 
@@ -111,8 +114,6 @@
 
             <img src="./Images/Content/TrafficLights_RedAnnoyed.png" alt="Traffic Lights">
 
-            <li id="SubgamePerfect"><strong><a href="subgameperfection.html">Subgame-Perfect Nash Equilibrium</a>:</strong> Occurs in a game when, at every step the state of the game is a Nash Equilibrium.</li>
-
             <li id="DominantStrategy"><strong>Dominant Strategy:</strong> A strategy that guarantees a win or draw: Like defecting in the a single round of the Prisoner's Dilemma. A rare example of tic-tac-toe has a dominant strategy right from the start for both players that always leads to a draw - making it a very limited game. Often dominant strategies will become available at a point of leverage in a game, like two rooks against a king reveals the strategy of driving the king to the end of the board.</li>
             <li id="DominatedStrategy"><strong>Dominated Strategy:</strong> The always worse option, like folding in poker no matter your hand, always choosing the defensive play in football or camping in a deathmatch.</li>
             <li id="MixedStrategy"><strong>Mixed Strategy:</strong> Introducing randomness, from mixing up your serves in tennis to changing up your pricing strategy in a bidding war.</li>
@@ -122,10 +123,19 @@
     <footer>
         <h3 id="AdvancedConcepts">ADVANCED CONCEPTS</h3>
         <ul>
-            <li id="MechanismDesign"><strong>Mechanism Design:</strong> Creating game rules to get desired outcomes, from designing balanced gameplay in a video game to optimizing voting systems.</li>
+            <li id="SubgamePerfect"><strong><a href="subgameperfection.html">Subgame-Perfect Nash Equilibrium</a>:</strong> Occurs in a game when, at every step the state of the game is a Nash Equilibrium.</li>
+
+            <li id="RepeatedGames"><strong><a href="repeatedgames.html">Iterated or Repeated Games</a>:</strong> Where strategies can change because of the potential for future interactions. These can often lead to a more cooperative strategy and are more reflective of real world interactions where actions have consequences, and events are never entirely isolated.</li>
+
+            <li id="DiscountFactor"><strong>Discount Factor:</strong> A value that represents the importance of future payoffs, like the saying "a bird in the hand is worth two in the bush".</li>
+
+            <img src="./Images/Content/DiscountFactor_TwoInTheBush.png" alt="Two birds in the bush complaining about being undervalued">
+
             <li id="ParetoEfficiency"><strong><a href="paretoefficiency.html">Pareto Efficiency</a>:</strong> When it's not possible to make one player better off without making another player worse off the situation is Pareto Efficient - like when you're swapping cards and no one has any doubles that the other needs.</li>
 
             <p> <img id="imageToSwap" src="./Images/Content/Cards.png" alt="Cards held by a crab being swapped when you click on the image" onclick="swapImage(this, './Images/Content/Cards.png', './Images/Content/Cards_Swapped.png')" style="cursor:pointer;"></p>
+
+            <li id="MechanismDesign"><strong>Mechanism Design:</strong> Creating game rules to get desired outcomes, from designing balanced gameplay in a video game to optimizing voting systems.</li>
       
             <li id="CommonKnowledge"><strong>Common Knowledge:</strong> Information that everyone knows and understands, like the basic rules of chess or commonly accepted business practices.</li>
 
@@ -133,12 +143,15 @@
 
             <li id="ShapleyValue"><strong><a href="shapleyvalue.html">Shapley Value</a>:</strong> A very complex algorithm for divvying up payoffs fairly in cooperative scenarios, like joint business ventures or splitting bills among roommates.</li>
             <li id="ExtensiveForm"><strong>Extensive Form:</strong> Using tree-like diagrams to map sequential moves, useful in chess and corporate decision-making.</li>
+
+            <a href="#TreeDiagram"><img src="./Images/Content/Subgame_UltimatumTree.png" alt="A game tree representing the Ultimatum Game"></a>
+
             <li id="NormalForm"><strong>Normal Form:</strong> Using a matrix for simultaneous moves, handy in figuring out everything from the prisoner's dilemma to market competitions.</li>
             
         </ul>
     </footer>
 
-    <p>Each of these concepts provides a unique lens through which to understand the dynamics of various types of games, from simple games like tic-tac-toe to complex economic and social interactions. What concept fascinates you the most? What would you like to explore further?</p>
+    <p>Each of these concepts provides a unique lens through which you can understand the dynamics of various types of games—from simple games like tic-tac-toe to complex economic and social interactions. What concept fascinates you the most? What would you like to explore further?</p>
 
     <p>Leave us your thoughts below.</p>
 
