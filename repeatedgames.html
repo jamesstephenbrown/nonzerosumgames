@@ -48,19 +48,19 @@
 
     <img src="./Images/Content/Repeated_Prisoner2SmallRepeat.png" alt="Prisoner's Dilemma picture echoed">
     
-    <p>Continuing on from the idea of future “punishment” affecting strategy profiles that ended my <a href="subgameperfection.html">Subgame Purrrfection</a> post, let’s explore repeated games—both finite and infinite. The idea of cooperation in individual rounds due to credible threats of “punishment” by the opponent in the future as well as individual gain from mutual cooperation seems strong, but doesn’t uniformly apply to all classes of repeated games. It may seem like there’s no difference in strategy analysis between finitely repeated and infinitely repeated games—after all, they’re both “repeated”, <em>right?</em> Wrong. To understand why, we need to explore… </p>
+    <p>Continuing on from the idea of future “punishment” affecting strategy profiles that ended my <a href="subgameperfection.html">Subgame Purrrfection</a> post, let's explore repeated games—both finite and infinite. The idea of cooperation in individual rounds due to credible threats of “punishment” by the opponent in the future as well as individual gain from mutual cooperation seems strong, but doesn't uniformly apply to all classes of repeated games. It may seem like there's no difference in strategy analysis between finitely repeated and infinitely repeated games—after all, they're both “repeated”, <em>right?</em> Wrong. To understand why, we need to explore… </p>
 
     <h3>THE PRINCIPLE OF BACKWARD INDUCTION</h3>
 
-    <p>In finitely repeated games, the principle of backward induction can define strategies, particularly in games like the prisoner’s dilemma with a single <a href="nashequilibrium.html">Nash Equilibrium</a>.</p>
+    <p>In finitely repeated games, the principle of backward induction can define strategies, particularly in games like the prisoner's dilemma with a single <a href="nashequilibrium.html">Nash Equilibrium</a>.</p>
 
 
     <img src="./Images/Content/Repeated_Matrix.png" alt="Prisoner's Dilemma with Nash equilibrium">
 
-    <p>Imagine you’re playing this game 20 times, and are on the 20th round. What would you do? Since there are no future rounds, your answer should be the strictly dominant strategy; confess. Knowing your rational opponent will confess in the 20th round, the threat of punishment and potential future cooperation in the 19th round is no longer credible. Extrapolating this repeatedly from 19 to 18, 18 to 17 and so on up to round 1, we can see that the rational strategy would be confessing throughout. This is the idea of backward induction, applicable to finitely repeated games.</p>
+    <p>Imagine you're playing this game 20 times, and are on the 20th round. What would you do? Since there are no future rounds, your answer should be the strictly dominant strategy; confess. Knowing your rational opponent will confess in the 20th round, the threat of punishment and potential future cooperation in the 19th round is no longer credible. Extrapolating this repeatedly from 19 to 18, 18 to 17 and so on up to round 1, we can see that the rational strategy would be confessing throughout. This is the idea of backward induction, applicable to finitely repeated games.</p>
     
     <h3>WHAT ABOUT COMMUNICATION</h3>
-    <p>But surely communication between prisoners would ensure mutual cooperation and negate this theory? This introduces the concept of renegotiation, which destroys the credibility of future punishments/rewards. Imagine you’ve agreed to cooperate in the next round. This would incentivise defection today for any rational player, as the threat of future punishment has vanished.</p>
+    <p>But surely communication between prisoners would ensure mutual cooperation and negate this theory? This introduces the concept of renegotiation, which destroys the credibility of future punishments/rewards. Imagine you've agreed to cooperate in the next round. This would incentivise defection today for any rational player, as the threat of future punishment has vanished.</p>
 
     <img src="./Images/Content/Repeated_BackwardInduction.png" alt="Options being eliminated with backward induction">
 
@@ -68,7 +68,7 @@
 
     <h3>INFINITELY REPEATED GAMES</h3>
 
-    <p>Let’s revisit the prisoner’s dilemma with a small twist—instead of 20 rounds, you now play infinitely. This means we do not know precisely when the game will end—the threat of punishments and rewards for mutual cooperation seem a lot more credible now, don’t they? More specifically, we can analyze strategy viability through the following simple condition:</p>
+    <p>Let's revisit the prisoner's dilemma with a small twist—instead of 20 rounds, you now play infinitely. This means we do not know precisely when the game will end—the threat of punishments and rewards for mutual cooperation seem a lot more credible now, don't they? More specifically, we can analyze strategy viability through the following simple condition:</p>
 
     <blockquote>If the reward for deviating today is less than the difference between the reward for cooperating and the punishment for deviating in the future, then cooperation is in our interests (YaleCourses, 2008).</blockquote>
 
@@ -81,18 +81,26 @@
     <img src="./Images/Content/Subgame_Prisoner1.png" alt="Prisoner's Dilemma with Nash equilibrium">
 
     <h3>ALMOST INFINITE?</h3>
-    <p>Going back to the prisoner’s dilemma—if I said the game is repeated 500,000 times, would you work your way through backward induction 500,000 times? Probably not. Instead, you would view it as an infinitely repeated game up until a certain point (depending on your personal preference), after which the horizon would be near enough to model as a finitely repeated game. What about human life? Doesn’t our mortality make every game, in theory, finite? Once again, we consider the frequency of interactions and how far the “horizon” is. As Osborne and Rubinstein eloquently put it, we “may ignore the existence of the horizon entirely until its arrival is imminent”.</p>
+    <p>Going back to the prisoner's dilemma—if I said the game is repeated 500,000 times, would you work your way through backward induction 500,000 times? Probably not. Instead, you would view it as an infinitely repeated game up until a certain point (depending on your personal preference), after which the horizon would be near enough to model as a finitely repeated game. What about human life? Doesn't our mortality make every game, in theory, finite? Once again, we consider the frequency of interactions and how far the “horizon” is. As Osborne and Rubinstein eloquently put it, we “may ignore the existence of the horizon entirely until its arrival is imminent”.</p>
     
     <h3>SO...</h3>
-    <p>What does this mean for us? It means that in games where we perceive the horizon as infinite, we are more likely to cooperate due to the credible threat of future rewards/punishments. In games where we perceive the horizon as finite, we are more likely to defect due to the lack of credible threats. I personally loved the idea of changing strategies within the same game due to human nature. What do you think? Have your say in the comments.</p>
+    <p>What does this mean for us? It means that in games where we perceive the horizon as infinite, we are more likely to cooperate due to the credible threat of future rewards/punishments. In games where we perceive the horizon as finite, we are more likely to defect due to the lack of credible threats. How we determine the weight we place on future consequences is the subject of the next post when explore <a href="discountfactor.html">discount factor</a>. I personally loved the idea of changing strategies within the same game due to human nature. What do you think? Have your say in the comments.</p>
+    <div class="image-grid">
+        <div class="image-item">
+            <a href="discountfactor.html">
+                <img src="./Images/Content/DiscountFactor_TwoInTheBush.png" alt="Two birds in a bush">
+                <span class="image-title">DISCOUNT FACTOR<div style="margin-top: 0.2em;font-size: 70%;"><b>Jaiveer Singh</b> on an important consideration in repeated games and real life</div></span>
+            </a>
+        </div>
+    </div>
 
     <footer>
         <div id="social-icons"></div>
-        <h3>RELATED MATERIAL</h3>
+        <h3>NOTES</h3>
         <ul><li>This is a follow-up to my <a href="subgameperfection.html">Subgame Purrrfection</a> post.</li>
             <li>Read more about <a href="nashequilibrium.html">Nash Equilibrium</a>!</li>
-            <li>YaleCourses facinating seminar on <a href="https://www.youtube.com/watch?v=zNxVVVk5It0">Repeated games: cooperation vs. the end game</a> was very helpful in pulling this together.</li>
-            <li>Also, check out Redbubble's <a href="https://www.redbubble.com/i/postcard/Prisoner-s-dilemma-with-Nash-equilibrium-by-OVMEngemann/54631763.V7PMD" target="_blank">Prisoner’s dilemma with Nash equilibrium</a> (2024) and Google books' <a href="https://books.google.com.sg/books?hl=en&lr=&id=hAISDAAAQBAJ&oi=fnd&pg=PR9&ots=uOF3Mz8__q&sig=vVruR4Zs9pRK--gdrs__CE1zdLI&redir_esc=y#v=onepage&q&f=false">Repeated Games and Reputations</a> (2024).</li>
+            <li>YaleCourses facinating seminar on <a href="https://www.youtube.com/watch?v=zNxVVVk5It0" target="_blank">Repeated games: cooperation vs. the end game</a> was very helpful in pulling this together.</li>
+            <li>Also, check out Redbubble's <a href="https://www.redbubble.com/i/postcard/Prisoner-s-dilemma-with-Nash-equilibrium-by-OVMEngemann/54631763.V7PMD" target="_blank">Prisoner's dilemma with Nash equilibrium</a> (2024) and Google books' <a href="https://books.google.com.sg/books?hl=en&lr=&id=hAISDAAAQBAJ&oi=fnd&pg=PR9&ots=uOF3Mz8__q&sig=vVruR4Zs9pRK--gdrs__CE1zdLI&redir_esc=y#v=onepage&q&f=false" target="_blank">Repeated Games and Reputations</a> (2024).</li>
         </ul>
     </footer>
     <script>
