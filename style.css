@@ -192,6 +192,87 @@ body {
   font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
 }
 
+/* Dark mode overrides */
+.dark-mode {
+  background-color: #2a243d;
+  color: #d59b7b;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+/* --- The pill switch container --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide the checkbox visually */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+/* The slider background (the "pill") */
+.slider {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  right: 0; 
+  bottom: 0;
+  transition: 0.4s;
+  cursor: pointer;
+  border-radius: 34px;
+  /* OFF (Light Mode) Pill color: #2a243d */
+  background-color: #2a243d;
+}
+
+/* The knob (circle) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  transition: 0.4s;
+  border-radius: 50%;
+  /* OFF (Light Mode) Knob color: #d59b7b */
+  background-color: #d59b7b;
+}
+
+/* ON (Dark Mode) Pill color: #55AAE3 */
+input:checked + .slider {
+  background-color: #55AAE3;
+}
+
+/* ON (Dark Mode) Knob color: #ffffff */
+input:checked + .slider:before {
+  transform: translateX(26px);
+  background-color: #ffffff;
+}
+
+/* Round style for the slider (the pill) */
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
 strong {
   font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
 }
@@ -601,6 +682,27 @@ input::placeholder, textarea::placeholder {
   transition: transform 0.3s ease;
 }
 
+
+.image-new {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.15);
+  /* Remove padding-top to avoid forcing aspect ratio */
+  padding-top: 50px;
+}
+
+
+.image-new img {
+  /* Remove absolute positioning so the container grows with the image */
+  display: block;
+  max-width: 50%;
+  max-height: 50%;
+  margin: 20px auto;
+  /* You can keep or remove transition as you like */
+  transition: transform 0.3s ease;
+}
+
 .image-title {
   position: absolute;
   top: 0;
@@ -628,6 +730,9 @@ input::placeholder, textarea::placeholder {
 } */
 
 .image-item a {
+  text-decoration: none; /* No underline */
+}
+.image-new a {
   text-decoration: none; /* No underline */
 }
 
