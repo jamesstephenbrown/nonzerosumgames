@@ -207,8 +207,8 @@ body {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 24px;
 }
 
 /* Hide the checkbox visually */
@@ -222,40 +222,40 @@ body {
 /* The slider background (the "pill") */
 .slider {
   position: absolute;
-  top: 0; 
+  top: -18; 
   left: 0;
   right: 0; 
-  bottom: 0;
+  bottom: 18;
   transition: 0.4s;
   cursor: pointer;
-  border-radius: 34px;
+  border-radius: 24px;
   /* OFF (Light Mode) Pill color: #2a243d */
-  background-color: #2a243d;
+  background-color: #ffffff;
 }
 
 /* The knob (circle) */
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 16px;
+  width: 16px;
   left: 4px;
   bottom: 4px;
   transition: 0.4s;
   border-radius: 50%;
   /* OFF (Light Mode) Knob color: #d59b7b */
-  background-color: #d59b7b;
+  background-color: #55AAE3;
 }
 
 /* ON (Dark Mode) Pill color: #55AAE3 */
 input:checked + .slider {
-  background-color: #55AAE3;
+  background-color: #d59b7b;
 }
 
 /* ON (Dark Mode) Knob color: #ffffff */
 input:checked + .slider:before {
-  transform: translateX(26px);
-  background-color: #ffffff;
+  transform: translateX(16px);
+  background-color: #2a243d;
 }
 
 /* Round style for the slider (the pill) */
