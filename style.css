@@ -47,13 +47,17 @@ p {
   transition: border-color 0.3s, background-color 0.3s;
 }
 
-input:checked + .expandable-word:hover {
+.dark-mode .expandable-word {
+  color: #d59b7b;
+}
+
+.dark-mode .expandable-word:hover {
   color: #d59b7b;
 }
 
 .expandable-word:hover {
   border-color: #55AAE3;
-  background-color: rgba(85, 170, 227, 0.2);
+  /* background-color: rgba(85, 170, 227, 0.2); */
 }
 
 .expandable-word::after {
@@ -271,10 +275,12 @@ input:checked + .slider:before {
 }
 
 
-input:checked + footer {
+
+.dark-mode footer {
   background-color: rgba(255, 255, 255, 0.3);
 }
-input:checked + blockquote {
+
+.dark-mode blockquote {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
