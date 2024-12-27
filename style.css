@@ -48,7 +48,7 @@ p {
 }
 
 .expandable-word .dark-mode {
-  color: white; /* Set the word color to white */
+  color: #d59b7b;
 }
 
 .expandable-word:hover {
@@ -181,9 +181,9 @@ a[target="_blank"]:not(.no-outlink)::after {
   padding: 0 15px;
 }
 
-:root {
+/* :root {
   --body-bg-color: #55AAE3;
-}
+} */
 
 body {
   word-wrap: break-word;
