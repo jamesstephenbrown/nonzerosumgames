@@ -47,6 +47,10 @@ p {
   transition: border-color 0.3s, background-color 0.3s;
 }
 
+.expandable-word .dark-mode {
+  color: white; /* Set the word color to white */
+}
+
 .expandable-word:hover {
   border-color: #55AAE3;
   background-color: rgba(85, 170, 227, 0.2);
