@@ -47,7 +47,7 @@ p {
   transition: border-color 0.3s, background-color 0.3s;
 }
 
-.expandable-word .dark-mode {
+input:checked + .expandable-word:hover {
   color: #d59b7b;
 }
 
@@ -271,10 +271,10 @@ input:checked + .slider:before {
 }
 
 
-footer .dark-mode {
+input:checked + footer {
   background-color: rgba(255, 255, 255, 0.3);
 }
-blockquote .dark-mode {
+input:checked + blockquote {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
