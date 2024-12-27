@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics and Tracking Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NON-ZERO-SUM GAMES IN NATURE</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/map-nature.html" />
+    <meta name="description" content="Exploring examples of cooperation and mutual benefit in the natural world, revealing how non-zero-sum dynamics are everywhere." />
+    <meta name="keywords" content="Non-Zero-Sum, Nature, Cooperation, Symbiosis, Negative-Sum" />
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/map-nature.png">
+    <meta property="og:title" content="NON-ZERO-SUM GAMES IN NATURE">
+    <meta property="og:description" content="Discover how cooperation and mutual benefit arise naturally, challenging the notion that competition dominates." />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="menu"></div>
+    <h1 style="margin-bottom: 0;">NON-ZERO-SUM GAMES IN NATURE</h1>
+    <aside>N</aside>
+    <h2>cooperation in the wild</h2>
+
+    <p>Cooperation isn’t just a human construct—it’s woven into the very fabric of life. In the natural world, symbiotic organisms abound—countless species form alliances, trade resources, and find ways to thrive together. Below we present a small collection of examples that illustrate how non-zero-sum dynamics arise organically, offering lessons for human societies as well.</p>
+
+    <div class="image-grid">
+        <div class="image-item">
+            <a href="furryfriends.html">
+                <img src="./Images/Content/FurryFriends_HedgehogCrab.png" alt="A hedgehog and a crab">
+                <span class="image-title">FURRY FRIENDS<div style="margin-top: 0.2em;font-size: 70%;">the joy of interspecies camaraderie</div></span>
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="parableofapolyp.html">
+                <img src="./Images/Content/UpsideDownPolyp.png" alt="Parable of a Polyp">
+                <span class="image-title">PARABLE OF A POLYP<div style="margin-top: 0.2em;font-size: 70%;">from zero-sum to non-zero-sum</div></span>
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="crabbucket.html">
+                <img src="./Images/Content/CrabBucket.png" alt="Crabs in a Bucket">
+                <span class="image-title">ARE YOU IN A CRAB BUCKET?<div style="margin-top: 0.2em;font-size: 70%;">escaping negative-sum games</div></span>
+            </a>
+        </div>
+    </div>
+
+    <p>Tell us about your favorite unlikely pairings.</p>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games",
+        behaviour: {
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
+</body>
+</html>

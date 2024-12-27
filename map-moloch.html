@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics and Tracking Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOLOCH</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/map-moloch.html" />
+    <meta name="description" content="A three-part deep dive into the metaphorical god of negative-sum games, exploring the dynamics that entrap societies in destructive competition." />
+    <meta name="keywords" content="Moloch, Negative-sum games, Coordination failures, Morality" />
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/map-moloch.png">
+    <meta property="og:title" content="MOLOCH SERIES">
+    <meta property="og:description" content="Discover who Moloch is and why understanding negative-sum games matters." />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --body-bg-color: #ff5c5c; /* Define the color once */
+        }
+    </style>
+</head>
+<body style="background-color:#ff5c5c">
+    <div id="menu"></div>
+    <h1 style="margin-bottom: 0;">MOLOCH SERIES</h1>
+    <aside>M</aside>
+    <h2>the god of negative-sum games</h2>
+
+    <img src="./Images/Content/Alignment_MolochCollective.png" alt="A thorny devil representing Moloch">
+
+    <p>Moloch is a metaphor describing systems where individual rational decisions lead to collectively bad outcomes. This series explores how Moloch manifests, why it’s so hard to break free, and what strategies might help us escape these traps.</p>
+
+    <blockquote>
+        <p>"Moloch whose love is endless oil and stone! Moloch whose soul is electricity and banks!"<br>– <b>Allen Ginsberg</b></p>
+    </blockquote>
+
+    <h3>WHY MOLOCH MATTERS</h3>
+    <p>Understanding Moloch matters because it explains why many systems—be they economic, political, or cultural—tend toward outcomes that no one individually desires. Negative-sum games are created by and create perverse incentives, they erode trust and cooperation. Recognizing these patterns is the first step in seeking solutions that restore balance and foster long-term well-being. We start by asking: <em>Who Is Moloch?</em>.</p>
+
+    <div class="image-grid">
+        <div class="image-item">
+            <a href="whoismoloch.html">
+                <img src="./Images/Content/ThornyDevil_03_Cropped.png" alt="Moloch: A thorny devil image">
+                <span class="image-title">WHO IS MOLOCH?<div style="margin-top: 0.2em;font-size: 70%;">the god of negative-sum games</div></span>
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="manifestationsofmoloch.html">
+                <img src="./Images/Content/Moloch_2_Snail.png" alt="Moloch: Negative-sum games">
+                <span class="image-title">4 WAYS MOLOCH IS RUINING YOUR LIFE<div style="margin-top: 0.2em;font-size: 70%;">how Moloch manifests in your life</div></span>
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="molochtheactualstory.html">
+                <img src="./Images/Content/Moloch_3_WhiteFlag.png" alt="Moloch: Escape strategies">
+                <span class="image-title">MOLOCH'S DEMISE<div style="margin-top: 0.2em;font-size: 70%;">solving the original problem</div></span>
+            </a>
+        </div>
+    </div>
+
+    <p>Moloch is a force that emerges when participants find themselves trapped, unable to towards mutually beneficial solutions. These situations are often called coordination problems, which we explore in...</p>
+
+    <div class="image-item">
+        <a href="unlockingsolutions.html">
+            <img src="./Images/Content/Unlocking_Desk.png" alt="A desk with a lock and key">
+            <span class="image-title">UNLOCKING SOLUTIONS<div style="margin-top:0.2em;font-size:70%;">understanding coordination problems</div></span>
+        </a>
+    </div>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games",
+        behaviour: {
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
+</body>
+</html>
