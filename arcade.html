@@ -1,36 +1,43 @@
 <!DOCTYPE html><html lang="en">
-<head><!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-1CMWXLFBCG');
-    </script>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE ARCADE</title>
-    <link rel="canonical" href="https://nonzerosum.games/arcade.html" />
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <a name="Top"></a>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    
-    <!-- Linking to Menu.html -->
-    <script>
-        $(document).ready(function() {
-            $("#menu").load("menu.html", function() {
-                var pageName = window.location.pathname.split("/").pop();
-                var menuLink = $("a[href='" + pageName + "']");
-                menuLink.parent().remove();
+    <head>
+        <!-- Google Analytics and Tracking Scripts -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1CMWXLFBCG');
+        </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>THE ARCADE</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="canonical" href="https://nonzerosum.games/arcade.html" />
+        <meta name="description" content="Dive into a collection of fun, interactive games and simulations that explore non-zero-sum concepts and emergent phenomena." />
+        <meta name="keywords" content="Arcade, Non-Zero-Sum, Games, Simulations, Tetris, Cooperation, Strategy" />
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="NonZeroSumJames">
+        <meta property="og:image" content="https://nonzerosum.games/Images/Social/arcade.png">
+        <meta property="og:title" content="THE ARCADE">
+        <meta property="og:description" content="Explore a variety of playful experiments, non-zero-sum games, and simulations." />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@NonZeroSumJames">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#menu").load("menu.html", function() {
+                    var pageName = window.location.pathname.split("/").pop();
+                    var menuLink = $("a[href='" + pageName + "']");
+                    menuLink.parent().remove();
+                });
             });
-        });
-    </script>
+        </script>
+    </head>
+<body>
     <div id="menu"></div>
+
+
     <h1 style="margin-bottom: 0;">THE ARCADE</h1>
     <aside>A</aside>
     <h2>all the games and simulations</h2>
