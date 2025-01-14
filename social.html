@@ -20,128 +20,126 @@
 </div>
 
 
-    <!-- Begin Mailchimp Subscribe Form -->
-    <div id="mc_embed_signup"><br>
-        <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">
-            
+<!-- Begin Mailchimp Subscribe Form -->
+<div id="mc_embed_signup"><br>
+    <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">
+        
 
-    <div class="animation-container">
-        <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
-    </div>
-    <script>
-        const totalFrames = 26;
-        const framePrefix = 'Images/Content/Frames_Rabbits_';
-        const frameSuffix = '.png';
-        const frameElement = document.getElementById('animation-frame');
-        let currentFrame = 0;
-        let framesLoaded = 0;
-        const frames = [];
-        let animationStarted = false;
+<div class="animation-container">
+    <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
+</div>
+<script>
+    const totalFrames = 26;
+    const framePrefix = 'Images/Content/Frames_Rabbits_';
+    const frameSuffix = '.png';
+    const frameElement = document.getElementById('animation-frame');
+    let currentFrame = 0;
+    let framesLoaded = 0;
+    const frames = [];
+    let animationStarted = false;
 
-        // Display the first frame immediately
-        frameElement.src = framePrefix + '0000' + frameSuffix;
+    // Display the first frame immediately
+    frameElement.src = framePrefix + '0000' + frameSuffix;
 
-        // Preload images
-        for (let i = 0; i <= totalFrames; i++) {
-            const img = new Image();
-            const frameNumber = i.toString().padStart(4, '0');
-            const filename = framePrefix + frameNumber + frameSuffix;
-            img.src = filename;
-            img.onload = () => {
-                framesLoaded++;
-                if (framesLoaded === totalFrames + 1) {
-                    // All frames are loaded
-                    if (isElementInViewport(frameElement)) {
-                        startAnimation();
-                    } else {
-                        observer.observe(frameElement);
-                    }
-                }
-            };
-            frames.push(img);
-        }
-
-        // Function to update the image source
-        function updateFrame() {
-            const frameNumber = currentFrame.toString().padStart(4, '0');
-            const filename = framePrefix + frameNumber + frameSuffix;
-            frameElement.src = filename;
-
-            currentFrame++;
-
-            if (currentFrame > totalFrames) {
-                currentFrame = totalFrames; // Ensure it stops on the last frame
-            } else {
-                setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
-            }
-        }
-
-        // Start the animation
-        function startAnimation() {
-            if (!animationStarted) {
-                animationStarted = true;
-                updateFrame();
-            }
-        }
-
-        // Check if element is in viewport
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        // Create an Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+    // Preload images
+    for (let i = 0; i <= totalFrames; i++) {
+        const img = new Image();
+        const frameNumber = i.toString().padStart(4, '0');
+        const filename = framePrefix + frameNumber + frameSuffix;
+        img.src = filename;
+        img.onload = () => {
+            framesLoaded++;
+            if (framesLoaded === totalFrames + 1) {
+                // All frames are loaded
+                if (isElementInViewport(frameElement)) {
                     startAnimation();
-                    observer.unobserve(frameElement);
+                } else {
+                    observer.observe(frameElement);
                 }
-            });
-        });
+            }
+        };
+        frames.push(img);
+    }
 
-        // Observe the animation container
-        if (isElementInViewport(frameElement)) {
-            startAnimation();
+    // Function to update the image source
+    function updateFrame() {
+        const frameNumber = currentFrame.toString().padStart(4, '0');
+        const filename = framePrefix + frameNumber + frameSuffix;
+        frameElement.src = filename;
+
+        currentFrame++;
+
+        if (currentFrame > totalFrames) {
+            currentFrame = totalFrames; // Ensure it stops on the last frame
         } else {
-            observer.observe(frameElement);
+            setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
         }
-    </script>
+    }
+
+    // Start the animation
+    function startAnimation() {
+        if (!animationStarted) {
+            animationStarted = true;
+            updateFrame();
+        }
+    }
+
+    // Check if element is in viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Create an Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                startAnimation();
+                observer.unobserve(frameElement);
+            }
+        });
+    });
+
+    // Observe the animation container
+    if (isElementInViewport(frameElement)) {
+        startAnimation();
+    } else {
+        observer.observe(frameElement);
+    }
+</script>
 
 
-            <p>To get updated with next week's blog...</p>
-            <!-- <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" style="display: block; margin: auto;"> -->
-            <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" placeholder="enter@your.email" style="display: block; margin: auto;">
+        <p>To get updated with next week's blog...</p>
+        <!-- <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" style="display: block; margin: auto;"> -->
+        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" placeholder="enter@your.email" style="display: block; margin: auto;">
 
-            <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                <input type="text" name="b_445e5215aca824f22b35f8f22_f62bbfcd6b" tabindex="-1" value="">
-            </div>
-            <br>
-            <div class="clear">
-                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
-            </div>
-            <br>
-        </form>
-        <p>... or get the <a href="https://nonzerosum.games/rss.xml" target="_blank">RSS</a> feed.</p>
-        <!-- End Mailchimp Subscribe Form -->
-    </div>
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="text" name="b_445e5215aca824f22b35f8f22_f62bbfcd6b" tabindex="-1" value="">
+        </div>
+        <br>
+        <div class="clear">
+            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+        </div>
+        <br>
+    </form>
+    <p>... or get the <a href="https://nonzerosum.games/rss.xml" target="_blank">RSS</a> feed.</p>
+    <!-- End Mailchimp Subscribe Form -->
+        <br>
 </div>
 
+<script>
+    function trackSocialClick(socialNetwork) {
+        gtag('event', 'click', {
+            'event_category': 'Social Media',
+            'event_label': socialNetwork
+        });
+    }
+</script>
 
-    <script>
-        function trackSocialClick(socialNetwork) {
-            gtag('event', 'click', {
-                'event_category': 'Social Media',
-                'event_label': socialNetwork
-            });
-        }
-        </script>
-    
-    
-    
-    
+
+
