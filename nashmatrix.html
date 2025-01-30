@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Game Theory Analyzer</title>
+<style>
+  .matrix {
+    display: table;
+    margin: 20px;
+  }
+  .matrix-row {
+    display: table-row;
+  }
+  .matrix-cell {
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid #000;
+  }
+  .label-cell {
+    background: #eee;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>2x2 Game Payoff Matrix</h1>
+<p>Enter the payoffs (A,B) for each outcome:</p>
+
+<div class="matrix">
+  <div class="matrix-row">
+    <div class="matrix-cell"></div>
+    <div class="matrix-cell label-cell">B: C</div>
+    <div class="matrix-cell label-cell">B: D</div>
+  </div>
+  
+  <div class="matrix-row">
+    <div class="matrix-cell label-cell">A: C</div>
+    <div class="matrix-cell">
+      A: <input id="ACC_A" type="number" value="3" style="width:50px"/>
+      B: <input id="ACC_B" type="number" value="3" style="width:50px"/>
+    </div>
+    <div class="matrix-cell">
+      A: <input id="ACD_A" type="number" value="-5" style="width:50px"/>
+      B: <input id="ACD_B" type="number" value="2" style="width:50px"/>
+    </div>
+  </div>
+  
+  <div class="matrix-row">
+    <div class="matrix-cell label-cell">A: D</div>
+    <div class="matrix-cell">
+      A: <input id="ADC_A" type="number" value="2" style="width:50px"/>
+      B: <input id="ADC_B" type="number" value="2" style="width:50px"/>
+    </div>
+    <div class="matrix-cell">
+      A: <input id="ADD_A" type="number" value="2" style="width:50px"/>
+      B: <input id="ADD_B" type="number" value="2" style="width:50px"/>
+    </div>
+  </div>
+</div>
+
+<button onclick="calculateEquilibria()">Calculate</button>
+
+<h2>Results</h2>
+<div id="results"></div>
+
+<script>
+function calculateEquilibria() {
+  // Get user input
+  const ACC_A = parseFloat(document.getElementById('ACC_A').value);
+  const ACC_B = parseFloat(document.getElementById('ACC_B').value);
+  const ACD_A = parseFloat(document.getElementById('ACD_A').value);
+  const ACD_B = parseFloat(document.getElementById('ACD_B').value);
+  const ADC_A = parseFloat(document.getElementById('ADC_A').value);
+  const ADC_B = parseFloat(document.getElementById('ADC_B').value);
+  const ADD_A = parseFloat(document.getElementById('ADD_A').value);
+  const ADD_B = parseFloat(document.getElementById('ADD_B').value);
+
+  const resultsDiv = document.getElementById('results');
+
+  // Best responses:
+  // Player A
+  const A_best_if_BC = (ACC_A > ADC_A) ? 'C' : ((ACC_A < ADC_A) ? 'D' : 'C,D');
+  const A_best_if_BD = (ACD_A > ADD_A) ? 'C' : ((ACD_A < ADD_A) ? 'D' : 'C,D');
+  
+  // Player B
+  const B_best_if_AC = (ACC_B > ACD_B) ? 'C' : ((ACC_B < ACD_B) ? 'D' : 'C,D');
+  const B_best_if_AD = (ADC_B > ADD_B) ? 'C' : ((ADC_B < ADD_B) ? 'D' : 'C,D');
+
+  let equilibria = [];
+  
+  // Check each cell for NE
+  if (A_best_if_BC.includes('C') && B_best_if_AC.includes('C')) {
+    equilibria.push('(A:C, B:C)');
+  }
+  if (A_best_if_BD.includes('C') && B_best_if_AC.includes('D')) {
+    equilibria.push('(A:C, B:D)');
+  }
+  if (A_best_if_BC.includes('D') && B_best_if_AD.includes('C')) {
+    equilibria.push('(A:D, B:C)');
+  }
+  if (A_best_if_BD.includes('D') && B_best_if_AD.includes('D')) {
+    equilibria.push('(A:D, B:D)');
+  }
+
+  // Determine dominant strategies
+  // For A: Check if either row dominates the other
+  // Row C (top) vs Row D (bottom):
+  // Compare payoffs column-wise:
+  // B chooses C: ACC_A vs ADC_A
+  // B chooses D: ACD_A vs ADD_A
+  let A_dominant = null;
+  if ((ACC_A >= ADC_A && ACD_A >= ADD_A) && (ACC_A > ADC_A || ACD_A > ADD_A)) {
+    A_dominant = 'C';
+  } else if ((ADC_A >= ACC_A && ADD_A >= ACD_A) && (ADC_A > ACC_A || ADD_A > ACD_A)) {
+    A_dominant = 'D';
+  }
+
+  // For B: Check if either column dominates the other
+  // Column C (left) vs Column D (right):
+  // A chooses C: ACC_B vs ACD_B
+  // A chooses D: ADC_B vs ADD_B
+  let B_dominant = null;
+  if ((ACC_B >= ACD_B && ADC_B >= ADD_B) && (ACC_B > ACD_B || ADC_B > ADD_B)) {
+    B_dominant = 'C';
+  } else if ((ACD_B >= ACC_B && ADD_B >= ADC_B) && (ACD_B > ACC_B || ADD_B > ADC_B)) {
+    B_dominant = 'D';
+  }
+
+  // Attempt to identify game type (heuristic)
+  let gameType = 'Unknown Game';
+  // Check for Prisoner’s Dilemma-like structure:
+  // A rough check: 
+  // - Both players have a dominant strategy to defect (D).
+  // - The (C,C) payoff is better for both than (D,D).
+  if (A_dominant === 'D' && B_dominant === 'D' && ACC_A > ADD_A && ACC_B > ADD_B) {
+    gameType = "Prisoner's Dilemma-like structure";
+  }
+
+  // Another heuristic:
+  // If (C,C) and (D,D) are both equilibria: could be a Stag Hunt.
+  if (equilibria.includes('(A:C, B:C)') && equilibria.includes('(A:D, B:D)')) {
+    gameType = 'Stag Hunt-like structure';
+  }
+
+  // If we find opposite strategy equilibria (like (C,D) and (D,C)), could resemble Chicken.
+  if (equilibria.includes('(A:C, B:D)') && equilibria.includes('(A:D, B:C)')) {
+    gameType = 'Chicken/Hawk-Dove-like structure';
+  }
+
+
+  let html = '';
+
+  // Show best responses
+  html += '<p><strong>Best Responses:</strong></p>';
+  html += `<p>Player A: If B chooses C → A best = ${A_best_if_BC}. If B chooses D → A best = ${A_best_if_BD}.</p>`;
+  html += `<p>Player B: If A chooses C → B best = ${B_best_if_AC}. If A chooses D → B best = ${B_best_if_AD}.</p>`;
+  
+  // Show Nash equilibria
+  if (equilibria.length === 0) {
+    html += '<p>No Nash Equilibrium found.</p>';
+  } else {
+    html += `<p><strong>Nash Equilibrium${equilibria.length > 1 ? 's' : ''}:</strong> ${equilibria.join(', ')}</p>`;
+  }
+
+  // Show dominant strategies
+  html += '<p><strong>Dominant Strategy:</strong><br>';
+  html += `Player A: ${A_dominant ? A_dominant : 'None'}<br>`;
+  html += `Player B: ${B_dominant ? B_dominant : 'None'}</p>`;
+
+  // Show identified game type
+  html += `<p><strong>Game Type Guess:</strong> ${gameType}</p>`;
+
+  resultsDiv.innerHTML = html;
+}
+</script>
+
+</body>
+</html>

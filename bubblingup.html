@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Master & Sub-Lattices with Blank Row 9 on Both</title>
+  <style>
+    body { font-family: sans-serif; }
+    .container {
+      display: inline-block;
+      vertical-align: top;
+      margin: 1em;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+    .brick {
+      width: 35px;
+      height: 35px;
+      border: 1px solid #333;
+      margin: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85em;
+      background-color: #eee; /* default gray */
+    }
+    .highlight {
+      background-color: gold !important; /* path highlight */
+    }
+    .selected {
+      background-color: lightgreen !important; /* single selected brick */
+    }
+    button, input {
+      margin: 4px;
+    }
+    h3 {
+      margin-bottom: 0.3em;
+    }
+  </style>
+</head>
+<body>
+<h1>Master & Sub-Lattices (Blank Row 9, Single-Side Highlight)</h1>
+
+<div>
+  <label for="randomSlider">Tweak row by ±</label>
+  <input type="range" id="randomSlider" min="0" max="50" step="1" value="50" oninput="updateSliderValue()">
+  <span id="sliderValue">50</span>%
+  <button id="tweakBtn" onclick="tweakNextRow()">Tweak Next Row</button>
+</div>
+
+<div class="container">
+  <h3>Master Lattice</h3>
+  <div id="masterLattice"></div>
+</div>
+
+<div class="container">
+  <h3>Current Sub-Lattice</h3>
+  <div id="subLatticeContainer"></div>
+  <p><strong>Sub-Lattice Outcome:</strong> <span id="subOutcome">N/A</span></p>
+</div>
+
+<script>
+/*********************************************************
+ *                  CONFIG & GLOBALS
+ *********************************************************/
+const DEPTH = 10; // rows 0..9, but row 9 is "blank"
+
+let masterLattice = [];   // row r => r+1 bricks. Rows 0..8 => "N"/"Y", row=9 => "?" or ignored
+let subLattices = [];     // subLattices[r][c]: only numeric for rows 0..8, blank row=9
+let currentMasterRow = 0;
+let currentMasterCol = 0;
+let nextTweakRow = 0;     // sub-lattice row to tweak (0..9, but row=9 is blank/no data)
+
+/*********************************************************
+ *          SUB-LATTICE CREATION & OUTCOMES
+ *********************************************************/
+/** Create a sub-lattice: array of length=9 (rows 0..8), each row r has (r+1) numeric values. Row 9 is blank. */
+function createSubLattice() {
+  let lat = [];
+  for (let r = 0; r < DEPTH - 1; r++) { // 0..8
+    let rowArr = [];
+    for (let c = 0; c <= r; c++) {
+      const val = Math.random() * 20 - 10; // [-10..10]
+      rowArr.push(val);
+    }
+    lat.push(rowArr);
+  }
+  return lat; // length=9
+}
+
+/** 
+ * Compute final col by scanning rows 0..8. 
+ * If subLat[r][col] > 0 => col++ 
+ */
+function computeFinalColSub(subLat) {
+  let col = 0;
+  for (let r = 0; r < DEPTH - 1; r++) { // 0..8
+    if (col > r) col = r;
+    if (subLat[r][col] > 0) {
+      col++;
+      if (col > r + 1) col = r + 1;
+    }
+  }
+  return Math.min(col, 9);
+}
+
+/** Sub-lattice outcome => L if final col<5, else R. */
+function computeOutcome(subLat) {
+  const finalC = computeFinalColSub(subLat);
+  return (finalC < 5) ? "N" : "Y";
+}
+
+/** Path coords for rows 0..8. We'll highlight row 9 separately. */
+function computeSubPathCoords(subLat) {
+  let coords = [];
+  let col = 0;
+  for (let r = 0; r < DEPTH - 1; r++) { // 0..8
+    if (col > r) col = r;
+    coords.push({ r, c: col });
+    if (subLat[r][col] > 0) {
+      col++;
+      if (col > r + 1) col = r + 1;
+    }
+  }
+  // row=9 is blank, we handle it separately
+  return coords;
+}
+
+/*********************************************************
+ *                 MASTER LATTICE OUTCOME
+ *********************************************************/
+/** 
+ * For the master lattice, we treat row=9 as blank. 
+ * We only read rows 0..8 for "N"/"Y" to find final col. 
+ */
+function computeFinalColMaster() {
+  let col = 0;
+  for (let r = 0; r < DEPTH - 1; r++) { // 0..8
+    if (col > r) col = r;
+    if (masterLattice[r][col] === "Y") {
+      col++;
+      if (col > r + 1) col = r + 1;
+    }
+  }
+  return Math.min(col, 9);
+}
+
+/** Overall master-lattice outcome => "N" if final col<5, else "Y". */
+function computeMasterOutcome() {
+  const finalC = computeFinalColMaster();
+  return (finalC < 5) ? "N" : "Y";
+}
+
+/** The path from rows 0..8. row=9 is blank. */
+function computeMasterPath() {
+  let coords = [];
+  let col = 0;
+  for (let r = 0; r < DEPTH - 1; r++) { // 0..8
+    if (col > r) col = r;
+    coords.push({ r, c: col });
+    if (masterLattice[r][col] === "Y") {
+      col++;
+      if (col > r + 1) col = r + 1;
+    }
+  }
+  // row=9 is blank
+  return coords;
+}
+
+/*********************************************************
+ *                RENDER MASTER
+ *********************************************************/
+function renderMasterLattice() {
+  const container = document.getElementById("masterLattice");
+  container.innerHTML = "";
+
+  const path = computeMasterPath();
+  const outcome = computeMasterOutcome(); // "N" or "Y"
+
+  for (let r = DEPTH - 1; r >= 0; r--) {
+    const rowDiv = document.createElement("div");
+    rowDiv.className = "row";
+
+    // if r=9 => blank bricks, highlight left or right side
+    if (r === 9) {
+      for (let c = 0; c < DEPTH; c++) { // 0..9
+        const brickDiv = document.createElement("div");
+        brickDiv.className = "brick";
+        brickDiv.textContent = ""; // blank
+        // highlight side in gold, or green if it's the *selected row=9*
+        if (outcome === "N" && c < 5) {
+          if (r === currentMasterRow) {
+            // if user selected row=9 => highlight in green instead of gold
+            brickDiv.classList.add("selected");
+          } else {
+            brickDiv.classList.add("highlight");
+          }
+        } else if (outcome === "Y" && c >= 5) {
+          if (r === currentMasterRow) {
+            brickDiv.classList.add("selected");
+          } else {
+            brickDiv.classList.add("highlight");
+          }
+        }
+        // Clicking row=9 => set masterRow=9, col=0 (arbitrary?), or c?
+        // For simplicity, let's do col=0 if L or col=9 if R
+        brickDiv.onclick = () => {
+          currentMasterRow = 9;
+          currentMasterCol = (outcome === "N") ? 0 : 9;
+          nextTweakRow = 9; // effectively "top"
+          renderAll();
+        };
+        rowDiv.appendChild(brickDiv);
+      }
+      container.appendChild(rowDiv);
+      continue;
+    }
+
+    // otherwise row <9 => show "N"/"Y"
+    for (let c = 0; c <= r; c++) {
+      const brickDiv = document.createElement("div");
+      brickDiv.className = "brick";
+      brickDiv.textContent = masterLattice[r][c];
+
+      // highlight if on the path
+      if (path.some(p => p.r === r && p.c === c)) {
+        brickDiv.classList.add("highlight");
+      }
+      // highlight if selected
+      if (r === currentMasterRow && c === currentMasterCol) {
+        brickDiv.classList.add("selected");
+      }
+      // on click => select
+      brickDiv.onclick = () => {
+        currentMasterRow = r;
+        currentMasterCol = c;
+        nextTweakRow = 0;
+        renderAll();
+      };
+
+      rowDiv.appendChild(brickDiv);
+    }
+    container.appendChild(rowDiv);
+  }
+}
+
+/*********************************************************
+ *               RENDER SUB-LATTICE
+ *********************************************************/
+function renderSubLattice() {
+  const container = document.getElementById("subLatticeContainer");
+  container.innerHTML = "";
+  document.getElementById("subOutcome").textContent = "N/A";
+
+  if (currentMasterRow < 0 || currentMasterRow >= DEPTH) return;
+  if (currentMasterCol < 0 || currentMasterCol > currentMasterRow) return;
+
+  const subLat = subLattices[currentMasterRow][currentMasterCol];
+  if (!subLat) return;
+
+  const outcome = computeOutcome(subLat);
+  document.getElementById("subOutcome").textContent = outcome;
+
+  // sub path => rows 0..8
+  const path = computeSubPathCoords(subLat);
+  const finalC = computeFinalColSub(subLat);
+
+  // Render row=9 down to 0
+  for (let r = DEPTH - 1; r >= 0; r--) {
+    const rowDiv = document.createElement("div");
+    rowDiv.className = "row";
+
+    // row=9 => blank bricks
+    if (r === 9) {
+      for (let c = 0; c < DEPTH; c++) { // 0..9
+        const brickDiv = document.createElement("div");
+        brickDiv.className = "brick";
+        brickDiv.textContent = "";
+
+        // highlight left or right half in gold
+        if (outcome === "N" && c < 5) {
+          // if nextTweakRow=9 => highlight green
+          if (nextTweakRow === 9) {
+            brickDiv.classList.add("selected");
+          } else {
+            brickDiv.classList.add("highlight");
+          }
+        } else if (outcome === "Y" && c >= 5) {
+          if (nextTweakRow === 9) {
+            brickDiv.classList.add("selected");
+          } else {
+            brickDiv.classList.add("highlight");
+          }
+        }
+        rowDiv.appendChild(brickDiv);
+      }
+      container.appendChild(rowDiv);
+      continue;
+    }
+
+    // else row<9 => numeric
+    for (let c = 0; c <= r; c++) {
+      const val = subLat[r][c];
+      const brickDiv = document.createElement("div");
+      brickDiv.className = "brick";
+      brickDiv.textContent = val.toFixed(1);
+
+      // is this on the path?
+      const isOnPath = path.some(p => p.r === r && p.c === c);
+      if (isOnPath) {
+        brickDiv.classList.add("highlight");
+      }
+
+      // if row=== nextTweakRow & isOnPath => highlight green
+      if (r === nextTweakRow && isOnPath) {
+        brickDiv.classList.remove("highlight");
+        brickDiv.classList.add("selected");
+      }
+
+      rowDiv.appendChild(brickDiv);
+    }
+    container.appendChild(rowDiv);
+  }
+}
+
+/*********************************************************
+ *              MAIN RENDER
+ *********************************************************/
+function renderAll() {
+  renderMasterLattice();
+  renderSubLattice();
+}
+
+/*********************************************************
+ *                EVENT HANDLERS
+ *********************************************************/
+/** Tweak the sub-lattice row = nextTweakRow. 
+ *  We only have numeric data for row=0..8.
+ *  If nextTweakRow=9, highlight row=9 in green, next press => auto-advance.
+ */
+function tweakNextRow() {
+  if (currentMasterRow < 0 || currentMasterRow >= DEPTH) {
+    alert("Invalid master row selected.");
+    return;
+  }
+  if (currentMasterCol < 0 || currentMasterCol > currentMasterRow) {
+    alert("Invalid master col selected.");
+    return;
+  }
+
+  const subLat = subLattices[currentMasterRow][currentMasterCol];
+  if (!subLat) return;
+
+  // if nextTweakRow=9 => we're already at the blank top row
+  if (nextTweakRow === 9) {
+    // user pressed Tweak again => auto-advance master
+    advanceMasterBrick();
+    return;
+  }
+
+  // if nextTweakRow>9 => definitely auto-advance
+  if (nextTweakRow > 9) {
+    advanceMasterBrick();
+    return;
+  }
+
+  // if nextTweakRow<=8 => tweak the path brick in that row
+  const rowIndex = nextTweakRow;
+  const colIndex = computePathColumn(subLat, rowIndex);
+
+  const sliderVal = parseFloat(document.getElementById("randomSlider").value);
+  const maxShift = sliderVal / 10; // e.g. 50 => ±5
+  const shift = (Math.random() * 2 * maxShift) - maxShift;
+  subLat[rowIndex][colIndex] += shift;
+
+  nextTweakRow++;
+
+  // Recompute outcome => if flips, update master brick
+  const newOut = computeOutcome(subLat);
+  if (newOut !== masterLattice[currentMasterRow][currentMasterCol]) {
+    masterLattice[currentMasterRow][currentMasterCol] = newOut;
+  }
+
+  renderAll();
+}
+
+/** Once we exceed row=9, move to next row in the Master lattice path. */
+function advanceMasterBrick() {
+  if (currentMasterRow === 9) {
+    alert("All done!");
+    return;
+  }
+  // figure out if current brick is "Y" => col+1, else same col
+  let out = masterLattice[currentMasterRow][currentMasterCol];
+  if (currentMasterRow < 9) {
+    currentMasterRow++;
+    if (out === "Y") {
+      currentMasterCol++;
+      if (currentMasterCol > currentMasterRow) {
+        currentMasterCol = currentMasterRow;
+      }
+    }
+    nextTweakRow = 0;
+    renderAll();
+  } else {
+    // row=9 => done
+    alert("All done!");
+  }
+}
+
+/** Compute the path col at a sub-lattice row up to rowIndex. */
+function computePathColumn(subLat, rowIndex) {
+  let col = 0;
+  for (let r = 0; r < rowIndex; r++) {
+    if (col > r) col = r;
+    if (subLat[r][col] > 0) {
+      col++;
+      if (col > r + 1) col = r + 1;
+    }
+  }
+  return col;
+}
+
+/** Update slider label. */
+function updateSliderValue() {
+  document.getElementById("sliderValue").textContent =
+    document.getElementById("randomSlider").value;
+}
+
+/** Enter key => same as Tweak Next Row. */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    tweakNextRow();
+  }
+});
+
+/*********************************************************
+ *                   INIT
+ *********************************************************/
+function initAll() {
+  // 1) Build sub-lattices => 9 numeric rows each (row 9 blank)
+  subLattices = [];
+  for (let r = 0; r < DEPTH; r++) {
+    let rowArr = [];
+    for (let c = 0; c <= r; c++) {
+      rowArr.push(createSubLattice());
+    }
+    subLattices.push(rowArr);
+  }
+
+  // 2) Master-lattice => fill rows 0..8 with "N"/"Y", row=9 => "?"
+  masterLattice = [];
+  for (let r = 0; r < DEPTH; r++) {
+    let rowArr = [];
+    for (let c = 0; c <= r; c++) {
+      if (r < 9) {
+        rowArr.push("?");
+      } else {
+        rowArr.push("?"); // row=9 is effectively blank
+      }
+    }
+    masterLattice.push(rowArr);
+  }
+
+  // fill the master from sub-lattices for rows 0..8
+  for (let r = 0; r < DEPTH - 1; r++) {
+    for (let c = 0; c <= r; c++) {
+      masterLattice[r][c] = computeOutcome(subLattices[r][c]);
+    }
+  }
+  // row=9 remains "?" => displayed as blank
+
+  currentMasterRow = 0;
+  currentMasterCol = 0;
+  nextTweakRow = 0;
+
+  renderAll();
+}
+
+initAll();
+</script>
+</body>
+</html>
