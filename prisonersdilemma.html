@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics and Tracking Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE PRISONER'S DILEMMA</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/prisonersdilemma.html" />
+    <meta name="description" content="An exploration of the Prisoner's Dilemma in game theory">
+    <meta name="keywords" content="game theory, prisoner's dilemma, Nash Equilibrium, Pareto Efficiency">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="YourName">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/prisonersdilemma.png">
+    <meta property="og:title" content="THE PRISONER'S DILEMMA">
+    <meta property="og:description" content="An exploration of the Prisoner's Dilemma and its implications in game theory" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@YourTwitterHandle">
+
+    <!-- Styles and jQuery for Menu Loading -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu"></div>
+    
+    <!-- Main Title and Subtitle -->
+    <h1>THE PRISONER'S DILEMMA</h1>
+    <aside>P</aside>
+    <h2>a problematic poster-child</h2>
+    <img src="./Images/Content/Subgame_PrisonersDilemma.png" alt="The Prisoner's Dilemma, two prisoners in separate cells">
+    <p>
+        The Prisoner's Dilemma is the go-to example for <a href="map-gametheory.html">game theory</a> <em>noobs</em>. It introduces payoff matrices, it has a <a href="nashequilibrium.html">Nash Equilibrium</a> that is not also <a href="paretoefficiency.html">Pareto Efficient</a> (helping to distinguish between the two) and when taken further, we discover that strategies change with <a href="repeatedgames.html">iterated games</a>. It's got it all! Or does it? This post explains the Prisoner's Dilemma and explores its benefits while the following series will question whether or not The Prisoner's Dilemma is really the best advocate for game theory in the real world.
+    </p>
+    <img src="./Images/Content/PrisonersDilemma_Getaway.png" alt="A getaway car driving towards us">
+    
+    <!-- THE PREMISE Section -->
+    <h3>THE PREMISE</h3>
+    <p>
+        You have just robbed a bank. You've cracked the safe, packed the money bags, jumped in your getaway car with your partner, and sped off down the highway, only to find yourself tailed by the cops. As you weave through dark back streets, you hurl the money bags out the window to avoid being caught with the evidence. But alas, eventually you reach a police cordon and screech to a halt. The jig is up—you and your accomplice are arrested and taken in for questioning.
+    </p>
+
+    <img src="./Images/Content/PrisonersDilemma_Birdseye.png" alt="A bird's eye view of robbers escaping through a city">
+    
+    <!-- THE DILEMMA Section -->
+    <h3>THE DILEMMA</h3>
+    <p>
+        The Prisoner's Dilemma involves the separate interrogations of you and your partner. The cops don't have enough evidence to put you away for robbery. If you and your partner stay loyal to each other (by staying silent), the cops can one get you on the stolen car, which is 1 year. So they are trying to get you to rat out your partner, by offering leniency—if you rat out your partner you'll get no jail time, and your partner will get 5.
+    </p>
+    <img src="./Images/Content/Subgame_Prisoner1.png" alt="The Prisoner's Dilemma prisoner on the left">
+    <p>
+        This is already a dilemma, because if you have any loyalty to your partner, getting 2 years between you is better than one of you getting 5 years! On the other hand, you have the chance to avoid jail <em>altogether</em>. But it gets more complicated, because this deal is not only being offered to you, but to your partner too... This means that if you cooperate and they rat you out <em>you'll</em> get 5 years and they'll get off scot-free. If you both rat each other out then you both get convicted, but also both get leniency, meaning you get 2 years each.
+    </p>
+    <p>
+        The way we represent this in Game Theory is by using a payoff matrix.
+    </p>
+    <img src="./Images/Content/PrisonersDilemma_PrisonerMatrix.png" alt="A payoff matrix for the Prisoner's Dilemma">
+    <p>
+        You have two choices: cooperate and get 1 year if your partner also cooperates or 5 years if they don't, or defect and get 0 years if your partner cooperates, or 2 years if they don't. In terms of pure self-interest, you will always be better off if defecting—0 is better than 1 year, 2 is better than 5 years, and this is amplified by the fact that it the same is true for your partner (making the possibility of them defecting and you getting 5 years a very real one). In Game Theory this is called a <em><strong>Nash Equilibrium</strong></em>.
+    </p>
+    <!-- Block separating Nash Equilibrium section -->
+    <blockquote>
+        <h3>NASH EQUILIBRIUM</h3>
+        <p>When no player can improve their position by unilaterally changing their strategy.</p>
+        <img src="./Images/Content/PrisonersDilemma_NashMatrix.png" alt="A payoff matrix showing Nash Equilibrium">
+    </blockquote>
+    
+    <p>
+        The Nash Equilibrium for the Prisoner's Dilemma is mutual defection, because there is no situation where changing strategies benefits the individual. But, if the answer is so clear, why is it a dilemma? And why does it feel so wrong???
+    </p>
+    <p>
+        Well, that's because, although the <a href="gametheory.html#DominantStrategy">dominant strategy</a> is clear, the result is sub-optimal: if both parties defect, they get a worse payoff (2,2) than if they had both cooperated (1,1). In Game Theory terms, the Nash Equilibrium is not <em><strong>Pareto Efficient</strong></em>.
+    </p>
+
+    <blockquote>
+        <h3>PARETO EFFICIENCY</h3>
+        <p>When there is no way to make any one player better off without making at least one player worse off.</p>
+        <img src="./Images/Content/PrisonersDilemma_ParetoMatrix.png" alt="A payoff matrix showing Pareto Efficiency">
+    </blockquote>
+    
+    <p>
+        Thus, the Pareto Efficient solution for the Prisoner's Dilemma is where both parties cooperate. The dilemma in the Prisoner’s Dilemma arises from the conflict between the Nash Equilibrium, driven by self-interest, and the Pareto Efficient outcome, which benefits both players.
+    </p>
+    <h3>SO...</h3>
+    <p>
+        Is there a solution? In the next part we will explore how the Prisoner's Dilemma applies (or fails to apply) in the real world and see how repeated games change the dominant strategy, better reflecting our moral intuitions. We'll look at the limitations of contained one-shot games, and the idea of "rational" actors, and ask "Is the Prisoner's Dilemma ultimately a force for good in the world, or could the field of Game Theory find another poster-child?".
+    </p>
+
+    <img src="./Images/Content/PrisonersDilemma_Advocate.png" alt="A prisoner at a podium">
+    <p>
+        This series of posts will look at candidates that reflect, and are more positively applicable to, the real world.
+    </p>
+
+    <h3>RELATED CONTENT</h3>
+    <br>
+    <div class="image-grid">
+        <div class="image-item">
+            <a href="nashequilibrium.html">
+                <img src="./Images/Content/TrafficLights_RedAnnoyed.png" alt="Nash Equilibrium">
+                <span class="image-title">NASH EQUILIBRIUM<div style="margin-top: 0.2em;font-size: 70%;">mentioned in the text</div></span>
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="paretoefficiency.html">
+                <img src="./Images/Content/Pareto_Jug.png" alt="Positive Double Standard">
+                <span class="image-title">PARETO EFFICIENCY<div style="margin-top: 0.2em;font-size: 70%;">when you can't get any better without making it any worse</div></span>
+            </a>
+        </div>
+    </div>
+    <footer>
+    <!-- Social Icons Section -->
+    <div id="social-icons"></div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
+    
+    <!-- Footer with Notes -->
+        <h3>NOTES</h3>
+        <ul>
+            <li>For more detail on the concepts touched on in this post check out our posts on <a href="nashequilibrium.html">Nash Equilibrium</a> and <a href="paretoefficiency.html">Pareto Efficiency</a>.</li>
+            <li>If you're interested in learning about repeated games, there will be more in this series, but for now check out Jaiveer's post on <a href="repeatedgames.html">repeated games</a>.</li>
+        </ul>
+    </footer>
+    
+    <!-- GraphComment Section -->
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      var __semio__params = {
+        graphcommentId: "PrisonersDilemma",
+        behaviour: {
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+      }
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
+</body>
+</html>
