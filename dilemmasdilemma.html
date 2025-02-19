@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics and Tracking Scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE DILEMMA'S DILEMMA</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/dilemmasdilemma.html" />
+    <meta name="description" content="Exploring how the Prisoner's Dilemma frames negotiations, the role of trust, and the importance of real-world constraints in Game Theory." />
+    <meta name="keywords" content="Prisoner's Dilemma, Game Theory, Negotiations, Trust, Rationality" />
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/dilemmasdilemma.png">
+    <meta property="og:title" content="THE DILEMMA'S DILEMMA">
+    <meta property="og:description" content="Exploring how the Prisoner's Dilemma frames negotiations and why real-world constraints matter." />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+
+    <!-- Styles and jQuery for Menu Loading -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Menu -->
+    <div id="menu"></div>
+
+    <h1 style="margin-bottom: 0;">THE DILEMMA'S DILEMMA</h1>
+    <aside>P</aside>
+    <h2>how we frame negotiations matters</h2>
+
+    <img src="Images/Content/PrisonersDilemma_Advocate.png" alt="A prisoner advocating at a podium">
+
+    <p>We've considered how <a href="prisonersdilemma.html">the Prisoner's Dilemma reveals a number of key concepts in Game Theory</a>. Yet, I have <em>some</em> reservations that it is the field's best advocate for applying Game Theory <em>in the real world</em>. I first expressed this concern on <a href="https://www.reddit.com/r/GAMETHEORY/comments/1i9ajuh/is_the_prisoners_dilemma_the_best_posterchild_for/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank">a Reddit thread</a>—receiving helpful feedback which has informed this series of posts.</p>
+
+    <p><a href="gametheory.html">Game Theory</a> aims to enhance cooperation, and yet the first scenario we're presented with is a peculiar situation where the <a href="nashequilibrium.html">Nash Equilibrium</a> is <strong><em>mutual defection</em></strong>. This is due to the fact that it's a <strong><em>one-shot</em></strong> negotiation, in the dark, with no communication, trust or loyalty, no future consequences and no external factors, being decided by two "rational" (purely self-interested) <strong><em>criminals</em></strong>!</p>
+
+    <img src="Images/Content/Subgame_PrisonersDilemma.png" alt="Two criminals in a Prisoner's Dilemma">
+
+    <p><em>Is this an ideal starting point for fruitful negotiations?</em></p>
+
+    <p>Well, as <a href="https://www.reddit.com/r/GAMETHEORY/comments/1i9ajuh/comment/m94sd7m/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank">Kaomet</a> points out...</p>
+    <blockquote>... there is more drama to it than just a win-win situation</blockquote>
+
+    <p>So, it's provocative, but the potential lesson from such an introduction—<strong><em>rationality equals defensive selfishness, while cooperation is irrational and futile</em></strong>—seems at odds with healthy social norms and moral intuitions. Then again, it can be argued that the fact that the Prisoner's Dilemma conflicts with pro-social behaviour, makes it a good "dilemma".</p>
+
+    <p>As commented by <a href="https://www.reddit.com/r/GAMETHEORY/comments/1i9ajuh/comment/m90ow67/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank">Forgot_the_Jacobian</a></p>
+    <blockquote>The one shot Prisoners Dilemma is often used in Econ teaching... since it is a paradigmatic example of how individuals acting in their own self interest can lead to a situation that is not socially optimal.</blockquote>
+
+    <p>... and as <a href="https://www.reddit.com/r/GAMETHEORY/comments/1i9ajuh/comment/m929am6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank">MarioVX</a> clarifies</p>
+    <blockquote>If you claimed this is possible without an example, most people wouldn't believe you... it's an <em>excellent</em> hook to get people into game theory</blockquote>
+
+    <p>So, it is a good example of how dilemmas arise. But there is a fine line between explaining and excusing behaviour. By framing a situation in such self-serving terms and calling it "rational", do we run the risk of justifying selfish behaviour? Well, not if you think about it in a nuanced way and see the paradoxical nature of the dilemma and the conflict with our moral intuitions!</p>
+
+    <img src="Images/Content/MoralLicensing_CatBrain.png" alt="A cat brain making decisions">
+
+    <p>To understand why the Prisoner's Dilemma is at odds with our moral intuitions, we'll explore some key points of difference between game theory and reality.</p>
+
+    <blockquote>
+        <ol>
+            <li><strong>Constraints:</strong> Reality doesn't unfold in a game-theoretical vacuum</li>
+            <li><strong>Iteration:</strong> There are no one-shot games in life</li>
+            <li><strong>Rationality:</strong> Pure self-interest is not "rational" in the real world</li>
+        </ol>
+    </blockquote>
+
+    <p>We'll then look at potential consequences for ourselves and society.</p>
+
+    <blockquote>
+        <ol>
+            <li><strong>Confidence:</strong> Our confidence in others influences our own behaviour</li>
+            <li><strong>Outsourcing Trust:</strong> When society does our cooperating for us, it's easy to forget how important trust is between individuals</li>
+        </ol>
+    </blockquote>
+
+    <h3>CONSTRAINTS</h3>
+    <p>As a field of mathematics, <a href="https://nonzerosum.games/gametheory.html" target="_blank">Game Theory</a> requires confined variables to reach deductive outcomes. However, real life takes place amidst myriad social forces, from a disapproving glare to the entire justice system, which have evolved to curtail cheating. This is rooted in reciprocity—a key feature of life, because life is a series of interactions which extend beyond the present situation.</p>
+
+    <img src="Images/Content/Dilemma_PrisonersDilemma.png" alt="Prisoner's Dilemma with communication">
+
+    <p>If we revisit the Prisoner's Dilemma but posit a close personal history between the prisoners, trust functions as a contract, shifting the likely outcome from a Nash Equilibrium of <strong><em>mutual defection</em></strong> to a <a href="paretoefficiency.html">Pareto Efficient</a> <strong><em>mutual cooperation</em></strong>.</p>
+
+    <p>And even without such a soft value as <em>trust</em>, there's always <strong><em>revenge!</em></strong></p>
+
+    <p>If you betray your partner, do you really believe that during their five years in the clink, surrounded by nefarious influences, and with only time on their hands, that they won't hatch a plan to make you pay?</p>
+
+    <img src="Images/Content/Repeated_Prisoner2SmallRepeat.png" alt="Prisoner's Dilemma with constraints">
+
+    <h3>ITERATION</h3>
+    <p>The promise of future reward and the risk of future punishment are ever-present in reality. Game theorists represent this through <strong><em>iterated</em></strong> games. In the iterated version of the Prisoner's Dilemma, players not only have to account for the current round, but also for how their behaviour will affect the other player's behaviour in future rounds, and what the accumulative benefits will be of different strategies.</p>
+
+    <blockquote>"I think at least the <em>iterated</em> prisoners dilemma is very commonplace, and the original dilemma is a stepping stone to the iterated version"—<a href="https://www.reddit.com/user/SmackieT/" target="_blank">SmackieT</a></blockquote>
+
+    <p>Jaiveer Singh, in his brilliant <a href="repeatedgames.html">repeated games</a>, explores the nuances of how strategies change given iterated prisoner's dilemmas, finding that with an infinitely or indefinitely iterated game (like choices in life) the <a href="gametheory.html#DominantStrategy">dominant strategy</a> becomes <strong><em>mutual cooperation</em></strong>.</p>
+
+    <img src="Images/Content/WhyCooperate_PawsIn.png" alt="Prisoner's Dilemma with repetition">
+
+    <p>This approach was explored in simulation right back in, what my daughter calls, <em>the medieval days of the 1980s</em>. <a href="https://ee.stanford.edu/~hellman/Breakthrough/book/pdfs/axelrod.pdf" target="_blank">Robert Axelrod</a> played various agents, with different strategies, against each another in a tournament. He found that positive <strong>tit-for-tat</strong> was the dominant strategy—cooperate first and then mirror your opponent. Axelrod's "Evolution of Trust" has been entertainingly illustrated in <a href="https://ncase.me/trust/" target="_blank">this interactive</a> by Nicky Case, while in <a href="https://nonzerosum.games/cooperationvsdefection.html" target="_blank">Capitalising on Trust</a> we explored how trust can be used to choose better cooperative partners.</p>
+
+    <p><a href="prisonersdilemma.html#Comments">Matt Ball</a> even speculates that...</p>
+    <blockquote>"... self-awareness ... evolved to keep track of repeated games. I'm pretty willing to bet that is why some of 'morality' [sic] evolved."</blockquote>
+
+    <p>The iterated Prisoner's Dilemma can help us appreciate that cooperative trust-based actions can determine <strong>rational</strong> behaviour.</p>
+
+    <h3>RATIONALITY</h3>
+    <p>Game theory defines 'rationality' as pure self-interest within the constraints of the game. This tends to suggest that moral intuitions, that contradict the Prisoner's Dilemma, are necessarily <strong><em>irrational</em></strong>. But as we have seen, accounting for repetition changes the Nash Equilibrium for the Prisoner's Dilemmas to mutual cooperation. It turns out the conflict with real world social norms is not due to a failure of rationality, but rather a failure of the <strong><em>one-shot</em></strong> Prisoner's Dilemma to account for all the variables at play in real life.</p>
+
+<img src="Images/Content/Substrates_Memes.png" alt="Different factors involved in society">
+
+    <h3>CONFIDENCE</h3>
+    <p>We have seen that there are many reasons why the iterated Prisoner's Dilemma can help us develop ways to counteract distrust—<em>when played out fully in relation to our moral intuitions</em>. But <em><strong>moral intuitions vary</strong></em>. So, what if we don't have a strong repulsion to a situation that is <span class="expandable-word" data-info="Please excuse the conditional triple negative!">not</span> mutually beneficial? What happens when lay-people, looking to justify selfishness, take the <strong><em>one-shot</em></strong> Prisoners Dilemma at face value?</p>
+
+    <img src="Images/Content/MoralLicensing_Cucumber.png" alt="A cat tricking another cat with a cucumber">
+
+    <p>The problem is that assuming selfishness and distrust is not a neutral position. In fact, one of the lessons we learn from Game Theory is that assuming distrust incentivises us to be less trustworthy, as we explored in <a href="confidence.html">What is Confidence?—in game theory &amp; life</a>—our propensity to cooperate is strongly influenced by our trust in the cooperation of others. Assuming bad faith <a href="morallicensing2.html">can create self-fulfilling cycles of defection and cynicism</a>.</p>
+
+    <img src="Images/Content/MoralLicensing_CatHiss.png" alt="A cat hissing">
+    <h3>OUTSOURCING TRUST</h3>
+    <p>Because of the clear benefits of cooperation across the board, society has developed many mechanisms that facilitate and protect cooperation, meaning we very rarely run into <strong><em>one-shot</em></strong> prisoner's dilemmas in the real world, as this comment from <a href="https://www.reddit.com/r/GAMETHEORY/comments/1i9ajuh/comment/m929am6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank">MarioVX</a> explains:</p>
+    <blockquote>Think about moneylending for instance. If there weren't laws obligating you to do so (by threatening punishment if you deviate), why would you ever pay a credit back? Conversely, knowing this reasoning, why would a bank ever agree to grant you a credit in the first place?</blockquote>
+
+    <p>In <a href="https://www.ynharari.com/topic/money-and-politics/" target="_blank">Yuval Noah Harari's Sapiens</a> he points to the credit system as one of society's key signifiers of progress, a hard-won result of civilisation locking in systematic trust.</p>
+    <blockquote>Over the last 500 years the idea of progress convinced people to put more and more trust in the future. This trust created credit; credit brought real economic growth; and growth strengthened the trust in the future and opened the way for even more credit.</blockquote>
+
+    <p>Society runs on trust, from trusting a barista to bring you a coffee after you've handed over your money to getting a mortgage for a home. Systems of democracy, government, the courts and the market, are intended to mitigate self-interest in a way that aligns with collective well-being.</p>
+
+    <img src="Images/Content/WhyCooperate_CoopWorld.png" alt="A world connected with non-zero-sum games" style="width: 100%; max-width: 600px; margin: 0 auto; display: block;">
+
+    <p>This makes much of this trust invisible—behind the scenes. So, it can be easy to discount our capacity for trust and trustworthiness, and rely on the rules of the system or the <a href="https://www.investopedia.com/terms/i/invisiblehand.asp" target="_blank">invisible hand of the market</a> to take care of everything for us, allowing our own capacity for trust and trustworthiness to atrophy.</p>
+
+    <p>Taking trust for granted makes us vulnerable to stories that tell us we are, at base, selfish, untrusting, "rational" agents. You can see that this might be corrosive to social cohesion. This is an idea Rutger Bregman explores in <a href="https://www.google.co.nz/books/edition/Humankind/R7rEDwAAQBAJ?hl=en&amp;gbpv=1&amp;printsec=frontcover" target="_blank">Humankind</a> where he seeks to unweave some of our foundational stories about human nature and selfishness.</p>
+
+    <img src="Images/Content/ConsciousSignificance_SeparatingBehaviours.png" alt="A (dog) parent separating a child's bad behaviour from the child">
+
+    <h3>STORIES ARE IMPORTANT</h3>
+    <p>It could be argued that my agonising over the consequences for society might be overblown, as <a href="https://www.reddit.com/r/GAMETHEORY/comments/1i9ajuh/comment/m949un4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank">gmweinberg</a> claims</p>
+    <blockquote>I think pretty much no one is significantly influenced in their personal actions by game theory, it's just something people find interesting.</blockquote>
+
+    <p>This might be absolutely right, but as thinkers like Harari and Bregman suggest, stories that emerge in philosophical circles end up in the mainstream over time.</p>
+    <blockquote>"Stories are never just stories… stories can change who we are as a species… we can become our stories… So changing the world often starts with telling a different story"—Rutger Bregman</blockquote>
+
+    <h3>WHERE TO FROM HERE?</h3>
+    <p>Due to its popularity we can end up shoe-horning every negotiation into a Prisoner's Dilemma.</p>
+    <blockquote>"it is tempting, if the only tool you have is a hammer, to treat everything as if it were a nail."—Maslow's hammer (the law of the instrument)</blockquote>
+
+    <p> But what if the situation has important differences? Perhaps it's asymmetrical like the <a href="#">Ultimatum Game</a>, or the payoff for defection turns out to be the same as the payoff for cooperation, making cooperation more likely, or perhaps there is actually no incentive for one party to defect, meaning the other doesn't need to worry about defection like in the <a href="confidence.html">Toastmasters Payoff</a>?</p>
+    
+    <img src="Images/Content/Confidence_AudiencePositive.png" alt="A world connected with non-zero-sum games" style="width: 100%; max-width: 600px; margin: 0 auto; display: block;">
+    
+    <p>It might turn out we're creating a dilemma where there isn't one. In this way, Game Theory can be one of those "a little knowledge is a dangerous thing" applications.</p>
+
+    <p>We can avoid this trap by understanding other Game Theory scenarios. Which is where we're going next in the series. We'll be looking at:</p>
+    <blockquote>
+        <ul>
+            <li>Stag Hunt</li>
+            <li>Public Goods game</li>
+            <li>Battle of the Sexes</li>
+            <li>Hawk Dove game</li>
+            <li>Ultimatum game</li>
+            <li>Coordination game</li>
+        </ul>
+    </blockquote>
+
+    <p>And perhaps we'll find a better Game Theory poster-child. The series will then deconstruct payoff matrices themselves, enabling us to represent our own novel scenarios.</p>
+
+    <h3>AND THAT'S NOT ALL</h3>
+    <p>Robert Axelrod's tit-for-tat strategy helps us make sense of how cooperation can emerge in a competitive environment. But when you think about it, it still falls short of our moral intuitions—ideas of forgiveness and doing the right thing even when no one is looking. To try to understand these moral frameworks in game-theoretical terms we'll be taking on more complex games that better reflect the iterative <strong><em>and evolving</em></strong> nature of systems with...</p>
+
+    <blockquote>
+        <ul>
+            <li>Evolutionary Game Theory</li>
+            <li>Evolutionary Stable Strategy</li>
+        </ul>
+    </blockquote>
+
+    <p>These will help us to understand why we have some of the social norms we do.</p>
+
+    <h3>SO...</h3>
+    <p>I'd like to acknowledge and thank those who provided feedback on the blog and Reddit for helping shape my views on the Prisoner's Dilemma. I've come to appreciate the value of the numerous Game Theory concepts it illuminates and the value of having a provocative hook which immediately engages us with a puzzle.</p>
+
+    <p>This process has clarified, for me, the importance of the <strong><em>iterated</em></strong> Prisoner's Dilemma, not as a supplement or extension of the Prisoner's Dilemma, but as the actual point of (and solution to) the dilemma. To leave a student or lay-person aware of only the <strong><em>one-shot</em></strong> version, risks reinforcing a story that human nature is inherently selfish, untrusting and untrustworthy, when the opposite is true—cooperative relationships and the development of sophisticated networks of trust are defining features of human civilisation.</p>
+
+    <img src="Images/Content/Confidence_CommonInterest.png" alt="A cycle of positive interests" style="width: 100%; max-width: 600px; margin: 0 auto; display: block;">
+
+    <p>The issue I have had with the Prisoner's Dilemma primarily has to do with the constraints of game-theoretical scenarios in general. By going through this process of analysis, I hope to inoculate myself and others against some of the potentially misleading limitations of Game Theory when applied to real-world situations. It's an important reminder that we can utilise Game Theory without jettisoning the social norms and moral intuitions that have evolved in (and for) our more complex and complicated real world. Those values can point us to more nuanced and interesting explanations, making us better game theorists.</p>
+
+    <!-- Footer Section for Related Content -->
+    <footer>
+        <div id="social-icons"></div>
+        <div id="RelatedMaterial"></div>
+        <h3>NOTES</h3>
+        <ul>
+            <li>This post reflects the particular way in which this site intends to utilise Game Theory—as a means to make the world a better place, acknowledging that it might not always have that effect if we don't question how we frame issues.</li>
+            <li>In researching this post I discovered that Rutger Bregman is beginning a new movement promoting <a href="https://www.moralambition.org" target="_blank">moral ambition</a>. It struck me as closely aligned with our mission here. I encourage everyone to check this out.</li>
+            <li>This post touched on many ideas that have been covered across nonzerosum.games. <a href="cooperationvsdefection.html">Capitalising on Trust</a>, for instance, explores an extension of the Prisoner's Dilemma that allows for agents to avoid interactions with past defectors, leading to cooperation in a competitive environment.</li>
+            <li><a href="morallicensing2.html">Negative Moral Licensing</a> deals with how people use their perceptions of behaviour and motivations of others to justify acting against their own principles.</li>
+            <li>Jaiveer's <a href="repeatedgames.html">Repeated Games</a> looks in more detail at how strategies change in relation to finitely and indefinitely iterated games.</li>
+            <li><a href="confidence.html">What is Confidence?</a> reveals how our self-confidence is actually derived from our confidence in other people.</li>
+        </ul>
+    </footer>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+        behaviour: {
+          // Extract the filename from the URL path and use it as the UID
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
+</body>
+</html>
