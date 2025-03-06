@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hawk-Dove Evolutionary Simulation (Smooth + Graph + Center Pull)</title>
+  <style>
+    body { margin: 0; padding: 0; overflow: hidden; background: #55aae3; }
+    #infoPanel {
+      position: absolute; top: 0; left: 0;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px; font-family: sans-serif; font-size: 14px;
+      z-index: 10;
+    }
+    #graphCanvas {
+      position: absolute; bottom: 0; left: 0;
+      background: #55aae3;
+      /* border-top: 2px solid #999; */
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+<canvas id="simCanvas"></canvas>
+<canvas id="graphCanvas"></canvas>
+<div id="infoPanel"></div>
+
+<script>
+// -------------------- Simulation Parameters --------------------
+
+// Canvas dimensions for main sim
+const CANVAS_WIDTH  = window.innerWidth;
+const CANVAS_HEIGHT = window.innerHeight;
+
+// We'll reserve some vertical space at the bottom for the graph, or
+// use a separate small overlay canvas. Here, we'll do an overlay canvas
+// for the graph and let the main sim use the full screen.
+const GRAPH_WIDTH   = 300;  // how wide the graph area is
+const GRAPH_HEIGHT  = 100;  // how tall the graph is
+
+// Initial population
+const NUM_HAWKS      = 50;
+const NUM_DOVES      = 50;
+const MAX_POPULATION = 200;   // limit to avoid runaway growth
+
+// Health / Reproduction
+const INITIAL_HEALTH      = 10;
+const BABY_HEALTH         = 2;
+const HEALTH_CAP          = 10;
+const REPRODUCTION_HEALTH = 5;    // must exceed to reproduce
+const REPRODUCTION_RANGE  = [10, 20]; // random “next birth time” range
+
+// Movement & Behavior
+const BASE_SPEED          = 4;          // base flight speed
+const ANGLE_DAMPING       = 0.05;         // how quickly angle moves toward targetAngle
+const SPEED_DAMPING       = 0.05;         // how quickly speed moves toward targetSpeed
+const WIGGLE_MAG          = 0.07;         // magnitude for wavy wandering
+const INTERACTION_RADIUS  = 20;
+const INTERACTION_DURATION= 0.5;          // orbit time
+const COOLDOWN_TIME       = 2.0;
+const SLOW_FACTOR         = 0.3;          // fraction of base speed during orbit
+const REVOLVE_SPEED       = 1.5;          // rad/s orbit speed
+
+// Weak pull to center
+const CENTER_PULL_STRENGTH = 0.00005;      // scaled by distance from center
+const CENTER_X = CANVAS_WIDTH / 2;
+const CENTER_Y = CANVAS_HEIGHT / 2;
+
+// Payoffs:  H-H => -2, -2;  H-D => +3, -1;  D-D => +0.5, +0.5
+function getPayoffs(strategyA, strategyB) {
+  if (strategyA === 'H' && strategyB === 'H') {
+    return [-2, -2];
+  } else if (strategyA === 'H' && strategyB === 'D') {
+    return [3, -1];
+  } else if (strategyA === 'D' && strategyB === 'H') {
+    return [-1, 3];
+  } else {
+    return [2, 2];
+  }
+}
+
+// Utility: random in [min, max]
+function randRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+// Current time in seconds
+function now() {
+  return performance.now() / 1000;
+}
+
+// Normalize angle to -PI..PI
+function normalizeAngle(angle) {
+  angle = ((angle + Math.PI) % (2*Math.PI)) - Math.PI;
+  return angle;
+}
+
+// -------------------- Bird Class --------------------
+class Bird {
+  constructor(id, strategy, health) {
+    this.id = id;
+    this.strategy = strategy;
+
+    // Position
+    this.x = Math.random() * CANVAS_WIDTH;
+    this.y = Math.random() * CANVAS_HEIGHT;
+
+    // We'll track a "targetAngle" and "targetSpeed" for smoother changes
+    this.angle = Math.random() * 2 * Math.PI;
+    this.targetAngle = this.angle;
+    this.speed = BASE_SPEED;
+    this.targetSpeed = this.speed;
+
+    // For wavy flight
+    this.oscPhase = Math.random() * 2*Math.PI;
+
+    // Interaction
+    this.isInteracting = false;
+    this.interactPartner = null;
+    this.interactEndTime = 0;
+    this.cooldowns = new Map();  // partnerId -> cooldown end time
+
+    // Orbit data
+    this.orbitCenterX = 0;
+    this.orbitCenterY = 0;
+    this.orbitRadius  = 0;
+    this.orbitAngle   = 0;
+    this.orbitDir     = 1;
+
+    this.health = health;
+    this.age    = 0;
+    this.nextReproductionTime = randRange(REPRODUCTION_RANGE[0], REPRODUCTION_RANGE[1]);
+  }
+
+  update(dt) {
+    this.age += dt;
+
+    if (this.isInteracting) {
+      // Orbiting
+      if (now() < this.interactEndTime) {
+        // revolve
+        this.orbitAngle += REVOLVE_SPEED * this.orbitDir * dt;
+        this.x = this.orbitCenterX + this.orbitRadius * Math.cos(this.orbitAngle);
+        this.y = this.orbitCenterY + this.orbitRadius * Math.sin(this.orbitAngle);
+
+        // face tangential direction
+        let heading = this.orbitAngle + (Math.PI/2) * this.orbitDir;
+        this.angle = heading;  // override direct for orbit
+      } else {
+        // Interaction done
+        finishInteraction(this);
+      }
+    } else {
+      // Normal flight with gentle angle changes
+      // 1) Update targetAngle with some wiggling
+      this.oscPhase += WIGGLE_MAG;
+      let wiggle = Math.sin(this.oscPhase) * 0.1;
+      let randomAdjust = (Math.random() - 0.5) * 0.02;
+      this.targetAngle += randomAdjust + wiggle*dt;
+      this.targetAngle = normalizeAngle(this.targetAngle);
+
+      // 2) Weak pull toward center => nudge targetAngle a bit
+      let dxCenter = CENTER_X - this.x;
+      let dyCenter = CENTER_Y - this.y;
+      let distCenter = Math.sqrt(dxCenter*dxCenter + dyCenter*dyCenter);
+      if (distCenter > 5) {
+        // small directional nudge
+        let centerDir = Math.atan2(dyCenter, dxCenter);
+        let angleDiff = normalizeAngle(centerDir - this.targetAngle);
+        // scale by distance
+        let pull = CENTER_PULL_STRENGTH * distCenter; 
+        // nudge targetAngle fractionally
+        this.targetAngle = normalizeAngle(this.targetAngle + angleDiff * pull);
+      }
+
+      // 3) Gradually update actual angle => angleDamp
+      let diff = normalizeAngle(this.targetAngle - this.angle);
+      this.angle += diff * ANGLE_DAMPING;
+      this.angle = normalizeAngle(this.angle);
+
+      // 4) Gradually update speed => speedDamp (currently always trying to approach BASE_SPEED)
+      let speedDiff = this.targetSpeed - this.speed;
+      this.speed += speedDiff * SPEED_DAMPING;
+
+      // Move
+      let vx = this.speed * Math.cos(this.angle);
+      let vy = this.speed * Math.sin(this.angle);
+
+      // Position update
+      this.x += vx * dt * 60;
+      this.y += vy * dt * 60;
+
+      // Wrap or bounce
+      if (this.x < 0) this.x = CANVAS_WIDTH;
+      if (this.x > CANVAS_WIDTH) this.x = 0;
+      if (this.y < 0) this.y = CANVAS_HEIGHT;
+      if (this.y > CANVAS_HEIGHT) this.y = 0;
+    }
+
+    // Cap health
+    if (this.health > HEALTH_CAP) this.health = HEALTH_CAP;
+  }
+
+  draw(ctx) {
+    let size = 5 + this.health;
+    if (size < 2) size = 2;
+
+    ctx.fillStyle = (this.strategy === 'H') ? '#f33' : '#62f';
+
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.angle);
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-size, -size/2);
+    ctx.lineTo(-size,  size/2);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.restore();
+  }
+}
+
+// -------------------- Interaction Helpers --------------------
+function finishInteraction(bird) {
+  let partner = bird.interactPartner;
+  bird.isInteracting = false;
+  bird.interactPartner = null;
+
+  if (!partner) return;  // might already be cleared
+  if (!birds.includes(bird) || !birds.includes(partner)) return;
+
+  partner.isInteracting = false;
+  partner.interactPartner = null;
+
+  // Apply payoff if both still alive
+  applyPayoff(bird, partner);
+
+  // Both revert to normal flight
+  bird.targetSpeed = BASE_SPEED;
+  partner.targetSpeed = BASE_SPEED;
+
+  // Face away from each other just a bit, but do it by adjusting their targetAngle
+  let dx = bird.x - partner.x;
+  let dy = bird.y - partner.y;
+  let angle = Math.atan2(dy, dx);
+  bird.targetAngle = angle;  // instant shift for demonstration
+  partner.targetAngle = angle + Math.PI; // opposite direction
+}
+
+function applyPayoff(A, B) {
+  const [payA, payB] = getPayoffs(A.strategy, B.strategy);
+  A.health += payA;
+  B.health += payB;
+  if (A.health <= 0) removeBird(A);
+  if (B.health <= 0) removeBird(B);
+}
+
+// We choose a single orbit direction that best fits both birds’ headings
+// i.e. whichever rotation yields the smaller sum of heading changes.
+function pickOrbitDir(A, B, midAngleA, midAngleB) {
+  // Evaluate “both go CCW” vs. “both go CW”
+  // For CCW, each angle = midAngle + 0.  For CW, each angle = midAngle - 0... but we invert sign
+  // We'll do a small trick: for each bird, compute cost for CCW vs cost for CW, sum them, pick min.
+
+  // cost = absolute difference from current angle => minimal shift
+  let ccwDiffA = Math.abs(normalizeAngle(midAngleA + (Math.PI/2) - A.angle));
+  let ccwDiffB = Math.abs(normalizeAngle(midAngleB + (Math.PI/2) - B.angle));
+  let cwDiffA  = Math.abs(normalizeAngle(midAngleA - (Math.PI/2) - A.angle));
+  let cwDiffB  = Math.abs(normalizeAngle(midAngleB - (Math.PI/2) - B.angle));
+
+  let sumCCW = ccwDiffA + ccwDiffB;
+  let sumCW  = cwDiffA + cwDiffB;
+
+  return (sumCCW <= sumCW) ? +1 : -1; 
+}
+
+// Start orbit-based interaction
+function startInteraction(A, B) {
+  A.isInteracting = true;
+  B.isInteracting = true;
+  A.interactPartner = B;
+  B.interactPartner = A;
+
+  let endT = now() + INTERACTION_DURATION;
+  A.interactEndTime = endT;
+  B.interactEndTime = endT;
+
+  const midX = (A.x + B.x)/2;
+  const midY = (A.y + B.y)/2;
+  A.orbitCenterX = midX;
+  A.orbitCenterY = midY;
+  B.orbitCenterX = midX;
+  B.orbitCenterY = midY;
+
+  let dxA = A.x - midX;
+  let dyA = A.y - midY;
+  A.orbitRadius = Math.sqrt(dxA*dxA + dyA*dyA);
+  A.orbitAngle  = Math.atan2(dyA, dxA);
+
+  let dxB = B.x - midX;
+  let dyB = B.y - midY;
+  B.orbitRadius = Math.sqrt(dxB*dxB + dyB*dyB);
+  B.orbitAngle  = Math.atan2(dyB, dxB);
+
+  // Decide orbit direction that yields minimal total angle shift
+  let dir = pickOrbitDir(A, B, A.orbitAngle, B.orbitAngle);
+  A.orbitDir = dir;
+  B.orbitDir = dir;
+
+  // Both slow down
+  A.targetSpeed = BASE_SPEED * SLOW_FACTOR;
+  B.targetSpeed = BASE_SPEED * SLOW_FACTOR;
+}
+
+// -------------------- Bird Management --------------------
+let birds = [];
+let nextId = 1;
+
+function removeBird(b) {
+  let idx = birds.indexOf(b);
+  if (idx >= 0) birds.splice(idx, 1);
+}
+
+function initPopulation() {
+  birds = [];
+  for (let i = 0; i < NUM_HAWKS; i++) {
+    birds.push(new Bird(nextId++, 'H', INITIAL_HEALTH));
+  }
+  for (let i = 0; i < NUM_DOVES; i++) {
+    birds.push(new Bird(nextId++, 'D', INITIAL_HEALTH));
+  }
+}
+
+// Create baby near parent
+function createBaby(parent) {
+  let offset = 15;
+  let bx = parent.x + randRange(-offset, offset);
+  let by = parent.y + randRange(-offset, offset);
+  let b = new Bird(nextId++, parent.strategy, BABY_HEALTH);
+  b.x = bx; 
+  b.y = by;
+  birds.push(b);
+}
+
+// -------------------- Reproduction --------------------
+function checkReproduction() {
+  for (let b of birds) {
+    if (birds.length >= MAX_POPULATION) return;
+    if (b.health > REPRODUCTION_HEALTH && b.age >= b.nextReproductionTime) {
+      createBaby(b);
+      b.nextReproductionTime += randRange(REPRODUCTION_RANGE[0], REPRODUCTION_RANGE[1]);
+    }
+  }
+}
+
+// -------------------- Graph for Hawk/Dove Percentages --------------------
+let graphCanvas = document.getElementById('graphCanvas');
+graphCanvas.width = GRAPH_WIDTH;
+graphCanvas.height = GRAPH_HEIGHT;
+
+// We'll scroll the data from left to right
+// We'll store data points as they come in (time, fractionHawks)
+let graphData = [];
+let graphSampleInterval = 0.5; // sample every 0.5s
+let nextGraphSample = 0;
+
+// We also store total time so we can keep scaling the x-axis
+let maxGraphTime = 30; // initially show 30s wide; we can expand if needed
+
+function updateGraph(dt) {
+  if (elapsedTime >= nextGraphSample) {
+    let hawks = birds.filter(b => b.strategy === 'H').length;
+    let total = birds.length;
+    let fractionHawks = (total > 0) ? hawks / total : 0;
+    graphData.push({ t: elapsedTime, frac: fractionHawks });
+    nextGraphSample += graphSampleInterval;
+    
+    // Increase graph range if we surpass it
+    if (elapsedTime > maxGraphTime) {
+      maxGraphTime = elapsedTime;
+    }
+  }
+}
+
+// Draw the line: x = time, y = fractionHawks (0..1)
+function renderGraph() {
+  let ctxG = graphCanvas.getContext('2d');
+  ctxG.clearRect(0, 0, GRAPH_WIDTH, GRAPH_HEIGHT);
+
+  // border
+  ctxG.fillStyle = '#fff';
+  ctxG.fillRect(0, 0, GRAPH_WIDTH, GRAPH_HEIGHT);
+  ctxG.strokeStyle = '#999';
+  ctxG.strokeRect(0, 0, GRAPH_WIDTH, GRAPH_HEIGHT);
+
+  if (graphData.length < 2) return;
+
+  // We'll map time => 0..GRAPH_WIDTH, frac => 0..GRAPH_HEIGHT
+  // but fractionHawks: 0 = bottom, 1 = top
+  // so y = GRAPH_HEIGHT - fraction * GRAPH_HEIGHT
+
+  ctxG.beginPath();
+  for (let i = 0; i < graphData.length; i++) {
+    let t = graphData[i].t;
+    let frac = graphData[i].frac;
+    let x = (t / maxGraphTime) * (GRAPH_WIDTH-2) + 1; // padding 1 px
+    let y = GRAPH_HEIGHT - frac * (GRAPH_HEIGHT-2) - 1;
+    if (i === 0) {
+      ctxG.moveTo(x, y);
+    } else {
+      ctxG.lineTo(x, y);
+    }
+  }
+  ctxG.strokeStyle = 'red';
+  ctxG.lineWidth = 2;
+  ctxG.stroke();
+
+  // We can also show a reference line for 50%
+  ctxG.beginPath();
+  ctxG.moveTo(0, GRAPH_HEIGHT/2);
+  ctxG.lineTo(GRAPH_WIDTH, GRAPH_HEIGHT/2);
+  ctxG.strokeStyle = '#bbb';
+  ctxG.lineWidth = 1;
+  ctxG.stroke();
+}
+
+// -------------------- Main Simulation Loop --------------------
+const canvas = document.getElementById('simCanvas');
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
+
+const ctx = canvas.getContext('2d');
+const infoPanel = document.getElementById('infoPanel');
+
+let lastTime = performance.now();
+let elapsedTime = 0; // in seconds
+
+function loop() {
+  let current = performance.now();
+  let dt = (current - lastTime) / 1000;
+  lastTime = current;
+  elapsedTime += dt;
+
+  update(dt);
+  render();
+
+  requestAnimationFrame(loop);
+}
+
+function update(dt) {
+  // Update birds
+  for (let b of birds) {
+    b.update(dt);
+  }
+
+  // Check interactions
+  for (let i = 0; i < birds.length; i++) {
+    for (let j = i+1; j < birds.length; j++) {
+      let A = birds[i];
+      let B = birds[j];
+      if (A.isInteracting || B.isInteracting) continue;
+      let cdA = A.cooldowns.get(B.id) || 0;
+      let cdB = B.cooldowns.get(A.id) || 0;
+      if (now() < cdA || now() < cdB) continue;
+
+      // distance
+      let dx = A.x - B.x;
+      let dy = A.y - B.y;
+      let distSq = dx*dx + dy*dy;
+      if (distSq <= INTERACTION_RADIUS * INTERACTION_RADIUS) {
+        startInteraction(A, B);
+        A.cooldowns.set(B.id, now() + COOLDOWN_TIME);
+        B.cooldowns.set(A.id, now() + COOLDOWN_TIME);
+      }
+    }
+  }
+
+  // Cull dead
+  birds = birds.filter(b => b.health > 0);
+
+  // Reproduction
+  checkReproduction();
+
+  // Update graph data
+  updateGraph(dt);
+}
+
+function render() {
+  // Draw simulation
+  ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  for (let b of birds) {
+    b.draw(ctx);
+  }
+
+  // Info
+  let hawks = birds.filter(b => b.strategy === 'H').length;
+  let total = birds.length;
+  let doves = total - hawks;
+  infoPanel.innerHTML = `
+    <strong>Hawk-Dove Simulation</strong><br>
+    Time: ${elapsedTime.toFixed(1)}s<br>
+    Population: ${total}<br>
+    Hawks: ${hawks}, Doves: ${doves}<br>
+    (Graph: Hawk % over time)
+  `;
+
+  // Draw graph
+  renderGraph();
+}
+
+// -------------------- Run It --------------------
+initPopulation();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
