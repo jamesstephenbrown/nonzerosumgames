@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BATTLE OF THE SEXES</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="https://nonzerosum.games/battleofthesexes.html" />
+  <meta name="description" content="how to solve any (solvable) disagreement">
+  <meta name="keywords" content="Battle of the Sexes, Game Theory, Coordination, Iteration, Turn-based Solutions, Payoff Matrix">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NonZeroSumJames">
+  <meta property="og:image" content="https://nonzerosum.games/Images/Social/battleofthesexes.png">
+  <meta property="og:title" content="BATTLE OF THE SEXES">
+  <meta property="og:description" content="how to solve any (solvable) disagreement" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@NonZeroSumJames">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div id="menu"></div>
+
+  <h1>MOVIE NIGHT</h1>
+  <aside>B</aside>
+  <h2>how to solve any (solvable) disagreement.</h2>
+  <img src="./Images/Content/Battle_RemoteFight.png" alt="Hedgehogs fighting over a remote control">
+
+  <p>Every Friday our family settles in for <strong><em>family movie night</em></strong>—it's the highlight of the week, especially for the person who's "turn" it is—my wife, daughter and I take turns sharing a movie we love.</p>
+
+  <p>When we began sharing movies it was somewhat ad-hoc and invited long-winded and sometimes heated debates over which movie to see, often we'd end up with a choice <a href="https://en.wikipedia.org/wiki/Design_by_committee" target="_blank">by committee</a> with no one being particularly satisfied.</p>
+  
+  <img src="./Images/Content/Battle_Choice.png" alt="Two hedgehogs, one saying 'The best choice always lies between two strongly held opinions' and the other saying 'No, it's not.'">
+  
+  <p>Our eventual decision to take turns reflects the conclusions of game theory's...</p>
+
+  <h3>... BATTLE OF THE SEXES</h3>
+  <p>With the addition of some outdated tropes about the different sort of movies women and men supposedly like, the battle of the sexes is essentially the same situation as our movie night:</p>
+
+  <blockquote>A boyfriend wants to watch an action movie, a girlfriend a romantic comedy, how do they choose what to watch?</blockquote>
+
+  <p>This classic scenario can be illustrated with a payoff matrix:</p>
+
+  <img src="./Images/Content/Battle_Matrix.png" alt="Payoff matrix for battle of the sexes">
+
+  <p>What we see here is, while there are uneven payoffs for both choosing action or romance, there is <strong><em>no payoff</em></strong> for disagreement, resulting in no movie. The distinction between the two levels of goals here can be understood in terms of <a href="https://nonzerosum.games/absolutevsrelative.html">absolute and relative value</a>—watching a movie together (absolute value) and choosing the movie (relative value).</p>
+
+  <p>There are two pure‑strategy <a href="https://nonzerosum.games/nashequilibrium.html">Nash Equilibria</a>: <strong>(Action, Action)</strong> and <strong>(Romance, Romance)</strong> as these are the only options that return any payoff. Each player would rather coordinate than go alone, but each prefers a different coordinated option. We can think of two poles as local maxima divided by a minimum compromise option. Here's a spaghetti-themed <a href="https://nonzerosum.games/notrealgraphs.html">not-real-graph</a> to illustrate.</p>
+
+  <img src="./Images/Content/Battle_Spaghetti.png" alt="Spaghetti graph showing compromise positions">
+
+  <h3>ITERATION</h3>
+  <p>As with many game theory scenarios, it's important to play the scenario out over several rounds. In this case, iteration doesn't affect the Nash Equilibrium, because it is also <a href="https://nonzerosum.games/paretoefficiency.html">Pareto Efficient</a>, it is never advisable to split the difference in this game—both will be worse off. However, iteration does help to inform us about what is fair in terms of <em>relative</em> value. Because the uneven payoffs (2,1) and (1,2) mirror each other, taking turns is a clear way to balance the payoffs.</p>
+  <h3>REAL LIFE</h3>
+  <p>Now, movie choice and spaghetti might seem frivolous to explore in game theory, given the stakes are so low. But what happens when that movie is the choice between what side of the road you're going to drive on, or how child custody is allocated after a divorce.</p>
+
+  <p>For some situations the iterated game will favour a turn-based solution, whereas in others, there may be a prohibitive cost to switching.</p>
+
+    <h3>TURN-BASED</h3>
+    <p>These are situations where there are equal rights and interests in both options, but simultaneous sharing is not possible.</p>
+    <blockquote>
+    <ul>
+        <li>Child custody between divorced parents</li>
+        <li>Time allocation using the <a href="https://www.nasa.gov/directorates/somd/space-communications-navigation-program/antennas-of-the-dsn/" target="_blank">Deep Space network antenna</a> (time cannot be shared, so users bid for time-blocks)</li>
+        <li>Leadership of the UN Security Council (rotates through its member states in alphabetical order)</li>
+        <li>Olympic Games hosting (is determined via a voting system)</li>
+    </ul>
+    </blockquote>
+
+    <img src="./Images/Content/Battle_MatrixAveraged.png" alt="Averaged payoff matrix">
+
+  <h3>PERMANENT</h3>
+  <p>These are situations where simultaneous sharing is not possible but there is a high cost to switching between different options, and there may be less vested interests.</p>
+  <blockquote>
+    <ul>
+        <li>What side of the road to drive on (switching would lead to confusion, and the choice is arbitrary anyway)</li>
+        <li>Using the Imperial or Metric system (just number units, but they don't mix)</li>
+        <li>Household mains standards: 60 Hz, 120 V or 50 Hz, 220‑240 V (imagine needing multiple adapters within your own country or even your own household—not feasible)</li>
+    </ul>
+    </blockquote>
+
+  <p>As a documentary editor, I sorely wish the industry could have a <em><strong>Battle of the Sexes</strong></em> discussion to standardise video formats. The headache of mixed frame-rates—23.976, 24, 25, 29.97, 50 and different frame behaviours; variable, interlaced, progressive, dropframe, non-dropframe—is a product of strong <a href="https://nonzerosum.games/inertia.html">historical inertia</a>, though I'm hopeful it's a problem we can actually solve, through <a href="https://nonzerosum.games/unlockingsolutions.html">coordination</a>.</p>
+
+  <h3>HOWEVER...</h3>
+  <p>Unfortunately, not all Battle of the Sexes games can be resolved so easily. In some cases, alternating simply isn’t possible—because the decision is irreversible and involves strong vested interests. Consider a couple deciding where to live when both have careers rooted in different cities, or two parents negotiating which religion to raise their child in. In the realm of politics, while we have the election cycle which enables turn-taking, an issue like Brexit couldn’t be taken for a spin and reversed next term; it demanded a one-time, all-in choice.</p>
+
+  <img src="./Images/Content/Battle_WatchingMovie.png" alt="Hedgehogs watching a movie together">
+
+  <h3>SO...</h3>
+  <p>The Battle of the Sexes is pretty clear cut:</p>
+  <blockquote>
+    <ul>
+        <li>If there are <em>not</em> vested interests, <strong>make a choice and stick with it</strong></li>
+        <li>If there <em>are</em> vested interests and the ability to alternate, <strong>take turns</strong></li>
+        <li>If there are vested interests and no ability to alternate... <strong>hard luck</strong>.</li>
+    </ul>
+  </blockquote>
+
+
+  <p>For our movie night, the choice is simple, no bargaining, no swapping, the <strong>turn-bearer</strong> reigns! Sometimes it's a hit, sometimes a miss, but the system largely works, and every now and again a favourite movie of one person becomes a new favourite of someone else, who otherwise might never have watched it—a <a href="https://nonzerosum.games/whatarenonzerosumgames.html">win-win</a>.</p>
+
+
+  <h3>CONTINUE READING</h3><br>
+  <div class="image-grid">
+      <div class="image-item">
+          <a href="paretoefficiency.html">
+              <img src="./Images/Content/Pareto_Jug.png" alt="A jug filled to the minimum">
+              <span class="image-title">COSTLESS KINDNESS<div style="margin-top: 0.2em;font-size: 70%;">how pareto efficiency makes everyone better of (sometimes)</div></span>
+          </a>
+      </div>
+      <div class="image-item">
+          <a href="absolutevsrelative.html">
+              <img src="./Images/Content/Relative_DiderotCatRich.png" alt="A rich cat">
+              <span class="image-title">RELATIVE GAINS<div style="margin-top: 0.2em;font-size: 70%;">the worst way to measure success</div></span>
+          </a>
+      </div>
+  </div>
+
+
+  <footer>
+    <div id="social-icons"></div>
+</footer>
+
+  <div id="graphcomment"></div>
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: "Non-Zero-Sum-Games",
+      behaviour: {
+        uid: window.location.pathname.split('/').pop().split('.')[0],
+      },
+    }
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params)
+    }
+    (function() {
+      var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+      gc.onload = __semio__onload; gc.defer = true;
+      gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+    })();
+  </script>
+</body>
+</html>
