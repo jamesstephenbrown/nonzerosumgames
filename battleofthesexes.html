@@ -18,11 +18,21 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <!-- Linking to Menu.html -->
+  <script>
+      $(document).ready(function() {
+          $("#menu").load("menu.html", function() {
+              var pageName = window.location.pathname.split("/").pop();
+              var menuLink = $("a[href='" + pageName + "']");
+              menuLink.parent().remove();
+          });
+      });
+  </script>
   <div id="menu"></div>
 
   <h1>MOVIE NIGHT</h1>
   <aside>B</aside>
-  <h2>how to solve any (solvable) disagreement.</h2>
+  <h2>how to solve any (solvable) dispute.</h2>
   <img src="./Images/Content/Battle_RemoteFight.png" alt="Hedgehogs fighting over a remote control">
 
   <p>Every Friday our family settles in for <strong><em>family movie night</em></strong>—it's the highlight of the week, especially for the person who's "turn" it is—my wife, daughter and I take turns sharing a movie we love.</p>

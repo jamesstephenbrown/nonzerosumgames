@@ -6,46 +6,48 @@
     <link>https://nonzerosum.games</link>
     <description>A blog exploring non-zero-sum games and win-win solutions</description>
     <language>en-us</language>
-
-    <item>
-      <title>PAINE ON ECONOMIC JUSTICE</title>
-      <link>https://nonzerosum.games/painejustice.html</link>
-      <description>the system didn't, and doesn't need to be this way</description>
-      <pubDate>Sun, 20 Apr 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/painejustice.html</guid>
-    </item>n-us</language>
-
     <item>
       <title>THE ERA OF THE DIVIDUAL</title>
       <link>https://nonzerosum.games/dividual.html</link>
       <description>are we falling apart?</description>
       <pubDate>Sun, 13 Apr 2025 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/dividual.html</guid>
-    </item>n-us</language>
-
+    </item>
     <item>
       <title>ARUSHA PERPETUAL CHICKEN</title>
       <link>https://nonzerosum.games/chicken.html</link>
       <description>an unlikely iterated game</description>
       <pubDate>Sat, 7 Apr 2025 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/chicken.html</guid>
-    </item>n-us</language>
-
+    </item>
+    <item>
+      <title>PAINE ON ECONOMIC JUSTICE</title>
+      <link>https://nonzerosum.games/painejustice.html</link>
+      <description>the system didn't, and doesn't need to be this way</description>
+      <pubDate>Sun, 20 Apr 2025 12:00:00 +0000</pubDate>
+      <guid>https://nonzerosum.games/painejustice.html</guid>
+    </item>
+    <item>
+      <title>BATTLE OF THE SEXES</title>
+      <link>https://nonzerosum.games/battleofthesexes.html</link>
+      <description>how to solve any (solvable) dispute</description>
+      <pubDate>Sat, 26 Apr 2025 12:00:00 +0000</pubDate>
+      <guid>https://nonzerosum.games/battleofthesexes.html</guid>
+    </item>
     <item>
       <title>THE ULTIMATUM GAME</title>
       <link>https://nonzerosum.games/ultimatumgame.html</link>
       <description>take it or leave it</description>
       <pubDate>Fri, 28 March 2025 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/ultimatumgame.html</guid>
-    </item>n-us</language>
-
+    </item>
     <item>
       <title>SOCIAL DILEMMAS</title>
       <link>https://nonzerosum.games/socialdilemmas.html</link>
       <description>take it or leave it</description>
       <pubDate>Sat, 8 March 2025 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/socialdilemmas.html</guid>
-    </item>n-us</language>
+    </item>
 
     <item>
       <title>THE STAG HUNT</title>
@@ -53,7 +55,7 @@
       <description>cultivating cooperation to reap rewards</description>
       <pubDate>Sat, 26 Feb 2025 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/staghunt.html</guid>
-    </item>n-us</language>
+    </item>
 
     <item>
       <title>THE DILEMMA'S DILEMMA</title>
@@ -61,7 +63,7 @@
       <description>how we frame negotiations matters</description>
       <pubDate>Sat, 22 Feb 2025 12:00:00 +0000</pubDate>
       <guid>https://nonzerosum.games/dilemmasdilemma.html</guid>
-    </item>n-us</language>
+    </item>
 
     <item>
       <title>THE PRISONER'S DILEMMA</title>
