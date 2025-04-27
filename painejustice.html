@@ -136,7 +136,21 @@
             <li>For more examples of systems that could have been very different, check out our post on <a href="inertia.html">historical inertia</a>.</li>
         </ul>
     </footer>
-
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+    
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
     <div id="graphcomment"></div>
     <script type="text/javascript">
       var __semio__params = {
