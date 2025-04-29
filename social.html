@@ -127,10 +127,25 @@
         </div>
         <br>
     </form>
-    <p>... or get the <a href="https://nonzerosum.games/rss.xml" target="_blank">RSS</a> feed.</p>
-    <!-- End Mailchimp Subscribe Form -->
-        <br>
+    <p>
+        ... or get the <a href="#" onclick="copyRSSLink(event)">RSS</a> feed.
+        <div id="copy-feedback" style="display:none; margin-left: 10px; color: rgb(65, 95, 131);">Copied!</div>
+    </p>
 </div>
+
+<script>
+    function copyRSSLink(event) {
+      event.preventDefault();
+      const rssURL = "https://nonzerosum.games/rss.xml";
+      navigator.clipboard.writeText(rssURL).then(() => {
+        const feedback = document.getElementById("copy-feedback");
+        feedback.style.display = "inline";
+        setTimeout(() => {
+          feedback.style.display = "none";
+        }, 2000);
+      });
+    }
+    </script>
 
 <script>
     function trackSocialClick(socialNetwork) {
