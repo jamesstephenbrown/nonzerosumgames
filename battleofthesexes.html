@@ -108,7 +108,6 @@
 
   <p>For our movie night, the choice is simple, no bargaining, no swapping, the <strong>turn-bearer</strong> reigns! Sometimes it's a hit, sometimes a miss, but the system largely works, and every now and again a favourite movie of one person becomes a new favourite of someone else, who otherwise might never have watched it—a <a href="https://nonzerosum.games/whatarenonzerosumgames.html">win-win</a>.</p>
 
-
   <h3>CONTINUE READING</h3><br>
   <div class="image-grid">
       <div class="image-item">
@@ -125,25 +124,24 @@
       </div>
   </div>
 
-
   <footer>
     <div id="social-icons"></div>
   </footer>
 
-<script>
-  $(document).ready(function() {
-      $("#social-icons").load("social.html", function() {
-          // Get the current page URL and title
-          var pageUrl = window.location.href;
-          var pageTitle = document.title;
+  <script>
+    $(document).ready(function() {
+        $("#social-icons").load("social.html", function() {
+            // Get the current page URL and title
+            var pageUrl = window.location.href;
+            var pageTitle = document.title;
 
-          // Replace placeholders in the loaded HTML
-          $(this).find("a").each(function() {
-              this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
-              this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
-          });
-      });
-  });
+            // Replace placeholders in the loaded HTML
+            $(this).find("a").each(function() {
+                this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+            });
+        });
+    });
 </script>
 
   <div id="graphcomment"></div>
