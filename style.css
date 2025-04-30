@@ -17,6 +17,44 @@
   font-style: normal;
 }
 
+/* ── payoff‑matrix ─────────────────────────────────────────────── */
+#payoffTable{
+  border-collapse:collapse;
+  table-layout:fixed;     /* keep grid */
+  width: 300px;  
+  font-family:inherit;
+  background:inherit;
+}
+
+#payoffTable th,
+#payoffTable td{
+  padding:.35em .5em;
+  text-align:center;
+  vertical-align:middle;
+}
+
+/* explicit column widths */
+#payoffTable col.label {width:100}    /* row labels               */
+#payoffTable col.pay  {width:103px}    /* each payoff column       */
+
+
+.matrix-cell{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.25em;
+}
+.matrix-cell .val{
+  width:3.5ch;
+  text-align:center;
+  /* font-family:inherit; */
+}
+.matrix-cell input[type=range]{
+  width:100%;
+  box-sizing:border-box;
+}
+
+
 .animation-container {
   /* width: 100%; */
   /* height: 100%; */
@@ -303,7 +341,7 @@ h1, h3 {
 }
 
 h1 {
-  font-size: 150%;
+  font-size: 140%;
 }
 
 
@@ -689,11 +727,11 @@ input::placeholder, textarea::placeholder {
 
 .image-item img {
   position: absolute;
-  top: 70%;
+  top: 67%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 95%;
-  max-height: 40%;
+  max-height: 55%;
   display: block;
   transition: transform 0.3s ease;
 }
