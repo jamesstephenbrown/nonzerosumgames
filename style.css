@@ -751,7 +751,6 @@ input::placeholder, textarea::placeholder {
   /* Remove absolute positioning so the container grows with the image */
   display: block;
   max-width: 95%;
-  max-height: 50%;
   margin: 20px auto;
   /* You can keep or remove transition as you like */
   transition: transform 0.3s ease;
