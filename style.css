@@ -240,7 +240,7 @@ body {
 
 /* Dark mode overrides */
 .dark-mode {
-  background-color: #2a243d;
+  background-color: #2a243d !important;
   color: #d59b7b;
 }
 
