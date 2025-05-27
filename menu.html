@@ -36,7 +36,7 @@
     cursor: none; /* hide default cursor */
   }
 
-  .custom-cursor {
+  .custom-cursor, .custom-cursor-link {
     position: fixed;
     top: 0;
     left: 0;
@@ -45,17 +45,25 @@
     pointer-events: none;
     z-index: 9999;
     transform-origin: center center;
-    transition: transform 0.05s ease-out;
+    transition: transform 0.05s ease-out, opacity 0.1s ease-in-out;
+  }
+
+  .custom-cursor-link {
+    display: none;
   }
 </style>
 
 <script>
   (function() {
-    const cursorImg = document.createElement('img');
-    cursorImg.className = 'custom-cursor';
+    const cursorDefault = document.createElement('img');
+    cursorDefault.className = 'custom-cursor';
+
+    const cursorLink = document.createElement('img');
+    cursorLink.className = 'custom-cursor-link';
 
     // Set default cursor image
     let cursorSrc = './Images/paw.png';
+    let cursorLinkSrc = './Images/paw_link.png';
 
     // Allow override with <meta name="cursor" content="wand.png">
     const cursorMeta = document.querySelector('meta[name="cursor"]');
@@ -63,19 +71,40 @@
       cursorSrc = `./Images/${cursorMeta.content}`;
     }
 
-    cursorImg.src = cursorSrc;
-    document.body.appendChild(cursorImg);
+    cursorDefault.src = cursorSrc;
+    cursorLink.src = cursorLinkSrc;
+
+    document.body.appendChild(cursorDefault);
+    document.body.appendChild(cursorLink);
 
     let lastX = 0;
     window.addEventListener('mousemove', e => {
       const deltaX = e.clientX - lastX;
       lastX = e.clientX;
 
-      cursorImg.style.left = `${e.clientX}px`;
-      cursorImg.style.top = `${e.clientY}px`;
+      cursorDefault.style.left = `${e.clientX}px`;
+      cursorDefault.style.top = `${e.clientY}px`;
+      cursorLink.style.left = `${e.clientX}px`;
+      cursorLink.style.top = `${e.clientY}px`;
 
-      const angle = Math.max(-20, Math.min(20, deltaX)); // clamp rotation
-      cursorImg.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+      const angle = Math.max(-20, Math.min(20, deltaX));
+      const transformStyle = `translate(-50%, -50%) rotate(${angle}deg)`;
+      cursorDefault.style.transform = transformStyle;
+      cursorLink.style.transform = transformStyle;
+    });
+
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest('a, button, .clickable')) {
+        cursorLink.style.display = 'block';
+        cursorDefault.style.opacity = '0';
+      }
+    });
+
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest('a, button, .clickable')) {
+        cursorLink.style.display = 'none';
+        cursorDefault.style.opacity = '1';
+      }
     });
   })();
 </script>
