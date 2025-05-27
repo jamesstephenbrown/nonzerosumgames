@@ -29,4 +29,56 @@
             document.body.classList.toggle('dark-mode', darkModeToggle.checked);
         });
     </script>
+
+<!-- Add this to your menu.html file -->
+<style>
+  html, body {
+    cursor: none; /* hide default cursor */
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: center center;
+    transition: transform 0.05s ease-out;
+  }
+</style>
+
+<script>
+  (function() {
+    const cursorImg = document.createElement('img');
+    cursorImg.className = 'custom-cursor';
+
+    // Set default cursor image
+    let cursorSrc = './Images/paw.png';
+
+    // Allow override with <meta name="cursor" content="wand.png">
+    const cursorMeta = document.querySelector('meta[name="cursor"]');
+    if (cursorMeta && cursorMeta.content) {
+      cursorSrc = `./Images/${cursorMeta.content}`;
+    }
+
+    cursorImg.src = cursorSrc;
+    document.body.appendChild(cursorImg);
+
+    let lastX = 0;
+    window.addEventListener('mousemove', e => {
+      const deltaX = e.clientX - lastX;
+      lastX = e.clientX;
+
+      cursorImg.style.left = `${e.clientX}px`;
+      cursorImg.style.top = `${e.clientY}px`;
+
+      const angle = Math.max(-20, Math.min(20, deltaX)); // clamp rotation
+      cursorImg.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+    });
+  })();
+</script>
+
+
 </div>
