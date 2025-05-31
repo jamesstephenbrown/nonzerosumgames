@@ -1,19 +1,19 @@
 <div class="social-share">
     <br>You made it!<br><br>You've done the hard bit. Next step is <em><strong>easy</strong></em>, do your part and share this idea with your friends<br><br>(I'm sure you have lots of them, because you're awesome).<br><br>
     <!-- <p>You might agree—there is a lot of fleeting, ill-considered and negative content on the internet, and it gets clicks—because it appeals to base instincts. If you want to contribute to having more substantive, positive, and well-considered ideas out there, please play your part and share <em>(if you think this piece of writing fits that bill of course)</em>.</p> -->
-    <a href="https://bsky.app/intent/compose?text=This%20was%20interesting...%20TITLE_PLACEHOLDER%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Bluesky');">
+    <a href="https://bsky.app/intent/compose?text=COMMENT_PLACEHOLDER%20TITLE_PLACEHOLDER...%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Bluesky');">
         <img src="Images/Icons/bluesky.png" alt="Share on Bluesky"/>
     </a>
     <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Facebook');">
         <img src="Images/Icons/facebook.png" alt="Share on Facebook"/>
     </a>
-    <a href="https://twitter.com/intent/tweet?url=URL_PLACEHOLDER&text=This%20was%20interesting..." target="_blank" class="no-outlink" onclick="trackSocialClick('Twitter');">
+    <a href="https://twitter.com/intent/tweet?url=URL_PLACEHOLDER&text=COMMENT_PLACEHOLDER..." target="_blank" class="no-outlink" onclick="trackSocialClick('Twitter');">
         <img src="Images/Icons/twitter.png" alt="Share on Twitter"/>
     </a>
     <a href="https://reddit.com/submit?url=URL_PLACEHOLDER&title=TITLE_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Reddit');">
         <img src="Images/Icons/reddit.png" alt="Share on Reddit"/>
     </a>
-    <a href="https://www.mastodon.social/share?text=This%20was%20interesting...%20TITLE_PLACEHOLDER%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Mastodon');">
+    <a href="https://www.mastodon.social/share?text=COMMENT_PLACEHOLDER...%20TITLE_PLACEHOLDER%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Mastodon');">
         <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
     </a>
     <a href="https://news.ycombinator.com/submitlink?u=URL_PLACEHOLDER&t=TITLE_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Hacker News');" title="Hacker News" style="text-decoration: none;">
@@ -21,6 +21,54 @@
     </a>
     <br>Sharing good ideas is a win-win.<br>
 </div>
+<script>
+$(document).ready(function () {
+    $("#social-icons").load("social.html", function () {
+        var pageUrl = window.location.href;
+        var pageTitle = document.title;
+
+        const funnyShareLines = [
+            "This article cured my existential dread",
+            "I read this and now I can see through walls",
+            "I no longer feel inadequate after reading this",
+            "Doctors hate this one weird idea!",
+            "You think you've got it all figured out? And then you read this, and you're all confused again",
+            "I showed this to my goldfish and now it runs a google",
+            "Warning: Reading this may cause spontaneous cranial expansion",
+            "After reading this my dad called and finally told me that I'm enough",
+            "I laughed, I cried, I achieved inner peace",
+            "NASA want to study my brain after reading this",
+            "I forwarded this to my past self and it destroyed the space-time continuum",
+            "If you share this, your plants will stop judging you",
+            "This post is why the internet was invented",
+            "I read this and my coffee brewed itself out of respect",
+            "My phone battery lasted longer after I shared this",
+            "Even my guinea pig paid attention to this post",
+            "I tried to ignore this, but my conscience wouldn't let me",
+            "This post unlocked a secret level in my brain",
+            "Share this and your socks will never get lost in the dryer again",
+            "I sent this to my group chat and now we're all enlightened",
+            "Reading this increased my WiFi speed",
+            "Reading this is the morally right thing to do",
+            "Since reading this, my printer started working again",
+            "Please validate the author's existence by sharing this",
+            "I shared this and my houseplants started applauding",
+            "If you read this, you may find yourself almost as smart as me",
+            "If you don't share this, your next pizza will arrive with pineapple"
+        ];
+
+        const randomLine = funnyShareLines[Math.floor(Math.random() * funnyShareLines.length)];
+        const encodedLine = encodeURIComponent(randomLine); // safest for all platforms
+
+        $(this).find("a").each(function () {
+            this.href = this.href
+                .replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl))
+                .replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle))
+                .replace('COMMENT_PLACEHOLDER', encodedLine);
+        });
+    });
+});
+</script>
 
 
 <!-- Begin Mailchimp Subscribe Form -->
