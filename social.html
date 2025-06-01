@@ -16,12 +16,8 @@
     <a href="https://www.mastodon.social/share?text=COMMENT_PLACEHOLDER...%20TITLE_PLACEHOLDER%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Mastodon');">
         <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
     </a>
-    <a href="https://news.ycombinator.com/submitlink?u=URL_PLACEHOLDER&t=TITLE_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Hacker News');" title="Hacker News" style="text-decoration: none;">
-        HN
-    </a>
     <br>Sharing good ideas is a win-win.<br>
 </div>
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -60,22 +56,15 @@
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.title);
 
-    fetch('social.html')
-      .then(response => response.text())
-      .then(html => {
-        html = html
-          .replaceAll('URL_PLACEHOLDER', pageUrl)
-          .replaceAll('TITLE_PLACEHOLDER', pageTitle)
-          .replaceAll('COMMENT_PLACEHOLDER', encodedLine);
-        document.getElementById('social-icons').innerHTML = html;
-
-        // Optional: if your icons rely on JS hover/animation logic, re-apply it here
-      })
-      .catch(err => {
-        console.error('Error loading social.html:', err);
-      });
+    document.querySelectorAll('.social-share a').forEach(a => {
+      a.href = a.href
+        .replace('URL_PLACEHOLDER', pageUrl)
+        .replace('TITLE_PLACEHOLDER', pageTitle)
+        .replace('COMMENT_PLACEHOLDER', encodedLine);
+    });
   });
 </script>
+
 <!-- Begin Mailchimp Subscribe Form -->
 <div id="mc_embed_signup"><br>
     <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">
