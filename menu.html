@@ -24,6 +24,11 @@
         // Grab the checkbox
         const darkModeToggle = document.getElementById('darkModeToggle');
 
+    // Check if dark-mode is already enabled (e.g. body has class on page load)
+    if (document.body.classList.contains('dark-mode')) {
+        darkModeToggle.checked = true;
+    }
+
         // Add an event listener for when it's toggled
         darkModeToggle.addEventListener('change', function () {
             // Toggle the dark-mode class if checkbox is checked
