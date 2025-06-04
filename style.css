@@ -248,10 +248,11 @@ body {
 .switch {
   display: inline-block;
   /* float: right; */
-  position: relative;
+  position: absolute;
   /* display: inline-block; */
   margin-right: 10px;
-  margin-bottom: 50px;
+  margin-left: 10px;
+  margin-bottom: 20px;
   margin-top: -10px;
   width: 30px;
   height: 50px;
