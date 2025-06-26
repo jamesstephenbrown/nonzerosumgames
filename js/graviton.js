@@ -1,31 +1,13 @@
-
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
-
-// element which needs to enter full-screen mode
-var element = document.querySelector('canvas');
-
-// make the element go to full-screen mode
-//element.requestFullscreen()
-//  .then(function() {
-//    // element has entered fullscreen mode successfully
-//  })
-//  .catch(function(error) {
-//    // element could not enter fullscreen mode
-//  });
-
 canvas.width = innerWidth
 canvas.height = innerHeight
 
-const mouse = {
-  x: innerWidth / 2,
-  y: innerHeight / 2
-}
+const numberOfElements = 16
 
-const numberOfElements = 5
-const numberOfGravitons = 800
-const attractionMin = -50
-const attractionMax = 50
+const numberOfGravitons = 1500
+const attractionMin = -100
+const attractionMax = 100
 const red = 'rgb(255,100,100)'
 const yellow = 'rgb(150,255,100)'
 const blue = 'rgb(100,100,255)'
@@ -44,28 +26,27 @@ const maroon = 'rgb(180,0,40)'
 const navy = 'rgb(0,0,180)'
 
 
-// Event Listeners
-// addEventListener('mousemove', (event) => {
-//   mouse.x = event.clientX
-//   mouse.y = event.clientY
-// })
 
-addEventListener('resize', () => {
-  canvas.width = innerWidth
-  canvas.height = innerHeight
-  // init()
-})
+const gridSize = 50
+let grid = new Map()
 
-class Offset {
-  constructor (x,y) {
-    this.x = x
-    this.y = y
-  }
+function getKey(x, y) {
+  return `${Math.floor(x / gridSize)},${Math.floor(y / gridSize)}`
+}
+function colorFromElement(element) {
+  const hue = (element * 137) % 360 // golden angle ensures good separation
+  const saturation = 70
+  const lightness = 60
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
 
-// Objects
+const simulationSize = Math.min(canvas.width, canvas.height) * 2
+const simCenterX = canvas.width / 2
+const simCenterY = canvas.height / 2
+const zoom = 3  // you can adjust this
+
 class Graviton {
-  constructor(index,x, y, radius, color, goal, element, attractions) {
+  constructor(index, x, y, radius, color, element, attractions) {
     this.index = index
     this.x = x
     this.y = y
@@ -73,215 +54,136 @@ class Graviton {
     this.oY = y
     this.radius = radius
     this.color = color
-    this.goal = {x:0,y:0}
+    this.goal = { x: 0, y: 0 }
     this.element = element
     this.attractions = attractions
     this.cluster = 0
   }
-  update () {
-    gravitons.forEach(graviton => {
-      if (this.index > graviton.index) {
 
-        let heading = {x: graviton.oX - this.oX, y: graviton.oY - this.oY}
-        const distance = Math.hypot(heading.x,heading.y);
-
-        if (distance < 200) {
-          this.cluster += 1
-          graviton.cluster += 1
-        }
-
-        heading.x = heading.x / (distance)
-        heading.y = heading.y / (distance)
-
-        // console.log (this.attractions[graviton.element])
-
-        const thisAttractionForGravitonElement = this.attractions [graviton.element]
-        const gravitonAttractionForThisElement = -this.attractions [graviton.element]
-
-        // console.log(thisAttractionForGravitonElement, graviotnAttractionForThisElement)
-        
-        const divider = 150
-
-        this.goal.x += (heading.x * thisAttractionForGravitonElement) / divider
-        this.goal.y += (heading.y * thisAttractionForGravitonElement) / divider
-
-        graviton.goal.x += (heading.x * gravitonAttractionForThisElement) / divider
-        graviton.goal.y += (heading.y * gravitonAttractionForThisElement) / divider
-      }
-    })
-  }
   reset() {
-    // draw()
     this.oX = this.x
     this.oY = this.y
-    this.goal = {x:0,y:0}
+    this.goal.x = 0
+    this.goal.y = 0
     this.cluster = 0
   }
 
+  update() {
+    for (let other of gravitons) {
+      if (this.index >= other.index) continue
+
+      const dx = other.oX - this.oX
+      const dy = other.oY - this.oY
+      const distSq = dx * dx + dy * dy
+      if (distSq > 100000) continue  // ignore beyond 400px
+
+      const distance = Math.sqrt(distSq) + 1e-4
+      const decay = 1 / (distSq + 1000)
+      this.cluster += 1
+      other.cluster += 1
+
+      const headingX = dx / distance
+      const headingY = dy / distance
+      const att1 = this.attractions[other.element]
+      const att2 = -att1
+
+      this.goal.x += headingX * att1 * decay
+      this.goal.y += headingY * att1 * decay
+      other.goal.x += headingX * att2 * decay
+      other.goal.y += headingY * att2 * decay
+    }
+  }
+
   draw() {
-    // c.beginPath()
-    // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-    // c.fillStyle = this.color
-    // c.fill()
-    // c.closePath()
+    const drawX = (this.x - simCenterX) * zoom + canvas.width / 2
+    const drawY = (this.y - simCenterY) * zoom + canvas.height / 2
+    if (drawX < 0 || drawX > canvas.width || drawY < 0 || drawY > canvas.height) return
     c.beginPath()
-    c.rect(this.x,this.y,3,3)
+    c.rect(drawX, drawY, 2, 2)
     c.fillStyle = this.color
     c.fill()
-    // c.stroke()
   }
 }
 
-// Implementation
-let gravitons
-let elements
+let gravitons = []
+let elements = []
 
-let offset = new Offset (0,0)
 
 function init() {
-  //element.requestFullscreen()
-
-  c.fillStyle = '#3a3a3a'
-  c.fillRect(0,0,canvas.width,canvas.height)
-  // console.log('initializing')
   elements = []
-
   for (let i = 0; i < numberOfElements; i++) {
-
-    attractions = [];
-
+    let attractions = []
     for (let n = 0; n < numberOfElements; n++) {
       const random = (Math.random() * (attractionMax * 2)) + attractionMin
-      attractions.push(random); // not sure if "new float" is correct syntax
+      attractions.push(random)
     }
-    elements.push (attractions);
+    elements.push(attractions)
   }
 
+  const spread = simulationSize / 4
   gravitons = []
   for (let i = 0; i < numberOfGravitons; i++) {
-
-    const x = Math.random() * innerWidth
-    const y = Math.random() * innerHeight
-
-    const element = randomIntFromRange (0, numberOfElements - 1) // perhaps numberOfElements - 1
-    const attractions = elements [element];
-    const index = i;
-  // instead of a 2d array - you could just check the remainder after dividing by the number of elements
-
+    const x = simCenterX + (Math.random() - 0.5) * spread
+    const y = simCenterY + (Math.random() - 0.5) * spread
+    const element = Math.floor(Math.random() * numberOfElements)
+    const attractions = elements[element]
     const color =
-    (element == 0) ? red :
-    (element == 1) ? yellow:
-    (element == 2) ? blue :
-    (element == 3) ? purple :
-    (element == 4) ? green :
-    (element == 5) ? orange :
-    (element == 6) ? grey :
-    (element == 7) ? grass :
-    (element == 8) ? sky :
-    (element == 9) ? turquoise:
-    (element == 10) ? violet :
-    (element == 11) ? peach :
-    (element == 12) ? pink :
-    (element == 13) ? brown :
-    (element == 14) ? maroon :
-    (element == 15) ? navy :
-    'white';
-
-    const radius = 10
-    const goal = {x:0,y:0}
-    gravitons.push(new Graviton (index,x,y,radius,color,goal,element,attractions))
+      (element == 0) ? red :
+      (element == 1) ? yellow :
+      (element == 2) ? blue :
+      (element == 3) ? purple :
+      (element == 4) ? green :
+      (element == 5) ? orange :
+      (element == 6) ? grey :
+      (element == 7) ? grass :
+      (element == 8) ? sky :
+      (element == 9) ? turquoise :
+      (element == 10) ? violet :
+      (element == 11) ? peach :
+      (element == 12) ? pink :
+      (element == 13) ? brown :
+      (element == 14) ? maroon :
+      (element == 15) ? navy :
+      colorFromElement(element);
+        
+    gravitons.push(new Graviton(i, x, y, 3, color, element, attractions))
   }
 }
 
 init()
 
-
-
-let mostPopular = gravitons[0]
-  
-let persistent = {x:canvas.width,y:canvas.height}
-
-// Animation Loop
 function animate() {
-  // console.log('animating')
   requestAnimationFrame(animate)
   c.fillStyle = 'black'
-  c.fillRect(0,0,canvas.width,canvas.height)
-  gravitons.forEach(graviton => {
-   graviton.reset()
+  c.fillRect(0, 0, canvas.width, canvas.height)
+
+  // Optional: draw bounding box
+  const boxSize = simulationSize * zoom
+  c.strokeStyle = 'rgba(85,170,227,0.2)'
+  c.lineWidth = 1
+  c.strokeRect(
+    (canvas.width - boxSize) / 2,
+    (canvas.height - boxSize) / 2,
+    boxSize,
+    boxSize
+  )
+
+  // Grid setup
+  grid.clear()
+  gravitons.forEach(g => {
+    g.reset()
+    const key = getKey(g.x, g.y)
+    if (!grid.has(key)) grid.set(key, [])
+    grid.get(key).push(g)
   })
-  gravitons.forEach(graviton => {
-   graviton.update()
-   if (graviton.cluster > mostPopular.cluster + 20 ) {
-    mostPopular = graviton
-   }
-  })
 
-let clusterCount = 0
-let averageX = 0
-let averageY = 0
-
-  gravitons.forEach(graviton => {
-    if(distance(graviton.x,graviton.y,mostPopular.x,mostPopular.y) < 100) {
-      clusterCount += 1
-      averageX += graviton.x
-      averageY += graviton.y
-    }
-   })
-
-  averageX = averageX / clusterCount
-  averageY = averageY / clusterCount
-
-  mostPopular = {x:averageX,y:averageY,cluster:clusterCount}
-
-  smoothing = 100
-  gravitons.forEach(graviton => {
-    offset.x = ((mostPopular.x) - canvas.width + (persistent.x - canvas.width)*smoothing) / (smoothing+1)
-    offset.y = ((mostPopular.y) - canvas.height + (persistent.y - canvas.height)*smoothing) / (smoothing+1)
-
-    graviton.x += graviton.goal.x - canvas.width / 2
-    graviton.y += graviton.goal.y - canvas.height / 2
-    graviton.x -= offset.x
-    graviton.y -= offset.y
-
-
-
-//     const limit = canvas.height / 2;
-//     const centre = { x: canvas.width / 2, y: canvas.height / 2 }
-//     const dist = distance(centre.x,centre.y,0,graviton.x,graviton.y,graviton.z)
-//     const headingEdge = {x: ((graviton.x-mostPopular.x) / dist)*limit, y: ((graviton.y-mostPopular.y) / dist)*limit, z: (graviton.z / dist)*limit};
-// console.log("graviton ", graviton.x, graviton.y, graviton.z, "headingEdge ", headingEdge.x, headingEdge.y, headingEdge.z)
-//     if (dist > limit) {
-//       graviton.x -= 2*headingEdge.x;
-//       graviton.y -= 2*headingEdge.y;
-//       graviton.z -= 2*headingEdge.z
-    // }
-    
-      // graviton.x = graviton.x < 0 ? graviton.x + canvas.width : graviton.x > canvas.width ? graviton.x - canvas.width : graviton.x;
-      // graviton.y = graviton.y < 0 ? graviton.y + canvas.height : graviton.y > canvas.height ? graviton.y - canvas.height : graviton.y;
-      // graviton.z = graviton.z < 0 ? graviton.z + canvas.width : graviton.z > canvas.width ? graviton.z - canvas.width : graviton.z;
-
-    graviton.draw()
-
-    persistent = mostPopular
+  // Update and draw
+  gravitons.forEach(g => {
+    g.update()
+    g.x += g.goal.x
+    g.y += g.goal.y
+    g.draw()
   })
 }
-function distance(x1, y1, x2, y2) {
-  return Math.hypot(x2-x1,y2-y1);
-}
 
-function randomIntFromRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-function randomColor(colors) {
-  return colors[Math.floor(Math.random() * colors.length)]
-}
 animate()
-
-// module.exports = { randomIntFromRange, randomColor, distance }
-
-
-// function product3x3(x1, y1, z1, x2, y2, z2) { return new {x: x1 * x2, y: y1 * y2, z: z1 * z2} }
-// function product(x1, y1, z1, float f) { return new {x: x1 * f, y: y1 * f, z: z1 * f} }
-// function divided(x1, y1, z1, float f) { return new {x: x1 / f, y: y1 / f, z: z1 / f} }
