@@ -820,14 +820,14 @@ bs {
   transform: skewX(10deg);
   font-style: normal;
 }
-  .dark-mode img {
-      filter: drop-shadow(0 0 100px rgb(167, 127, 183));
-      overflow: visible !important; /* <-- doesn't do anything here */
-      display: block;
-      /* position: relative; */
-      z-index: 2;
-      will-change: filter;
-  }
+.dark-mode img {
+    filter: drop-shadow(0 0 100px rgb(167, 127, 183));
+    overflow: visible !important; /* <-- doesn't do anything here */
+    display: block;
+    /* position: relative; */
+    z-index: 2;
+    will-change: filter;
+}
 
   /* .dark-mode img::after {
       content: "";
