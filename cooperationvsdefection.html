@@ -42,11 +42,15 @@
         table {
             border-collapse: separate;
             border-spacing: 2px;
+            display: inline-block;
+            align-items: center;
         }
         th, td {
+            
             margin: 0px;
             padding: 10px 15px;
-            background-color: #55AAE3;
+            color: #55AAE3;
+            background-color: rgba(0, 0, 0, 0.50);
             border-radius: 8px;
         }
         .dark-mode th, .dark-mode td {
@@ -317,25 +321,23 @@ To explain what's going on here. We have 100 "agents" which all start with 20 he
 If two cooperators interact, they each get +1 health, two defectors -1 each, and if a defector and a cooperator interact the defector gets +2 and the cooperator gets -2.
 </p>
 
-<footer>
-    <table>
-        <tr>
-            <th>ROLE</th>
-            <th>Coop</th>
-            <th>Defect</th>
-        </tr>
-        <tr>
-            <td><strong>Coop</strong></td>
-            <td>+1,+1</td>
-            <td>-2,+2</td>
-        </tr>
-        <tr>
-            <td><strong>Defect</strong></td>
-            <td>+2,-2</td>
-            <td>-1,-1</td>
-        </tr>
-    </table>
-</footer>
+<table>
+    <tr>
+        <th>ROLE</th>
+        <th>Coop</th>
+        <th>Defect</th>
+    </tr>
+    <tr>
+        <td><strong>Coop</strong></td>
+        <td>+1,+1</td>
+        <td>-2,+2</td>
+    </tr>
+    <tr>
+        <td><strong>Defect</strong></td>
+        <td>+2,-2</td>
+        <td>-1,-1</td>
+    </tr>
+</table>
 
 <p>
 As you can imagine this initially benefits the defectors, but there's a catch for those greedy grubs; <em><strong>each agent remembers who has defected against them and physically avoids them from then on</em></strong>. Avoiding a defector is indicated with a white dot in the body of the agent in the direction of the defector (and of course the agent moves away).
