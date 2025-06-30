@@ -819,7 +819,7 @@ bs {
       filter: drop-shadow(0 0 100px rgb(151, 111, 162));
       overflow: visible !important; /* <-- doesn't do anything here */
       display: block;
-      position: relative;
+      /* position: relative; */
       z-index: 2;
       will-change: filter;
   }
