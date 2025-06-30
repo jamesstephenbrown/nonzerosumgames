@@ -24,7 +24,7 @@ iframe.spotify-embed {
 }
 
 body.dark-mode .social-share {
-  background-color: #2a243d !important;
+  background-color: transparent;
   color: #d59b7b;
 }
 
@@ -333,12 +333,12 @@ input:checked + .slider:before {
 
 
 
-.dark-mode footer {
+/* .dark-mode footer {
   background-color: rgba(255, 255, 255, 0.3);
   color: #2a243d !important;
-}
+} */
 
-.dark-mode blockquote {
+.dark-mode blockquote, footer {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -856,9 +856,6 @@ bs {
   p {
     text-align: justify;
   }
-
-
-
   .gif-container img {
     height: 200px;
     width: auto;
@@ -897,7 +894,7 @@ bs {
     padding: 5%;
   }
   img {
-    max-width: 90%;
+    max-width: 95%;
   }
   
 }
