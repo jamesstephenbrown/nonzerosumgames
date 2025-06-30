@@ -18,7 +18,6 @@
     </a>
     <br>Sharing good ideas is a win-win.<br>
     <p>—James :)</p>
-</div>
 
 <script>
   (function () {
@@ -52,25 +51,25 @@
       "If you don't share this, your next pizza will arrive with pineapple"
     ];
 
-    const randomLine = funnyShareLines[Math.floor(Math.random() * funnyShareLines.length)];
-    const encodedLine = encodeURIComponent(randomLine);
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.title);
 
-    // Wait until the DOM has inserted this block
     const interval = setInterval(() => {
-      const anchors = document.querySelectorAll('.social-share a');
-      if (anchors.length > 0) {
+        const anchors = document.querySelectorAll('.social-share a');
+        if (anchors.length > 0) {
+        const randomLine = funnyShareLines[Math.floor(Math.random() * funnyShareLines.length)];
+        const encodedLine = encodeURIComponent(randomLine);
+
         anchors.forEach(a => {
-          a.href = a.href
+            a.href = a.href
             .replace('URL_PLACEHOLDER', pageUrl)
             .replace('TITLE_PLACEHOLDER', pageTitle)
             .replace('COMMENT_PLACEHOLDER', encodedLine);
         });
         clearInterval(interval);
-      }
+        }
     }, 50);
-  })();
+    })();
 </script>
 
 <!-- Begin Mailchimp Subscribe Form -->
@@ -184,6 +183,8 @@
         ... or get the <a href="#" onclick="copyRSSLink(event)">RSS</a> feed.
         <div id="copy-feedback" style="display:none; margin-left: 10px; color: rgb(65, 95, 131);">Copied!</div>
     </p>
+</div>
+
 </div>
 
 <script>

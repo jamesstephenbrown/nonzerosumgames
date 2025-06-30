@@ -23,6 +23,11 @@ iframe.spotify-embed {
   height: 152px;
 }
 
+body.dark-mode .social-share {
+  background-color: #2a243d !important;
+  color: #d59b7b;
+}
+
 /* ── payoff‑matrix ─────────────────────────────────────────────── */
 #payoffTable{
   border-collapse:collapse;
