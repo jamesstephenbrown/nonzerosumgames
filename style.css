@@ -852,6 +852,10 @@ bs {
   background-color: #2a243d;
   color: #d59b7b;
 }
+.dark-mode .social {
+  background-color: #2a243d !important;
+  color: #d59b7b;
+}
 
 
   
