@@ -816,7 +816,7 @@ bs {
   font-style: normal;
 }
   .dark-mode img {
-      filter: drop-shadow(0 0 100px rgb(151, 111, 162));
+      filter: drop-shadow(0 0 100px rgb(167, 127, 183));
       overflow: visible !important; /* <-- doesn't do anything here */
       display: block;
       /* position: relative; */
@@ -831,6 +831,10 @@ bs {
       z-index: 1;
   } */
 
+
+
+
+  
 /* Computer */
 @media only screen and (min-device-width: 500px) {
 
