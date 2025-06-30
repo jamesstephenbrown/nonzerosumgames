@@ -34,12 +34,21 @@
   <meta name="twitter:title" content="EMERGENT GRAVITY ~ exploring the speculative foundations of gravity and emergence from entropy">
   <meta name="twitter:description" content="A speculative exploration into the foundations of gravity, the role of entropy in emergence, and the philosophical implications of creating something from nothing.">
  
+  <script>
+      $(document).ready(function() {
+          $("#menu").load("menu.html", function() {
+              var pageName = window.location.pathname.split("/").pop();
+              var menuLink = $("a[href='" + pageName + "']");
+              menuLink.parent().remove();
+          });
+      });
+  </script>
+
   <!-- Unique stylings for this post -->
   <style>
     body {
       text-decoration-color: #ffffff;
     }
-
     .full-width {
       position: relative; /* Position relative to its normal position */
       width: 100vw; /* Full viewport width */
@@ -49,8 +58,6 @@
       pointer-events: none; /* Disable pointer events to prevent click interception */
       background-color: lightblue; /* Just for demonstration */
     }
-
-
     .centered-text {
     position: absolute;
     top: 150px;
@@ -62,14 +69,8 @@
   </style>
 </head>
 <body style="background-color:black;color: #55AAE3;">
-  <div class="menuColumn">
-  <p>
-      <a href="/">Home</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/arcade.html">Games</a>
-      <a href="/aboutme.html">About</a>
-  </p>
-</div>
+  
+  <div id="menu"></div>
     <canvas class="full-width"></canvas>
   <div class="centered-text">
     <h1 style="margin-bottom: 0;color: #55AAE3">EMERGENT GRAVITY</h1>
@@ -80,7 +81,7 @@
     <!-- <script src="js/gravitoroidal.js"></script> -->
     <p style="margin-top: -10em;">The above simulation is the result of some very... </p>
     <blockquote style="background-color:#55AAE3;color:black;">
-    <h3>... SIMPLE RULES</h3>
+    <!-- <h3>... SIMPLE RULES</h3> -->
     <ul>
         <li>Randomly positioned points</li>
         <li>Each assigned one of five colours</li>
