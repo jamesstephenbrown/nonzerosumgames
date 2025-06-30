@@ -72,6 +72,12 @@ iframe.spotify-embed {
 p {
   text-align: center;
 }
+p > img {
+  display: block;
+  margin: 1em auto;
+  max-width: 100%;
+  height: auto;
+}
 
 #animation-frame {
   max-width: 120%;
@@ -802,8 +808,27 @@ input::placeholder, textarea::placeholder {
       width: 100% !important;
   }
 
+bs {
+  text-decoration: none;
+  display: inline-block;
+  transform: skewX(10deg);
+  font-style: normal;
+}
+  .dark-mode img {
+      filter: drop-shadow(0 0 100px rgb(151, 111, 162));
+      overflow: visible !important; /* <-- doesn't do anything here */
+      display: block;
+      position: relative;
+      z-index: 2;
+      
+  }
 
-
+  .dark-mode img::after {
+      content: "";
+      position: absolute;
+      inset: -100px;
+      z-index: 1;
+  }
 
 /* Computer */
 @media only screen and (min-device-width: 500px) {
