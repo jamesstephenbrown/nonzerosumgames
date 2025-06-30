@@ -407,6 +407,7 @@ ol {
 
 img {
   max-width: 100%;
+  filter: drop-shadow(0 0 100px transparent); /* placeholder */
 }
 
 blockquote, footer {
