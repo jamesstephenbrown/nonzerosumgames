@@ -34,21 +34,25 @@
 
     <style>
         #gameCanvas {
-            background-color: #55AAE3;
+            background-color: transparent;
             max-width: 800px; /* Max width of the canvas */
             width: 100%; /* Make the canvas take full width of the container */
             margin: 0 auto; /* Center the canvas horizontally */
         }
-    table {
-        border-collapse: separate;
-        border-spacing: 2px;
-    }
-    th, td {
-        margin: 0px;
-        padding: 10px 15px;
-        background-color: #55AAE3;
-        border-radius: 8px;
-    }
+        table {
+            border-collapse: separate;
+            border-spacing: 2px;
+        }
+        th, td {
+            margin: 0px;
+            padding: 10px 15px;
+            background-color: #55AAE3;
+            border-radius: 8px;
+        }
+        .dark-mode th, .dark-mode td {
+            background-color: #d59b7b  !important;
+            color: #2a243d !important;
+        }
     </style>
     
 </head>
@@ -277,7 +281,7 @@ function drawGame() {
         // Draw the player
         ctx.beginPath();
         ctx.arc(player.x, player.y, player.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = player.type === 'cheater' ? 'red' : '#a1d8fd';
+        ctx.fillStyle = player.type === 'cheater' ? 'red' : 'rgba(255, 255, 255, 0.5)'; // Red for defectors, light blue for cooperators
         ctx.fill();
 
         // Draw a small red dot for each player being avoided
