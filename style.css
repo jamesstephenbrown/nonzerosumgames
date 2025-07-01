@@ -839,7 +839,7 @@ bs {
   } */
 
 .dark-mode #mc_embed_signup {
-  background-color: #2a243d !important;
+  background-color: transparent !important;
   color: #d59b7b !important;
 }
 
@@ -857,22 +857,25 @@ bs {
 .dark-mode #mc_embed_signup input[type="submit"],
 .dark-mode #mc_embed_signup .button {
   background-color: #3a3452 !important;
-  color: #d59b7b !important;
+  color: white !important;
   border: none !important;
 }
 
 .dark-mode #mc_embed_signup .clear,
 .dark-mode #mc_embed_signup form {
-  background-color: #2a243d !important;
+  background-color: transparent!important;
   color: #d59b7b !important;
 }
 
 .dark-mode #mc_embed_signup .animation-container {
-  background-color: #2a243d !important;
+  background-color: transparent !important;
 }
 
 .dark-mode #mc_embed_signup input::placeholder {
-  color: #b98c6c !important;
+  color: #2a243d !important;
+}
+.dark-mode p {
+  background-color: transparent !important;
 }
 
   
