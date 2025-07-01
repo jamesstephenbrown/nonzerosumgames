@@ -4,7 +4,7 @@ canvas.width = innerWidth
 canvas.height = innerHeight
 
 let numberOfElements = 8
-let numberOfGravitons = 2500
+let numberOfGravitons = 2000
 let attractionMin = -100
 let attractionMax = 100
 let gridSize = 200
