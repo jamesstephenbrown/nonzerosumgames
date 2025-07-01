@@ -84,10 +84,12 @@
       color: white;
       font-family: sans-serif;
       display: flex;
+      flex-wrap: wrap; /* This allows wrapping */
       gap: 20px;
       align-items: center;
+      justify-content: center;
+      max-width: 90vw; /* Optional: prevents overflow */
       z-index: 10;
-
       padding: 20px;
       text-align: center;
       border-radius: 30px;
@@ -121,7 +123,7 @@
 
 
     <canvas class="full-width"></canvas>
-  <div id="controls" style="margin-top: -10em;">
+  <div id="controls" style="margin-top: -5em;">
     <div class="control">
       <label for="elementCount">Elements: <span id="elementCountLabel">8</span></label>
       <input type="range" id="elementCount" min="1" max="24" value="8">
