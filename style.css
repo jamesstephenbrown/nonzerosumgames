@@ -346,6 +346,8 @@ input:checked + .slider:before {
 
 
 
+
+
 strong {
   font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
 }
@@ -856,7 +858,23 @@ bs {
   background-color: #2a243d !important;
   color: #d59b7b;
 }
+.dark-mode .social,
+.dark-mode .social a,
+.dark-mode .social p,
+.dark-mode .social strong,
+.dark-mode .social em {
+  background-color: #2a243d !important;
+  color: #d59b7b !important;
+}
 
+.dark-mode .social a:hover,
+.dark-mode .social a:visited {
+  color: #f0bda5 !important;
+}
+
+.dark-mode .social img {
+  filter: brightness(0.9) contrast(1.1);
+}
 
   
 /* Computer */
