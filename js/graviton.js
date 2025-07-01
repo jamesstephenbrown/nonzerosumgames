@@ -3,11 +3,18 @@ const c = canvas.getContext('2d')
 canvas.width = innerWidth
 canvas.height = innerHeight
 
-const numberOfElements = 16
+let numberOfElements = 8
+let numberOfGravitons = 2500
+let attractionMin = -100
+let attractionMax = 100
+let gridSize = 200
+let zoom = 3
+let balanceScale = 1
+let balanceOffset = 0
+let camX = 0
+let camY = 0
 
-const numberOfGravitons = 1500
-const attractionMin = -100
-const attractionMax = 100
+
 const red = 'rgb(255,100,100)'
 const yellow = 'rgb(150,255,100)'
 const blue = 'rgb(100,100,255)'
@@ -25,16 +32,14 @@ const brown = 'rgb(200,150,100)'
 const maroon = 'rgb(180,0,40)'
 const navy = 'rgb(0,0,180)'
 
-
-
-const gridSize = 50
 let grid = new Map()
 
 function getKey(x, y) {
   return `${Math.floor(x / gridSize)},${Math.floor(y / gridSize)}`
 }
+
 function colorFromElement(element) {
-  const hue = (element * 137) % 360 // golden angle ensures good separation
+  const hue = (element * 137) % 360
   const saturation = 70
   const lightness = 60
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`
@@ -43,7 +48,6 @@ function colorFromElement(element) {
 const simulationSize = Math.min(canvas.width, canvas.height) * 2
 const simCenterX = canvas.width / 2
 const simCenterY = canvas.height / 2
-const zoom = 3  // you can adjust this
 
 class Graviton {
   constructor(index, x, y, radius, color, element, attractions) {
@@ -75,7 +79,7 @@ class Graviton {
       const dx = other.oX - this.oX
       const dy = other.oY - this.oY
       const distSq = dx * dx + dy * dy
-      if (distSq > 100000) continue  // ignore beyond 400px
+      if (distSq > gridSize * gridSize) continue
 
       const distance = Math.sqrt(distSq) + 1e-4
       const decay = 1 / (distSq + 1000)
@@ -84,8 +88,9 @@ class Graviton {
 
       const headingX = dx / distance
       const headingY = dy / distance
-      const att1 = this.attractions[other.element]
-      const att2 = -att1
+      const baseAttraction = this.attractions[other.element]
+      const att1 = baseAttraction + balanceOffset
+      const att2 = -(baseAttraction + balanceOffset)
 
       this.goal.x += headingX * att1 * decay
       this.goal.y += headingY * att1 * decay
@@ -95,8 +100,8 @@ class Graviton {
   }
 
   draw() {
-    const drawX = (this.x - simCenterX) * zoom + canvas.width / 2
-    const drawY = (this.y - simCenterY) * zoom + canvas.height / 2
+    const drawX = (this.x - simCenterX - camX) * zoom + canvas.width / 2
+    const drawY = (this.y - simCenterY - camY) * zoom + canvas.height / 2
     if (drawX < 0 || drawX > canvas.width || drawY < 0 || drawY > canvas.height) return
     c.beginPath()
     c.rect(drawX, drawY, 2, 2)
@@ -108,13 +113,12 @@ class Graviton {
 let gravitons = []
 let elements = []
 
-
 function init() {
   elements = []
   for (let i = 0; i < numberOfElements; i++) {
     let attractions = []
     for (let n = 0; n < numberOfElements; n++) {
-      const random = (Math.random() * (attractionMax * 2)) + attractionMin
+      const random = (Math.random() * (attractionMax - attractionMin)) + attractionMin
       attractions.push(random)
     }
     elements.push(attractions)
@@ -144,8 +148,8 @@ function init() {
       (element == 13) ? brown :
       (element == 14) ? maroon :
       (element == 15) ? navy :
-      colorFromElement(element);
-        
+      colorFromElement(element)
+
     gravitons.push(new Graviton(i, x, y, 3, color, element, attractions))
   }
 }
@@ -157,7 +161,6 @@ function animate() {
   c.fillStyle = 'black'
   c.fillRect(0, 0, canvas.width, canvas.height)
 
-  // Optional: draw bounding box
   const boxSize = simulationSize * zoom
   c.strokeStyle = 'rgba(85,170,227,0.2)'
   c.lineWidth = 1
@@ -168,7 +171,6 @@ function animate() {
     boxSize
   )
 
-  // Grid setup
   grid.clear()
   gravitons.forEach(g => {
     g.reset()
@@ -177,7 +179,6 @@ function animate() {
     grid.get(key).push(g)
   })
 
-  // Update and draw
   gravitons.forEach(g => {
     g.update()
     g.x += g.goal.x
@@ -187,3 +188,44 @@ function animate() {
 }
 
 animate()
+
+document.addEventListener('keydown', e => {
+  const step = 20 / zoom
+  if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+    if (e.target === document.body) e.preventDefault()
+    if (e.key === 'ArrowLeft') camX -= step
+    if (e.key === 'ArrowRight') camX += step
+    if (e.key === 'ArrowUp') camY -= step
+    if (e.key === 'ArrowDown') camY += step
+  }
+})
+
+function updateLabel(id, value) {
+  const label = document.getElementById(id + 'Label')
+  if (label) label.textContent = value
+}
+
+document.getElementById('zoom')?.addEventListener('input', e => {
+  zoom = parseFloat(e.target.value)
+  updateLabel('zoom', zoom)
+})
+
+document.getElementById('gridSize')?.addEventListener('input', e => {
+  gridSize = parseInt(e.target.value)
+  updateLabel('gridSize', gridSize)
+})
+
+document.getElementById('balance')?.addEventListener('input', e => {
+  const balance = parseInt(e.target.value)
+  balanceOffset = balance
+  updateLabel('balance', balance)
+})
+
+document.getElementById('elementCount')?.addEventListener('input', e => {
+  numberOfElements = parseInt(e.target.value)
+  updateLabel('elementCount', numberOfElements)
+})
+
+document.getElementById('generate')?.addEventListener('click', () => {
+  init()
+})
