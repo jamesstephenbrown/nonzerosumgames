@@ -34,7 +34,7 @@
   <meta name="twitter:title" content="EMERGENT GRAVITY ~ exploring the speculative foundations of gravity and emergence from entropy">
   <meta name="twitter:description" content="A speculative exploration into the foundations of gravity, the role of entropy in emergence, and the philosophical implications of creating something from nothing.">
  
-  <script>
+  <!-- <script>
       $(document).ready(function() {
           $("#menu").load("menu.html", function() {
               var pageName = window.location.pathname.split("/").pop();
@@ -42,13 +42,10 @@
               menuLink.parent().remove();
           });
       });
-  </script>
+  </script> -->
 
   <!-- Unique stylings for this post -->
   <style>
-    body {
-      text-decoration-color: #ffffff;
-    }
     .full-width {
       position: relative; /* Position relative to its normal position */
       width: 100vw; /* Full viewport width */
@@ -66,12 +63,90 @@
     font-family: 'MoreSugar', fallback, sans-serif; /*inherits the font*/
     text-align: center; /*inherits the centering*/
     }
+    body {
+      overflow-x: hidden;  /* Prevent horizontal scroll if needed */
+      overflow-y: auto;    /* Allow vertical scrolling */
+      text-decoration-color: #ffffff;
+
+    }
+    canvas {
+      position: relative;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    #controls {
+      position: relative;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #55AAE3;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      z-index: 10;
+
+      padding: 20px;
+      text-align: center;
+      border-radius: 30px;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .control {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .control label {
+      font-size: 0.8em;
+      margin-bottom: 4px;
+      font-family: 'MoreSugar', fallback, sans-serif; /*inherits the font*/
+      
+    }
+    input[type=range] {
+      width: 100px;
+    }
+    button {
+      padding: 5px 10px;
+      font-size: 1em;
+    }
   </style>
 </head>
 <body style="background-color:black;color: #55AAE3;">
-  
-  <div id="menu"></div>
+
+
+
     <canvas class="full-width"></canvas>
+  <div id="controls" style="margin-top: -10em;">
+    <div class="control">
+      <label for="elementCount">Elements: <span id="elementCountLabel">8</span></label>
+      <input type="range" id="elementCount" min="1" max="24" value="8">
+    </div>
+    <div class="control">
+      <label for="balance">Balance: <span id="balanceLabel">0</span></label>
+      <input type="range" id="balance" min="-20" max="20" value="0" step="0.1">
+    </div>
+    <div class="control">
+      <label for="gridSize">Grid: <span id="gridSizeLabel">200</span></label>
+      <input type="range" id="gridSize" min="10" max="1000" value="200">
+    </div>
+    <div class="control">
+      <label for="zoom">Zoom: <span id="zoomLabel">3</span></label>
+      <input type="range" id="zoom" min="0.1" max="10" step="0.1" value="3">
+    </div>
+    <div class="control">
+      <button id="generate">GENERATE</button>
+    </div>
+  </div>
+
+  <script src="graviton.js"></script>
+
+  
+  <!-- <div id="menu"></div> -->
   <div class="centered-text">
     <h1 style="margin-bottom: 0;color: #55AAE3">EMERGENT GRAVITY</h1>
     <h2 style="color: #55AAE3">refresh page to generate a new universe</h2></div>
@@ -79,7 +154,7 @@
     <script src="js/graviton.js"></script>
     
     <!-- <script src="js/gravitoroidal.js"></script> -->
-    <p style="margin-top: -10em;">The above simulation is the result of some very... </p>
+    <p>The above simulation is the result of some very... </p>
     <blockquote style="background-color:#55AAE3;color:black;">
     <!-- <h3>... SIMPLE RULES</h3> -->
     <ul>
