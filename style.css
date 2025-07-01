@@ -838,42 +838,41 @@ bs {
       z-index: 1;
   } */
 
-.dark-mode .mc_embed_signup {
-  background-color: #2a243d !important;
-  color: #d59b7b;
-}
-.dark-mode .mc_embed_signup input[type="email"] {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #d59b7b;
-}
-.dark-mode .mc_embed_signup input[type="submit"] {
-  background-color: rgba(0, 0, 0, 0.15);
-  color: #2a243d;
-}
-.dark-mode .animation-container {
-  background-color: #2a243d;
-  color: #d59b7b;
-}
-.dark-mode .social {
-  background-color: #2a243d !important;
-  color: #d59b7b;
-}
-.dark-mode .social,
-.dark-mode .social a,
-.dark-mode .social p,
-.dark-mode .social strong,
-.dark-mode .social em {
+.dark-mode #mc_embed_signup {
   background-color: #2a243d !important;
   color: #d59b7b !important;
 }
 
-.dark-mode .social a:hover,
-.dark-mode .social a:visited {
-  color: #f0bda5 !important;
+.dark-mode #mc_embed_signup p,
+.dark-mode #mc_embed_signup label {
+  color: #d59b7b !important;
 }
 
-.dark-mode .social img {
-  filter: brightness(0.9) contrast(1.1);
+.dark-mode #mc_embed_signup input[type="email"] {
+  background-color: #3a3452 !important;
+  color: #d59b7b !important;
+  border: none !important;
+}
+
+.dark-mode #mc_embed_signup input[type="submit"],
+.dark-mode #mc_embed_signup .button {
+  background-color: #3a3452 !important;
+  color: #d59b7b !important;
+  border: none !important;
+}
+
+.dark-mode #mc_embed_signup .clear,
+.dark-mode #mc_embed_signup form {
+  background-color: #2a243d !important;
+  color: #d59b7b !important;
+}
+
+.dark-mode #mc_embed_signup .animation-container {
+  background-color: #2a243d !important;
+}
+
+.dark-mode #mc_embed_signup input::placeholder {
+  color: #b98c6c !important;
 }
 
   
