@@ -738,6 +738,7 @@ input::placeholder, textarea::placeholder {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Standard size based on the largest cell */
   gap: 10px;
   justify-content: center; /* Center the items */
+  padding-bottom: 10px;
 }
 
 .image-item {
@@ -812,9 +813,9 @@ input::placeholder, textarea::placeholder {
   text-decoration: none; /* No underline */
 }
 
-  .fb-comments, .fb-comments iframe {
-      width: 100% !important;
-  }
+.fb-comments, .fb-comments iframe {
+    width: 100% !important;
+}
 
 bs {
   text-decoration: none;
