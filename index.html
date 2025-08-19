@@ -230,6 +230,16 @@
     </a>
     <br><br>Sharing good ideas is a win-win.<br><br>
 
+    <script type="text/javascript">
+        var pageUrl = window.location.href;
+        var pageTitle = document.title;
+        
+        $(".social-share").find("a").each(function() {
+            this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+            this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+        });
+    </script>
+
     <!-- Begin Mailchimp Subscribe Form -->
     <div id="mc_embed_signup"><br>
     <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">

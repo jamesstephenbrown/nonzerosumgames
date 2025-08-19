@@ -194,6 +194,16 @@
         <br>Sharing good ideas is a win-win. See you next week.<br>
         <p>—James :)</p>
 
+        <script type="text/javascript">
+            var pageUrl = window.location.href;
+            var pageTitle = document.title;
+            
+            $("#social-icons").find("a").each(function() {
+                this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+            });
+        </script>
+
     </div>
 
 <script>
