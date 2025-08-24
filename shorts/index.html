@@ -4,52 +4,42 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shorts</title>
-
-  <!-- Reference your site-wide stylesheet (adjust if your site is served from a subfolder) -->
-  <!-- If your site root is the repo root on GitHub Pages (user.github.io/repo/), use: /repo/styles.css -->
-  <link rel="stylesheet" href="../styles.css">
-
+  <link rel="canonical" href="https://YOUR_DOMAIN/shorts/">
   <style>
-    /* Minimal fallbacks; your styles.css will override */
-    body { font-family: system-ui, sans-serif; margin: 0; background: #0b0b0c; color: #e8e8ea; }
-    header { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    @import url('https://fonts.googleapis.com/css2?family=More+Sugar&display=swap');
+    :root { --max: 900px; }
+    body { font-family: 'More Sugar', cursive, sans-serif; margin: 0; background: #0b0b0c; color: #e8e8ea; }
+    header { max-width: var(--max); margin: 24px auto; padding: 0 16px; }
     h1 { font-size: 1.6rem; margin: 0 0 8px; }
     p.lede { opacity: .8; margin: 0 0 16px; }
 
-    .list { max-width: 900px; margin: 0 auto 64px; padding: 0 16px; display: grid; gap: 12px; }
-    details { background: #141416; border: 1px solid #232327; border-radius: 14px; }
+    .list { max-width: var(--max); margin: 0 auto 64px; padding: 0 16px; display: grid; gap: 12px; }
+    details { background: #141416; border: 1px solid #232327; border-radius: 14px; overflow: clip; }
     summary { cursor: pointer; padding: 14px 16px; list-style: none; display: flex; align-items: baseline; gap: 10px; }
     summary::-webkit-details-marker { display: none }
     .title { font-weight: 600; }
     .date { font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; opacity: .7; margin-left: auto; }
     .content { padding: 0 16px 16px; }
+    .content :is(h1,h2){ font-size:1.1rem }
     .content pre { background: #0e0e11; padding: 12px; border-radius: 10px; overflow:auto; border:1px solid #232327 }
     .content a { color: #7ab7ff }
     .empty { opacity:.7; font-style: italic; padding: 24px; text-align: center; }
-    .search { max-width: 900px; margin: 0 auto 12px; padding: 0 16px; }
+    .search { max-width: var(--max); margin: 0 auto 12px; padding: 0 16px; }
     .search input { width: 100%; border-radius: 12px; background: #141416; border:1px solid #232327; color:#e8e8ea; padding: 10px 12px; }
   </style>
 </head>
 <body>
   <header>
     <h1>Shorts</h1>
-    <p class="lede">Quick notes & fragments, sorted by last update. Click to expand.</p>
+    <p class="lede">Quick notes & fragments, sorted by last update. Click to expand. Markdown is rendered client‑side.</p>
   </header>
-
-  <div class="search"><input id="q" placeholder="Filter by title or content…" aria-label="Filter"></div>
+  <div class="search"><input id="q" placeholder="Filter by title or content… (client‑side)" aria-label="Filter"></div>
   <div class="list" id="list" role="list"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Marked: fast client-side Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
   <script>
-  // Clean Obsidian wikilinks before parsing:
-  // [[Page|Alias]] -> Alias; [[Page#Section]] -> Page; ![[embed]] -> removed
-  function cleanObsidian(md){
-    md = md.replace(/!\[\[[^\]]*\]\]/g, '');                           // remove embeds
-    md = md.replace(/\[\[[^\]|#]+(?:#[^\]|]+)?\|([^\]]+)\]\]/g, '$1');  // alias form
-    md = md.replace(/\[\[([^\]|#]+)(?:#[^\]]+)?\]\]/g, '$1');           // simple form
-    return md;
-  }
-
+  // Utility: fetch JSON with cache-busting so updates appear immediately
   async function fetchJSON(url){
     const u = new URL(url, location.href);
     u.searchParams.set('_', Date.now());
@@ -58,15 +48,16 @@
     return r.json();
   }
 
+  // Lazy-load markdown when a <details> opens
   async function loadMD(item, container){
     if(container.dataset.loaded) return;
     const r = await fetch(item.path, {cache:'no-store'});
-    let md = await r.text();
-    md = cleanObsidian(md);
+    const md = await r.text();
     container.innerHTML = marked.parse(md);
     container.dataset.loaded = '1';
   }
 
+  // Simple client-side search across titles + loaded content
   function wireSearch(){
     const input = document.querySelector('#q');
     input.addEventListener('input', () => {
@@ -100,7 +91,7 @@
           <div class="content"></div>
         `;
         const content = el.querySelector('.content');
-        el.addEventListener('toggle', () => { if(el.open) loadMD(item, content); });
+        el.addEventListener('toggle', () => { if(el.open) loadMD(item, content); }, {once:false});
         list.appendChild(el);
       }
 
