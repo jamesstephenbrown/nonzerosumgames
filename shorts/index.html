@@ -6,6 +6,24 @@
   <title>Shorts</title>
   <link rel="canonical" href="https://YOUR_DOMAIN/shorts/">
   <style>
+    @font-face {
+    font-family: 'More Sugar';
+    src: url('../MoreSugar.woff2') format('woff2'),
+         url('../MoreSugar.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  :root { --max: 900px; }
+  body {
+    font-family: 'More Sugar', sans-serif;
+    margin: 0;
+    background: #0b0b0c;
+    color: #e8e8ea;
+  }
+  header { max-width: var(--max); margin: 24px auto; padding: 0 16px; }
+  h1 { font-size: 1.6rem; margin: 0 0 8px; }
+  p.lede { opacity: .8; margin: 0 0 16px; }
     @import url('https://fonts.googleapis.com/css2?family=More+Sugar&display=swap');
     :root { --max: 900px; }
     body { font-family: 'More Sugar', cursive, sans-serif; margin: 0; background: #0b0b0c; color: #e8e8ea; }
