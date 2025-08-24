@@ -4,54 +4,61 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shorts</title>
-  <link rel="canonical" href="https://YOUR_DOMAIN/shorts/">
+  <link rel="canonical" href="https://jamesstephenbrown.github.io/nonzerosumgames/shorts/">
+
+  <!-- Preload fonts -->
+  <link rel="preload" href="/nonzerosumgames/MoreSugar-Thin.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/nonzerosumgames/MoreSugar-Regular.otf" as="font" type="font/otf" crossorigin>
+
   <style>
     @font-face {
-    font-family: 'More Sugar';
-    src: url('../MoreSugar.woff2') format('woff2'),
-         url('../MoreSugar.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+      font-family: "More Sugar";
+      src: url("/nonzerosumgames/MoreSugar-Thin.otf") format("opentype");
+      font-weight: 300; /* thin/light */
+      font-style: normal;
+      font-display: swap;
+    }
 
-  :root { --max: 900px; }
-  body {
-    font-family: 'More Sugar', sans-serif;
-    margin: 0;
-    background: #0b0b0c;
-    color: #e8e8ea;
-  }
-  header { max-width: var(--max); margin: 24px auto; padding: 0 16px; }
-  h1 { font-size: 1.6rem; margin: 0 0 8px; }
-  p.lede { opacity: .8; margin: 0 0 16px; }
-    @import url('https://fonts.googleapis.com/css2?family=More+Sugar&display=swap');
+    @font-face {
+      font-family: "More Sugar";
+      src: url("/nonzerosumgames/MoreSugar-Regular.otf") format("opentype");
+      font-weight: 700; /* regular/bold */
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root { --max: 900px; }
-    body { font-family: 'More Sugar', cursive, sans-serif; margin: 0; background: #0b0b0c; color: #e8e8ea; }
+    body {
+      font-family: "More Sugar", sans-serif;
+      margin: 0;
+      background: #0b0b0c;
+      color: #e8e8ea;
+    }
     header { max-width: var(--max); margin: 24px auto; padding: 0 16px; }
-    h1 { font-size: 1.6rem; margin: 0 0 8px; }
-    p.lede { opacity: .8; margin: 0 0 16px; }
+    h1 { font-size: 1.6rem; margin: 0 0 8px; font-weight: 700; } /* bold */
+    p.lede { opacity: .8; margin: 0 0 16px; font-weight: 300; }   /* thin */
 
     .list { max-width: var(--max); margin: 0 auto 64px; padding: 0 16px; display: grid; gap: 12px; }
     details { background: #141416; border: 1px solid #232327; border-radius: 14px; overflow: clip; }
     summary { cursor: pointer; padding: 14px 16px; list-style: none; display: flex; align-items: baseline; gap: 10px; }
     summary::-webkit-details-marker { display: none }
-    .title { font-weight: 600; }
+    .title { font-weight: 700; } /* bold title */
     .date { font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; opacity: .7; margin-left: auto; }
-    .content { padding: 0 16px 16px; }
-    .content :is(h1,h2){ font-size:1.1rem }
+    .content { padding: 0 16px 16px; font-weight: 300; } /* thin content */
+    .content :is(h1,h2){ font-size:1.1rem; font-weight: 700; }
     .content pre { background: #0e0e11; padding: 12px; border-radius: 10px; overflow:auto; border:1px solid #232327 }
     .content a { color: #7ab7ff }
     .empty { opacity:.7; font-style: italic; padding: 24px; text-align: center; }
     .search { max-width: var(--max); margin: 0 auto 12px; padding: 0 16px; }
-    .search input { width: 100%; border-radius: 12px; background: #141416; border:1px solid #232327; color:#e8e8ea; padding: 10px 12px; }
+    .search input { width: 100%; border-radius: 12px; background: #141416; border:1px solid #232327; color:#e8e8ea; padding: 10px 12px; font-family: "More Sugar", sans-serif; }
   </style>
 </head>
 <body>
   <header>
     <h1>Shorts</h1>
-    <p class="lede">Quick notes & fragments, sorted by last update. Click to expand. Markdown is rendered client‑side.</p>
+    <p class="lede">Quick notes & fragments, sorted by last update. Click to expand. Markdown is rendered client-side.</p>
   </header>
-  <div class="search"><input id="q" placeholder="Filter by title or content… (client‑side)" aria-label="Filter"></div>
+  <div class="search"><input id="q" placeholder="Filter by title or content…" aria-label="Filter"></div>
   <div class="list" id="list" role="list"></div>
 
   <!-- Marked: fast client-side Markdown parser -->
@@ -104,12 +111,12 @@
         el.innerHTML = `
           <summary>
             <span class="title">${item.title || item.slug}</span>
-            <span class="date" title="Last modified">${d.toLocaleString([], {year:'numeric', month:'short', day:'2-digit'})}</span>
+            <span class="date" title="Last modified">${d.toLocaleDateString([], {year:'numeric', month:'short', day:'2-digit'})}</span>
           </summary>
           <div class="content"></div>
         `;
         const content = el.querySelector('.content');
-        el.addEventListener('toggle', () => { if(el.open) loadMD(item, content); }, {once:false});
+        el.addEventListener('toggle', () => { if(el.open) loadMD(item, content); });
         list.appendChild(el);
       }
 
