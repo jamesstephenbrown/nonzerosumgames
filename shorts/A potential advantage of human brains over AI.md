@@ -1,0 +1,7 @@
+One thing that is our advantage is potentially what we are able to learn from very little information. Now an [[AI]] can learn from everything in the past incredibly well because it can consume so much information. But what happens when it is stepping through time and only has the small drip of information that we are exposed to.
+
+Think about if you wanted robots with individual personalities. An autonomous human being takes in information and is shaped by it. But if you've got an autonomous robot its own personality is competing with orders of magnitude more information in its original training.
+
+This, combined with humans' ability forget could make our thinking more dynamic - less like a plant. So potentially an AI maybe able to grow like a tree, but then may be stuck in the ground in a way, whereas humans may die and forget and have all of these flaws, but when faced with a new environment are able to adapt much quicker perhaps. It probably shouldn't be because there are lots of ways in a machine can adapt as a human cannot adapt.
+
+But just that that imbalance of emphasis between the previous knowledge and current knowledge, although having worked with large language model it is uncanny how good their memory is for things you've just said. Is it though, really? It does seem to revert back to old patterns. Like, when I was trying to do flashcards, I had to keep repeating myself to it over and over again how to format them.

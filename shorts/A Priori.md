@@ -1,0 +1,1 @@
+is knowledge that can be deduced from first principles or is a natural fact (pain, gravity, death).

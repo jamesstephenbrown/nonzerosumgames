@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shorts</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #0b0b0c; color: #e8e8ea; }
+    header { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    h1 { font-size: 1.6rem; margin: 0 0 8px; }
+    p.lede { opacity: .8; margin: 0 0 16px; }
+
+    .list { max-width: 900px; margin: 0 auto 64px; padding: 0 16px; display: grid; gap: 12px; }
+    details { background: #141416; border: 1px solid #232327; border-radius: 14px; }
+    summary { cursor: pointer; padding: 14px 16px; list-style: none; display: flex; align-items: baseline; gap: 10px; }
+    summary::-webkit-details-marker { display: none }
+    .title { font-weight: 600; }
+    .date { font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; opacity: .7; margin-left: auto; }
+    .content { padding: 0 16px 16px; }
+    .content pre { background: #0e0e11; padding: 12px; border-radius: 10px; overflow:auto; border:1px solid #232327 }
+    .content a { color: #7ab7ff }
+    .empty { opacity:.7; font-style: italic; padding: 24px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shorts</h1>
+    <p class="lede">Quick notes & fragments, sorted by last update. Click to expand.</p>
+  </header>
+  <div class="list" id="list" role="list"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+  async function fetchJSON(url){
+    const u = new URL(url, location.href);
+    u.searchParams.set('_', Date.now());
+    const r = await fetch(u, {cache:'no-store'});
+    if(!r.ok) throw new Error('Failed to load '+url);
+    return r.json();
+  }
+
+  async function loadMD(item, container){
+    if(container.dataset.loaded) return;
+    const r = await fetch(item.path, {cache:'no-store'});
+    const md = await r.text();
+    container.innerHTML = marked.parse(md);
+    container.dataset.loaded = '1';
+  }
+
+  (async function init(){
+    const list = document.getElementById('list');
+    try {
+      const m = await fetchJSON('manifest.json');
+      const items = (m.items || []).slice().sort((a,b)=> (a.modified<b.modified?1:-1));
+      if(!items.length){ list.innerHTML = '<div class="empty">No shorts yet.</div>'; return; }
+
+      for(const item of items){
+        const d = new Date(item.modified || Date.now());
+        const el = document.createElement('details');
+        el.setAttribute('role','listitem');
+        el.innerHTML = `
+          <summary>
+            <span class="title">${item.title || item.slug}</span>
+            <span class="date">${d.toLocaleDateString([], {year:'numeric', month:'short', day:'2-digit'})}</span>
+          </summary>
+          <div class="content"></div>
+        `;
+        const content = el.querySelector('.content');
+        el.addEventListener('toggle', () => { if(el.open) loadMD(item, content); });
+        list.appendChild(el);
+      }
+    } catch (e) {
+      console.error(e);
+      list.innerHTML = '<div class="empty">Could not load manifest.json.</div>';
+    }
+  })();
+  </script>
+</body>
+</html>

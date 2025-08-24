@@ -1,0 +1,3 @@
+Knowledge model looking around a block to see an object, this could be using mirrors, two mirrors could help triangulate, but ever complicated series of mirrors could obscure the location of the object, and yet the simplest is the most likely (least specifications), except our intuition says that by design this is an experiment made by someone trying to trick us.
+
+This relates to [[Cognitive bias as a feature not a bug]]
