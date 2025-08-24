@@ -6,23 +6,29 @@
   <title>Shorts</title>
   <link rel="canonical" href="https://jamesstephenbrown.github.io/nonzerosumgames/shorts/">
 
-  <!-- Preload fonts -->
-  <link rel="preload" href="/nonzerosumgames/MoreSugar-Thin.otf" as="font" type="font/otf" crossorigin>
-  <link rel="preload" href="/nonzerosumgames/MoreSugar-Regular.otf" as="font" type="font/otf" crossorigin>
+  <!-- Preload both weights -->
+  <link rel="preload" href="/nonzerosumgames/webfontkit-20220429-204351/MoreSugar-Thin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/nonzerosumgames/webfontkit-20220429-204351/MoreSugar-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
   <style>
+    /* NORMAL (maps to Thin) */
     @font-face {
       font-family: "More Sugar";
-      src: url("/nonzerosumgames/MoreSugar-Thin.otf") format("opentype");
-      font-weight: 300; /* thin/light */
+      src:
+        url("/nonzerosumgames/webfontkit-20220429-204351/MoreSugar-Thin.woff2") format("woff2"),
+        url("/nonzerosumgames/MoreSugar-Thin.otf") format("opentype");
+      font-weight: 400;   /* use Thin for normal text */
       font-style: normal;
       font-display: swap;
     }
 
+    /* BOLD (maps to Regular) */
     @font-face {
       font-family: "More Sugar";
-      src: url("/nonzerosumgames/MoreSugar-Regular.otf") format("opentype");
-      font-weight: 700; /* regular/bold */
+      src:
+        url("/nonzerosumgames/webfontkit-20220429-204351/MoreSugar-Regular.woff2") format("woff2"),
+        url("/nonzerosumgames/MoreSugar-Regular.otf") format("opentype");
+      font-weight: 700;   /* use Regular for bold */
       font-style: normal;
       font-display: swap;
     }
@@ -33,18 +39,19 @@
       margin: 0;
       background: #0b0b0c;
       color: #e8e8ea;
+      font-weight: 400; /* default to Thin weight */
     }
     header { max-width: var(--max); margin: 24px auto; padding: 0 16px; }
     h1 { font-size: 1.6rem; margin: 0 0 8px; font-weight: 700; } /* bold */
-    p.lede { opacity: .8; margin: 0 0 16px; font-weight: 300; }   /* thin */
+    p.lede { opacity: .8; margin: 0 0 16px; font-weight: 400; }
 
     .list { max-width: var(--max); margin: 0 auto 64px; padding: 0 16px; display: grid; gap: 12px; }
     details { background: #141416; border: 1px solid #232327; border-radius: 14px; overflow: clip; }
     summary { cursor: pointer; padding: 14px 16px; list-style: none; display: flex; align-items: baseline; gap: 10px; }
     summary::-webkit-details-marker { display: none }
-    .title { font-weight: 700; } /* bold title */
+    .title { font-weight: 700; }
     .date { font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; opacity: .7; margin-left: auto; }
-    .content { padding: 0 16px 16px; font-weight: 300; } /* thin content */
+    .content { padding: 0 16px 16px; }
     .content :is(h1,h2){ font-size:1.1rem; font-weight: 700; }
     .content pre { background: #0e0e11; padding: 12px; border-radius: 10px; overflow:auto; border:1px solid #232327 }
     .content a { color: #7ab7ff }
@@ -61,10 +68,8 @@
   <div class="search"><input id="q" placeholder="Filter by title or content…" aria-label="Filter"></div>
   <div class="list" id="list" role="list"></div>
 
-  <!-- Marked: fast client-side Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
   <script>
-  // Utility: fetch JSON with cache-busting so updates appear immediately
   async function fetchJSON(url){
     const u = new URL(url, location.href);
     u.searchParams.set('_', Date.now());
@@ -73,7 +78,6 @@
     return r.json();
   }
 
-  // Lazy-load markdown when a <details> opens
   async function loadMD(item, container){
     if(container.dataset.loaded) return;
     const r = await fetch(item.path, {cache:'no-store'});
@@ -82,13 +86,12 @@
     container.dataset.loaded = '1';
   }
 
-  // Simple client-side search across titles + loaded content
   function wireSearch(){
     const input = document.querySelector('#q');
     input.addEventListener('input', () => {
       const term = input.value.trim().toLowerCase();
       for(const el of document.querySelectorAll('details[data-title]')){
-        const title = el.dataset.title;
+        const title = el.dataset.title || '';
         const body = el.querySelector('.content').textContent.toLowerCase();
         const hit = !term || title.includes(term) || body.includes(term);
         el.style.display = hit ? '' : 'none';
