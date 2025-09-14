@@ -47,10 +47,53 @@
     </p><p>
         Give it a go using the arrow keys or draw a path.
     </p>
+
+
     <a name="Lockwise"></a>
-        <iframe frameborder="0" src="https://itch.io/embed-upload/816178?color=5340d5" allowfullscreen="" width="635" height="655"></iframe>
-    <p>
-        LOCKWISE is based on the zero-sum game "Rock, Paper, Scissors" which always intrigued me because of its circular value system...</p>
+
+    <div class="itch-scale" data-w="635" data-h="655" role="region" aria-label="Lockwise game">
+    <iframe
+        class="itch-frame"
+        src="https://itch.io/embed-upload/816178?color=5340d5"
+        allow="fullscreen; autoplay; gamepad; clipboard-read; clipboard-write; accelerometer; gyroscope"
+        width="635" height="655" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+    (function () {
+    const wrap = document.querySelector('.itch-scale');
+    if (!wrap) return;
+    const iframe = wrap.querySelector('iframe');
+    const W = parseInt(wrap.dataset.w, 10) || 635;
+    const H = parseInt(wrap.dataset.h, 10) || 655;
+
+    function rescale() {
+        const cw = wrap.clientWidth;
+        const s = Math.min(1, cw / W);               // don’t upscale on desktop
+        iframe.style.width = W + 'px';
+        iframe.style.height = H + 'px';
+        iframe.style.transform = 'scale(' + s + ')';
+        iframe.style.transformOrigin = 'top left';
+        wrap.style.height = Math.round(H * s) + 'px'; // wrapper matches scaled height
+        iframe.style.border = '0';
+        iframe.setAttribute('scrolling', 'no');
+    }
+
+    const ro = new ResizeObserver(rescale);
+    ro.observe(wrap);
+    window.addEventListener('orientationchange', rescale);
+    rescale();
+    })();
+    </script>
+
+
+        <!-- <iframe frameborder="0" src="https://itch.io/embed-upload/816178?color=5340d5" allowfullscreen="" width="635" height="655"></iframe> -->
+
+
+
+
+
+    <p>LOCKWISE is based on the zero-sum game "Rock, Paper, Scissors" which always intrigued me because of its circular value system...</p>
 
     <blockquote>    
             Rock beats scissors, scissors beats paper, paper beats rock

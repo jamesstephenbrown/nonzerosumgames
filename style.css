@@ -16,6 +16,28 @@
   font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
   font-style: normal;
 }
+/* Responsive itch.io embed */
+.embed-itch { max-width: 100%; margin: 0 auto; }
+.embed-itch .itch-embed {
+  width: 100%;
+  height: auto;
+  border: 0;
+  aspect-ratio: 635 / 655; /* match original width/height */
+}
+
+/* Fallback for browsers without aspect-ratio */
+@supports not (aspect-ratio: 1 / 1) {
+  .embed-itch { position: relative; }
+  .embed-itch::before {
+    content: "";
+    display: block;
+    padding-top: calc(655 / 635 * 100%); /* maintains 635x655 ratio */
+  }
+  .embed-itch .itch-embed {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+}
 
 
 /* Mobile styles first — default iframe height */
