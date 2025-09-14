@@ -39,8 +39,8 @@
 }
 /* Might not be necessary with aspect-ratio support now widespread, but leaving in for safety. */
 /* Responsive itch embed scaler */
-.itch-scale { overflow: hidden; max-width: 100%; margin: 0 auto; }
-.itch-scale .itch-frame { display: block; transform-origin: top left; }
+/* .itch-scale { overflow: hidden; max-width: 100%; margin: 0 auto; }
+.itch-scale .itch-frame { display: block; transform-origin: top left; } */
 
 .coral-ui{display:flex;justify-content:center;align-items:center;gap:12px;margin:6px 0}
 #nextDot{font-size:140%}
