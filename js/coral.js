@@ -1,5 +1,11 @@
+// --- Next-up colour preview ---
+const COLORS = ['red','lightGreen','blue','yellow','pink'];
+let nextColor = COLORS[Math.floor(Math.random()*COLORS.length)];
 
-const cellSize = 30;
+function setNextPreview(){
+  const el = document.getElementById('nextDot');
+  if (el) el.style.color = nextColor;
+}
 
 class Dot {
     constructor(x, y, color, size) {
@@ -7,7 +13,7 @@ class Dot {
         this.y = y;
         this.color = color;
         this.size = size;
-        this.fullSize = Math.floor(Math.random() * 14)+15;
+        this.fullSize = Math.floor(Math.random() * 14) + 15;
         this.cloned = false;
         this.clonedTimer = 60;
     }
@@ -20,7 +26,7 @@ class Dot {
     }
 
     canReproduce() {
-        return this.size >= this.fullSize && (this.clonedTimer < 1);
+        return this.size >= this.fullSize && this.clonedTimer < 1;
     }
 
     draw(ctx) {
@@ -62,14 +68,29 @@ class Grid {
         return false;
     }
 
+    // --- Reset support ---
+    clear(){
+        for (let x=0;x<this.width;x++){
+            for (let y=0;y<this.height;y++){
+                this.grid[x][y] = null;
+            }
+        }
+    }
+
     getAvailablePositions(x, y) {
         const positions = [];
         for (let dx = -1; dx <= 1; dx++) {
             for (let dy = -1; dy <= 1; dy++) {
                 const nx = x + dx;
                 const ny = y + dy;
-                if (nx >= 0 && nx < this.width && ny >= 0 && ny < this.height && this.grid[nx][ny] === null) {
-                    positions.push({x: nx, y: ny});
+                if (
+                    nx >= 0 &&
+                    nx < this.width &&
+                    ny >= 0 &&
+                    ny < this.height &&
+                    this.grid[nx][ny] === null
+                ) {
+                    positions.push({ x: nx, y: ny });
                 }
             }
         }
@@ -77,7 +98,6 @@ class Grid {
     }
 
     draw(ctx) {
-        ctx.clearRect(0, 0, this.width * cellSize, this.height * cellSize);
         for (let x = 0; x < this.width; x++) {
             for (let y = 0; y < this.height; y++) {
                 if (this.grid[x][y] !== null) {
@@ -100,30 +120,73 @@ class Grid {
 
 let lastTime = Date.now();
 
-
-const grid = new Grid(Math.floor((innerWidth-100) / cellSize)  , 20);
 const canvas = document.querySelector('#canvas');
-canvas.width = grid.width * cellSize;
-canvas.height = grid.height * cellSize;
 const ctx = canvas.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+
+const rows = 20;
+const cellSize = 30;
+
+// use the real content box width (exclude padding)
+const container = canvas.parentElement;
+const cs = getComputedStyle(container);
+const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+const innerW = Math.max(0, container.clientWidth - padX);
+
+const cols = Math.max(1, Math.floor(innerW / cellSize));
+const grid = new Grid(cols, rows);
+
+// left-align inside the content box
+canvas.style.display = 'block';
+canvas.style.margin = '0';
+
+// backing pixels
+canvas.width  = cols * cellSize * dpr;
+canvas.height = rows * cellSize * dpr;
+
+// CSS pixels
+canvas.style.width  = (cols * cellSize) + 'px';
+canvas.style.height = (rows * cellSize) + 'px';
+
+// Adjust the drawing operations for DPR
+function drawGrid() {
+    ctx.save();
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+    grid.draw(ctx);
+    ctx.restore();
+}
 
 function gameLoop() {
     const now = Date.now();
     const dt = now - lastTime;
     lastTime = now;
     grid.update(dt);
-    grid.draw(ctx);
+    drawGrid();
     requestAnimationFrame(gameLoop);
 }
 
+// Place a dot and roll the next colour
 canvas.addEventListener('click', event => {
     const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((event.clientX - rect.left) / cellSize);
-    const y = Math.floor((event.clientY - rect.top) / cellSize);
-    const colors = ['red', 'lightGreen', 'blue', 'yellow', 'pink'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const dot = new Dot(x, y, color, 10);
-    grid.addDot(dot);
+
+    const scaleX = (canvas.width / dpr) / rect.width;
+    const scaleY = (canvas.height / dpr) / rect.height;
+
+    const x = Math.floor(((event.clientX - rect.left) * scaleX) / cellSize);
+    const y = Math.floor(((event.clientY - rect.top) * scaleY) / cellSize);
+
+    if (x >= 0 && x < grid.width && y >= 0 && y < grid.height) {
+        const dot = new Dot(x, y, nextColor, 10);
+        grid.addDot(dot);
+        nextColor = COLORS[Math.floor(Math.random()*COLORS.length)];
+        setNextPreview();
+    }
 });
 
+// Reset button (if present in HTML)
+document.getElementById('reset')?.addEventListener('click', () => grid.clear());
+
+// Initialize preview and start
+setNextPreview();
 gameLoop();
