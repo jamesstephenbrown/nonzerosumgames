@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exploring the World of Combinatorial Games</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta name="description" content="A deep dive into Combinatorial Games, their history, and significance in mathematics and game theory.">
 <meta name="keywords" content="Combinatorial Games, Game Theory, Mathematics, Non-Zero-Sum, Nim, Sprouts, Hex">
 <meta name="robots" content="index, follow">
@@ -48,30 +49,30 @@
     <div id="menu"></div>
 
     <!-- Content -->
-    <h1 style="margin-bottom: 0;">COMBINATORIAL GAMES</h1>
-    <p style="margin-top: 0.2em;">~ where perfect information allows for flawless strategy ~</p>
+    <h1>COMBINATORIAL GAMES</h1>
+    <aside>f</aside>
+    <h2>where perfect information allows for flawless strategy</h2>
 
-    <p><img src="./Images/Content/CombinatoryGames_Chips.png" alt="A pile of 21 chips on a table"></p>
+    <img src="./Images/Content/CombinatoryGames_Chips.png" alt="A pile of 21 chips on a table">
 
     <p>Combinatorial games serve as fascinating playgrounds for strategy and mathematical insight. But what makes a game "combinatorial"?</p>
 
     <blockquote>
     <ol>
-        <li>Perfect information: All players know all the details of the game at all times.</li>
-        <li>No chance moves: The game's outcome is determined solely by the players' choices, without the involvement of luck or chance.</li>
-        <li><a href="whatarenonzerosumgames.html#ZeroSumGames">Zero-sum</a> outcome: The game has a clear win, lose or draw.</li>
+        <li><strong>Perfect information</strong>: all players know all game details all the time.</li>
+        <li><strong>No chance</strong>: the outcome is determined solely by the players' moves.</li>
+        <li><strong><a href="whatarenonzerosumgames.html#ZeroSumGames">Zero-sum</a> outcome</strong>: The game has a clear win, lose or draw.</li>
     </ol>
     </blockquote>
 
-    <p>The term <b>"combinatorial"</b> suggests a focus on the combinations of moves and states that can occur within the game. Mathematicians, computer scientists, and <a href="gametheory.html">game theorists</a> analyze these games to understand their structure, create algorithms that find optimal moves, and even solve them—that is, mathematically determine the outcome given optimal play from both sides.</p>
+    <p>The term <strong><em>"combinatorial"</em></strong> suggests a focus on the combinations of moves and states that can occur within the game. Mathematicians, computer scientists, and <a href="gametheory.html">game theorists</a> analyze these games to understand their structure, create algorithms that find optimal moves, and even solve them—that is, mathematically determine the outcome given optimal play from both sides.</p>
 
-    <p><img class="halfSizeImage" src="./Images/Content/Lifes_A_Game.png" alt="A beetle saying life's a game"></p>
+    <img class="halfSizeImage" src="./Images/Content/Lifes_A_Game.png" alt="A beetle saying life's a game">
 
     <h3>A SIMPLE TAKEAWAY GAME</h3>
     <p>One game that fits these parameters perfectly is the 21-Chip Takeaway Game.</p>
 
     <blockquote>
-        <h3>THE RULES</h3>
     <ol>
         <li>Start with a pile of 21 chips.</li>
         <li>Players take turns to remove 1, 2, or 3 chips from the pile.</li>
@@ -79,26 +80,70 @@
     </ol>
     </blockquote>
 
-    <p>Is there an optimal strategy? Let us know yours in the comments below. How does it change given different variables? Can you come up with a <i>universal</i> strategy?</p>
+    <p>Is there an optimal strategy? Let us know yours in the comments below. How does it change given different variables? Can you come up with a <em>universal</em> strategy?</p>
 
-    <canvas></canvas>
+    <h3>CONTINUE LEARNING</h3>
+    <br/>
+    <div class="image-grid">
+        <div class="image-item">
+        <a href="whatarenonzerosumgames.html"><img alt="A horned beetle saying life's a game" src="./Images/Content/Lifes_A_Game.png"/>
+        <span class="image-title">WHAT ARE NON-ZERO-SUM GAMES?
+        <div style="margin-top:0.2em;font-size:70%">
+        a primer
+        </div></span></a>
+        </div>
+        <div class="image-item">
+        <a href="map-gametheory.html"><img alt="crabs trying to pull themselves out of a bucket" src="./Images/Content/CrabBucket.png"/>
+        <span class="image-title">GAME THEORY POSTS
+        <div style="margin-top:0.2em;font-size:70%">
+        accessible posts about game theory
+        </div></span></a>
+        </div>
+    </div>
+    <footer>
+        <div id="social-icons"></div>
+    </footer>
     <div class="subscribe">
         <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
     </div>
-    <script src="./js/combinatorial-games.js"></script>
-    <div id="giscus_thread"></div>
-    <script src="https://giscus.app/client.js"
-            data-repo="jamesstephenbrown/nonzerosumgames"
-            data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
-            data-category-id="DIC_kwDODpsK184CA9jn"
-            data-mapping="pathname"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="dark_dimmed"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+        behaviour: {
+          // Extract the filename from the URL path and use it as the UID
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+        // Configure your variables here
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
     </script>
 </body>
 </html>
