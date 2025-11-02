@@ -1,691 +1,796 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Non-Zero Sum Games Blog</title>
     <link>https://nonzerosum.games</link>
     <description>A blog exploring non-zero-sum games and win-win solutions</description>
     <language>en-us</language>
-    
+    <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
+
     <item>
-      <title>DR EVIL & REALPOLITIK</title>
-      <link>https://nonzerosum.games/internationalrelations.html</link>
-      <description>why can't we all just get along?</description>
-      <pubDate>Sat, 12 October 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/internationalrelations.html</guid>
-    </item>
-    <item>
-      <title>NO MATTER WHERE YOU GET TO, THERE YOU ARE</title>
+      <title>No Matter Where You Get To, There You Are</title>
       <link>https://nonzerosum.games/nomatterwhereyougetto.html</link>
-      <description>a funny story that wasn't so funny at the time</description>
-      <pubDate>Sat, 23 October 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/nomatterwhereyougetto.html</guid>
+      <description><![CDATA[a funny story that wasn't so funny at the time]]></description>
+      <pubDate>Thu, 23 Oct 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/nomatterwhereyougetto.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nomatterwhereyougetto.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nomatterwhereyougetto.png"/>
     </item>
     <item>
-      <title>WHY?</title>
+      <title>Dr Evil & Realpolitik</title>
+      <link>https://nonzerosum.games/internationalrelations.html</link>
+      <description><![CDATA[why can't we all just get along?]]></description>
+      <pubDate>Sun, 12 Oct 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/internationalrelations.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/internationalrelations.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/internationalrelations.png"/>
+    </item>
+    <item>
+      <title>Why?</title>
       <link>https://nonzerosum.games/why.html</link>
-      <description>can we have both fairness and progress?</description>
-      <pubDate>Sat, 29 September 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/why.html</guid>
+      <description><![CDATA[can we have both fairness and progress?]]></description>
+      <pubDate>Mon, 29 Sep 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/why.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/why.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/why.png"/>
     </item>
     <item>
-      <title>RIGHTS AND LIBERTIES</title>
-      <link>https://nonzerosum.games/rightsliberties.html</link>
-      <description>are opposites</description>
-      <pubDate>Sat, 16 August 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/rightsliberties.html</guid>
-    </item>
-    <item>
-      <title>EFFORTOCRACY</title>
+      <title>Effortocracy</title>
       <link>https://nonzerosum.games/effortocracy.html</link>
-      <description>I've had meritocracy all wrong</description>
-      <pubDate>Sat, 30 August 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/effortocracy.html</guid>
+      <description><![CDATA[I've had meritocracy all wrong]]></description>
+      <pubDate>Sat, 30 Aug 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/effortocracy.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/effortocracy.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/effortocracy.png"/>
     </item>
     <item>
-      <title>SAIDI, MY FRIEND</title>
+      <title>Rights And Liberties</title>
+      <link>https://nonzerosum.games/rightsliberties.html</link>
+      <description><![CDATA[are opposites]]></description>
+      <pubDate>Sat, 16 Aug 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/rightsliberties.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/rightsliberties.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/rightsliberties.png"/>
+    </item>
+    <item>
+      <title>Saidi, My Friend</title>
       <link>https://nonzerosum.games/saidi.html</link>
-      <description>what do we owe to each other?</description>
-      <pubDate>Sat, 10 August 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/saidi.html</guid>
+      <description><![CDATA[what do we owe to each other?]]></description>
+      <pubDate>Sun, 10 Aug 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/saidi.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/saidi.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/saidi.png"/>
     </item>
     <item>
-      <title>WIN-WIN-WIN ETHICS</title>
+      <title>Win-Win-Win Ethics</title>
       <link>https://nonzerosum.games/reconcilingethics.html</link>
-      <description>reconciling consequentialism, virtue ethics and deontology</description>
-      <pubDate>Sat, 12 July 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/reconcilingethics.html</guid>
+      <description><![CDATA[reconciling consequentialism, virtue ethics and deontology]]></description>
+      <pubDate>Sat, 12 Jul 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/reconcilingethics.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/reconcilingethics.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/reconcilingethics.png"/>
     </item>
     <item>
-      <title>THE COSMIC LOTTERY</title>
-      <link>https://nonzerosum.games/cosmiclottery.html</link>
-      <description>the weak anthropic principle: a prelude to emergence</description>
-      <pubDate>Sun, 25 May 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/cosmiclottery.html</guid>
-    </item>
-    <item>
-      <title>EMERGENCE SPIRALS</title>
+      <title>Emergence Spirals</title>
       <link>https://nonzerosum.games/emergencespirals.html</link>
-      <description>what Yudkowsky gets wrong about emergence</description>
-      <pubDate>Sun, 07 June 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/emergencespirals.html</guid>
+      <description><![CDATA[what Yudkowsky gets wrong about emergence]]></description>
+      <pubDate>Sat, 07 Jun 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/emergencespirals.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/emergencespirals.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/emergencespirals.png"/>
     </item>
     <item>
-      <title>THE ERA OF THE DIVIDUAL</title>
-      <link>https://nonzerosum.games/dividual.html</link>
-      <description>are we falling apart?</description>
-      <pubDate>Sun, 13 Apr 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/dividual.html</guid>
+      <title>The Cosmic Lottery</title>
+      <link>https://nonzerosum.games/cosmiclottery.html</link>
+      <description><![CDATA[the weak anthropic principle: a prelude to emergence]]></description>
+      <pubDate>Sun, 25 May 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/cosmiclottery.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/cosmiclottery.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/cosmiclottery.png"/>
     </item>
     <item>
-      <title>ARUSHA PERPETUAL CHICKEN</title>
-      <link>https://nonzerosum.games/chicken.html</link>
-      <description>an unlikely iterated game</description>
-      <pubDate>Sat, 7 Apr 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/chicken.html</guid>
-    </item>
-    <item>
-      <title>PAINE ON ECONOMIC JUSTICE</title>
+      <title>Paine On Economic Justice</title>
       <link>https://nonzerosum.games/painejustice.html</link>
-      <description>the system didn't, and doesn't need to be this way</description>
+      <description><![CDATA[the system didn't, and doesn't need to be this way]]></description>
       <pubDate>Sun, 20 Apr 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/painejustice.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/painejustice.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/painejustice.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/painejustice.png"/>
     </item>
     <item>
-      <title>BATTLE OF THE SEXES</title>
+      <title>Battle Of The Sexes</title>
       <link>https://nonzerosum.games/battleofthesexes.html</link>
-      <description>how to solve any (solvable) dispute</description>
+      <description><![CDATA[how to solve any (solvable) dispute]]></description>
       <pubDate>Sat, 26 Apr 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/battleofthesexes.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/battleofthesexes.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/battleofthesexes.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/battleofthesexes.png"/>
     </item>
     <item>
-      <title>THE ULTIMATUM GAME</title>
+      <title>The Era Of The Dividual</title>
+      <link>https://nonzerosum.games/dividual.html</link>
+      <description><![CDATA[are we falling apart?]]></description>
+      <pubDate>Sun, 13 Apr 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/dividual.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/dividual.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/dividual.png"/>
+    </item>
+    <item>
+      <title>Arusha Perpetual Chicken</title>
+      <link>https://nonzerosum.games/chicken.html</link>
+      <description><![CDATA[an unlikely iterated game]]></description>
+      <pubDate>Mon, 07 Apr 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/chicken.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/chicken.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/chicken.png"/>
+    </item>
+    <item>
+      <title>The Ultimatum Game</title>
       <link>https://nonzerosum.games/ultimatumgame.html</link>
-      <description>take it or leave it</description>
-      <pubDate>Fri, 28 March 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/ultimatumgame.html</guid>
+      <description><![CDATA[take it or leave it]]></description>
+      <pubDate>Fri, 28 Mar 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/ultimatumgame.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/ultimatumgame.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/ultimatumgame.png"/>
     </item>
     <item>
-      <title>SOCIAL DILEMMAS</title>
+      <title>Social Dilemmas</title>
       <link>https://nonzerosum.games/socialdilemmas.html</link>
-      <description>take it or leave it</description>
-      <pubDate>Sat, 8 March 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/socialdilemmas.html</guid>
+      <description><![CDATA[take it or leave it]]></description>
+      <pubDate>Sat, 08 Mar 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/socialdilemmas.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/socialdilemmas.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/socialdilemmas.png"/>
     </item>
-
     <item>
-      <title>THE STAG HUNT</title>
+      <title>The Stag Hunt</title>
       <link>https://nonzerosum.games/staghunt.html</link>
-      <description>cultivating cooperation to reap rewards</description>
-      <pubDate>Sat, 26 Feb 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/staghunt.html</guid>
+      <description><![CDATA[cultivating cooperation to reap rewards]]></description>
+      <pubDate>Wed, 26 Feb 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/staghunt.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/staghunt.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/staghunt.png"/>
     </item>
-
     <item>
-      <title>THE DILEMMA'S DILEMMA</title>
+      <title>The Dilemma's Dilemma</title>
       <link>https://nonzerosum.games/dilemmasdilemma.html</link>
-      <description>how we frame negotiations matters</description>
+      <description><![CDATA[how we frame negotiations matters]]></description>
       <pubDate>Sat, 22 Feb 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/dilemmasdilemma.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/dilemmasdilemma.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/dilemmasdilemma.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/dilemmasdilemma.png"/>
     </item>
-
     <item>
-      <title>THE PRISONER'S DILEMMA</title>
+      <title>The Prisoner's Dilemma</title>
       <link>https://nonzerosum.games/prisonersdilemma.html</link>
-      <description>a problematic poster child</description>
-      <pubDate>Sun, 9 Feb 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/prisonersdilemma.html</guid>
+      <description><![CDATA[a problematic poster child]]></description>
+      <pubDate>Sun, 09 Feb 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/prisonersdilemma.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/prisonersdilemma.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/prisonersdilemma.png"/>
     </item>
     <item>
-      <title>NON-ZERO-SUM GAINS!</title>
+      <title>Non-Zero-Sum Gains!</title>
       <link>https://nonzerosum.games/fitness.html</link>
-      <description>a non-zero approach to getting in shape</description>
-      <pubDate>Sat, 1 Feb 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/fitness.html</guid>
+      <description><![CDATA[a non-zero approach to getting in shape]]></description>
+      <pubDate>Sat, 01 Feb 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/fitness.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/fitness.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/fitness.png"/>
     </item>
     <item>
-      <title>CAN ZERO-SUM GAMES NEGATE PRODUCTIVITY GAINS?</title>
+      <title>Can Zero-Sum Games Negate Productivity Gains?</title>
       <link>https://www.tosummarise.com/can-zero-sum-games-negate-productivity-gains/</link>
-      <description>a two-part collaborative cross-post with ToSummarise</description>
-      <pubDate>Thu, 25 Jan 2025 12:00:00 +0000</pubDate>
-      <guid>https://www.tosummarise.com/can-zero-sum-games-negate-productivity-gains/</guid>
+      <description><![CDATA[a two-part collaborative cross-post with ToSummarise]]></description>
+      <pubDate>Sat, 25 Jan 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.tosummarise.com/can-zero-sum-games-negate-productivity-gains/</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://www.tosummarise.com/can-zero-sum-games-negate-productivity-gains/.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://www.tosummarise.com/can-zero-sum-games-negate-productivity-gains/.png"/>
     </item>
-
     <item>
-      <title>COSTLY SIGNALLING</title>
+      <title>Costly Signalling</title>
       <link>https://nonzerosum.games/costlysignalling.html</link>
-      <description>Jaiveer on buried mastery, Nash Equilibria and peacocks</description>
-      <pubDate>Thu, 15 Jan 2025 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/costlysignalling.html</guid>
+      <description><![CDATA[Jaiveer on buried mastery, Nash Equilibria and peacocks]]></description>
+      <pubDate>Wed, 15 Jan 2025 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/costlysignalling.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/costlysignalling.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/costlysignalling.png"/>
     </item>
-
     <item>
-      <title>INESCAPABLY VALUE-LADEN EXPERIENCE</title>
+      <title>Inescapably Value-Laden Experience</title>
       <link>https://nonzerosum.games/inescapablyvalueladenexperience.html</link>
-      <description>a term I made up</description>
+      <description><![CDATA[a term I made up]]></description>
       <pubDate>Thu, 19 Dec 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/inescapablyvalueladenexperience.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/inescapablyvalueladenexperience.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/inescapablyvalueladenexperience.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/inescapablyvalueladenexperience.png"/>
     </item>
-
     <item>
-      <title>WHAT IS CONFIDENCE?</title>
+      <title>What Is Confidence?</title>
       <link>https://nonzerosum.games/confidence.html</link>
-      <description>in game theory and real life</description>
-      <pubDate>Sat, 11 Dec 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/confidence.html</guid>
+      <description><![CDATA[in game theory and real life]]></description>
+      <pubDate>Wed, 11 Dec 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/confidence.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/confidence.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/confidence.png"/>
     </item>
-
     <item>
-      <title>DISCOUNT FACTOR</title>
+      <title>Discount Factor</title>
       <link>https://nonzerosum.games/discountfactor.html</link>
-      <description>Jaiveer Singh on an important consideration in repeated games and real life</description>
-      <pubDate>Sat, 02 Dec 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/discountfactor.html</guid>
+      <description><![CDATA[Jaiveer Singh on an important consideration in repeated games and real life]]></description>
+      <pubDate>Mon, 02 Dec 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/discountfactor.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/discountfactor.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/discountfactor.png"/>
     </item>
-
     <item>
-      <title>IMPLICATIONS</title>
+      <title>Implications</title>
       <link>https://nonzerosum.games/implications.html</link>
-      <description>how conscious significance could inform our daily lives</description>
-      <pubDate>Sat, 29 Nov 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/implications.html</guid>
+      <description><![CDATA[how conscious significance could inform our daily lives]]></description>
+      <pubDate>Fri, 29 Nov 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/implications.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/implications.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/implications.png"/>
     </item>
-
     <item>
-      <title>PARADIGM SHIFTS</title>
+      <title>Paradigm Shifts</title>
       <link>https://nonzerosum.games/paradigmshifts.html</link>
-      <description>chance everything... except almost everything</description>
-      <pubDate>Sat, 26 Nov 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/paradigmshifts.html</guid>
+      <description><![CDATA[chance everything... except almost everything]]></description>
+      <pubDate>Tue, 26 Nov 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/paradigmshifts.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/paradigmshifts.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/paradigmshifts.png"/>
     </item>
-
     <item>
-      <title>CONSCIOUS SIGNIFICANCE</title>
+      <title>Conscious Significance</title>
       <link>https://nonzerosum.games/conscioussignificance.html</link>
-      <description>a new approach to free will and determinism</description>
+      <description><![CDATA[a new approach to free will and determinism]]></description>
       <pubDate>Sat, 23 Nov 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/conscioussignificance.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/conscioussignificance.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/conscioussignificance.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/conscioussignificance.png"/>
     </item>
-
     <item>
-      <title>BOTH-SIDESISM</title>
+      <title>Both-Sidesism</title>
       <link>https://nonzerosum.games/bothsidesism.html</link>
-      <description>when fair and balanced goes wrong</description>
-      <pubDate>Sat, 2 Nov 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/bothsidesism.html</guid>
+      <description><![CDATA[when fair and balanced goes wrong]]></description>
+      <pubDate>Sat, 02 Nov 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/bothsidesism.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/bothsidesism.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/bothsidesism.png"/>
     </item>
-
     <item>
-      <title>REPEATED GAMES</title>
+      <title>Repeated Games</title>
       <link>https://nonzerosum.games/repeatedgames.html</link>
-      <description>guest writer Jaiveer Singh on finite vs infinite games</description>
+      <description><![CDATA[guest writer Jaiveer Singh on finite vs infinite games]]></description>
       <pubDate>Sat, 26 Oct 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/repeatedgames.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/repeatedgames.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/repeatedgames.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/repeatedgames.png"/>
     </item>
-
     <item>
-      <title>CONTAGIOUS BELIEFS</title>
+      <title>Contagious Beliefs</title>
       <link>https://nonzerosum.games/beliefs.html</link>
-      <description>simulating political alignment</description>
+      <description><![CDATA[simulating political alignment]]></description>
       <pubDate>Sun, 20 Oct 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/beliefs.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/beliefs.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/beliefs.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/beliefs.png"/>
     </item>
-
     <item>
-      <title>SUBGAME PURRRFECTION</title>
+      <title>Subgame Purrrfection</title>
       <link>https://nonzerosum.games/subgameperfection.html</link>
-      <description>guest writer Jaiveer Singh explains subgame-perfect Nash equilibrium</description>
-      <pubDate>Tue, 09 Oct 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/subgameperfection.html</guid>
+      <description><![CDATA[guest writer Jaiveer Singh explains subgame-perfect Nash equilibrium]]></description>
+      <pubDate>Wed, 09 Oct 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/subgameperfection.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/subgameperfection.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/subgameperfection.png"/>
     </item>
-
     <item>
-      <title>SHAPLEY VALUE CALCULATOR</title>
+      <title>Shapley Value Calculator</title>
       <link>https://nonzerosum.games/shapleyvalue.html</link>
-      <description>a tool for fair allocation</description>
-      <pubDate>Tue, 28 Sep 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/shapleyvalue.html</guid>
+      <description><![CDATA[a tool for fair allocation]]></description>
+      <pubDate>Sat, 28 Sep 2024 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/shapleyvalue.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/shapleyvalue.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/shapleyvalue.png"/>
     </item>
-
     <item>
-      <title>COULD THINGS BE VERY DIFFERENT?</title>
+      <title>Could Things Be Very Different?</title>
       <link>https://nonzerosum.games/inertia.html</link>
-      <description>how historical inertia might blind us to optimal solutions</description>
+      <description><![CDATA[how historical inertia might blind us to optimal solutions]]></description>
       <pubDate>Tue, 03 Sep 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/inertia.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/inertia.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/inertia.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/inertia.png"/>
     </item>
-
     <item>
-      <title>WE DON'T JUST LET PEOPLE DIE</title>
+      <title>We Don't Just Let People Die</title>
       <link>https://nonzerosum.games/wedontletpeopledie.html</link>
-      <description>so, what next?</description>
+      <description><![CDATA[so, what next?]]></description>
       <pubDate>Tue, 13 Aug 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/wedontletpeopledie.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/wedontletpeopledie.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/wedontletpeopledie.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/wedontletpeopledie.png"/>
     </item>
-
     <item>
-      <title>COACH KROHN ON LEADERSHIP</title>
+      <title>Coach Krohn On Leadership</title>
       <link>https://nonzerosum.games/leadership.html</link>
-      <description>lessons from a life lived leading and developing leaders</description>
+      <description><![CDATA[lessons from a life lived leading and developing leaders]]></description>
       <pubDate>Tue, 06 Aug 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/leadership.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/leadership.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/leadership.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/leadership.png"/>
     </item>
-
     <item>
-      <title>UNLOCKING SOLUTIONS</title>
+      <title>Unlocking Solutions</title>
       <link>https://nonzerosum.games/unlockingsolutions.html</link>
-      <description>understanding coordination problems</description>
+      <description><![CDATA[understanding coordination problems]]></description>
       <pubDate>Tue, 23 Jul 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/unlockingsolutions.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/unlockingsolutions.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/unlockingsolutions.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/unlockingsolutions.png"/>
     </item>
-
     <item>
-      <title>WHY PEOPLE IN POVERTY MAKE POOR DECISIONS</title>
+      <title>Why People In Poverty Make Poor Decisions</title>
       <link>https://nonzerosum.games/poverty.html</link>
-      <description>a case for giving more money to people who are bad with money</description>
+      <description><![CDATA[a case for giving more money to people who are bad with money]]></description>
       <pubDate>Tue, 16 Jul 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/poverty.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/poverty.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/poverty.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/poverty.png"/>
     </item>
-
     <item>
-      <title>SAVING LIVES REDUCES OVER-POPULATION</title>
+      <title>Saving Lives Reduces Over-Population</title>
       <link>https://nonzerosum.games/savinglives.html</link>
-      <description>a counter-intuitive win-win</description>
+      <description><![CDATA[a counter-intuitive win-win]]></description>
       <pubDate>Tue, 02 Jul 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/savinglives.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/savinglives.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/savinglives.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/savinglives.png"/>
     </item>
-
     <item>
-      <title>CREATIVE PRINCIPLES</title>
+      <title>Creative Principles</title>
       <link>https://nonzerosum.games/creativeprinciples.html</link>
-      <description>a behind-the-scenes look at nonzerosum.games</description>
+      <description><![CDATA[a behind-the-scenes look at nonzerosum.games]]></description>
       <pubDate>Tue, 25 Jun 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/creativeprinciples.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/creativeprinciples.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/creativeprinciples.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/creativeprinciples.png"/>
     </item>
-
     <item>
-      <title>MASCULINITY</title>
+      <title>Masculinity</title>
       <link>https://nonzerosum.games/masculinity.html</link>
-      <description>a case for courage</description>
+      <description><![CDATA[a case for courage]]></description>
       <pubDate>Tue, 11 Jun 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/masculinity.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/masculinity.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/masculinity.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/masculinity.png"/>
     </item>
-
     <item>
-      <title>FURRY FRIENDS</title>
+      <title>Furry Friends</title>
       <link>https://nonzerosum.games/furryfriends.html</link>
-      <description>the joy of interspecies camaraderie</description>
+      <description><![CDATA[the joy of interspecies camaraderie]]></description>
       <pubDate>Tue, 04 Jun 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/furryfriends.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/furryfriends.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/furryfriends.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/furryfriends.png"/>
     </item>
-
     <item>
-      <title>GOODHART'S LAW</title>
+      <title>Goodhart's Law</title>
       <link>https://nonzerosum.games/goodhartslaw.html</link>
-      <description>the problem with singular goals</description>
+      <description><![CDATA[the problem with singular goals]]></description>
       <pubDate>Tue, 21 May 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/goodhartslaw.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/goodhartslaw.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/goodhartslaw.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/goodhartslaw.png"/>
     </item>
-
     <item>
-      <title>A POSITIVE DOUBLE STANDARD</title>
+      <title>A Positive Double Standard</title>
       <link>https://nonzerosum.games/positivedoublestandard.html</link>
-      <description>self-help principles work for individuals not populations</description>
+      <description><![CDATA[self-help principles work for individuals not populations]]></description>
       <pubDate>Tue, 14 May 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/positivedoublestandard.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/positivedoublestandard.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/positivedoublestandard.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/positivedoublestandard.png"/>
     </item>
-
     <item>
-      <title>EMERGENCE IS BEAUTIFUL</title>
+      <title>Emergence Is Beautiful</title>
       <link>https://nonzerosum.games/emergenceisbeautiful.html</link>
-      <description>beauty and meaning in an entropic universe</description>
+      <description><![CDATA[beauty and meaning in an entropic universe]]></description>
       <pubDate>Tue, 30 Apr 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/emergenceisbeautiful.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/emergenceisbeautiful.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/emergenceisbeautiful.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/emergenceisbeautiful.png"/>
     </item>
-
     <item>
-      <title>REPLICATORS</title>
+      <title>Replicators</title>
       <link>https://nonzerosum.games/replicators.html</link>
-      <description>pandora's dangerous children</description>
+      <description><![CDATA[pandora's dangerous children]]></description>
       <pubDate>Tue, 16 Apr 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/replicators.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/replicators.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/replicators.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/replicators.png"/>
     </item>
-
     <item>
-      <title>ON THE SHOULDERS OF SUBSTRATES</title>
+      <title>On The Shoulders Of Substrates</title>
       <link>https://nonzerosum.games/substrates.html</link>
-      <description>how one phenomenon creates the foundation for the next</description>
+      <description><![CDATA[how one phenomenon creates the foundation for the next]]></description>
       <pubDate>Tue, 02 Apr 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/substrates.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/substrates.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/substrates.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/substrates.png"/>
     </item>
-
     <item>
-      <title>EMERGENT GRAVITY</title>
+      <title>Emergent Gravity</title>
       <link>https://nonzerosum.games/graviton.html</link>
-      <description>create your own universe from chaos</description>
+      <description><![CDATA[create your own universe from chaos]]></description>
       <pubDate>Tue, 19 Mar 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/graviton.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/graviton.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/graviton.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/graviton.png"/>
     </item>
-
     <item>
-      <title>EMERGENCE VS ENTROPY</title>
+      <title>Emergence Vs Entropy</title>
       <link>https://nonzerosum.games/emergencevsentropy.html</link>
-      <description>a universal paradox</description>
+      <description><![CDATA[a universal paradox]]></description>
       <pubDate>Tue, 05 Mar 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/emergencevsentropy.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/emergencevsentropy.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/emergencevsentropy.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/emergencevsentropy.png"/>
     </item>
-
     <item>
-      <title>CONWAY'S GAME</title>
+      <title>Conway's Game</title>
       <link>https://nonzerosum.games/conwaysgame.html</link>
-      <description>how complexity emerges from simple rules</description>
+      <description><![CDATA[how complexity emerges from simple rules]]></description>
       <pubDate>Tue, 20 Feb 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/conwaysgame.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/conwaysgame.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/conwaysgame.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/conwaysgame.png"/>
     </item>
-
     <item>
-      <title>WHAT CAN ONE PERSON DO?</title>
+      <title>What Can One Person Do?</title>
       <link>https://nonzerosum.games/oneperson.html</link>
-      <description>Alexei Navalny</description>
+      <description><![CDATA[Alexei Navalny]]></description>
       <pubDate>Tue, 06 Feb 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/oneperson.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/oneperson.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/oneperson.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/oneperson.png"/>
     </item>
-
     <item>
-      <title>WHY I'M KEEPING MY CRAPPY DRAWINGS</title>
+      <title>Why I'm Keeping My Crappy Drawings</title>
       <link>https://nonzerosum.games/crappydrawings.html</link>
-      <description>how ai art won't supplant... art</description>
+      <description><![CDATA[how ai art won't supplant... art]]></description>
       <pubDate>Tue, 23 Jan 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/crappydrawings.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/crappydrawings.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/crappydrawings.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/crappydrawings.png"/>
     </item>
-
     <item>
-      <title>A KINDNESS EQUATION</title>
+      <title>A Kindness Equation</title>
       <link>https://nonzerosum.games/kindnessequation.html</link>
-      <description>should you give to charity or volunteer?</description>
+      <description><![CDATA[should you give to charity or volunteer?]]></description>
       <pubDate>Tue, 09 Jan 2024 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/kindnessequation.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/kindnessequation.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/kindnessequation.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/kindnessequation.png"/>
     </item>
-
     <item>
-      <title>CAPITALISM</title>
+      <title>Capitalism</title>
       <link>https://nonzerosum.games/capitalism.html</link>
-      <description>a zero-sum game?</description>
+      <description><![CDATA[a zero-sum game?]]></description>
       <pubDate>Tue, 26 Dec 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/capitalism.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/capitalism.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/capitalism.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/capitalism.png"/>
     </item>
-
     <item>
-      <title>RELATIVE GAINS</title>
+      <title>Relative Gains</title>
       <link>https://nonzerosum.games/absolutevsrelative.html</link>
-      <description>how not to measure success</description>
+      <description><![CDATA[how not to measure success]]></description>
       <pubDate>Tue, 19 Dec 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/absolutevsrelative.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/absolutevsrelative.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/absolutevsrelative.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/absolutevsrelative.png"/>
     </item>
-
     <item>
-      <title>EVIL GLOBALISATION</title>
+      <title>Evil Globalisation</title>
       <link>https://nonzerosum.games/globalisation.html</link>
-      <description>and how it is eliminating poverty</description>
+      <description><![CDATA[and how it is eliminating poverty]]></description>
       <pubDate>Tue, 12 Dec 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/globalisation.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/globalisation.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/globalisation.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/globalisation.png"/>
     </item>
-
     <item>
-      <title>IT'S SUBJECTIVE</title>
+      <title>It's Subjective</title>
       <link>https://nonzerosum.games/itssubjective.html</link>
-      <description>the end of the conversation?</description>
+      <description><![CDATA[the end of the conversation?]]></description>
       <pubDate>Tue, 05 Dec 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/itssubjective.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/itssubjective.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/itssubjective.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/itssubjective.png"/>
     </item>
-
     <item>
-      <title>CAPITALISING ON TRUST</title>
+      <title>Capitalising On Trust</title>
       <link>https://nonzerosum.games/cooperationvsdefection.html</link>
-      <description>a karmic simulation</description>
+      <description><![CDATA[a karmic simulation]]></description>
       <pubDate>Tue, 28 Nov 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/cooperationvsdefection.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/cooperationvsdefection.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/cooperationvsdefection.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/cooperationvsdefection.png"/>
     </item>
-
     <item>
-      <title>WHY IS MORAL LICENSING NEGATIVE-SUM?</title>
+      <title>Why Is Moral Licensing Negative-Sum?</title>
       <link>https://nonzerosum.games/morallicensing2.html</link>
-      <description>moral licensing - part 2</description>
+      <description><![CDATA[moral licensing - part 2]]></description>
       <pubDate>Tue, 21 Nov 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/morallicensing2.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/morallicensing2.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/morallicensing2.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/morallicensing2.png"/>
     </item>
-
     <item>
-      <title>THE END OF MORALITY</title>
+      <title>The End Of Morality</title>
       <link>https://nonzerosum.games/whycooperate3.html</link>
-      <description>why cooperate? part 3</description>
+      <description><![CDATA[why cooperate? part 3]]></description>
       <pubDate>Tue, 14 Nov 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/whycooperate3.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/whycooperate3.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whycooperate3.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whycooperate3.png"/>
     </item>
-
     <item>
-      <title>MORAL LICENSING</title>
+      <title>Moral Licensing</title>
       <link>https://nonzerosum.games/morallicensing1.html</link>
-      <description>the makings of a very negative-sum game</description>
+      <description><![CDATA[the makings of a very negative-sum game]]></description>
       <pubDate>Tue, 07 Nov 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/morallicensing1.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/morallicensing1.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/morallicensing1.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/morallicensing1.png"/>
     </item>
-
     <item>
-      <title>NON-ZERO THINKING FOR KIDS</title>
+      <title>Non-Zero Thinking For Kids</title>
       <link>https://nonzerosum.games/nonzerothinkingforkids.html</link>
-      <description>taking non-zero-sum thinking out into the world</description>
+      <description><![CDATA[taking non-zero-sum thinking out into the world]]></description>
       <pubDate>Tue, 31 Oct 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/nonzerothinkingforkids.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/nonzerothinkingforkids.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nonzerothinkingforkids.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nonzerothinkingforkids.png"/>
     </item>
-
     <item>
-      <title>IT'S EMOTIONAL</title>
+      <title>It's Emotional</title>
       <link>https://nonzerosum.games/whycooperate2.html</link>
-      <description>why cooperate? part 2</description>
+      <description><![CDATA[why cooperate? part 2]]></description>
       <pubDate>Tue, 24 Oct 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/whycooperate2.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/whycooperate2.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whycooperate2.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whycooperate2.png"/>
     </item>
-
     <item>
-      <title>WHY COOPERATE?</title>
+      <title>Why Cooperate?</title>
       <link>https://nonzerosum.games/whycooperate1.html</link>
-      <description>guest writer Andrew Tane Glen introduces the super-defector</description>
+      <description><![CDATA[guest writer Andrew Tane Glen introduces the super-defector]]></description>
       <pubDate>Tue, 17 Oct 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/whycooperate1.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/whycooperate1.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whycooperate1.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whycooperate1.png"/>
     </item>
-
     <item>
-      <title>COSTLESS KINDNESS</title>
+      <title>Costless Kindness</title>
       <link>https://nonzerosum.games/paretoefficiency.html</link>
-      <description>how pareto efficiency can make everyone better off (sometimes)</description>
+      <description><![CDATA[how pareto efficiency can make everyone better off (sometimes)]]></description>
       <pubDate>Tue, 10 Oct 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/paretoefficiency.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/paretoefficiency.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/paretoefficiency.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/paretoefficiency.png"/>
     </item>
-
     <item>
-      <title>SHAPLEY VALUE IS RIDICULOUS</title>
+      <title>Shapley Value Is Ridiculous</title>
       <link>https://nonzerosum.games/shapleyvalueisridiculous.html</link>
-      <description>where game theory fails in real world applications</description>
+      <description><![CDATA[where game theory fails in real world applications]]></description>
       <pubDate>Tue, 03 Oct 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/shapleyvalueisridiculous.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/shapleyvalueisridiculous.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/shapleyvalueisridiculous.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/shapleyvalueisridiculous.png"/>
     </item>
-
     <item>
-      <title>COMBINATORIAL GAMES</title>
+      <title>Combinatorial Games</title>
       <link>https://nonzerosum.games/combinatorialgames.html</link>
-      <description>games with perfect information</description>
+      <description><![CDATA[games with perfect information]]></description>
       <pubDate>Tue, 26 Sep 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/combinatorialgames.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/combinatorialgames.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/combinatorialgames.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/combinatorialgames.png"/>
     </item>
-
     <item>
-      <title>SOLUTIONS</title>
+      <title>Solutions</title>
       <link>https://nonzerosum.games/alignment6.html</link>
-      <description>the alignment problem no one is talking about: part 6</description>
+      <description><![CDATA[the alignment problem no one is talking about: part 6]]></description>
       <pubDate>Tue, 19 Sep 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/alignment6.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/alignment6.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment6.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment6.png"/>
     </item>
-
     <item>
-      <title>CAN AI HELP?</title>
+      <title>Can Ai Help?</title>
       <link>https://nonzerosum.games/alignment5.html</link>
-      <description>the alignment problem no one is talking about: part 5</description>
+      <description><![CDATA[the alignment problem no one is talking about: part 5]]></description>
       <pubDate>Tue, 12 Sep 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/alignment5.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/alignment5.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment5.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment5.png"/>
     </item>
-
     <item>
-      <title>THE SCALE OF THE ISSUE</title>
+      <title>The Scale Of The Issue</title>
       <link>https://nonzerosum.games/alignment4.html</link>
-      <description>the alignment problem no one is talking about: part 4</description>
+      <description><![CDATA[the alignment problem no one is talking about: part 4]]></description>
       <pubDate>Tue, 05 Sep 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/alignment4.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/alignment4.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment4.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment4.png"/>
     </item>
-
     <item>
-      <title>GETTING ALIGNED THROUGH HISTORY</title>
+      <title>Getting Aligned Through History</title>
       <link>https://nonzerosum.games/alignment3.html</link>
-      <description>the alignment problem no one is talking about: part 3</description>
+      <description><![CDATA[the alignment problem no one is talking about: part 3]]></description>
       <pubDate>Tue, 29 Aug 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/alignment3.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/alignment3.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment3.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment3.png"/>
     </item>
-
     <item>
-      <title>THE INDIVIDUAL AND THE COLLECTIVE</title>
+      <title>The Individual And The Collective</title>
       <link>https://nonzerosum.games/alignment2.html</link>
-      <description>the alignment problem no one is talking about: part 2</description>
+      <description><![CDATA[the alignment problem no one is talking about: part 2]]></description>
       <pubDate>Tue, 22 Aug 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/alignment2.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/alignment2.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment2.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment2.png"/>
     </item>
-
     <item>
-      <title>THE ALIGNMENT PROBLEM NO ONE IS TALKING ABOUT</title>
+      <title>The Alignment Problem No One Is Talking About</title>
       <link>https://nonzerosum.games/alignment1.html</link>
-      <description>what is alignment?</description>
+      <description><![CDATA[what is alignment?]]></description>
       <pubDate>Tue, 15 Aug 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/alignment1.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/alignment1.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment1.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/alignment1.png"/>
     </item>
-
     <item>
-      <title>NASH EQUILIBRIUM</title>
+      <title>Nash Equilibrium</title>
       <link>https://nonzerosum.games/nashequilibrium.html</link>
-      <description>the real reason you stop at a red</description>
+      <description><![CDATA[the real reason you stop at a red]]></description>
       <pubDate>Tue, 08 Aug 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/nashequilibrium.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/nashequilibrium.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nashequilibrium.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nashequilibrium.png"/>
     </item>
-
     <item>
-      <title>LOOKING TO THE FUTURE</title>
+      <title>Looking To The Future</title>
       <link>https://nonzerosum.games/betterrecycling3.html</link>
-      <description>a simple recycling idea: part III</description>
+      <description><![CDATA[a simple recycling idea: part III]]></description>
       <pubDate>Tue, 01 Aug 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/betterrecycling3.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/betterrecycling3.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/betterrecycling3.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/betterrecycling3.png"/>
     </item>
-
     <item>
-      <title>TAKING CREDIT</title>
+      <title>Taking Credit</title>
       <link>https://nonzerosum.games/takingcredit.html</link>
-      <description>the paradox of original ideas</description>
+      <description><![CDATA[the paradox of original ideas]]></description>
       <pubDate>Tue, 25 Jul 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/takingcredit.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/takingcredit.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/takingcredit.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/takingcredit.png"/>
     </item>
-
     <item>
-      <title>PUTTING IT ON PLASTIC</title>
+      <title>Putting It On Plastic</title>
       <link>https://nonzerosum.games/betterrecycling2.html</link>
-      <description>a simple recycling idea: part II</description>
+      <description><![CDATA[a simple recycling idea: part II]]></description>
       <pubDate>Tue, 18 Jul 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/betterrecycling2.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/betterrecycling2.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/betterrecycling2.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/betterrecycling2.png"/>
     </item>
-
     <item>
-      <title>A SIMPLE RECYCLING IDEA</title>
+      <title>A Simple Recycling Idea</title>
       <link>https://nonzerosum.games/betterrecycling.html</link>
-      <description>8 bottles</description>
+      <description><![CDATA[8 bottles]]></description>
       <pubDate>Tue, 11 Jul 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/betterrecycling.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/betterrecycling.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/betterrecycling.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/betterrecycling.png"/>
     </item>
-
     <item>
-      <title>THE TETRIS EFFECT</title>
+      <title>The Tetris Effect</title>
       <link>https://nonzerosum.games/thetetriseffect.html</link>
-      <description>3d minimalist tetris and the obscuring problem</description>
+      <description><![CDATA[3d minimalist tetris and the obscuring problem]]></description>
       <pubDate>Tue, 04 Jul 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/thetetriseffect.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/thetetriseffect.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/thetetriseffect.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/thetetriseffect.png"/>
     </item>
-
     <item>
-      <title>MOLOCH'S DEMISE</title>
+      <title>Moloch's Demise</title>
       <link>https://nonzerosum.games/molochtheactualstory.html</link>
-      <description>solving the original problem</description>
+      <description><![CDATA[solving the original problem]]></description>
       <pubDate>Tue, 27 Jun 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/molochtheactualstory.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/molochtheactualstory.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/molochtheactualstory.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/molochtheactualstory.png"/>
     </item>
-
     <item>
-      <title>LIV BOEREE</title>
+      <title>Liv Boeree</title>
       <link>https://nonzerosum.games/nonzeroherolivboeree.html</link>
-      <description>a non-zero hero</description>
+      <description><![CDATA[a non-zero hero]]></description>
       <pubDate>Tue, 20 Jun 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/nonzeroherolivboeree.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/nonzeroherolivboeree.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nonzeroherolivboeree.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/nonzeroherolivboeree.png"/>
     </item>
-
     <item>
-      <title>4 WAYS MOLOCH IS RUINING YOUR LIFE!</title>
+      <title>4 Ways Moloch Is Ruining Your Life!</title>
       <link>https://nonzerosum.games/manifestationsofmoloch.html</link>
-      <description>the god of negative-sum games: part II</description>
+      <description><![CDATA[the god of negative-sum games: part II]]></description>
       <pubDate>Tue, 13 Jun 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/manifestationsofmoloch.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/manifestationsofmoloch.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/manifestationsofmoloch.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/manifestationsofmoloch.png"/>
     </item>
-
     <item>
-      <title>LOCKWISE</title>
+      <title>Lockwise</title>
       <link>https://nonzerosum.games/lockwise.html</link>
-      <description>a meta-game</description>
+      <description><![CDATA[a meta-game]]></description>
       <pubDate>Tue, 06 Jun 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/lockwise.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/lockwise.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/lockwise.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/lockwise.png"/>
     </item>
-
     <item>
-      <title>DIMINISHING RETURNS</title>
+      <title>Diminishing Returns</title>
       <link>https://nonzerosum.games/diminishingreturns.html</link>
-      <description>a path to shared joy?</description>
+      <description><![CDATA[a path to shared joy?]]></description>
       <pubDate>Tue, 30 May 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/diminishingreturns.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/diminishingreturns.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/diminishingreturns.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/diminishingreturns.png"/>
     </item>
-
     <item>
-      <title>WHO IS MOLOCH?</title>
+      <title>Who Is Moloch?</title>
       <link>https://nonzerosum.games/whoismoloch.html</link>
-      <description>the god of negative-sum games</description>
+      <description><![CDATA[the god of negative-sum games]]></description>
       <pubDate>Tue, 16 May 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/whoismoloch.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/whoismoloch.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whoismoloch.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whoismoloch.png"/>
     </item>
-
     <item>
-      <title>PARABLE OF A POLYP</title>
+      <title>Parable Of A Polyp</title>
       <link>https://nonzerosum.games/parableofapolyp.html</link>
-      <description>from zero-sum to non-zero-sum</description>
+      <description><![CDATA[from zero-sum to non-zero-sum]]></description>
       <pubDate>Tue, 02 May 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/parableofapolyp.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/parableofapolyp.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/parableofapolyp.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/parableofapolyp.png"/>
     </item>
-
     <item>
-      <title>WHAT ARE NON-ZERO-SUM GAMES?</title>
+      <title>What Are Non-Zero-Sum Games?</title>
       <link>https://nonzerosum.games/whatarenonzerosumgames.html</link>
-      <description>an introduction</description>
+      <description><![CDATA[an introduction]]></description>
       <pubDate>Tue, 18 Apr 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/whatarenonzerosumgames.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/whatarenonzerosumgames.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whatarenonzerosumgames.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/whatarenonzerosumgames.png"/>
     </item>
-
     <item>
-      <title>ARE YOU IN A CRAB BUCKET?</title>
+      <title>Are You In A Crab Bucket?</title>
       <link>https://nonzerosum.games/crabbucket.html</link>
-      <description>how to escape negative-sum games</description>
+      <description><![CDATA[how to escape negative-sum games]]></description>
       <pubDate>Tue, 04 Apr 2023 12:00:00 +0000</pubDate>
-      <guid>https://nonzerosum.games/crabbucket.html</guid>
+      <guid isPermaLink="true">https://nonzerosum.games/crabbucket.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/crabbucket.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/https://nonzerosum.games/crabbucket.png"/>
     </item>
-<atom:link href="http://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml" />
-  </channel>
+    </channel>
 </rss>
