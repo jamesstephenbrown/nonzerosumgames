@@ -269,6 +269,7 @@ a[target="_blank"]:not(.no-outlink)::after {
 
 :root {
   --body-bg-color: #55AAE3;
+  /* ## #2ecbbe; */
 }
 
 body {
@@ -773,7 +774,7 @@ input::placeholder, textarea::placeholder {
   border-radius: 30px; /* Rounded corners */
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.15); /* Background color */
-  padding-top: 200px; /* Half the width of the cell */
+  padding-top: 200px;
 }
 
 .image-item img {
@@ -787,13 +788,21 @@ input::placeholder, textarea::placeholder {
   transition: transform 0.3s ease;
 }
 
+.image-item a {
+  display: inline-block;        /* anchor becomes a confined box */
+  box-sizing: border-box;       /* padding counted inside width */
+  padding: 1rem;                /* visible padding around everything */
+  text-decoration: none;
+  background: transparent;      /* remove temp highlight if present */
+  max-width: 320px; 
+}
+
 
 .image-new {
   position: relative;
   border-radius: 30px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.15);
-  /* Remove padding-top to avoid forcing aspect ratio */
   padding-top: 50px;
 }
 
@@ -803,7 +812,6 @@ input::placeholder, textarea::placeholder {
   display: block;
   max-width: 95%;
   margin: 20px auto;
-  /* You can keep or remove transition as you like */
   transition: transform 0.3s ease;
 }
 
