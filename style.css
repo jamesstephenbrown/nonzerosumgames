@@ -465,6 +465,10 @@ footer {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
+.symbol {
+  font-family: 'MoreSugarExtras', sans-serif;
+}
+
 .menuColumn {
   margin-top: -80px;
   padding: 10px;
@@ -796,7 +800,6 @@ input::placeholder, textarea::placeholder {
   background: transparent;      /* remove temp highlight if present */
   max-width: 320px; 
 }
-
 
 .image-new {
   position: relative;
