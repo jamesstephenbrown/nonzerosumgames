@@ -465,10 +465,6 @@ footer {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
-.symbol {
-  font-family: 'MoreSugarExtras', sans-serif;
-}
-
 .menuColumn {
   margin-top: -80px;
   padding: 10px;
@@ -792,6 +788,7 @@ input::placeholder, textarea::placeholder {
   transition: transform 0.3s ease;
 }
 
+
 .image-item a {
   display: inline-block;        /* anchor becomes a confined box */
   box-sizing: border-box;       /* padding counted inside width */
@@ -824,12 +821,11 @@ input::placeholder, textarea::placeholder {
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: linear-gradient(to top, rgba(74, 145, 192, 0), rgba(74, 145, 192, 0.9)); */
   color: white;
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
-  justify-content: top; /* Align children to the bottom */
-  align-items: center; /* Center children horizontally */
+  /* display: flex;
+  flex-direction: column; */
+  justify-content: top;
+  align-items: center;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
@@ -839,6 +835,20 @@ input::placeholder, textarea::placeholder {
   text-decoration: none;
 }
 
+.image-title span {
+  display: inline;
+}
+
+.image-title .symbol {
+  display: inline;   /* this finally beats .image-title span { display:block } */
+}
+
+.symbol {
+  font-family: 'MoreSugarExtras', sans-serif;
+  display: inline;        /* <- key line */
+  line-height: 1;         /* optional, keeps its box tidy */
+  vertical-align: baseline; /* or middle if you prefer the look */
+}
 
 /* .image-item a:hover .image-title {
   opacity: 0;
