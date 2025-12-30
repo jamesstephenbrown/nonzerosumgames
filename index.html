@@ -137,7 +137,8 @@
     <div class="image-item">
         <a href="npc.html">
             <img src="./Images/Content/NPC_Graph.png" alt="a 2D graph depicting the NPC->MC spectrum">
-            <span class="image-title"><sup style="font-size: 70%";>THE</sup> NPC <span class="symbol">å</span> MC SPECTRUM<div style="margin-top: 0.2em;font-size: 70%;">... or my leadership style as opposed to Stuart's</div></span>
+            <span class="image-title"><sup style="font-size: 70%";>THE</sup> NPC <span class="symbol">å</span> MC SPECTRUM
+            <div style="margin-top: 0.2em;font-size: 70%;">... or my leadership style as opposed to Stuart's</div></span>
         </a>
     </div>
 
@@ -214,50 +215,21 @@
 </blockquote>
 <br>
 <footer>
-    <div class="social-share">
-    Thanks for visiting—<em>If you enjoyed yourself and know someone who would enjoy this site, please share.</em>
-    <!-- <p>You might agree—there is a lot of fleeting, ill-considered and negative content on the internet, and it gets clicks—because it appeals to base instincts. If you want to contribute to having more substantive, positive, and well-considered ideas out there, please play your part and share <em>(if you think this piece of writing fits that bill of course)</em>.</p> -->
-     <br><br>
-         <a href="https://bsky.app/intent/compose?text=This&was&cool...%20TITLE_PLACEHOLDER...%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Bluesky');">
-        <img src="Images/Icons/bluesky.png" alt="Share on Bluesky"/>
-    </a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Facebook');">
-        <img src="Images/Icons/facebook.png" alt="Share on Facebook"/>
-    </a>
-    <a href="https://twitter.com/intent/tweet?url=URL_PLACEHOLDER&text=This%20was%20interesting..." target="_blank" class="no-outlink" onclick="trackSocialClick('Twitter');">
-        <img src="Images/Icons/twitter.png" alt="Share on Twitter"/>
-    </a>
-    <a href="https://reddit.com/submit?url=URL_PLACEHOLDER&title=TITLE_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Reddit');">
-        <img src="Images/Icons/reddit.png" alt="Share on Reddit"/>
-    </a>
-    <a href="https://www.mastodon.social/share?text=This%20was%20interesting...%20TITLE_PLACEHOLDER%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Mastodon');">
-        <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
-    </a>
-    <a href="https://news.ycombinator.com/submitlink?u=URL_PLACEHOLDER&t=TITLE_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Hacker News');" title="Hacker News" style="text-decoration: none;">
-        HN
-    </a>
-    <br><br>Sharing good ideas is a win-win.<br><br>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
 
-    <!-- Begin Mailchimp Subscribe Form -->
-    <div id="mc_embed_signup"><br>
-    <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">
-    
-        <p>To get updated with next week's blog...</p>
-        <!-- <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" style="display: block; margin: auto;"> -->
-        <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" placeholder="enter@your.email" style="display: block; margin: auto;">
-
-        <div style="position: absolute; left: -5000px;" aria-hidden="true">
-            <input type="text" name="b_445e5215aca824f22b35f8f22_f62bbfcd6b" tabindex="-1" value="">
-        </div>
-        <br>
-        <div class="clear">
-            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
-        </div>
-        <br>
-    </form>
-
-    <p>... or get the <a href="https://nonzerosum.games/rss.xml" target="_blank">RSS</a> feed.</p>
-    </div>
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
     <!-- End Mailchimp Subscribe Form -->
 </div>
 </div>
