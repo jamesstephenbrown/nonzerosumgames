@@ -3,7 +3,6 @@
      xmlns:atom="http://www.w3.org/2005/Atom"
      xmlns:media="http://search.yahoo.com/mrss/">
 
-
   <channel>
     <title>NON-ZERO SUM GAMES BLOG</title>
     <link>https://nonzerosum.games</link>
@@ -30,7 +29,7 @@
       <media:thumbnail url="https://nonzerosum.games/Images/Social/nomatterwhereyougetto.png"/>
     </item>
     <item>
-      <title>DR EVIL & REALPOLITIK</title>
+      <title>DR EVIL AND REALPOLITIK</title>
       <link>https://nonzerosum.games/internationalrelations.html</link>
       <description><![CDATA[why can't we all just get along?]]></description>
       <pubDate>Sun, 12 Oct 2025 12:00:00 +0000</pubDate>

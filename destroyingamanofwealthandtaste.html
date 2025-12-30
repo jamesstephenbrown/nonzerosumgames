@@ -1,42 +1,71 @@
-<!DOCTYPE html><html lang="en">
-    <head>
-        <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Destroying a Man of Wealth and Taste</title>
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-    <body>
-        <div class="content">
+    <title>Destroying a Man of Wealth and Taste</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-            <p>This is the documentation of the destruction of my painting that has been made into an NFT <a href="https://opensea.io/collection/a-man-of-wealth-and-taste">here</a></p>
+    <!-- SEO -->
+    <link rel="canonical" href="https://nonzerosum.games/destroyingamanofwealthandtaste.html" />
+    <meta name="description" content="Documentation of the destruction of a painting that was later made into an NFT.">
+    <meta name="keywords" content="Art, NFT, Performance Art, Destruction, Non-Zero-Sum Games">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/5eN5KL48uD8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            
-        </div>
-        <br>
-        <div class="links">
-        </div> 
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-         <div class="giscus_button">
-        <a href="giscus.html"><img src="./Images/Links/giscus.png"></a>
-        </div>
-        
-        <canvas></canvas>
-        <script src="./js/destroyingamanofwealthandtaste.js"></script>
-            <div id="giscus_thread" ></div>
-            <script src="https://giscus.app/client.js"
-            data-repo="jamesstephenbrown/nonzerosumgames"
-            data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
-            data-category-id="DIC_kwDODpsK184CA9jn"
-            data-mapping="pathname"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="dark_dimmed"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
-        </script>
-    </body>
+    <!-- jQuery (for shared components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- Load menu -->
+<script>
+    $(document).ready(function() {
+        $("#menu").load("menu.html", function() {
+            var pageName = window.location.pathname.split("/").pop();
+            var menuLink = $("a[href='" + pageName + "']");
+            menuLink.parent().remove();
+        });
+    });
+</script>
+<div id="menu"></div>
+
+<div class="content">
+    <p>This is the documentation of the destruction of my painting that has been made into an NFT <a href="https://opensea.io/collection/a-man-of-wealth-and-taste">here</a></p>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/5eN5KL48uD8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<br>
+<div id="graphcomment"></div>
+<script type="text/javascript">
+    /* - - - CONFIGURATION VARIABLES - - - */
+    var __semio__params = {
+    graphcommentId: "Non-Zero-Sum-Games",
+    behaviour: {
+        uid: window.location.pathname.split('/').pop().split('.')[0],
+    },
+    }
+    /* - - - DON'T EDIT BELOW THIS LINE - - - */
+    function __semio__onload() {
+    __semio__gc_graphlogin(__semio__params)
+    }
+    (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.onload = __semio__onload; gc.defer = true;
+    gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+    })();
+</script>
+</body>
 </html>
