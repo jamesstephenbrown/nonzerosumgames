@@ -1,157 +1,135 @@
-
-    <h3>A WEE THOUGHT ABOUT THE BENEFITS OF SUBSCRIBING TO STUFF</h3>
-    <p>
-        We live in an online world facilitated by algorithms, choosing for you what appeals most to people <b><i>like</i></b> you. But that means you're not just being served what's <b><i>generally</i></b> popular—you're being shaped by it. Subscribing is not just a way of supporting creators you value, but it's a way of restoring your own agency in what is served to you, allowing your interests to determine what becomes popular rather than what's popular determining your interests.
-    </p>
+<h3>A WEE THOUGHT ABOUT THE BENEFITS OF SUBSCRIBING TO STUFF</h3>
+<p>
+    We live in an online world facilitated by algorithms, choosing for you what appeals most to people <b><i>like</i></b> you. But that means you're not just being served what's <b><i>generally</i></b> popular—you're being shaped by it. Subscribing is not just a way of supporting creators you value, but it's a way of restoring your own agency in what is served to you, allowing your interests to determine what becomes popular rather than what's popular determining your interests.
+</p>
 
 <div class="social">
 
-<script>
-  (function () {
-    const funnyShareLines = [
-      "This article cured my existential dread",
-      "I read this and now I can see through walls",
-      "I no longer feel inadequate after reading this",
-      "Doctors hate this one weird idea!",
-      "You think you've got it all figured out? And then you read this, and you're all confused again",
-      "I showed this to my goldfish and now it runs a google",
-      "Warning: Reading this may cause spontaneous cranial expansion",
-      "After reading this my dad called and finally told me that I'm enough",
-      "I laughed, I cried, I achieved inner peace",
-      "NASA want to study my brain after reading this",
-      "I forwarded this to my past self and it destroyed the space-time continuum",
-      "If you share this, your plants will stop judging you",
-      "This post is why the internet was invented",
-      "I read this and my coffee brewed itself out of respect",
-      "My phone battery lasted longer after I shared this",
-      "Even my guinea pig paid attention to this post",
-      "I tried to ignore this, but my conscience wouldn't let me",
-      "This post unlocked a secret level in my brain",
-      "Share this and your socks will never get lost in the dryer again",
-      "I sent this to my group chat and now we're all enlightened",
-      "Reading this increased my WiFi speed",
-      "Reading this is the morally right thing to do",
-      "Since reading this, my printer started working again",
-      "Please validate the author's existence by sharing this",
-      "I shared this and my houseplants started applauding",
-      "If you read this, you may find yourself almost as smart as me",
-      "If you don't share this, your next pizza will arrive with pineapple"
-    ];
-
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title);
-
-    const interval = setInterval(() => {
-        const anchors = document.querySelectorAll('.social-share a');
-        if (anchors.length > 0) {
-        const randomLine = funnyShareLines[Math.floor(Math.random() * funnyShareLines.length)];
-        const encodedLine = encodeURIComponent(randomLine);
-
-        anchors.forEach(a => {
-            a.href = a.href
-            .replace('URL_PLACEHOLDER', pageUrl)
-            .replace('TITLE_PLACEHOLDER', pageTitle)
-            .replace('COMMENT_PLACEHOLDER', encodedLine);
-        });
-        clearInterval(interval);
-        }
-    }, 50);
-    })();
+<!-- Non-executing data store for share lines (safe even when social.html is injected via jQuery.load) -->
+<script type="application/json" id="funnyShareLinesJson">
+[
+  "This article cured my existential dread",
+  "I read this and now I can see through walls",
+  "I no longer feel inadequate after reading this",
+  "Doctors hate this one weird idea!",
+  "You think you've got it all figured out? And then you read this, and you're all confused again",
+  "I showed this to my goldfish and now it runs a google",
+  "Warning: Reading this may cause spontaneous cranial expansion",
+  "After reading this my dad called and finally told me that I'm enough",
+  "I laughed, I cried, I achieved inner peace",
+  "NASA want to study my brain after reading this",
+  "I forwarded this to my past self and it destroyed the space-time continuum",
+  "If you share this, your plants will stop judging you",
+  "This post is why the internet was invented",
+  "I read this and my coffee brewed itself out of respect",
+  "My phone battery lasted longer after I shared this",
+  "Even my guinea pig paid attention to this post",
+  "I tried to ignore this, but my conscience wouldn't let me",
+  "This post unlocked a secret level in my brain",
+  "Share this and your socks will never get lost in the dryer again",
+  "I sent this to my group chat and now we're all enlightened",
+  "Reading this increased my WiFi speed",
+  "Reading this is the morally right thing to do",
+  "Since reading this, my printer started working again",
+  "Please validate the author's existence by sharing this",
+  "I shared this and my houseplants started applauding",
+  "If you read this, you may find yourself almost as smart as me",
+  "If you don't share this, your next pizza will arrive with pineapple"
+]
 </script>
 
 <!-- Begin Mailchimp Subscribe Form -->
 <div id="mc_embed_signup"><br>
     <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">
-        
 
-<div class="animation-container">
-    <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
-</div>
-<script>
-    const totalFrames = 26;
-    const framePrefix = 'Images/Content/Frames_Rabbits_';
-    const frameSuffix = '.png';
-    const frameElement = document.getElementById('animation-frame');
-    let currentFrame = 0;
-    let framesLoaded = 0;
-    const frames = [];
-    let animationStarted = false;
+        <div class="animation-container">
+            <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
+        </div>
 
-    // Display the first frame immediately
-    frameElement.src = framePrefix + '0000' + frameSuffix;
+        <script>
+            const totalFrames = 26;
+            const framePrefix = 'Images/Content/Frames_Rabbits_';
+            const frameSuffix = '.png';
+            const frameElement = document.getElementById('animation-frame');
+            let currentFrame = 0;
+            let framesLoaded = 0;
+            const frames = [];
+            let animationStarted = false;
 
-    // Preload images
-    for (let i = 0; i <= totalFrames; i++) {
-        const img = new Image();
-        const frameNumber = i.toString().padStart(4, '0');
-        const filename = framePrefix + frameNumber + frameSuffix;
-        img.src = filename;
-        img.onload = () => {
-            framesLoaded++;
-            if (framesLoaded === totalFrames + 1) {
-                // All frames are loaded
-                if (isElementInViewport(frameElement)) {
-                    startAnimation();
+            // Display the first frame immediately
+            frameElement.src = framePrefix + '0000' + frameSuffix;
+
+            // Preload images
+            for (let i = 0; i <= totalFrames; i++) {
+                const img = new Image();
+                const frameNumber = i.toString().padStart(4, '0');
+                const filename = framePrefix + frameNumber + frameSuffix;
+                img.src = filename;
+                img.onload = () => {
+                    framesLoaded++;
+                    if (framesLoaded === totalFrames + 1) {
+                        // All frames are loaded
+                        if (isElementInViewport(frameElement)) {
+                            startAnimation();
+                        } else {
+                            observer.observe(frameElement);
+                        }
+                    }
+                };
+                frames.push(img);
+            }
+
+            // Function to update the image source
+            function updateFrame() {
+                const frameNumber = currentFrame.toString().padStart(4, '0');
+                const filename = framePrefix + frameNumber + frameSuffix;
+                frameElement.src = filename;
+
+                currentFrame++;
+
+                if (currentFrame > totalFrames) {
+                    currentFrame = totalFrames; // Ensure it stops on the last frame
                 } else {
-                    observer.observe(frameElement);
+                    setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
                 }
             }
-        };
-        frames.push(img);
-    }
 
-    // Function to update the image source
-    function updateFrame() {
-        const frameNumber = currentFrame.toString().padStart(4, '0');
-        const filename = framePrefix + frameNumber + frameSuffix;
-        frameElement.src = filename;
-
-        currentFrame++;
-
-        if (currentFrame > totalFrames) {
-            currentFrame = totalFrames; // Ensure it stops on the last frame
-        } else {
-            setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
-        }
-    }
-
-    // Start the animation
-    function startAnimation() {
-        if (!animationStarted) {
-            animationStarted = true;
-            updateFrame();
-        }
-    }
-
-    // Check if element is in viewport
-    function isElementInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // Create an Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                startAnimation();
-                observer.unobserve(frameElement);
+            // Start the animation
+            function startAnimation() {
+                if (!animationStarted) {
+                    animationStarted = true;
+                    updateFrame();
+                }
             }
-        });
-    });
 
-    // Observe the animation container
-    if (isElementInViewport(frameElement)) {
-        startAnimation();
-    } else {
-        observer.observe(frameElement);
-    }
-</script>
+            // Check if element is in viewport
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
 
+            // Create an Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        startAnimation();
+                        observer.unobserve(frameElement);
+                    }
+                });
+            });
+
+            // Observe the animation container
+            if (isElementInViewport(frameElement)) {
+                startAnimation();
+            } else {
+                observer.observe(frameElement);
+            }
+        </script>
 
         <p>To get updated with next week's blog...</p>
         <!-- <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" style="display: block; margin: auto;"> -->
@@ -166,56 +144,132 @@
         </div>
         <br>
     </form>
+
     <p>
-        ... or get the <a href="#" onclick="copyRSSLink(event)">RSS</a> feed.
+        ... or get the
+        <a href="#"
+           onclick="(function(e){
+             e.preventDefault();
+             const rssURL = 'https://nonzerosum.games/rss.xml';
+             navigator.clipboard.writeText(rssURL).then(() => {
+               const feedback = document.getElementById('copy-feedback');
+               if (feedback) {
+                 feedback.style.display = 'inline';
+                 setTimeout(() => { feedback.style.display = 'none'; }, 2000);
+               }
+             });
+           })(event); return false;">
+           RSS
+        </a>
+        feed.
         <div id="copy-feedback" style="display:none; margin-left: 10px; color: rgb(65, 95, 131);">Copied!</div>
     </p>
 </div>
 
-    <div class="social-share">
-        
-        <br>Share with your friends (I'm sure you have lots of them, because you're awesome).<br><br>
-        <!-- <p>You might agree—there is a lot of fleeting, ill-considered and negative content on the internet, and it gets clicks—because it appeals to base instincts. If you want to contribute to having more substantive, positive, and well-considered ideas out there, please play your part and share <em>(if you think this piece of writing fits that bill of course)</em>.</p> -->
-        <a href="https://bsky.app/intent/compose?text=COMMENT_PLACEHOLDER%20TITLE_PLACEHOLDER...%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Bluesky');">
-            <img src="Images/Icons/bluesky.png" alt="Share on Bluesky"/>
-        </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Facebook');">
-            <img src="Images/Icons/facebook.png" alt="Share on Facebook"/>
-        </a>
-        <a href="https://twitter.com/intent/tweet?url=URL_PLACEHOLDER&text=COMMENT_PLACEHOLDER..." target="_blank" class="no-outlink" onclick="trackSocialClick('Twitter');">
-            <img src="Images/Icons/twitter.png" alt="Share on Twitter"/>
-        </a>
-        <a href="https://reddit.com/submit?url=URL_PLACEHOLDER&title=TITLE_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Reddit');">
-            <img src="Images/Icons/reddit.png" alt="Share on Reddit"/>
-        </a>
-        <a href="https://www.mastodon.social/share?text=COMMENT_PLACEHOLDER...%20TITLE_PLACEHOLDER%20URL_PLACEHOLDER" target="_blank" class="no-outlink" onclick="trackSocialClick('Mastodon');">
-            <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
-        </a>
-        <br>Sharing good ideas is a win-win. See you next week.<br>
-        <p>—James :)</p>
+<div class="social-share">
 
-    </div>
+    <br>Share with your friends (I'm sure you have lots of them, because you're awesome).<br><br>
 
-<script>
-    function copyRSSLink(event) {
-      event.preventDefault();
-      const rssURL = "https://nonzerosum.games/rss.xml";
-      navigator.clipboard.writeText(rssURL).then(() => {
-        const feedback = document.getElementById("copy-feedback");
-        feedback.style.display = "inline";
-        setTimeout(() => {
-          feedback.style.display = "none";
-        }, 2000);
-      });
-    }
-    </script>
+    <!--
+      FIX: Do NOT rely on scripts executing on load (they often don't when social.html is injected).
+      Instead, compute the final share URL at click time.
+      This works using ONLY social.html and does not require edits to your 100s of posts.
+    -->
 
-<script>
-    function trackSocialClick(socialNetwork) {
-        gtag('event', 'click', {
-            'event_category': 'Social Media',
-            'event_label': socialNetwork
-        });
-    }
-</script>
+    <a href="https://bsky.app/intent/compose?text=TITLE_PLACEHOLDER%20URL_PLACEHOLDER"
+       target="_blank"
+       class="no-outlink"
+       data-platform="bluesky"
+       onclick="return (window.nzsShare || (window.nzsShare = function(a){
+         try {
+           var p = (a.getAttribute('data-platform') || '').toLowerCase();
+           var url = encodeURIComponent(location.href);
+           var title = encodeURIComponent(document.title);
+
+           var lines = [];
+           var el = document.getElementById('funnyShareLinesJson');
+           if (el && el.textContent) { lines = JSON.parse(el.textContent); }
+           var line = (lines && lines.length) ? lines[Math.floor(Math.random() * lines.length)] : '';
+           var comment = encodeURIComponent(line);
+
+           var shareUrl = '';
+           if (p === 'facebook') {
+             shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+           } else if (p === 'twitter') {
+             // X/Twitter: keep it simple and robust
+             shareUrl = 'https://twitter.com/intent/tweet?text=' + comment + '...%20' + title + '&url=' + url;
+           } else if (p === 'reddit') {
+             shareUrl = 'https://www.reddit.com/submit?url=' + url + '&title=' + title;
+           } else if (p === 'mastodon') {
+             shareUrl = 'https://mastodon.social/share?text=' + comment + '...%20' + title + '%20' + url;
+           } else if (p === 'hackernews') {
+             shareUrl = 'https://news.ycombinator.com/submitlink?u=' + url + '&t=' + title;
+           } else if (p === 'bluesky') {
+             shareUrl = 'https://bsky.app/intent/compose?text=' + comment + '%20' + title + '...%20' + url;
+           } else {
+             // fallback: leave href as-is
+             return true;
+           }
+
+           // analytics (do not throw if gtag missing)
+           if (typeof window.gtag === 'function') {
+             var label = p.charAt(0).toUpperCase() + p.slice(1);
+             gtag('event', 'click', { 'event_category': 'Social Media', 'event_label': label });
+           }
+
+           // set href just-in-time, let the browser handle target=_blank
+           a.href = shareUrl;
+           return true;
+         } catch (err) {
+           return true; // fall back to whatever href is
+         }
+       }))(this);">
+        <img src="Images/Icons/bluesky.png" alt="Share on Bluesky"/>
+    </a>
+
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PLACEHOLDER"
+       target="_blank"
+       class="no-outlink"
+       data-platform="facebook"
+       onclick="return window.nzsShare(this);">
+        <img src="Images/Icons/facebook.png" alt="Share on Facebook"/>
+    </a>
+
+    <a href="https://twitter.com/intent/tweet?url=URL_PLACEHOLDER&text=TITLE_PLACEHOLDER"
+       target="_blank"
+       class="no-outlink"
+       data-platform="twitter"
+       onclick="return window.nzsShare(this);">
+        <img src="Images/Icons/twitter.png" alt="Share on Twitter"/>
+    </a>
+
+    <a href="https://reddit.com/submit?url=URL_PLACEHOLDER&title=TITLE_PLACEHOLDER"
+       target="_blank"
+       class="no-outlink"
+       data-platform="reddit"
+       onclick="return window.nzsShare(this);">
+        <img src="Images/Icons/reddit.png" alt="Share on Reddit"/>
+    </a>
+
+    <a href="https://www.mastodon.social/share?text=TITLE_PLACEHOLDER%20URL_PLACEHOLDER"
+       target="_blank"
+       class="no-outlink"
+       data-platform="mastodon"
+       onclick="return window.nzsShare(this);">
+        <img src="Images/Icons/mastodon.png" alt="Share on Mastodon"/>
+    </a>
+
+    <a href="https://news.ycombinator.com/submitlink?u=URL_PLACEHOLDER&t=TITLE_PLACEHOLDER"
+       target="_blank"
+       class="no-outlink"
+       data-platform="hackernews"
+       onclick="return window.nzsShare(this);">
+        <img src="Images/Icons/hackernews.png" alt="Share on Hacker News"/>
+    </a>
+
+    <br>Sharing good ideas is a win-win. See you next week.<br>
+    <p>—James :)</p>
+
+</div>
+
 </div>
