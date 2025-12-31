@@ -215,50 +215,18 @@
 </blockquote>
 <br>
 <footer>
-    <script>
-        $(document).ready(function() {
-            $("#social-icons").load("social.html", function() {
-                // Get the current page URL and title
-                var pageUrl = window.location.href;
-                var pageTitle = document.title;
-
-                // Replace placeholders in the loaded HTML
-                $(this).find("a").each(function() {
-                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
-                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
-                });
+<script>
+    $(document).ready(function() {
+        $("#social-icons").load("social.html", function() {
+            var pageUrl = window.location.href;
+            var pageTitle = document.title;
+            $(this).find("a").each(function() {
+                this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
             });
         });
-    </script>
-    <!-- End Mailchimp Subscribe Form -->
-</div>
-</div>
-</footer>
-
-    <div class="subscribe">
-        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
-    </div>
-    <script>// Function to change the image
-    var left = true;
-        function changeImage() {
-          const imageElement = document.getElementById("blink1");
-          
-          // Change the image to the "closed eyes" version
-          if (left) {
-            imageElement.src = "./Images/Content/ProfilePic_Blink_Left.png";
-          } else {
-            imageElement.src = "./Images/Content/ProfilePic_Blink_Right.png";
-          }
-          left = !left;
-          
-          // Change it back to "normal eyes" after 1/10 of a second (100 milliseconds)
-          setTimeout(() => {
-            imageElement.src = "./Images/Content/ProfilePic.png";
-          }, 100);
-        }
-        // Call changeImage every 6 seconds (6000 milliseconds)
-        setInterval(changeImage, 3000);
-        </script>
+    });
+</script>
     
 <p>Your thoughts and contributions are welcome. Share, debate, and co-create in the comments.</p>
 
