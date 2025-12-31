@@ -215,18 +215,25 @@
 </blockquote>
 <br>
 <footer>
-<script>
-    $(document).ready(function() {
-        $("#social-icons").load("social.html", function() {
-            var pageUrl = window.location.href;
-            var pageTitle = document.title;
-            $(this).find("a").each(function() {
-                this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
-                this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
             });
         });
-    });
-</script>
+    </script>
     
 <p>Your thoughts and contributions are welcome. Share, debate, and co-create in the comments.</p>
 
