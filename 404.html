@@ -12,7 +12,7 @@
         <!-- Linking to Menu.html -->
         <script>
             $(document).ready(function() {
-                $("#menu").load("menu.html", function() {
+                $("#menu").load("/menu.html", function() {
                     var pageName = window.location.pathname.split("/").pop();
                     var menuLink = $("a[href='" + pageName + "']");
                     menuLink.parent().remove();
@@ -23,7 +23,8 @@
     
         <!-- Content -->
         <h1>YOU FOUND IT!</h1>
-        <p style="margin-top: 0.2em;">~ looks like you've discovered the secret 404 culdesac ~</p>
+        <aside>e</aside>
+        <h2>looks like you've discovered the secret 404 culdesac</h2>
         
         <img src="/Images/Content/culdesac.png">
 
