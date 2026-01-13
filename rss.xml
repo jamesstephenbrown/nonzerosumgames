@@ -11,6 +11,15 @@
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
+      <title>POLYMATHS</title>
+      <link>https://nonzerosum.games/polymaths1.html</link>
+      <description><![CDATA[an argument for analogies]]></description>
+      <pubDate>Wed, 14th Jan 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/polymaths1.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/polymaths1.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/polymaths1.png"/>
+    </item>
+    <item>
       <title>THE NPC TO MC SPECTRUM</title>
       <link>https://nonzerosum.games/npc.html</link>
       <description><![CDATA[... or my leadership style as opposed to Stuart's]]></description>
