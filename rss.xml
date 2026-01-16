@@ -11,9 +11,18 @@
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
-      <title>POLYMATHS</title>
+      <title>THE WHOLE KITTEN-CAVOODLE</title>
+      <link>https://nonzerosum.games/polymaths2.html</link>
+      <description><![CDATA[polymaths 2/3]]></description>
+      <pubDate>Sat, 17th Jan 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/polymaths2.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/polymaths2.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/polymaths2.png"/>
+    </item>
+    <item>
+      <title>AN ARGUMENT FOR ANALOGIES</title>
       <link>https://nonzerosum.games/polymaths1.html</link>
-      <description><![CDATA[an argument for analogies]]></description>
+      <description><![CDATA[polymaths 1/3]]></description>
       <pubDate>Wed, 14th Jan 2026 12:00:00 +0000</pubDate>
       <guid isPermaLink="true">https://nonzerosum.games/polymaths1.html</guid>
       <media:content url="https://nonzerosum.games/Images/Social/polymaths1.png" medium="image" type="image/png"/>
