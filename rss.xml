@@ -11,6 +11,15 @@
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
 
     <item>
+      <title>VOTING THROUGH THE VEIL</title>
+      <link>https://nonzerosum.games/theveil.html</link>
+      <description><![CDATA[John Rawls on selfish vs selfless voting]]></description>
+      <pubDate>Sat, 11 Apr 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/theveil.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/theveil.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/theveil.png"/>
+    </item>
+    <item>
       <title>WHAT ABOUT US?</title>
       <link>https://nonzerosum.games/polymaths3.html</link>
       <description><![CDATA[polymaths 2/3]]></description>

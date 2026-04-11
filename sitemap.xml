@@ -11,6 +11,11 @@
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://nonzerosum.games/theveil.html</loc>
+  <lastmod>2026-04-11T12:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://nonzerosum.games/aboutme.html</loc>
   <lastmod>2024-11-23T03:17:56+00:00</lastmod>
   <priority>0.80</priority>
