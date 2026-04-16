@@ -1,72 +1,123 @@
-<!DOCTYPE html><html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NEUTROPIA</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-    <body>
-        <!-- Linking to Menu.html -->
-        <script>
-            $(document).ready(function() {
-                $("#menu").load("menu.html", function() {
-                    var pageName = window.location.pathname.split("/").pop();
-                    var menuLink = $("a[href='" + pageName + "']");
-                    menuLink.parent().remove();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEUTROPIA</title>
+    <meta name="description" content="NEUTROPIA — an interactive non-zero-sum game exploring positive and negative balance through chain reactions.">
+    <meta name="keywords" content="NEUTROPIA, Non-Zero-Sum Games, Interactive Game, Javascript, Chain Reactions, Game Design">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/neutropia.png">
+    <meta property="og:title" content="NEUTROPIA">
+    <meta property="og:description" content="An interactive non-zero-sum game exploring positive and negative balance through chain reactions.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="menu"></div>
+    <h1>NEUTROPIA</h1>
+    <aside>E</aside>
+    <h2>a non-zero-sum game</h2>
+    <div class="content">
+        <p><b>NEUTROPIA</b> has been that project I've been working on since I began teaching myself to code, it's been through many iterations, and has spawned many variations and experiments. It is, to me the essential <a href="whatarenonzerosumgames.html">non-zero-sum game</a>, in that you have a positive and negative balance, but through chain reactions, one can get the upper hand</p>
+        <p>This is an early demo from 2015:</p>
+        <div style="padding:56.25% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/129763894?h=e4d3e8d3ac&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="NEUTROPIA — early demo 2015"></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+        <p>Shortly after showcasing this, Victoria Smith wrote an <a href="victoriasmitharticle.html">article</a> about it, and that inspired me to make it more rich and complex, which may have been a mistake, because 11 years later I'm still tinkering!</p>
+        <p>The following are some of the original sketches and designs as the project developed, as you can see it has been characterised by indecision.</p>
+    </div>
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <div class="links">
+        <img src="./Images/Coding/Neutropia Design/Dragon Draft Head.jpg" class="montage" alt="NEUTROPIA dragon head draft">
+        <img src="./Images/Coding/Neutropia Design/Dragon Draft Side.jpg" class="montage" alt="NEUTROPIA dragon side draft">
+        <img src="./Images/Coding/Neutropia Design/Dragon Draft Top.jpg" class="montage" alt="NEUTROPIA dragon top draft">
+        <img src="./Images/Coding/Neutropia Design/Dragon Draft Head Render.jpg" class="montage" alt="NEUTROPIA dragon head render">
+        <img src="./Images/Coding/Neutropia Design/JointSketch.jpg" class="montage" alt="NEUTROPIA joint sketch">
+        <img src="./Images/Coding/Neutropia Design/NeutSketches.jpg" class="montage" alt="NEUTROPIA design sketches">
+        <img src="./Images/Coding/Neutropia Design/JointSketch_2.jpg" class="montage" alt="NEUTROPIA joint sketch 2">
+        <img src="./Images/Coding/Neutropia Design/Player_Happy.jpg" class="montage" alt="NEUTROPIA happy player design">
+        <img src="./Images/Coding/Neutropia Design/Neut_Neutral.jpg" class="montage" alt="NEUTROPIA neutral character">
+        <img src="./Images/Coding/Neutropia Design/Neut_Happy.jpg" class="montage" alt="NEUTROPIA happy character">
+        <img src="./Images/Coding/Neutropia Design/Neut_Angry.jpg" class="montage" alt="NEUTROPIA angry character">
+    </div>
+    <div class="content">
+        <p>Some of the other derivations of NEUTROPIA are more simple for example <a href="neut.html">Neut</a> and <a href="loneliness.html">Loneliness</a></p>
+    </div>
+
+    <canvas></canvas>
+    <script src="./js/neutropia.js"></script>
+
+    <footer>
+        <div id="social-icons"></div>
+        <h3>RELATED CONTENT</h3>
+        <ul>
+            <li><a href="neut.html">Neut</a>—a simpler derivation of NEUTROPIA</li>
+            <li><a href="loneliness.html">Loneliness</a>—another game exploring connection and isolation</li>
+            <li><a href="whatarenonzerosumgames.html">What are Non-Zero-Sum Games?</a>—the theory behind the project</li>
+        </ul>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
                 });
             });
-        </script>
-        <div id="menu"></div>
-        <h1>NEUTROPIA</h1>
-        <p>~ a non-zero-sum game ~</p>
-        <div class="content">
+        });
+    </script>
 
-            <p>NEUTROPIA has been that project I've been working on since I began teaching myself to code, it's been through many iterations, and has spawned many variations and experiments. It is, to me the essential <a href="whatarenonzerosumgames.html">non-zero-sum game</a>, in that you have a positive and negative balance, but through chain reactions, one can get the upper hand</p>
-            <p>This is an early demo from 2015</p>
-            <iframe title="vimeo-player" src="https://player.vimeo.com/video/129763894?h=e4d3e8d3ac" width="640" height="360" class="rounded_outlined" frameborder="0" allowfullscreen></iframe>
-            <p>Shortly after showcasing this, Victoria Smith wrote an <a href="victoriasmitharticle.html">article</a> about it, and that inspired me to make it more rich and complex (which may have been a mistake!!! Because 7 years later I'm still tinkering). If you're on Twitter and would like to follow my (very slow) progress follow <a href="https://twitter.com/NEUTROPIA">@NEUTROPIA</a></p>
-            <p>The following are some of the original sketches and designs as the project developed, as you can see it has been characterised by indecision.</p>
-            
-        </div>
-        <div class="subscribe">
-            <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
-        </div>
-        <div class="links">
-            <img img src="./Images/Coding/Neutropia Design/Dragon Draft Head.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Dragon Draft Side.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Dragon Draft Top.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Dragon Draft Head Render.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/JointSketch.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/NeutSketches.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/JointSketch_2.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Player_Happy.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Neut_Neutral.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Neut_Happy.jpg" class="montage">
-            <img img src="./Images/Coding/Neutropia Design/Neut_Angry.jpg" class="montage">
-        </div>
-        <div class="content">
-
-            <p>Some of the other derivations of NEUTROPIA are more simple for example <a href="neut.html">Neut</a> and <a href="loneliness.html">Loneliness</a></p>
-            
-        </div>
-        
-        <canvas></canvas>
-        <script src="./js/neutropia.js"></script>
-            <div id="giscus_thread" ></div>
-            <script src="https://giscus.app/client.js"
-            data-repo="jamesstephenbrown/nonzerosumgames"
-            data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
-            data-category-id="DIC_kwDODpsK184CA9jn"
-            data-mapping="pathname"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="dark_dimmed"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
-        </script>
-    </body>
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+        behaviour: {
+          // Extract the filename from the URL path and use it as the UID
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+        // Configure your variables here
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
+</body>
 </html>
