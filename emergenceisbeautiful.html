@@ -126,22 +126,19 @@
     <img src="./Images/Content/Substrates_Quanta.png" alt="complexity arising">
 
     <p>I hope that this series has helped to illustrate the universality of <a href="whatarenonzerosumgames.html">non-zero-sum games</a>, through the principle of emergence. I think it is a hopeful and practical perspective to take in the world, reminding us that though life can at times feel like a struggle, and despite an inevitable entropic fate, we are fortunate to benefit from a universal tail wind pushing us toward greater complexity, order, beauty and meaning.</p>
+
+    <h3>BUT WAIT, THERE'S MORE!</h3>
+    <p>After completing this series I was <bs><b>incensed</b></bs> by a very old article I came across by the contemporary philosopher and world-famous uber-nerd Elizier Yudkowsky, where he lamented that the term 'emergence' has been used so consistently vaguely, as to render it essentially meaningless. In attempting to come up with a more precise definition to address his concerns, I came up with the idea of <a href="emergencespirals.html">emergence spirals</a>, which extends concepts covered in this series, and forms a sort of epilogue.</p>
     
     <h3>WHERE TO FROM HERE?</h3>
     <br>
     <div class="image-grid">
         <div class="image-item">
-            <a href="conscioussignificance.html">
-                <img src="./Images/Content/ConsciousSignificance_SelfCreation.png" alt="A cat sculpting a statue of itself">
-                <span class="image-title">CONSCIOUS SIGNIFICANCE<div style="margin-top: 0.2em;font-size: 70%;">redefining free will & determinism</div></span>
+            <a href="emergencespirals.html">
+                <img src="./Images/Content/EmergenceSpirals_BranchingSpirals.png" alt="Branching spirals">
+                <span class="image-title">EMERGENCE SPIRALS<div style="margin-top: 0.2em;font-size: 70%;">what Yudkowsky gets wrong about emergence</div></span>
             </a>
         </div>
-      <div class="image-item">
-          <a href="alignment1.html">
-              <img src="./Images/Content/Alignment_Collision.png" alt="a rabbit, and a robot face off">
-              <span class="image-title">THE ALIGNMENT PROBLEM NO ONE IS TALKING ABOUT<div style="margin-top: 0.2em;font-size: 70%;">humanity has a problem</div></span>
-          </a>
-      </div>
     </div>
 
     <footer>
@@ -159,7 +156,17 @@
 
     <script>
         $(document).ready(function() {
-            $("#social-icons").load("social.html");
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
         });
     </script>
 
