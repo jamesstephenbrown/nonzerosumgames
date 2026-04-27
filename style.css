@@ -182,18 +182,6 @@ p > img {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 .social-share {
   text-align: center; /* Centers the share icons */
   padding: 10px 0; /* Adds some spacing around the icons */
@@ -530,11 +518,22 @@ bottom: 0; /* Extend line to bottom */
 
 
 
-.portraits, .rounded_outlined {
+.rounded_outlined {
 border-radius: 50px;
 display: block;
 margin: auto;
 width: 50%;
+position: relative;
+align-content: center;
+overflow: hidden;
+text-align: center;
+}
+
+.portraits {
+border-radius: 0.5em;
+display: block;
+margin: auto;
+width: 75%;
 position: relative;
 align-content: center;
 overflow: hidden;
