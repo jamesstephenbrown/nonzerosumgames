@@ -1,78 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
+<head><link rel="shortcut icon" href="./Images/Favicon.ico" type="image/x-icon" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1CMWXLFBCG');
+    </script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nat Baker's Website</title>
-</head>
+    <title>Welcome to NON-ZERO-SUM GAMES</title>
+    <link rel="icon" href="https://nonzerosum.games/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://nonzerosum.games/favicon.png">
+
+    <link rel="canonical" href="https://nonzerosum.games/" />
+    <meta name="description" content="Home page for a World-Help site: How to create more Non-Zero-Sum Games for a brighter future.">
+    <meta name="keywords" content="Game Theory, AI, Non-Zero-Sum, Zero-Sum, Game Development, Ethics, Morality, Humanity, Positive Future, Futurism">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <a name="Top"></a>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- For Facebook and LinkedIn -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/alignment1.png">
+    <meta property="og:title" content="NON-ZERO-SUM GAMES">
+    <meta property="og:description" content="~ a world-help site ~">
 
+    <!-- For Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <meta name="twitter:image" content="https://nonzerosum.games/Images/Social/alignment1.png">
+    <meta name="twitter:title" content="NON-ZERO-SUM GAMES">
+    <meta name="twitter:description" content="~ a world-help site ~">
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+          window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const center = windowHeight / 2;
+      
+            document.querySelectorAll('.image-item').forEach(function(item) {
+              const bounds = item.getBoundingClientRect();
+              const itemCenter = bounds.top + bounds.height / 2;
+              const distanceToCenter = Math.abs(center - itemCenter);
+              
+              // Calculate opacity and scale based on distance to center
+              const scale = Math.min(Math.max(0.9 + (1 - distanceToCenter / center) * 0.1, 0.9), 1);
+      
+              const titleElement = item.querySelector('.image-title');
+     
+      
+              // Apply the scale transformation
+              item.style.transform = `scale(${scale})`;
+            });
+          });
+        });
+      </script>
+
+</head>
 <body>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
 
-    <div class="content">
-        <br>
-        <br>
-    <div class="profile-wrapper">
-        <img src="./Profile.jpg" alt="Profile picture" class="profile-pic">
+    <h3 style="margin-bottom: 0px; font-size: 90%;">WELCOME TO</h3>
+    <h1 style="margin-top: 5px; margin-bottom: 3px">NON•ZERO•SUM GAMES</h1><aside>f</aside>
+    <h2>a <strong>world</strong>-help site & <a href="https://pod.link/1810797958">podcast</a></h2><br>
+
+    <div class="animation-container">
+        <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
     </div>
-        <br>
+    <script>
+        const totalFrames = 26;
+        const framePrefix = 'Images/Content/Frames_Rabbits_';
+        const frameSuffix = '.png';
+        const frameElement = document.getElementById('animation-frame');
+        let currentFrame = 0;
+        let framesLoaded = 0;
+        const frames = [];
 
-    <h1><strong>Nat Baker.</strong></h1>
-    <p>Kia ora, I’m a writer living in Auckland, New Zealand.</p>
-    <br>
-    
-    <h3>Stories</h3>
+        // Display the first frame immediately
+        frameElement.src = framePrefix + '0000' + frameSuffix;
 
-        <p><a href="https://www.nzherald.co.nz/the-listener/books/short-story-maia-and-the-sparrow-by-nat-baker/premium/Q5IAOGGNRFCVJP745NM54C5HZA/" target="_blank">Maia and the Sparrow</a>The New Zealand Listener [january, 2026]</p><br>
-        <p><a href="https://newsroom.co.nz/2025/06/07/short-story-one-night-with-you-by-nat-baker/" target="_blank">One Night With You</a>Newsroom [june, 2025]</p><br>
-        <p><a href="https://turbinekapohau.org.nz/archive-issues/2022-contents/fiction-nat-baker/" target="_blank">A Good Daughter</a>Turbine | Kapohau [2022 issue]</p><br>
-        <p><a href="https://paperroadpress.co.nz/product/yb04/" target="_blank">Last Bird Island</a>Year’s Best Aotearoa NZ Science Fiction &amp; Fantasy [vol 4]</p><br>
-        <p><a href="https://www.takahe.org.nz/product/takahe-103/" target="_blank">Last Bird Island</a>takahe [issue 103]</p><br>
-        <p><a href="https://theressamalone.wixsite.com/millymagazine/firework" target="_blank">Firework</a>milly magazine</p><br>
-        <p><a href="https://www.newsroom.co.nz/2020/05/09/1159811/short-story-stray-by-nat-baker" target="_blank">Stray</a>Newsroom [may, 2020]</p><br>
-        <p><a href="https://www.takahe.org.nz/product/takahe-94/" target="_blank">Get Delicious</a>takahe [issue 94]</p><br>
-        <p><a href="https://headland.org.nz/issues/issue-12/animal-life/" target="_blank">Animal Life</a>Headland [issue 12]</p><br>
-         
-    <h3>Book Reviews</h3>
-        <p><a href="https://www.ketebooks.co.nz/reviews/review-childish-palate-by-shariff-burke">'Childish Palate' by Shariff Burke</a>Kete</p><br>
-        <p><a href="https://www.ketebooks.co.nz/en/reviews/review-surplus-women" target="_blank">'Surplus Women' by Michelle Duff</a>Kete</p><br>
-        <p><a href="https://www.ketebooks.co.nz/en/reviews/review-pretty-ugly-by-kirsty-gunn" target="_blank">'Pretty Ugly' by Kirsty Gunn</a>Kete</p><br>
-        <p><a href="https://www.ketebooks.co.nz/en/listen/audiobook-review-make-it-make-sense1" target="_blank">'Make it Make Sense' by Lucy Blakiston and Bel Hawkins</a>Kete</p><br>
-        <p><a href="https://www.ketebooks.co.nz/en/reviews/review-dead-ends-by-laura-borrowdale" target="_blank">'Dead Ends' by Laura Borrowdale</a>Kete</p><br>
-    
-    <h3>Awards</h3>
-    
-        <p><a href="https://www.newsroom.co.nz/emma-ling-sidnam-wins-surrey-prize" target="_blank">2023 Surrey Hotel-Newsroom Writers Award</a>Third equal</p><br>
-        <p><a href="https://www.waikato.ac.nz/arts/study/writing-studies/sargeson-prize/winners" target="_blank">2022 Sargeson Prize</a>'A Good Daughter' Short-listed</p><br>
-        <p><a href="https://twitter.com/takahemagazine/status/1466929298711855105" target="_blank">2021 takahe Short Story Prize</a>'Last Bird Island' First place</p><br>
-        <p><a href="https://www.newsroom.co.nz/1245224/10-writers-shortlisted-for-the-surrey-hotel-newsroom-award" target="_blank">2020 Surrey Hotel-Newsroom Writers Award</a>Long-listed</p><br>
-    <br>
-    <br>
-    <br>
-  <button onclick="copyEmail()">
-    <span id="email">nataliembaker@gmail.com</span>
-  <span id="copied-message" style="display: none; margin-left: 0.5rem;">copied!</span>
-  </button>
+        // Preload images
+        for (let i = 0; i <= totalFrames; i++) {
+            const img = new Image();
+            const frameNumber = i.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            img.src = filename;
+            img.onload = () => {
+                framesLoaded++;
+                if (framesLoaded === totalFrames + 1) {
+                    // All frames are loaded, start the animation
+                    startAnimation();
+                }
+            };
+            frames.push(img);
+        }
+
+        // Function to update the image source
+        function updateFrame() {
+            const frameNumber = currentFrame.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            frameElement.src = filename;
+
+            currentFrame++;
+
+            if (currentFrame > totalFrames) {
+                currentFrame = totalFrames; // Ensure it stops on the last frame
+            } else {
+                setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
+            }
+        }
+
+        // Start the animation
+        function startAnimation() {
+            updateFrame();
+        }
+    </script>
+    <p>Hi, I'm Non-Zero-Sum <a href="aboutme.html">James</a>, your companion on this exploration of <a href="whatarenonzerosumgames.html">win-win games</a> and how they are essential for a better future. <a href="blog.html">Each week</a> we'll explore a new aspect of <a href="gametheory.html">game theory</a>, <a href="map-moralphilosophy.html">moral philosophy</a>, <a href="map-ethicaleconomics.html">ethical economics</a> and <a href="map-ai.html">artificial intelligence</a>—looking to solve the complex problems we face in our world <em><strong>together</em></strong>.</p>
+
+    <a name="WhatsNew"></a>
+<!-- NEW Section -->
+<h3>WHAT'S NEW?</h3>
 <br>
-<a href="https://bsky.app/profile/natbaker.bsky.social">@natbaker.bsky.social</a>
+    <div class="image-item">
+        <a href="collaborativecorner.html">
+            <img src="./Images/Content/FurryFriends_ButterflyFlower.png" alt="A butterfly and flower collaborating — growing something greater together">
+            <span class="image-title">COLLABORATIVE CORNER<div style="margin-top: 0.2em;font-size: 70%;">growing something greater</div></span>
+        </a>
+    </div>
+
+<h3>WHAT'S NEXT?</h3>
+<p>All the posts are connected through the lens of non-zero-sum games, but they fall into a few broad categories. You can start your journey with whatever appeals to you:</p>
+
+<div class="image-grid">
+    <div class="image-item">
+        <a href="map-funzone.html">
+            <img src="./Images/Content/Cosmic_Lottery.png" alt="a hedgehog jumping for joy">
+            <span class="image-title"><sup style="font-size: 70%";>THE</sup> FUN ZONE<div style="margin-top: 0.2em;font-size: 70%;">a new section especially for newcomers</div></span>
+        </a>
+    </div>
 </div>
+<div class="image-grid">
+    <div class="image-item">
+        <a href="map-gametheory.html">
+            <img src="./Images/Content/Hercules_Beetles.png" alt="Hercules beetles facing off">
+            <span class="image-title">GAME THEORY<div style="margin-top:0.2em;font-size:70%;">exploring strategic interaction</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-moralphilosophy.html">
+            <img src="./Images/Content/Bothsides_ShiftedCentre.png" alt="A diagram showing the shifted centre of the political spectrum">
+            <span class="image-title">MORAL PHILOSOPHY<div style="margin-top:0.2em;font-size:70%;">exploring ethics and values</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-ethicaleconomics.html">
+            <img src="./Images/Content/Goodhart_ByMoonlight.png" alt="A moth flying by moonlight">
+            <span class="image-title">ETHICAL ECONOMICS<div style="margin-top:0.2em;font-size:70%;">realigning systems & incentives with human values</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-foundations.html">
+            <img src="./Images/Content/Emergence_Pondering.png" alt="Hedgehog pondering shapes">
+            <span class="image-title">FOUNDATIONS<div style="margin-top:0.2em;font-size:70%;">complexity, consciousness, and history</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-nature.html">
+            <img src="./Images/Content/FurryFriends_HedgehogCrab.png" alt="A hedgehog and a crab">
+            <span class="image-title">NON-ZERO-SUM GAMES IN NATURE<div style="margin-top:0.2em;font-size:70%;">cooperation in the wild</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-nonzeroheroes.html">
+            <img src="./Images/Content/Liv_WinWin.png" alt="Liv Boeree illustration">
+            <span class="image-title">NON-ZERO HEROES<div style="margin-top:0.2em;font-size:70%;">champions of cooperation</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-ai.html">
+            <img src="./Images/Content/Alignment_Collision.png" alt="Misalignment illustration">
+            <span class="image-title">AI AND ITS MALCONTENTS<div style="margin-top:0.2em;font-size:70%;">navigating a future with new friends?</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="arcade.html">
+            <img src="./Images/Content/Tetris_ObscuringProblem.png" alt="Minimalist 3D Tetris blocks">
+            <span class="image-title">ALL THE GAMES & SIMULATIONS<div style="margin-top:0.2em;font-size:70%;">discovery through play</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-creativity.html">
+            <img src="./Images/Content/CrappyDrawings_Paintings.png" alt="Four rabbits looking at paintings">
+            <span class="image-title">CREATIVITY<div style="margin-top:0.2em;font-size:70%;">the only thing I'm actually qualified to write about</div></span>
+        </a>
+    </div>
+</div>
+<br>
+<blockquote>
+  "It is well to remember that the entire universe, <em><strong>with one trifling exception</strong></em>, is composed of others."<br>—<b>John Holmes</b>
+</blockquote>
+<br>
+<footer>
+        <div id="social-icons"></div>
+</footer>
 
-<script>
-  function copyEmail() {
-    const email = document.getElementById("email").innerText;
-    navigator.clipboard.writeText(email).then(() => {
-      const message = document.getElementById("copied-message");
-      message.style.display = "inline";
-      setTimeout(() => {
-        message.style.display = "none";
-      }, 1500);
-    });
-  }
-</script>
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
 
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
+    
+<p>Your thoughts and contributions are welcome. Share, debate, and co-create in the comments.</p>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+        behaviour: {
+          // Extract the filename from the URL path and use it as the UID
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+        // Configure your variables here
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
 </body>
-
 </html>
