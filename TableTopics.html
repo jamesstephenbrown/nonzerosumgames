@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Table Topics Practice</title>
+  <!-- Site stylesheet in root -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tt-page {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tt-card {
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 50px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .dark-mode .tt-card {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    .tt-topic {
+      font-size: 170%;
+      line-height: 1.05;
+      margin: 20px auto;
+      max-width: 760px;
+    }
+    .tt-word {
+      margin: 15px auto;
+      padding: 15px;
+      border-radius: 30px;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+    .tt-word strong {
+      font-size: 140%;
+    }
+    .tt-lights {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 25px 0 15px;
+      flex-wrap: wrap;
+    }
+    .tt-light-wrap {
+      text-align: center;
+      font-size: 90%;
+    }
+    .tt-light {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      background-color: rgba(0, 0, 0, 0.18);
+      border: 8px solid rgba(255, 255, 255, 0.5);
+      opacity: 0.45;
+      transition: all 0.25s ease;
+    }
+    .tt-light.active {
+      opacity: 1;
+      transform: scale(1.08);
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.75);
+    }
+    .tt-light.green.active {
+      background-color: #42c96f;
+    }
+    .tt-light.orange.active {
+      background-color: #ffad33;
+    }
+    .tt-light.red.active {
+      background-color: #ef4b4b;
+    }
+    .tt-timer {
+      font-size: 120%;
+      opacity: 0.35;
+      margin: 8px 0;
+      font-variant-numeric: tabular-nums;
+    }
+    .tt-progress-wrap {
+      height: 14px;
+      max-width: 520px;
+      margin: 10px auto 20px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .tt-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #42c96f, #ffad33, #ef4b4b);
+      border-radius: 999px;
+    }
+    .tt-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .tt-feedback {
+      font-size: 125%;
+      margin: 20px auto;
+      max-width: 680px;
+      color: white;
+    }
+    .dark-mode .tt-feedback {
+      color: #d59b7b;
+    }
+    .tt-stats {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+    .tt-stat {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background-color: rgba(0, 0, 0, 0.15);
+      color: white;
+    }
+    .dark-mode .tt-stat {
+      color: #d59b7b;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    .tt-custom-box,
+    .tt-review,
+    .tt-history {
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .dark-mode .tt-custom-box,
+    .dark-mode .tt-review,
+    .dark-mode .tt-history {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    textarea {
+      width: 90%;
+      min-height: 120px;
+      border: none;
+      border-radius: 25px;
+      padding: 15px;
+      font-size: 100%;
+      font-family: 'MoreSugar', fallback, sans-serif;
+      text-align: center;
+      color: var(--body-bg-color);
+      background-color: rgba(255, 255, 255, 0.6);
+      resize: vertical;
+    }
+    .dark-mode textarea {
+      background-color: #3a3452;
+      color: #d59b7b;
+    }
+    .tt-transcript {
+      white-space: pre-wrap;
+      text-align: left;
+      margin: 15px auto;
+      padding: 18px;
+      border-radius: 25px;
+      background-color: rgba(0, 0, 0, 0.12);
+      max-height: 260px;
+      overflow: auto;
+      line-height: 1.45;
+    }
+    .tt-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 10px;
+      margin: 15px auto;
+    }
+    .tt-metric {
+      border-radius: 25px;
+      padding: 12px;
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    .tt-metric strong {
+      display: block;
+      font-size: 150%;
+    }
+    .tt-checks {
+      list-style: none;
+      padding: 0;
+      margin: 10px auto;
+    }
+    .tt-checks li {
+      width: auto;
+      text-align: center;
+      margin: 8px auto;
+      padding: 10px;
+      border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    .tt-history-item {
+      text-align: left;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    .tt-history-topic {
+      text-align: center;
+      font-weight: bold;
+    }
+    .tt-history-meta {
+      text-align: center;
+      opacity: 0.75;
+      font-size: 85%;
+      margin: 6px 0;
+    }
+    .tt-history-text {
+      white-space: pre-wrap;
+      max-height: 130px;
+      overflow: auto;
+      line-height: 1.4;
+      font-size: 90%;
+    }
+    .tt-hidden {
+      display: none;
+    }
+    @media only screen and (max-width: 500px) {
+      .tt-light {
+        width: 85px;
+        height: 85px;
+      }
+      .tt-topic {
+        font-size: 135%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+  <main class="tt-page">
+    <h1>TABLE TOPICS PRACTICE</h1><aside>f</aside>
+    <h2>Improvised speaking, with training wheels.</h2>
+    <section class="tt-card">
+      <h3>Your topic</h3>
+      <p class="tt-topic" id="topic">Press start to begin.</p>
+      <div class="tt-word">
+        <div>Word of the day</div>
+        <strong id="word">—</strong>
+        <div id="definition">Use it naturally if it fits.</div>
+      </div>
+      <div class="tt-lights">
+        <div class="tt-light-wrap">
+          <div class="tt-light green" id="greenLight"></div>
+          Green<br>1:00
+        </div>
+        <div class="tt-light-wrap">
+          <div class="tt-light orange" id="orangeLight"></div>
+          Orange<br>1:30
+        </div>
+        <div class="tt-light-wrap">
+          <div class="tt-light red" id="redLight"></div>
+          Red<br>2:00
+        </div>
+      </div>
+      <div class="tt-timer" id="timer">0:00</div>
+      <div class="tt-progress-wrap">
+        <div class="tt-progress" id="progress"></div>
+      </div>
+      <div class="tt-controls">
+        <button id="startBtn">Start Speech</button>
+        <button id="doneBtn">Done</button>
+        <button id="nextBtn">Next Topic</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+      <div class="tt-feedback" id="feedback">
+        Make one clear point, support it, then land the ending.
+      </div>
+      <div class="tt-stats">
+        <div class="tt-stat">Completed: <strong id="completed">0</strong></div>
+        <div class="tt-stat">Streak: <strong id="streak">0</strong></div>
+        <div class="tt-stat">Best: <strong id="best">0</strong></div>
+      </div>
+    </section>
+    <section class="tt-custom-box">
+      <h3>Custom Topics</h3>
+      <p>Add one topic per line. These will be mixed into the random selection.</p>
+      <textarea id="customTopics" placeholder="Example:
+Should honesty always be tactful?
+What is something society misunderstands about confidence?
+When is quitting wise?"></textarea>
+      <div class="tt-controls">
+        <button id="saveCustomBtn">Save Custom Topics</button>
+        <button id="clearCustomBtn">Clear Custom Topics</button>
+      </div>
+    </section>
+    <section class="tt-review tt-hidden" id="reviewSection">
+      <h3>Speech Review</h3>
+      <div class="tt-metrics">
+        <div class="tt-metric">Words <strong id="wordCount">0</strong></div>
+        <div class="tt-metric">Fillers <strong id="fillerCount">0</strong></div>
+        <div class="tt-metric">Approx. WPM <strong id="wpm">0</strong></div>
+        <div class="tt-metric">Word used? <strong id="wordUsed">No</strong></div>
+      </div>
+      <ul class="tt-checks">
+        <li id="openingCheck">Opening: not detected</li>
+        <li id="exampleCheck">Example / evidence: not detected</li>
+        <li id="endingCheck">Conclusion: not detected</li>
+      </ul>
+      <h3>Transcript</h3>
+      <div class="tt-transcript" id="transcript"></div>
+      <p id="speechSupportNote"></p>
+    </section>
+    <section class="tt-history">
+      <h3>Recent Speeches</h3>
+      <div id="history"></div>
+    </section>
+  </main>
+  <script>
+    const defaultTopics = [
+      "What is a small decision that changed the direction of your life?",
+      "Should people aim to be more spontaneous or more disciplined?",
+      "Describe a time when you changed your mind.",
+      "What is something children understand better than adults?",
+      "If you could teach one idea to everyone, what would it be?",
+      "What is a useful failure?",
+      "Is comfort underrated or overrated?",
+      "What makes a conversation memorable?",
+      "What skill should every adult learn?",
+      "What is something you used to misunderstand?",
+      "What does courage look like in ordinary life?",
+      "Should people spend more time alone?",
+      "What is a tradition worth preserving?",
+      "What is a tradition worth abandoning?",
+      "What makes someone trustworthy?",
+      "What is the difference between confidence and arrogance?",
+      "What is a beautiful compromise?",
+      "What would you do with one extra hour every day?",
+      "What is a lesson you learned too late?",
+      "Should ambition have limits?",
+      "What is something society rewards too much?",
+      "What is something society undervalues?",
+      "What makes a good apology?",
+      "What is the role of humour in difficult moments?",
+      "What is one thing technology cannot replace?",
+      "Should we optimise life, or simply live it?",
+      "What does maturity mean?",
+      "When is quitting the right decision?",
+      "What makes a place feel like home?",
+      "What should people be less afraid of?"
+    ];
+    const words = [
+      { word: "Cogent", definition: "Clear, logical, and convincing." },
+      { word: "Salient", definition: "Most noticeable or important." },
+      { word: "Lucid", definition: "Clear and easy to understand." },
+      { word: "Incisive", definition: "Sharp, clear, and penetrating." },
+      { word: "Equanimity", definition: "Calmness under pressure." },
+      { word: "Prudent", definition: "Careful and sensible about consequences." },
+      { word: "Tenacious", definition: "Persistent; not easily giving up." },
+      { word: "Candid", definition: "Honest and direct." },
+      { word: "Resilient", definition: "Able to recover after difficulty." },
+      { word: "Magnanimous", definition: "Generous, especially toward rivals." },
+      { word: "Earnest", definition: "Serious, sincere, and committed." },
+      { word: "Tactful", definition: "Sensitive in handling difficult matters." },
+      { word: "Diligent", definition: "Careful and persistent in work." },
+      { word: "Adroit", definition: "Skilful, clever, and quick." },
+      { word: "Pithy", definition: "Brief but full of meaning." },
+      { word: "Sanguine", definition: "Optimistic, especially in difficulty." }
+    ];
+    const congratulations = [
+      "Excellent! Another proper speech completed. That is how fluency is built.",
+      "Brilliant work. You practised the exact discomfort most people avoid.",
+      "Superb. That was another real rep toward calm, confident speaking.",
+      "Great effort. You began, continued, and finished. That matters.",
+      "Fantastic. Your speaking brain is getting faster and less fragile.",
+      "Very strong. You are building the reflex of structure under pressure.",
+      "Excellent discipline. Confidence is starting to become earned rather than hoped for.",
+      "Well done. That is one more unexpected question you are now harder to ambush with.",
+      "Splendid. Repetition is doing its quiet, unglamorous work.",
+      "Outstanding. Keep stacking these; this is exactly how speakers become composed."
+    ];
+    const milestones = {
+      3: "Three speeches completed! You are properly warmed up now.",
+      5: "Five speeches! Excellent session. That is no longer dabbling; that is training.",
+      10: "Ten speeches! Serious work. You have earned a small, dignified glow of smugness.",
+      15: "Fifteen speeches! Exceptional stamina. You are building real stage-readiness.",
+      20: "Twenty speeches! Formidable. That is deliberate conditioning, not casual practice."
+    };
+    const fillerPatterns = [
+      /\bum+\b/g,
+      /\buh+\b/g,
+      /\bah+\b/g,
+      /\ber+\b/g,
+      /\blike\b/g,
+      /\byou know\b/g,
+      /\bsort of\b/g,
+      /\bkind of\b/g,
+      /\bi guess\b/g,
+      /\bbasically\b/g,
+      /\bactually\b/g
+    ];
+    const openingMarkers = [
+      "i think", "i believe", "my answer", "the way i see it", "for me", "i would say"
+    ];
+    const exampleMarkers = [
+      "for example", "for instance", "a time", "once", "when i", "because", "in my experience"
+    ];
+    const endingMarkers = [
+      "so", "therefore", "in conclusion", "to conclude", "ultimately", "that is why", "the point is"
+    ];
+    const topicEl = document.getElementById("topic");
+    const wordEl = document.getElementById("word");
+    const definitionEl = document.getElementById("definition");
+    const timerEl = document.getElementById("timer");
+    const progressEl = document.getElementById("progress");
+    const feedbackEl = document.getElementById("feedback");
+    const greenLight = document.getElementById("greenLight");
+    const orangeLight = document.getElementById("orangeLight");
+    const redLight = document.getElementById("redLight");
+    const startBtn = document.getElementById("startBtn");
+    const doneBtn = document.getElementById("doneBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const completedEl = document.getElementById("completed");
+    const streakEl = document.getElementById("streak");
+    const bestEl = document.getElementById("best");
+    const reviewSection = document.getElementById("reviewSection");
+    const transcriptEl = document.getElementById("transcript");
+    const speechSupportNote = document.getElementById("speechSupportNote");
+    const wordCountEl = document.getElementById("wordCount");
+    const fillerCountEl = document.getElementById("fillerCount");
+    const wpmEl = document.getElementById("wpm");
+    const wordUsedEl = document.getElementById("wordUsed");
+    const openingCheck = document.getElementById("openingCheck");
+    const exampleCheck = document.getElementById("exampleCheck");
+    const endingCheck = document.getElementById("endingCheck");
+    const historyEl = document.getElementById("history");
+    const customTopicsEl = document.getElementById("customTopics");
+    const saveCustomBtn = document.getElementById("saveCustomBtn");
+    const clearCustomBtn = document.getElementById("clearCustomBtn");
+    let timerInterval = null;
+    let startTime = null;
+    let elapsedSeconds = 0;
+    let currentTopic = "";
+    let currentWord = "";
+    let bellPlayed = false;
+    let recognition = null;
+    let isRecording = false;
+    let finalTranscript = "";
+    let interimTranscript = "";
+    let completed = Number(localStorage.getItem("tt_completed") || 0);
+    let streak = Number(localStorage.getItem("tt_streak") || 0);
+    let best = Number(localStorage.getItem("tt_best") || 0);
+    let history = JSON.parse(localStorage.getItem("tt_history") || "[]");
+    customTopicsEl.value = localStorage.getItem("tt_custom_topics") || "";
+    initSpeechRecognition();
+    updateStats();
+    renderHistory();
+    newPrompt();
+    function getAllTopics() {
+      const custom = customTopicsEl.value
+        .split("\n")
+        .map(topic => topic.trim())
+        .filter(Boolean);
+      return [...defaultTopics, ...custom];
+    }
+    function randomItem(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+    function newPrompt() {
+      const allTopics = getAllTopics();
+      let nextTopic = randomItem(allTopics);
+      while (nextTopic === currentTopic && allTopics.length > 1) {
+        nextTopic = randomItem(allTopics);
+      }
+      const nextWord = randomItem(words);
+      currentTopic = nextTopic;
+      currentWord = nextWord.word;
+      topicEl.textContent = currentTopic;
+      wordEl.textContent = nextWord.word;
+      definitionEl.textContent = nextWord.definition;
+      resetTimerOnly();
+      clearSpeech();
+      feedbackEl.textContent = "Take a breath. Choose a position. Give one example. Land the ending.";
+    }
+    function startSpeech() {
+      if (!currentTopic) newPrompt();
+      clearInterval(timerInterval);
+      startTime = Date.now();
+      elapsedSeconds = 0;
+      bellPlayed = false;
+      finalTranscript = "";
+      interimTranscript = "";
+      reviewSection.classList.add("tt-hidden");
+      timerInterval = setInterval(updateTimer, 200);
+      updateTimer();
+      startBtn.textContent = "Restart Speech";
+      startTranscription();
+      feedbackEl.textContent = "Go. Do not chase perfection; chase a clear shape.";
+    }
+    function updateTimer() {
+      elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+      const minutes = Math.floor(elapsedSeconds / 60);
+      const seconds = String(elapsedSeconds % 60).padStart(2, "0");
+      timerEl.textContent = `${minutes}:${seconds}`;
+      progressEl.style.width = `${Math.min((elapsedSeconds / 150) * 100, 100)}%`;
+      greenLight.classList.toggle("active", elapsedSeconds >= 60);
+      orangeLight.classList.toggle("active", elapsedSeconds >= 90);
+      redLight.classList.toggle("active", elapsedSeconds >= 120);
+      if (elapsedSeconds >= 150 && !bellPlayed) {
+        playBell();
+        bellPlayed = true;
+        feedbackEl.textContent = "Bell. Wrap it cleanly. One final sentence.";
+      }
+    }
+    function completeTopic() {
+      if (!currentTopic) return;
+      clearInterval(timerInterval);
+      if (recognition && isRecording) {
+        recognition.stop();
+      }
+      const transcript = (finalTranscript + " " + interimTranscript).trim();
+      completed++;
+      streak++;
+      best = Math.max(best, streak);
+      const record = {
+        date: new Date().toLocaleString(),
+        topic: currentTopic,
+        word: currentWord,
+        duration: timerEl.textContent,
+        transcript,
+        fillerCount: countFillers(transcript),
+        words: countWords(transcript)
+      };
+      if (transcript) {
+        history.unshift(record);
+        history = history.slice(0, 8);
+        localStorage.setItem("tt_history", JSON.stringify(history));
+      }
+      localStorage.setItem("tt_completed", completed);
+      localStorage.setItem("tt_streak", streak);
+      localStorage.setItem("tt_best", best);
+      updateStats();
+      showReview(transcript);
+      renderHistory();
+      feedbackEl.textContent =
+        milestones[completed] ||
+        congratulations[Math.floor(Math.random() * congratulations.length)];
+    }
+    function showReview(transcript) {
+      reviewSection.classList.remove("tt-hidden");
+      if (!transcript) {
+        transcriptEl.textContent = "No transcript captured. Check microphone permission or try Chrome / Edge.";
+      } else {
+        transcriptEl.textContent = transcript;
+      }
+      const lower = transcript.toLowerCase();
+      const words = countWords(transcript);
+      const fillers = countFillers(transcript);
+      const minutes = Math.max(elapsedSeconds / 60, 0.01);
+      const wpm = elapsedSeconds > 5 ? Math.round(words / minutes) : 0;
+      wordCountEl.textContent = words;
+      fillerCountEl.textContent = fillers;
+      wpmEl.textContent = wpm;
+      wordUsedEl.textContent = currentWord && lower.includes(currentWord.toLowerCase()) ? "Yes" : "No";
+      setCheck(openingCheck, "Opening", containsAny(lower, openingMarkers));
+      setCheck(exampleCheck, "Example / evidence", containsAny(lower, exampleMarkers));
+      setCheck(endingCheck, "Conclusion", containsAny(lower, endingMarkers));
+    }
+    function resetAll() {
+      clearInterval(timerInterval);
+      if (recognition && isRecording) {
+        recognition.stop();
+      }
+      completed = 0;
+      streak = 0;
+      best = 0;
+      history = [];
+      localStorage.setItem("tt_completed", completed);
+      localStorage.setItem("tt_streak", streak);
+      localStorage.setItem("tt_best", best);
+      localStorage.setItem("tt_history", JSON.stringify(history));
+      updateStats();
+      renderHistory();
+      newPrompt();
+      feedbackEl.textContent = "Reset complete. Fresh session.";
+    }
+    function resetTimerOnly() {
+      clearInterval(timerInterval);
+      startTime = null;
+      elapsedSeconds = 0;
+      bellPlayed = false;
+      timerEl.textContent = "0:00";
+      progressEl.style.width = "0%";
+      greenLight.classList.remove("active");
+      orangeLight.classList.remove("active");
+      redLight.classList.remove("active");
+      startBtn.textContent = "Start Speech";
+    }
+    function clearSpeech() {
+      finalTranscript = "";
+      interimTranscript = "";
+      transcriptEl.textContent = "";
+      reviewSection.classList.add("tt-hidden");
+    }
+    function initSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        speechSupportNote.textContent = "Speech recognition is not available in this browser. Try Chrome or Edge.";
+        return;
+      }
+      recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = "en-NZ";
+      recognition.onstart = () => {
+        isRecording = true;
+      };
+      recognition.onend = () => {
+        isRecording = false;
+      };
+      recognition.onerror = event => {
+        speechSupportNote.textContent = "Transcription error: " + event.error + ". Check microphone permission.";
+      };
+      recognition.onresult = event => {
+        interimTranscript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const text = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += text + " ";
+          } else {
+            interimTranscript += text;
+          }
+        }
+        /* Deliberately do not display transcript while speaking. */
+      };
+    }
+    function startTranscription() {
+      if (!recognition || isRecording) return;
+      try {
+        recognition.start();
+      } catch (error) {
+        speechSupportNote.textContent = "Could not start transcription. Try again after a moment.";
+      }
+    }
+    function countWords(text) {
+      if (!text.trim()) return 0;
+      return text.trim().split(/\s+/).length;
+    }
+    function countFillers(text) {
+      const lower = text.toLowerCase();
+      let count = 0;
+      fillerPatterns.forEach(pattern => {
+        const matches = lower.match(pattern);
+        if (matches) count += matches.length;
+      });
+      return count;
+    }
+    function containsAny(text, markers) {
+      return markers.some(marker => text.includes(marker));
+    }
+    function setCheck(element, label, passed) {
+      element.textContent = passed ? `${label}: detected` : `${label}: not detected`;
+    }
+    function updateStats() {
+      completedEl.textContent = completed;
+      streakEl.textContent = streak;
+      bestEl.textContent = best;
+    }
+    function renderHistory() {
+      if (!history.length) {
+        historyEl.innerHTML = "<p>Completed speeches with transcripts will appear here.</p>";
+        return;
+      }
+      historyEl.innerHTML = history.map(item => `
+        <div class="tt-history-item">
+          <div class="tt-history-topic">${escapeHTML(item.topic)}</div>
+          <div class="tt-history-meta">
+            ${escapeHTML(item.date)} · ${escapeHTML(item.duration)} ·
+            ${item.words} words · ${item.fillerCount} fillers ·
+            word: ${escapeHTML(item.word)}
+          </div>
+          <div class="tt-history-text">${escapeHTML(item.transcript || "No transcript captured.")}</div>
+        </div>
+      `).join("");
+    }
+    function escapeHTML(string) {
+      return String(string)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+    function playBell() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+      gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.35, audioContext.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 1.2);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 1.2);
+    }
+    saveCustomBtn.addEventListener("click", () => {
+      localStorage.setItem("tt_custom_topics", customTopicsEl.value);
+      feedbackEl.textContent = "Custom topics saved. Excellent — now the ambush questions can be personally tailored.";
+      newPrompt();
+    });
+    clearCustomBtn.addEventListener("click", () => {
+      customTopicsEl.value = "";
+      localStorage.removeItem("tt_custom_topics");
+      feedbackEl.textContent = "Custom topics cleared. Back to the default topic pool.";
+      newPrompt();
+    });
+    startBtn.addEventListener("click", startSpeech);
+    doneBtn.addEventListener("click", completeTopic);
+    nextBtn.addEventListener("click", newPrompt);
+    resetBtn.addEventListener("click", resetAll);
+  </script>
+</body>
+</html>
