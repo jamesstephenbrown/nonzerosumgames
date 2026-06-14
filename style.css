@@ -1,988 +1,465 @@
-@font-face {
-  font-family: 'MoreSugar';
-  src: url('https://nonzerosum.games/MoreSugar-Regular.otf') format('opentype'), url('MoreSugar-Regular.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'MoreSugarExtras';
-  src: url('https://nonzerosum.games/MoreSugar-Extras.otf') format('opentype'), url('MoreSugar-Extras.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'MoreSugar';
-  src: url('https://nonzerosum.games/MoreSugar-Thin.otf') format('opentype'), url('MoreSugar-Thin.otf') format('opentype');
-  font-weight: normal;  /* Thin usually corresponds to a lower font-weight */
-  font-style: normal;
-}
-/* Responsive itch.io embed */
-.embed-itch { max-width: 100%; margin: 0 auto; }
-.embed-itch .itch-embed {
-  width: 100%;
-  height: auto;
-  border: 0;
-  aspect-ratio: 635 / 655; /* match original width/height */
-}
-/* Fallback for browsers without aspect-ratio */
-@supports not (aspect-ratio: 1 / 1) {
-  .embed-itch { position: relative; }
-  .embed-itch::before {
-    content: "";
-    display: block;
-    padding-top: calc(655 / 635 * 100%); /* maintains 635x655 ratio */
-  }
-  .embed-itch .itch-embed {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-  }
-}
-/* Might not be necessary with aspect-ratio support now widespread, but leaving in for safety. */
-/* Responsive itch embed scaler */
-/* .itch-scale { overflow: hidden; max-width: 100%; margin: 0 auto; }
-.itch-scale .itch-frame { display: block; transform-origin: top left; } */
-
-.coral-ui{display:flex;justify-content:center;align-items:center;gap:12px;margin:6px 0}
-#nextDot{font-size:140%}
-
-/* Mobile styles first — default iframe height */
-iframe.spotify-embed {
-  height: 152px;
-}
-
-body.dark-mode .social-share {
-  background-color: transparent;
-  color: #d59b7b;
-}
-
-/* ── payoff‑matrix ─────────────────────────────────────────────── */
-#payoffTable{
-  border-collapse:collapse;
-  table-layout:fixed;     /* keep grid */
-  width: 300px;  
-  font-family:inherit;
-  background:inherit;
-}
-
-#payoffTable th,
-#payoffTable td{
-  padding:.35em .5em;
-  text-align:center;
-  vertical-align:middle;
-}
-
-/* explicit column widths */
-#payoffTable col.label {width:100}    /* row labels               */
-#payoffTable col.pay  {width:103px}    /* each payoff column       */
-
-
-.matrix-cell{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.25em;
-}
-.matrix-cell .val{
-  width:3.5ch;
-  text-align:center;
-  /* font-family:inherit; */
-}
-.matrix-cell input[type=range]{
-  width:100%;
-  box-sizing:border-box;
-}
-
-
-.animation-container {
-  /* width: 100%; */
-  /* height: 100%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-p {
-  text-align: center;
-}
-p > img {
-  display: block;
-  margin: 1em auto;
-  max-width: 100%;
-  height: auto;
-}
-
-#animation-frame {
-  max-width: 120%;
-  transform: translateX(-10%); /* Center and offset by 100px to the left */
-  height: auto;
-}
-.expandable-word {
-  position: relative;
-  display: inline-block;
-  color: black; /* Set the word color to black */
-  /* border: 2px solid #3388C2; */
-  /* background-color:  #81cafc; */
-   /* Thicker border */
-  /* padding: 0px 4px; */
-  /* border-radius: 10px; */
-  cursor: pointer;
-  transition: border-color 0.3s, background-color 0.3s;
-}
-
-.dark-mode .expandable-word {
-  color: #d59b7b;
-}
-
-.dark-mode .expandable-word:hover {
-  color: #d59b7b;
-}
-
-.expandable-word:hover {
-  border-color: #55AAE3;
-  /* background-color: rgba(85, 170, 227, 0.2); */
-}
-
-.expandable-word::after {
-  content: attr(data-info);
-  /* visibility: hidden;
-  opacity: 0; */
-  width: 95%;
-  height: 0%;
-  white-space: nowrap;
-  overflow: hidden;
-  background-color: #3388C2;
-  color: rgba(255, 255, 255, 0.8); /* Set the description text color to black */
-  text-align: center;
-  border: 1px solid #3388C2; /* Thicker border for the floating box */
-  border-radius: 10px;
-  padding: 1px; /* Less padding */
-  position: absolute;
-  z-index: 0; /* Ensure it's behind the text initially */
-  top: 24px;
-  /* Position below the original word with a small gap */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  font-size: 0.8em; /* Smaller font size for the description text */
-  transition: all 0.3s ease;
-}
-
-.expandable-word:hover::after {
-  visibility: visible;
-  opacity: 1;
-  width: 200px;
-  height: auto;
-  max-width: 300px; /* Adjust as needed */
-  white-space: normal;
-  padding: 5px; /* Add padding for the expanded box */
-  top: 26px;
-  z-index: 1; /* Ensure it's behind the text initially */
-}
-
-
-
-
-.social-share {
-  text-align: center; /* Centers the share icons */
-  padding: 10px 0; /* Adds some spacing around the icons */
-}
-
-.social-share a {
-  margin: 0 5px; /* Spacing between each icon */
-  display: inline-block; /* Aligns icons in a row */
-}
-
-.social-share img {
-  width: 30px; /* Set the size of the icons */
-  height: auto;
-  transition: transform 0.3s ease; /* Smooth scaling on hover */
-}
-
-.social-share img:hover {
-  transform: scale(1.2); /* Scales the icon on hover */
-}
-
-
-
-canvas {
-  width: 100%;    /* Make the canvas width responsive */
-  height: auto;   /* Maintain the aspect ratio */
-  display: block; /* Remove extra space below the canvas */
-}
-button {
-  font-family: 'MoreSugar', sans-serif; /* Use the custom font */
-  background-color: #55AAE3; /* Background color from your body styling */
-  color: white; /* Text color */
-  border: 5px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
-  border-radius: 20px; /* Rounded corners */
-  padding: 5px 10px; /* Padding inside the button */
-  font-size: 20px; /* Slightly larger font size for better readability */
-  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
-}
-
-button:hover {
-  background-color: rgba(85, 170, 227, 0.8); /* Lighter background on hover */
-  border-color: rgba(255, 255, 255, 0.8); /* More opaque border on hover */
-}
-
-a[target="_blank"]:not(.no-outlink)::after {
-  content: "^";
-  color: #ffffff55;
-  text-decoration: none;
-  display: inline-block; /* Prevents inheriting underline from the link */
-}
-
-
-
-.nav-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 0;
-  font-size: 24px;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #ffffff;
-  margin: 0 10px;
-  transition: color 0.3s;
-  font-size: 24px;
-}
-
-.part-number {
-  padding: 0 15px;
-}
-
-:root {
-  --body-bg-color: #55AAE3;
-  /* ## #2ecbbe; */
-}
-
-body {
-  word-wrap: break-word;
-  font-size: 125%;
-  background-color: var(--body-bg-color);
-  max-width: 800px;
-  padding: 20px 20px 0 20px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-}
-
-/* Dark mode overrides */
-.dark-mode {
-  background-color: #2a243d !important;
-  color: #d59b7b;
-}
-
-/* --- The pill switch container --- */
-.switch {
-  display: inline-block;
-  /* float: right; */
-  position: absolute;
-  /* display: inline-block; */
-  margin-right: 30px;
-  margin-left: 10px;
-  margin-bottom: 20px;
-  margin-top: -10px;
-  width: 30px;
-  height: 50px;
-}
-
-/* Hide the checkbox visually */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  cursor: pointer;
-}
-
-/* The slider background (the "pill") */
-.slider {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  right: 0; 
-  bottom: 2px;
-  transition: 0.4s;
-  cursor: pointer;
-  border-radius: 24px;
-  /* OFF (Light Mode) Pill color: #2a243d */
-  /* background-color: #ffffff; */
-  background-color: #55AAE3;
-}
-
-/* The knob (circle) */
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 22px;
-  width: 22px;
-  left: 4px;
-  bottom: 4px;
-  transition: 0.4s;
-  border-radius: 50%;
-  /* OFF (Light Mode) Knob color: #d59b7b */
-  background-color: rgba(0, 0, 0, 0.15);
-}
-
-/* ON (Dark Mode) Pill color: #55AAE3 */
-input:checked + .slider {
-  background-color: #d59b7b;
-}
-
-/* ON (Dark Mode) Knob color: #ffffff */
-input:checked + .slider:before {
-  transform: translateY(-18px);
-  background-color: #2a243d;
-}
-
-/* Round style for the slider (the pill) */
-.slider.round {
-  border-radius: 34px;
-}
-.slider.round:before {
-  border-radius: 50%;
-}
-
-
-
-/* .dark-mode footer {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #2a243d !important;
-} */
-
-.dark-mode blockquote, footer {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-
-
-
-
-
-
-strong {
-  font-weight: bold;  /* Note: this would actually use a browser default bold, unless you add a bold variant to your @font-face definitions */
-}
-
-h1, h3 {
-  font-family: 'MoreSugar', fallback, sans-serif;
-  font-weight: bold;
-  text-align: center;
-  /* margin-left: auto;
-  margin-right: auto; */
-  margin-bottom: -10px;
-  justify-content: center !important;
-}
-
-h1 {
-  font-size: 140%;
-}
-
-
-
-
-h2 {
-  /* text-shadow: 0.2px 0.2px 0 rgba(0, 0, 0, 1),-0.2px -0.2px 0 rgba(0, 0, 0, 1), -0.2px 0.2px 0 rgba(0, 0, 0, 1),0.2px -0.2px 0 rgba(0, 0, 0, 1); */
-  font-size: 100%;
-  font-weight: 500 !important;
-  font-style: normal;
-  font-family: 'MoreSugar', fallback, sans-serif;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1px;
-}
-
-h3 {
-  font-size: 120%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: -10px;
-}
-
-a {
-color: white;
-text-decoration: none;
-}
-
-a:hover {
-font-style: oblique;
-}
-
-li {
-  text-align: left;
-  padding-bottom: 5px;
-  width: 95%;
-}
-
-ul {
-  margin-left: -10px;
-}
-
-ol {
-  margin-left: 0px;
-}
-
-img {
-  max-width: 100%;
-  filter: drop-shadow(0 0 100px transparent); /* placeholder */
-}
-
-blockquote, footer {
-  text-align: center;
-  font-family: 'MoreSugar', fallback, sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  padding: 10px;
-  text-align: center;
-  border-radius: 30px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-blockquote {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-footer {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-
-.menuColumn {
-  margin-top: -80px;
-  padding: 10px;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  text-align: center; /* Ensure content is centered */
-}
-
-.menuColumn a, .menuColumn aside {
-  margin-right: 10px; /* Space between items */
-  text-decoration: none;
-}
-aside {
-  font-family: 'MoreSugarExtras', sans-serif; /* Specific font for <aside> */
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Remove default padding */
-  text-decoration: none;
-}
-
-.outline {
-  padding-left: 20px;
-}
-
-.outline body {
-  text-align: left;
-  margin-left: 20px;
-  flex-direction: column; /* Stack items vertically for mobile */
-  align-items: flex-start; /* Align to the start instead of center */
-}
-.outline section {
-  text-align: left;
-  margin-left: -20px;
-}
-
-details {
-  text-align: left;
-    position: relative;
-    margin-left: 20px;
-}
-
-summary {
-  text-align: left;
-    cursor: pointer;
-    position: relative;
-    list-style: none;
-    margin-left: -20px;
-}
-
-/* Vertical line directly below the arrow when open */
-details[open] > details::after {
-content: '';
-position: absolute;
-left: -35px; /* Aligns the line directly under the arrow */
-top: 0px; /* Starts the line just below the text */
-width: 3px;
-height: 100%; /* Allow height to be adjusted dynamically */
-border-left: 3px solid rgba(0, 0, 0, 0.10);
-bottom: 0; /* Extend line to bottom */
-}
-
-
-
-
-.rounded_outlined {
-border-radius: 50px;
-display: block;
-margin: auto;
-width: 50%;
-position: relative;
-align-content: center;
-overflow: hidden;
-text-align: center;
-}
-
-.portraits {
-border-radius: 0.5em;
-display: block;
-margin: auto;
-width: 75%;
-position: relative;
-align-content: center;
-overflow: hidden;
-text-align: center;
-}
-
-.mina {
-color: mediumpurple;
-}
-
-#circle, .rounded_outlined {
-background-color: #55AAE3;
-margin-right: 50px;
-margin-left: 50px;
-}
-.gif-container img {
-  width: 100%;
-  display: inline-block;
-}
-.gif-container iframe {
-  max-width: 100%;
-  display: inline-block;
-}
-.gif-container {
-  text-align: center;
-}
-#circle > div {
-height: 200px;
-background-color: red;
-}
-
-.rounded_outlined, .montage {
-border: 5px solid #3388C2;
-border-radius: 50px;
-margin: auto;
-background-color: #55AAE3;
-overflow: hidden;
-text-align: center;
-}
-
-
-.blog_rounded_outlined {
-  border: 5px solid #3388C2;
-  border-radius: 25px;
-  margin: auto;
-  overflow: hidden;
-  text-align: center;
-  background-color: #55AAE3;
-  }
-.rounded-corners {
-  border-radius: 30px;
-  object-fit: cover;
-  overflow: hidden;
-}
-
-
-.montage {
-  position: relative;
-  border: 5px solid #3388C2;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
-.subscribe {
-  font-size: 200%;
-  font-family: 'MoreSugarExtras', fallback, 'MoreSugar';
-  margin: 20px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
-.container {
+      * {
+        box-sizing: border-box;
+      }
+
+      html { font-size: 14px; }
+
+      main {
+        margin-top: 140px;   /* adjust to taste */
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        align-items: stretch; /* important */
+      }
+
+      body {
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        text-shadow: none;
+      }
+
+      /* Scope text-shadow to content areas only, not nav/chrome */
+      .content, main.video-page {
+        text-shadow:
+          0 0 8px rgba(0, 0, 0, 0.6),
+          0 2px 12px rgba(0, 0, 0, 0.55);
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      p {
+        color: rgb(200, 200, 200);
+      }
+
+      .navbar {
+        background-color: #000;
+        color: #d8d8d8;
+        border-bottom: 0.5px solid gray;
+        width: 100%;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-family: 'Allerta Stencil', sans-serif;
+        z-index: 1000;
+
+        display: flex;
+        flex-direction: column;       /* ↓ stack title then menu */
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-logo {
+        font-size: 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        text-align: center;
+        white-space: nowrap;        /* don't wrap */
+        overflow: hidden;           /* stop it spilling out */
+        text-overflow: ellipsis;    /* optional: … if it still can't fit */
+        max-width: 100%;
+        font-size: clamp(18px, 6vw, 40px);  /* shrink on small screens */
+        line-height: 1.1;
+      }
+
+      .nav-menu {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;   /* stretch items */
+        width: 100%;
+        max-width: 800px;                 /* stop stretching after 800px */
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav-menu li {
+        flex: 1;                          /* each menu item grows evenly */
+        text-align: center;
+      }
+
+      .nav-menu a {
+        display: block;
+        padding: 10px 0;
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 20px;
+        max-width: 100vw;
+        margin-top: 100px;
+        overflow-x: hidden;
+      }
+
+      .content {
+        font-family: 'Allerta Stencil', sans-serif;
+        color: #ffffff;
+        margin-left: 60px;
+        padding-right: 40px;
+      }
+
+      .content p {
+        /* font-size: 1rem; */
+        line-height: 1.5;
+        margin-top: 10px;
+      }
+
+/* BIG SCREEN (default): original behaviour, no crop */
+.photos {
   display: flex;
   flex-direction: column;
-}
-.darkColumn, .menuColumn {
-background-color: rgba(0, 0, 0, 0.15);
-}
-.darkColumn, .menuColumn, .lightColumn {
-padding: 10px;
-margin-bottom: 10px;
-text-align: center;
-border-radius: 50px;
-}
-.darkColumn, .lightColumn {
-flex: 33.33%;
-margin: 10px;
+  align-items: flex-end;
+  margin-right: 0;
+  padding-right: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
-.lightColumn {
-background-color: rgba(255, 255, 255, 0.3);
-}
-
-.content, .links {
-position: relative;
-text-align: center;
-}
-#mc_embed_signup {
-  background-color: var(--body-bg-color); /* inherits background color */
-  text-align: center;
-  font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-  border-radius: 30px;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-#mc_embed_signup h1 {
-  font-family: 'MoreSugar', fallback, sans-serif;
-  font-weight: bold;
-  font-style: bold;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-#mc_embed_signup p {
-  background-color: var(--body-bg-color); /* inherits background color */
-  position: relative;
-  text-align: center;
-  font-family: 'MoreSugar', fallback, 'vals_handwriting_is_pretty_Rg';
-  font-weight: normal;
-  font-style: normal;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-#mc_embed_signup input[type="email"] {
-  font-size: 100%;
-  border-radius: 20px;
-  padding: 20px;
-  border: none;
-  font-family: 'MoreSugar';
-  font-weight: bold;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-#mc_embed_signup input[type="submit"] {
-  height: 50px;
-  line-height: 0px;
-  /* line-height: same as button height; */
-  font-size: 100%;
-  padding:20px;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 50px;
-  font-family: 'MoreSugar';
-  color: white;
-  border: none;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-#mce-EMAIL {
-  width: 80%; /* you can adjust this value according to your needs */
-  color:  var(--body-bg-color);
-  background-color: rgba(255, 255, 255, 0.3); /* semi-transparent white */
-  border: none;  /* Add a light grey border */
-  outline: none;  /* Disable the default outline */
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-/* Focused state of the input field */
-#mce-EMAIL:focus {
-  background-color: rgba(255, 255, 255, 0.6); /* semi-transparent white */
-  color: black;
-  border: none;  /* Change border to a different color if you like */
-  align-items: center;
-  align-content: center;
-  align-self: center;
-}
-input::placeholder, textarea::placeholder {
-  color:  var(--body-bg-color);
-}
-.giscus {
-  font-size: 100%;
-}
-/* Tooltip container */
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-/* Tooltip text (Image) */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 200px;
-  background-color: transparent;
-  text-align: center;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-  top: 150%; /* Position the tooltip below the text */
-  left: 50%;
-  margin-left: -100px; /* Center the tooltip */
-}
-
-/* Show tooltip text when you hover over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-#game {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.player-grid {
-  margin: 10px;
-  border: 1px solid black;
-  padding: 5px;
-}
-
-.cell {
-  width: 20px;
-  height: 20px;
-  border: 1px solid grey;
-  display: inline-block;
-  text-align: center;
-  line-height: 20px;
-  margin: 2px;
-}
-
-
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Standard size based on the largest cell */
-  gap: 10px;
-  justify-content: center; /* Center the items */
-  padding-bottom: 10px;
-}
-
-.image-item {
-  position: relative;
-  border-radius: 30px; /* Rounded corners */
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.15); /* Background color */
-  padding-top: 200px;
-}
-
-.image-item img {
-  position: absolute;
-  top: 67%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 95%;
-  max-height: 55%;
+.photos img {
+  width: 100%;
+  height: auto;          /* important: restores no top/bottom crop */
   display: block;
-  transition: transform 0.3s ease;
+  border: none;
+  filter: grayscale(1);
+  transition: filter 1s;
+
+  /* important: undo the flex-crop rules */
+  flex: 0 0 auto;
+  object-fit: contain;   /* or remove entirely; contain prevents cropping */
 }
 
-
-.image-item a {
-  display: inline-block;        /* anchor becomes a confined box */
-  box-sizing: border-box;       /* padding counted inside width */
-  padding: 1rem;                /* visible padding around everything */
-  text-decoration: none;
-  background: transparent;      /* remove temp highlight if present */
-  max-width: 320px; 
-}
-
-.image-new {
-  position: relative;
-  border-radius: 30px;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.15);
-  padding-top: 50px;
-}
-
-
-.image-new img {
-  /* Remove absolute positioning so the container grows with the image */
-  display: block;
-  max-width: 95%;
-  margin: 20px auto;
-  transition: transform 0.3s ease;
-}
-
-.image-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  color: white;
-  /* display: flex;
-  flex-direction: column; */
-  justify-content: top;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  border-radius: 30px;
-  text-decoration: none;
-}
-
-.image-title span {
-  display: inline;
-}
-
-.image-title .symbol {
-  display: inline;   /* this finally beats .image-title span { display:block } */
-}
-
-.symbol {
-  font-family: 'MoreSugarExtras', sans-serif;
-  display: inline;        /* <- key line */
-  line-height: 1;         /* optional, keeps its box tidy */
-  vertical-align: baseline; /* or middle if you prefer the look */
-}
-
-/* .image-item a:hover .image-title {
-  opacity: 0;
-} */
-
-.image-item a {
-  text-decoration: none; /* No underline */
-}
-.image-new a {
-  text-decoration: none; /* No underline */
-}
-
-.fb-comments, .fb-comments iframe {
-    width: 100% !important;
-}
-
-bs {
-  text-decoration: none;
-  display: inline-block;
-  transform: skewX(10deg);
-  font-style: normal;
-}
-.dark-mode img {
-    filter: drop-shadow(0 0 100px rgb(167, 127, 183));
-    overflow: visible !important; /* <-- doesn't do anything here */
-    /* display: block; */
-    /* position: relative; */
-    z-index: 2;
-    will-change: filter;
-}
-
-  /* .dark-mode img::after {
-      content: "";
-      position: absolute;
-      inset: -100px;
-      z-index: 1;
-  } */
-
-.dark-mode #mc_embed_signup {
-  background-color: transparent !important;
-  color: #d59b7b !important;
-}
-
-.dark-mode #mc_embed_signup p,
-.dark-mode #mc_embed_signup label {
-  color: #d59b7b !important;
-}
-
-.dark-mode #mc_embed_signup input[type="email"] {
-  background-color: #3a3452 !important;
-  color: #d59b7b !important;
-  border: none !important;
-}
-
-.dark-mode #mc_embed_signup input[type="submit"],
-.dark-mode #mc_embed_signup .button {
-  background-color: #3a3452 !important;
-  color: white !important;
-  border: none !important;
-}
-
-.dark-mode #mc_embed_signup .clear,
-.dark-mode #mc_embed_signup form {
-  background-color: transparent!important;
-  color: #d59b7b !important;
-}
-
-.dark-mode #mc_embed_signup .animation-container {
-  background-color: transparent !important;
-}
-
-.dark-mode #mc_embed_signup input::placeholder {
-  color: #2a243d !important;
-}
-.dark-mode p {
-  background-color: transparent !important;
-}
-
-  
-/* Computer */
-@media only screen and (min-device-width: 500px) {
-
-
-  iframe.spotify-embed {
-    height: 80px;
+/* SMALL SCREEN: cropped-to-fit stack */
+@media (max-width: 768px) {
+  .photos {
+    height: 100%;
+    align-self: stretch;
   }
 
-
-  .expandable-word::after {
-    top: 26px;
+  .photos img {
+    flex: 1 1 0;
+    height: 0;           /* let flex control height */
+    object-fit: cover;   /* allow cropping */
+    object-position: center;
   }
-
-  p {
-    text-align: justify;
-  }
-  .gif-container img {
-    height: 200px;
-    width: auto;
-    display: inline-block;
-  }
-  .halfSizeImage {
-    width: 75%;
-    height: auto;
-  }
-  .container {
-    flex-direction: row;
-  }
-
-
-  body {
-    font-size: 135%;
-  }
-  h1 {
-    font-size: 300%;
-  }
-
-  .column, .darkColumn, .lightColumn {
-    flex: 33.33%;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-    padding-bottom: 20px;
-  }
-
-  blockquote {
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 5%;
-  }
-  footer {
-    background-color: rgba(0, 0, 0, 0.15);
-    padding: 5%;
-  }
-  img {
-    max-width: 95%;
-  }
-  
 }
 
+      .photos img:hover {
+        filter: grayscale(0);
+        cursor: pointer;
+      }
+
+      h1 {
+        font-size: 60px;
+      }
+
+      h2 {
+        margin-top: 50px;
+      }
+
+      h3 {
+        margin-bottom: -5px;
+      }
+
+      .btns {
+        margin-top: 18px;
+        background-color: #d8d8d8;
+        cursor: pointer;
+        color: #191919;
+        padding: 12px 20px;
+        border: 0;
+        border-radius: 20px;
+        margin-left: 10px;
+      }
+
+      .btns:hover {
+        background-color: #848482;
+      }
+
+      /* ── Award highlight (replaces legacy <FONT> tags) ──── */
+      .award {
+        color: #FFFF8F;
+        font-style: italic;
+      }
+
+      /* ── Active nav item ────────────────────────────────── */
+      .nav-menu li.active a {
+        background-color: #ffffff;
+        color: #000000;
+        border-radius: 8px;
+        padding: 6px 14px;
+        line-height: 1.4;
+      }
+
+      /* ── Nav top row (logo + hamburger) ─────────────────── */
+      .nav-top {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .nav-toggle {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: none;
+        border: none;
+        color: #d8d8d8;
+        font-size: 26px;
+        cursor: pointer;
+        line-height: 1;
+        padding: 2px 4px;
+      }
+
+      /* ── Hamburger mobile menu ───────────────────────────── */
+      @media (max-width: 480px) {
+        .nav-toggle {
+          display: block;
+        }
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          max-width: 100%;
+          padding-bottom: 8px;
+          gap: 0;
+        }
+        .nav-menu.open {
+          display: flex;
+        }
+        .nav-menu li {
+          flex: none;
+          width: 100%;
+        }
+        .nav-menu a {
+          padding: 8px 0;
+        }
+      }
+
+      /* ── YouTube external link button ───────────────────── */
+      .yt-link {
+        display: inline-block;
+        margin-top: 14px;
+        color: #fff;
+        font-family: 'Allerta Stencil', sans-serif;
+        font-size: 0.95rem;
+        text-decoration: none;
+        border: 1.5px solid rgba(255,255,255,0.35);
+        padding: 9px 20px;
+        border-radius: 4px;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .yt-link:hover {
+        border-color: #fff;
+        background: rgba(255,255,255,0.08);
+      }
+
+      /* ── YouTube embedding-disabled fallback ────────────── */
+      .video-yt-fallback {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        gap: 14px;
+        text-shadow: none;
+      }
+      .video-yt-fallback p {
+        color: rgba(255,255,255,0.45);
+        font-size: 0.85rem;
+        margin: 0;
+        font-family: 'Allerta Stencil', sans-serif;
+        text-align: center;
+        padding: 0 20px;
+      }
+      .video-yt-fallback a {
+        color: #fff;
+        font-family: 'Allerta Stencil', sans-serif;
+        font-size: 1rem;
+        text-decoration: none;
+        border: 1.5px solid rgba(255,255,255,0.45);
+        padding: 10px 22px;
+        border-radius: 4px;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .video-yt-fallback a:hover {
+        border-color: #fff;
+        background: rgba(255,255,255,0.08);
+      }
+
+      /* ── Click-to-load video poster ─────────────────────── */
+      .video-poster {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0d0d0d;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .video-poster:hover {
+        background: #1c1c1c;
+      }
+      .play-icon {
+        font-size: 3.5rem;
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.2s, transform 0.15s;
+        line-height: 1;
+        user-select: none;
+      }
+      .video-poster:hover .play-icon {
+        color: #fff;
+        transform: scale(1.12);
+      }
+
+      /* ── Video page ─────────────────────────────────────── */
+
+      main.video-page {
+        display: block;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 140px 20px 96px;
+      }
+
+      .video-text {
+        margin: 56px 0 28px;
+        font-family: 'Allerta Stencil', sans-serif;
+      }
+
+      .video-text:first-child {
+        margin-top: 0;
+      }
+
+      main.video-page h1 {
+        margin: 0 0 20px;
+        font-size: clamp(2.2rem, 6vw, 4.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        color: #ffffff;
+      }
+
+      main.video-page h3 {
+        margin: 0 0 14px;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        font-weight: 700;
+        color: #d8d8d8;
+      }
+
+      main.video-page p {
+        max-width: 68ch;
+        margin: 0 0 1em;
+        font-size: 1.08rem;
+        color: rgb(200, 200, 200);
+        font-family: 'Allerta Stencil', sans-serif;
+      }
+
+      .vimeo-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        margin: 0;
+        background: #000;
+        overflow: hidden;
+      }
+
+      .vimeo-wrap iframe {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .final-text {
+        margin-top: 56px;
+      }
+
+      @media (max-width: 600px) {
+        main.video-page {
+          padding-top: 120px;
+          padding-bottom: 72px;
+        }
+
+        .video-text {
+          margin: 44px 0 22px;
+        }
+
+        main.video-page p {
+          font-size: 1rem;
+        }
+      }
+
+      /* ── End video page ─────────────────────────────────── */
+
+      @media (max-width: 768px) {
+
+        /* Stack layout normally but allow layering — homepage only */
+        main:not(.video-page) {
+          position: relative;
+          display: block;
+          overflow: hidden;
+        }
+
+        /* Text sits on top */
+        .content {
+          position: relative;
+          z-index: 3;
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+
+        /* PHOTOS: positioned behind text, right half only */
+        .photos {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50%;      /* photos take right half */
+          height: 100%;    /* fill vertical space */
+          overflow: hidden;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .photos img {
+          filter: grayscale(0);
+          width: 100%;
+          height: auto;
+          opacity: 0.70;   /* soften so text remains readable */
+          display: block;
+        }
+
+        /* GRADIENT over entire main area — homepage only */
+        main:not(.video-page)::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          pointer-events: none;
+
+          background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(0, 0, 0, 0.50) 65%,
+            rgba(0, 0, 0, 0.25) 85%,
+            rgba(0, 0, 0, 0.00) 100%
+          );
+        }
+      }
+    
