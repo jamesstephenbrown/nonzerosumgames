@@ -1,520 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="James Brown — award-winning documentary editor and director based in Auckland, New Zealand. 20+ years editing for New Zealand's top documentary producers. Three national awards.">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="James Brown – Documentary Editor & Director | Branch Out Media">
-  <meta property="og:description" content="Award-winning documentary editor and director based in Auckland, New Zealand. 20+ years editing for New Zealand's top documentary producers.">
-  <meta property="og:type" content="website">
-  <title>James Brown – Documentary Editor &amp; Director | Branch Out Media</title>
-  <link href="style.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="en">
+<head><link rel="shortcut icon" href="./Images/Favicon.ico" type="image/x-icon" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to NON-ZERO-SUM GAMES</title>
+    <link rel="icon" href="https://nonzerosum.games/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://nonzerosum.games/favicon.png">
+
+    <link rel="canonical" href="https://nonzerosum.games/" />
+    <meta name="description" content="Home page for a World-Help site: How to create more Non-Zero-Sum Games for a brighter future.">
+    <meta name="keywords" content="Game Theory, AI, Non-Zero-Sum, Zero-Sum, Game Development, Ethics, Morality, Humanity, Positive Future, Futurism">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- For Facebook and LinkedIn -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/alignment1.png">
+    <meta property="og:title" content="NON-ZERO-SUM GAMES">
+    <meta property="og:description" content="~ a world-help site ~">
+
+    <!-- For Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+    <meta name="twitter:image" content="https://nonzerosum.games/Images/Social/alignment1.png">
+    <meta name="twitter:title" content="NON-ZERO-SUM GAMES">
+    <meta name="twitter:description" content="~ a world-help site ~">
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+          window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const center = windowHeight / 2;
+      
+            document.querySelectorAll('.image-item').forEach(function(item) {
+              const bounds = item.getBoundingClientRect();
+              const itemCenter = bounds.top + bounds.height / 2;
+              const distanceToCenter = Math.abs(center - itemCenter);
+              
+              // Calculate opacity and scale based on distance to center
+              const scale = Math.min(Math.max(0.9 + (1 - distanceToCenter / center) * 0.1, 0.9), 1);
+      
+              const titleElement = item.querySelector('.image-title');
+     
+      
+              // Apply the scale transformation
+              item.style.transform = `scale(${scale})`;
+            });
+          });
+        });
+      </script>
+
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-top">
-      <a href="index.html" class="nav-logo">Branch Out Media</a>
-      <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+    <!-- Linking to Menu.html -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+
+    <h3 style="margin-bottom: 0px; font-size: 90%;">WELCOME TO</h3>
+    <h1 style="margin-top: 5px; margin-bottom: 3px">NON•ZERO•SUM GAMES</h1><aside>f</aside>
+    <h2>a <strong>world</strong>-help site & <a href="https://pod.link/1810797958">podcast</a></h2><br>
+
+    <div class="animation-container">
+        <img id="animation-frame" src="Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
     </div>
-    <ul class="nav-menu">
-      <li class="active"><a href="./index.html">Home</a></li>
-      <li><a href="./services.html">Services</a></li>
-      <li><a href="./showcase.html">Showcase</a></li>
-      <li><a href="./contact.html">Contact</a></li>
-    </ul>
-  </nav>
-  <main>
-    <div class="content">
-      <h1>James Brown</h1>
-      <h2>Documentary Director / Editor</h2>
-      <p>
-        Kia Ora — I began Branch Out Media in 2007 when I left an easy-going job making education videos to <i>branch out</i> on my own as a freelance director and editor. I am based in Auckland, New Zealand, but work with clients around the globe telling stories, big and small.
-      </p>
-      <p>
-        Over the past 20 years I have edited for many of New Zealand's top documentary directors and producers — Leanne Pooley, Annie Goldson, Cass Avery, Oskar Kightly, Roger Donaldson, Pietra Brettkelly, Justin Pemberton, Matthew Metcalfe and many others.
-      </p>
-      <p>
-        I've received three national awards for documentary editing: 2013 Moa with director Annie Goldson, 2020 NZTVA with co-editor Prisca Bouchet, and 2025 NZSA with my long-time editing partner Tim Woodhouse.
-      </p>
-      <p>
-        As a director I have shot all over the world, primarily on my long-form series "An American Rugby Odyssey", filmed in New Zealand, USA, China, UK, Europe, Japan, Brazil, Fiji and Tanzania.
-      </p>
-      <p>
-        If you're looking for editing services please check out <a href="./services.html">my rate and availability</a>.
-      </p>
+    <script>
+        const totalFrames = 26;
+        const framePrefix = 'Images/Content/Frames_Rabbits_';
+        const frameSuffix = '.png';
+        const frameElement = document.getElementById('animation-frame');
+        let currentFrame = 0;
+        let framesLoaded = 0;
+        const frames = [];
 
-      <h1>Filmography</h1>
+        // Display the first frame immediately
+        frameElement.src = framePrefix + '0000' + frameSuffix;
 
-      <h2>2026</h2>
-      <p>
-        At the end of February I travelled to Los Angeles for the premiere of the last two films in my long-running series "An American Rugby Odyssey". For the past 3 years I've taken on a mentoring role, helping the students document their own experiences, for a series of "Student Cuts". As for the rest of the year... I'm wide open for once.
-      </p>
-      <ul>
-        <li>
-          <h3><a href="./showcase.html#student-cut">AN AMERICAN RUGBY ODYSSEY: THE STUDENT CUT (JAPAN)</a></h3>
-          <p>
-            Director / Mentor / Camera / Editor / Online Editor<br>
-            Documentary Episode (Fox Sports)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-        <li>
-          <h3><a href="./showcase.html#student-cut">AN AMERICAN RUGBY ODYSSEY: THE STUDENT CUT (TANZANIA)</a></h3>
-          <p>
-            Director / Mentor / Camera / Editor / Online Editor<br>
-            Documentary Episode (Fox Sports)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-      </ul>
-
-      <h2>2025</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=sIYx8FltCGs" target="_blank" rel="noopener">ICARUS: CRITICAL MASS</a></h3>
-          <p>
-            Director / Editor<br>
-            Short Film<br>
-            Rocketwerkz
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=yyw3QAfaB_Q&list=PLO5QRRx0U9SngGTDPeqiOsWl2NfvhYQAt" target="_blank" rel="noopener">BLACK FERNS: BEHIND THE FERN</a></h3>
-          <p>
-            Editor (3 episodes)<br>
-            Documentary Series (NZR+)<br>
-            Whisper Films
-          </p>
-        </li>
-      </ul>
-
-      <h2>2024</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=_4EmiTzW_aw" target="_blank" rel="noopener">THE CHOIR GAMES</a></h3>
-          <p>
-            Editor<br>
-            4 Part Documentary Series (Sky Open)<br>
-            Spacific<br>
-            <span class="award">BEST EDITING: DOCUMENTARY / FACTUAL (NZ Screen Awards)</span><br>
-            <span class="award">BEST UNSCRIPTED (SeriesFest)</span><br>
-            <span class="award">AUDIENCE CHOICE AWARD (SeriesFest)</span>
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/playlist?list=PLO5QRRx0U9SmAXURE6N61xIF0JUoYLgPa" target="_blank" rel="noopener">ALL BLACKS: IN THEIR OWN WORDS II</a></h3>
-          <p>
-            Editor<br>
-            4 Part Documentary Series (NZR+)<br>
-            Whisper Films<br>
-            <span class="award">Nominated: BEST SPORTS SERIES (NZ Film &amp; TV Awards)</span>
-          </p>
-        </li>
-      </ul>
-
-      <h2>2023</h2>
-      <ul>
-        <li>
-          <h3><a href="./showcase.html#student-cut">AN AMERICAN RUGBY ODYSSEY: THE STUDENT CUT (FIJI &amp; NZ)</a></h3>
-          <p>
-            Director / Mentor / Camera / Editor / Online Editor<br>
-            Documentary Episode (Fox Sports)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/playlist?list=PLO5QRRx0U9SmgCetOBll3pYbMaYnyvWal" target="_blank" rel="noopener">ALL BLACKS: IN THEIR OWN WORDS</a></h3>
-          <p>
-            Editor<br>
-            4 Part Documentary Series (NZR+)<br>
-            Whisper Films
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.maoriplus.co.nz/show/home-land-and-sea/season-2/episode-5/play" target="_blank">HOME, LAND AND SEA</a></h3>
-          <p>
-            Editor<br>
-            Documentary Episode (S2:E5 TVNZ / Maori+)<br>
-            Jack Films
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.primevideo.com/detail/Black-Coast-Vanishings/0GB801PAFWPQRPKKPD9YRN3LWD" target="_blank">BLACK COAST VANISHINGS</a></h3>
-          <p>
-            Editor<br>
-            4 Part Documentary Series (Discovery / Prime Video)<br>
-            Augusto<br>
-            <span class="award">Nominated: BEST EDITING: DOCUMENTARY / FACTUAL (NZ Film &amp; TV Awards)</span>
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=cnQ0WyEdn6g" target="_blank" rel="noopener">ICARUS: THE SEEKER</a></h3>
-          <p>
-            Director / Editor<br>
-            Short Film<br>
-            Rocketwerkz
-          </p>
-        </li>
-      </ul>
-
-      <h2>2022</h2>
-      <ul>
-        <li>
-          <h3>UNDISCLOSED PROJECT</h3>
-          <p>
-            Editor<br>
-            Documentary Series<br>
-            Augusto
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.netflix.com/title/81406763" target="_blank">LIVE TO LEAD</a></h3>
-          <p>
-            Editor (3 Episodes) / Advisory Editor<br>
-            8 Part Documentary Series (Netflix)<br>
-            Blackwell &amp; Ruth / Nelson Mandela Foundation
-          </p>
-        </li>
-      </ul>
-
-      <h2>2021</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.facebook.com/watch/?v=309862177523209" target="_blank">FIGHTBACK: JOSEPH PARKER</a></h3>
-          <p>
-            Primary Editor<br>
-            Documentary (DAZN)<br>
-            Spacific
-          </p>
-        </li>
-        <li>
-          <h3><a href="./showcase.html#american-rugby-odyssey">AN AMERICAN RUGBY ODYSSEY</a></h3>
-          <p>
-            Director / Camera / Editor / Online Editor<br>
-            8 Part Documentary Series (Fox Sports)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-      </ul>
-
-      <h2>2020</h2>
-      <ul>
-        <li>
-          <h3><a href="./showcase.html#second-chance-charlie">SECOND CHANCE CHARLIE</a></h3>
-          <p>
-            Primary Editor<br>
-            16 Part Short Documentary Series (TV3)<br>
-            Mediaworks
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=OhZ8vWs947c" target="_blank" rel="noopener">DAWN RAID</a></h3>
-          <p>
-            Editor / Motion Graphics<br>
-            Feature Documentary (Theatrical)<br>
-            GFC
-          </p>
-        </li>
-      </ul>
-
-      <h2>2019</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.nzonscreen.com/title/funny-as-story-of-nz-comedy-promo-2019" target="_blank">FUNNY AS: THE STORY OF NEW ZEALAND COMEDY</a></h3>
-          <p>
-            Primary Editor<br>
-            5 Part Documentary Series (TVNZ)<br>
-            Augusto<br>
-            <span class="award">BEST EDITING: DOCUMENTARY / FACTUAL (NZ Film &amp; TV Awards)</span>
-          </p>
-        </li>
-      </ul>
-
-      <h2>2018</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=UgAa6nZKJjQ" target="_blank" rel="noopener">WE NEED TO TALK ABOUT AI</a></h3>
-          <p>
-            Additional Editor<br>
-            Feature Documentary (Theatrical)<br>
-            GFC
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=BtgV1JausTw" target="_blank" rel="noopener">WAYNE</a></h3>
-          <p>
-            Editor<br>
-            Feature Documentary<br>
-            GFC
-          </p>
-        </li>
-      </ul>
-
-      <h2>2017</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=mcJm8Cfo0tM" target="_blank" rel="noopener">CAPITAL IN THE 21ST CENTURY</a></h3>
-          <p>
-            Additional Editor<br>
-            Feature Documentary (Theatrical)<br>
-            GFC
-          </p>
-        </li>
-        <li>
-          <h3><a href="./showcase.html#american-rugby-odyssey">ANOTHER RED, WHITE, BLACK &amp; BLUE ODYSSEY</a></h3>
-          <p>
-            Director / Camera / Editor / Online Editor<br>
-            Feature Documentary (PAFF)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-      </ul>
-
-      <h2>2016</h2>
-      <ul>
-        <li>
-          <h3><a href="./showcase.html#rwbb-odyssey">RED, WHITE, BLACK &amp; BLUE ODYSSEY</a></h3>
-          <p>
-            Director / Camera / Editor / Online Editor<br>
-            Feature Documentary (Netflix)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=rsYO01FIluc" target="_blank" rel="noopener">MCLAREN</a></h3>
-          <p>
-            Editor<br>
-            Feature Documentary (Theatrical)<br>
-            GFC
-          </p>
-        </li>
-      </ul>
-
-      <h2>2015</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=CGoSbU4pAHs" target="_blank" rel="noopener">DOG'S BEST FRIEND</a></h3>
-          <p>
-            Editor<br>
-            Feature Documentary (NZIFF)<br>
-            Dir. Eryn Wilson
-          </p>
-        </li>
-      </ul>
-
-      <h2>2014</h2>
-      <ul>
-        <li>
-          <h3>DRUG COURT</h3>
-          <p>
-            Editor<br>
-            Documentary (Maori TV)<br>
-            Notable Films
-          </p>
-        </li>
-        <li>
-          <h3><a href="./showcase.html#rwbb-iii">RED, WHITE, BLACK &amp; BLUE III</a></h3>
-          <p>
-            Director / Editor<br>
-            Documentary (PAFF)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-      </ul>
-
-      <h2>2013</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=OBfvuvel_oo" target="_blank" rel="noopener">HE TOKI HUNA: NZ IN AFGHANISTAN</a></h3>
-          <p>
-            Editor<br>
-            Documentary (NZIFF)<br>
-            Occasional Productions<br>
-            <span class="award">BEST DOCUMENTARY EDITING (NZ Film Awards / Moas)</span>
-          </p>
-        </li>
-        <li>
-          <h3><a href="./showcase.html#rwbb-ii">RED, WHITE, BLACK &amp; BLUE II</a></h3>
-          <p>
-            Director / Editor<br>
-            Documentary (PAFF)<br>
-            Inner City Education Foundation
-          </p>
-        </li>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=btfjrXdumJw" target="_blank" rel="noopener">SOUL IN THE SEA</a></h3>
-          <p>
-            Online Editor<br>
-            Documentary (NZIFF)<br>
-            Dir. Amy Taylor
-          </p>
-        </li>
-      </ul>
-
-      <h2>2012</h2>
-      <ul>
-        <li>
-          <h3><a href="./showcase.html#rwbb">RED, WHITE, BLACK &amp; BLUE</a></h3>
-          <p>
-            Director / Editor<br>
-            Feature Documentary (DocNZ, PAFF, ICF, AFF)<br>
-            Inner City Education Foundation<br>
-            <span class="award">BEST DOCUMENTARY (Idyllwild Cinema Fest)</span><br>
-            <span class="award">BEST DOCUMENTARY (Raglan Arts Film Festival)</span><br>
-            <span class="award">RISING STAR AWARD (Canada Film Awards)</span>
-          </p>
-        </li>
-        <li>
-          <h3><a href="./showcase.html#i-want-to-walk">I WANT TO WALK WITH MY MOKO</a></h3>
-          <p>
-            Editor<br>
-            Documentary (Web: The Health Commission)<br>
-            FarmerClark
-          </p>
-        </li>
-      </ul>
-
-      <h2>2011</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=XXMmoOep4wU" target="_blank" rel="noopener">BROTHER NUMBER ONE</a></h3>
-          <p>
-            Editor<br>
-            Feature Documentary (IDFA, HRFF, MIFF, NZIFF)<br>
-            Occasional Productions
-          </p>
-        </li>
-      </ul>
-
-      <h2>2010</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.youtube.com/watch?v=iQZACcErxSo" target="_blank" rel="noopener">THE CREATIVE ADVENTURES OF JAMES BROWN</a></h3>
-          <p>
-            Editor<br>
-            20 Part Short Documentary Series (Web: The Big Idea)<br>
-            The Learning Connexion
-          </p>
-        </li>
-        <li>
-          <h3>SOUTH AUCKLAND POETS' COLLECTIVE</h3>
-          <p>
-            Editor<br>
-            Short Documentary<br>
-            Sunyard
-          </p>
-        </li>
-      </ul>
-
-      <h2>2009</h2>
-      <ul>
-        <li>
-          <h3>FIGHTING FOR PAY EQUITY</h3>
-          <p>
-            Editor<br>
-            Short Documentary<br>
-            Human Rights Commission
-          </p>
-        </li>
-      </ul>
-
-      <h2>2008</h2>
-      <ul>
-        <li>
-          <h3><a href="https://www.imdb.com/title/tt1730310/" target="_blank">MSANII: ARTISTS OF BAGAMOYO</a></h3>
-          <p>
-            Director / Camera / Editor<br>
-            Documentary<br>
-            The Learning Connexion
-          </p>
-        </li>
-      </ul>
-
-      <h2>2007</h2>
-      <ul>
-        <li>
-          <h3>ART IN THE FREEZER</h3>
-          <p>
-            Editor<br>
-            Documentary (TV3)<br>
-            The Learning Connexion
-          </p>
-        </li>
-      </ul>
-
-      <h2>2004–6</h2>
-      <p>
-        During this period I worked full time directing and editing educational art documentaries for The Learning Connexion, as well as music videos, short films and corporate videos.
-      </p>
-
-      <h2>2003</h2>
-      <ul>
-        <li>
-          <h3>THE PECULIAR INVENTION OF DAVID ASPIRING</h3>
-          <p>
-            Director / Camera / Editor<br>
-            16mm Featurette<br>
-            Self-funded
-          </p>
-        </li>
-      </ul>
-
-    </div>
-    <div class="photos">
-      <img src="stills/JamesProfile.JPG" alt="James Brown Profile Picture" class="profile-pic">
-      <img src="stills/JamesTimWideSmall.jpg" alt="">
-      <img src="stills/Awards.png" alt="">
-      <img src="stills/TheSeeker.png" alt="">
-      <img src="stills/HeTokiHuna_01.jpg" alt="">
-      <img src="stills/Best-Documentary-Editor.jpg" alt="">
-      <img src="stills/FunnyAs_02.jpg" alt="">
-      <img src="stills/BestDocumentaryEditing2020.jpg" alt="">
-      <img src="stills/RWBB_BTS_05.jpg" alt="">
-      <img src="stills/RWBB_07.jpg" alt="">
-      <img src="stills/AARO_Poster.jpg" alt="">
-      <img src="stills/FightbackJosephParker.png" alt="">
-      <img src="stills/DR_Poster.jpg" alt="">
-      <img src="stills/DR_GFX_04.png" alt="">
-      <img src="stills/2CC_01.jpg" alt="">
-      <img src="stills/MCLAREN_02.png" alt="">
-      <img src="stills/MCLAREN_Poster_02.jpg" alt="">
-      <img src="stills/AI_02.png" alt="">
-      <img src="stills/AI_04.png" alt="">
-      <img src="stills/Capital_03.png" alt="">
-      <img src="stills/Corporate_03.png" alt="">
-      <img src="stills/RWBB_BTS_08.jpg" alt="">
-      <img src="stills/RWBB_03.jpg" alt="">
-      <img src="stills/3D Music Video Post.jpg" alt="">
-      <img src="stills/Music.jpg" alt="">
-      <img src="stills/BNO_02.jpg" alt="">
-      <img src="stills/3D Documentary Editing.jpg" alt="">
-      <img src="stills/Msanii_04.jpg" alt="">
-      <img src="stills/Msanii_01.jpg" alt="">
-      <img src="stills/3D Documentary Directing.jpg" alt="">
-    </div>
-  </main>
-
-  <script>
-    var toggle = document.querySelector('.nav-toggle');
-    if (toggle) {
-      toggle.addEventListener('click', function() {
-        var menu = document.querySelector('.nav-menu');
-        menu.classList.toggle('open');
-        // Shift main content so the expanded nav doesn't cover it
-        var main = document.querySelector('main');
-        if (main) {
-          if (menu.classList.contains('open')) {
-            main.style.marginTop = (document.querySelector('.navbar').offsetHeight) + 'px';
-          } else {
-            main.style.marginTop = '';
-          }
+        // Preload images
+        for (let i = 0; i <= totalFrames; i++) {
+            const img = new Image();
+            const frameNumber = i.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            img.src = filename;
+            img.onload = () => {
+                framesLoaded++;
+                if (framesLoaded === totalFrames + 1) {
+                    // All frames are loaded, start the animation
+                    startAnimation();
+                }
+            };
+            frames.push(img);
         }
-      });
-    }
-  </script>
+
+        // Function to update the image source
+        function updateFrame() {
+            const frameNumber = currentFrame.toString().padStart(4, '0');
+            const filename = framePrefix + frameNumber + frameSuffix;
+            frameElement.src = filename;
+
+            currentFrame++;
+
+            if (currentFrame > totalFrames) {
+                currentFrame = totalFrames; // Ensure it stops on the last frame
+            } else {
+                setTimeout(updateFrame, 100); // Adjust the delay (in milliseconds) as needed
+            }
+        }
+
+        // Start the animation
+        function startAnimation() {
+            updateFrame();
+        }
+    </script>
+    <p>Hi, I'm Non-Zero-Sum <a href="aboutme.html">James</a>, your companion on this exploration of <a href="whatarenonzerosumgames.html">win-win games</a> and how they are essential for a better future. <a href="blog.html">Each week</a> we'll explore a new aspect of <a href="gametheory.html">game theory</a>, <a href="map-moralphilosophy.html">moral philosophy</a>, <a href="map-ethicaleconomics.html">ethical economics</a> and <a href="map-ai.html">artificial intelligence</a>—looking to solve the complex problems we face in our world <em><strong>together</em></strong>.</p>
+
+    <a name="WhatsNew"></a>
+<!-- NEW Section -->
+<h3>WHAT'S NEW?</h3>
+<br>
+    <div class="image-item">
+        <a href="collaborativecorner.html">
+            <img src="./Images/Content/FurryFriends_ButterflyFlower.png" alt="A butterfly and flower collaborating — growing something greater together">
+            <span class="image-title">COLLABORATIVE CORNER<div style="margin-top: 0.2em;font-size: 70%;">growing something greater</div></span>
+        </a>
+    </div>
+
+<h3>WHAT'S NEXT?</h3>
+<p>All the posts are connected through the lens of non-zero-sum games, but they fall into a few broad categories. You can start your journey with whatever appeals to you:</p>
+
+<div class="image-grid">
+    <div class="image-item">
+        <a href="map-funzone.html">
+            <img src="./Images/Content/Cosmic_Lottery.png" alt="a hedgehog jumping for joy">
+            <span class="image-title"><sup style="font-size: 70%";>THE</sup> FUN ZONE<div style="margin-top: 0.2em;font-size: 70%;">a new section especially for newcomers</div></span>
+        </a>
+    </div>
+</div>
+<div class="image-grid">
+    <div class="image-item">
+        <a href="map-gametheory.html">
+            <img src="./Images/Content/Hercules_Beetles.png" alt="Hercules beetles facing off">
+            <span class="image-title">GAME THEORY<div style="margin-top:0.2em;font-size:70%;">exploring strategic interaction</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-moralphilosophy.html">
+            <img src="./Images/Content/Bothsides_ShiftedCentre.png" alt="A diagram showing the shifted centre of the political spectrum">
+            <span class="image-title">MORAL PHILOSOPHY<div style="margin-top:0.2em;font-size:70%;">exploring ethics and values</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-ethicaleconomics.html">
+            <img src="./Images/Content/Goodhart_ByMoonlight.png" alt="A moth flying by moonlight">
+            <span class="image-title">ETHICAL ECONOMICS<div style="margin-top:0.2em;font-size:70%;">realigning systems & incentives with human values</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-foundations.html">
+            <img src="./Images/Content/Emergence_Pondering.png" alt="Hedgehog pondering shapes">
+            <span class="image-title">FOUNDATIONS<div style="margin-top:0.2em;font-size:70%;">complexity, consciousness, and history</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-nature.html">
+            <img src="./Images/Content/FurryFriends_HedgehogCrab.png" alt="A hedgehog and a crab">
+            <span class="image-title">NON-ZERO-SUM GAMES IN NATURE<div style="margin-top:0.2em;font-size:70%;">cooperation in the wild</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-nonzeroheroes.html">
+            <img src="./Images/Content/Liv_WinWin.png" alt="Liv Boeree illustration">
+            <span class="image-title">NON-ZERO HEROES<div style="margin-top:0.2em;font-size:70%;">champions of cooperation</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-ai.html">
+            <img src="./Images/Content/Alignment_Collision.png" alt="Misalignment illustration">
+            <span class="image-title">AI AND ITS MALCONTENTS<div style="margin-top:0.2em;font-size:70%;">navigating a future with new friends?</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="arcade.html">
+            <img src="./Images/Content/Tetris_ObscuringProblem.png" alt="Minimalist 3D Tetris blocks">
+            <span class="image-title">ALL THE GAMES & SIMULATIONS<div style="margin-top:0.2em;font-size:70%;">discovery through play</div></span>
+        </a>
+    </div>
+    <div class="image-item">
+        <a href="map-creativity.html">
+            <img src="./Images/Content/CrappyDrawings_Paintings.png" alt="Four rabbits looking at paintings">
+            <span class="image-title">CREATIVITY<div style="margin-top:0.2em;font-size:70%;">the only thing I'm actually qualified to write about</div></span>
+        </a>
+    </div>
+</div>
+<br>
+<blockquote>
+  "It is well to remember that the entire universe, <em><strong>with one trifling exception</strong></em>, is composed of others."<br>—<b>John Holmes</b>
+</blockquote>
+<br>
+<footer>
+        <div id="social-icons"></div>
+</footer>
+
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                // Get the current page URL and title
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+
+                // Replace placeholders in the loaded HTML
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
+    
+<p>Your thoughts and contributions are welcome. Share, debate, and co-create in the comments.</p>
+
+    <div id="graphcomment"></div>
+    <script type="text/javascript">
+      /* - - - CONFIGURATION VARIABLES - - - */
+      var __semio__params = {
+        graphcommentId: "Non-Zero-Sum-Games", // Make sure the id is yours
+        behaviour: {
+          // Extract the filename from the URL path and use it as the UID
+          uid: window.location.pathname.split('/').pop().split('.')[0],
+        },
+        // Configure your variables here
+      }
+      /* - - - DON'T EDIT BELOW THIS LINE - - - */
+      function __semio__onload() {
+        __semio__gc_graphlogin(__semio__params)
+      }
+      (function() {
+        var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+        gc.onload = __semio__onload; gc.defer = true;
+        gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+      })();
+    </script>
 </body>
 </html>
