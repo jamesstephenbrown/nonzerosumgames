@@ -9,7 +9,24 @@
     <description>A blog exploring non-zero-sum games and win-win solutions</description>
     <language>en-us</language>
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
-
+    <item>
+      <title>HUMANS ARE ALIGNMENT GENERATORS</title>
+      <link>https://nonzerosum.games/alignmentgenerators.html</link>
+      <description><![CDATA[turns out it was about the friends we made along the way]]></description>
+      <pubDate>Sun, 26 Jul 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/alignmentgenerators.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/alignmentgenerators.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/alignmentgenerators.png"/>
+    </item>
+    <item>
+      <title>APPENDIX A</title>
+      <link>https://nonzerosum.games/amicableapeappendixa.html</link>
+      <description><![CDATA[Liv Boeree Interviews Emmett Shear... in sketch-notes]]></description>
+      <pubDate>Sun, 19 Jul 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/amicableapeappendixa.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/amicableapeappendixa.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/amicableapeappendixa.png"/>
+    </item>
     <item>
       <title>VINCENT KNIGHT</title>
       <link>https://nonzerosum.games/vincentknight.html</link>
@@ -25,8 +42,8 @@
       <description><![CDATA[revisiting alignment]]></description>
       <pubDate>Sun, 05 Jul 2026 12:00:00 +0000</pubDate>
       <guid isPermaLink="true">https://nonzerosum.games/amicableape.html</guid>
-      <media:content url="https://nonzerosum.games/Images/Content/Alignment2_TsetseFly.png" medium="image" type="image/png"/>
-      <media:thumbnail url="https://nonzerosum.games/Images/Content/Alignment2_TsetseFly.png"/>
+      <media:content url="https://nonzerosum.games/Images/Social/amicableape.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/amicableape.png"/>
     </item>
     <item>
       <title>COLLABORATIVE CORNER</title>
