@@ -1,24 +1,96 @@
-<!DOCTYPE html><html lang="en">
-    <head>
-        <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1CMWXLFBCG');
+    </script>
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Digital Drawing Practice</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-        
-        <a name="Top"></a><link rel="stylesheet" type="text/css" href="style.css">
-        </head>
-    <body>
-        <div class="content">
-            <h1>Practice!</h1>
+    <title>Digital Drawing Practice</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/digitaldrawingpractice.html" />
+    <meta name="description" content="Digital drawing practice with an Apple Pencil—portrait studies and covers while getting my eye in.">
+    <meta name="keywords" content="Digital Drawing, Apple Pencil, Art Practice, Portrait Study">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
 
-            <p>Digital drawing with an Apple Pencil.
-            </p>
-            <p>Doing "Covers" currently, but will come up with something original once I get my eye in.
-            </p>
-            <img src="./Images/DigitalDrawingPractice/Vi_01.jpeg" class="rounded_outlined"><br>
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/digitaldrawingpractice.png">
+    <meta property="og:title" content="DIGITAL DRAWING PRACTICE">
+    <meta property="og:description" content="practice makes progress">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
 
+    <a name="Top"></a>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="menu"></div>
+
+    <div class="content">
+        <h1>DIGITAL DRAWING PRACTICE</h1>
+        <aside>D</aside>
+        <h2>getting my eye in with an apple pencil</h2>
+
+        <p>Digital drawing with an Apple Pencil.
+        </p>
+        <p>Doing "Covers" currently, but will come up with something original once I get my eye in.
+        </p>
+        <img src="./Images/DigitalDrawingPractice/Vi_01.jpeg" alt="Digital portrait study of a woman with pink hair, blue eyes, a nose ring, and a 'VI' mark on her cheek" class="rounded_outlined"><br>
+
+    </div>
+
+    <h3>MORE ART</h3><br>
+    <div class="image-grid">
+        <div class="image-item">
+            <a href="empireofidols.html">
+                <img src="./Images/Paintings/EmpireOfIdols/Back.jpg" alt="A spacesuit-clad figure walks away across a rippling golden landscape under a large pale moon, beside a half-open escape pod">
+                <span class="image-title">EMPIRE OF IDOLS<div style="margin-top: 0.2em;font-size: 70%;">a decade of surreal paintings</div></span>
+            </a>
         </div>
-        
+        <div class="image-item">
+            <a href="blueseries.html">
+                <img src="./Images/Paintings/BlueSeries/Blue_Susan.jpg" alt="Blue-toned portrait painting of Susan, a woman with long auburn hair holding a lit cigarette, looking directly at the viewer">
+                <span class="image-title">BLUE SERIES<div style="margin-top: 0.2em;font-size: 70%;">art from a previous life</div></span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div id="social-icons"></div>
+    </footer>
+
+    <div class="subscribe">
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#social-icons").load("social.html", function() {
+                var pageUrl = window.location.href;
+                var pageTitle = document.title;
+                $(this).find("a").each(function() {
+                    this.href = this.href.replace('URL_PLACEHOLDER', encodeURIComponent(pageUrl));
+                    this.href = this.href.replace('TITLE_PLACEHOLDER', encodeURIComponent(pageTitle));
+                });
+            });
+        });
+    </script>
 
     <div id="graphcomment"></div>
     <script type="text/javascript">
@@ -42,5 +114,5 @@
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
       })();
     </script>
-    </body>
+</body>
 </html>

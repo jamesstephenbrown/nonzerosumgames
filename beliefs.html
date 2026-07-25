@@ -231,13 +231,15 @@
             padding: 10px;
         }
 
-        #button-container {
+        #button-container,
+        #button-container-2 {
             text-align: center;
             /* Center the buttons */
             margin: 10px auto;
         }
 
-        #button-container button {
+        #button-container button,
+        #button-container-2 button {
             display: inline-block;
             /* Align buttons horizontally */
             margin: 5px;
@@ -280,7 +282,7 @@
     <h3>INSTRUCTIONS</h3>
     <p>The opening sample is simply my own intuitions about what logical relationship some religious and political beliefs have with one another. I have purposefully left anything I do not see as <em>directly</em> connected as zero. You can edit these valence values or categories to reflect your own intuitions, or the issues important to you.</p>
     
-    <p>It's a bit of a learning curve thinking about valences, as each belief here is actually a pair—the belief and its opposite. So, if you have have a single issue like "taxes" this will be interpretted as "Pro-Tax"/"Anti-Tax". When relating this to another related factor like "Right Wing/"Left Wing" you are looking for <strong>one</strong> value to describe how aligned "Pro-Tax" and "Right-Wing" are, and also how aligned are "Anti-Tax" and "Left Wing" are. So in this case, you might say -75.</p>
+    <p>It's a bit of a learning curve thinking about valences, as each belief here is actually a pair—the belief and its opposite. So, if you have a single issue like "taxes" this will be interpretted as "Pro-Tax"/"Anti-Tax". When relating this to another related factor like "Right Wing/"Left Wing" you are looking for <strong>one</strong> value to describe how aligned "Pro-Tax" and "Right-Wing" are, and also how aligned are "Anti-Tax" and "Left Wing" are. So in this case, you might say -75.</p>
 
     <footer>
         <h3 id="matrix-title">VALENCE MATRIX</h3>
@@ -288,7 +290,6 @@
         <label for="belief-count">Number of Beliefs (2-16):</label>
         <input type="number" id="belief-count" name="belief-count" min="2" max="16" value="16" style="width: 50px;">
         <button id="set-belief-count-button">Reset</button>
-        </div>
         <div id="matrix-container">
         <table id="matrix-table">
             <!-- Table content will be generated dynamically -->
@@ -328,7 +329,7 @@
     <p>Depending on how many beliefs or factors you're using this will make for a fairly long list, at the bottom of which will be the comments section, where I hope you'll post notes on your own explorations.</p>
 
     <h3>CORRELATIONS LOG</h3>
-    <div id="button-container">
+    <div id="button-container-2">
         <button id="correlations-button">Show Correlations</button> <!-- New Button -->
     </div>
     <div id="correlations-log-container" style="max-width: 90%">
