@@ -197,15 +197,15 @@
              shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
            } else if (p === 'twitter') {
              // X/Twitter: keep it simple and robust
-             shareUrl = 'https://twitter.com/intent/tweet?text=' + comment + '...%20' + title + '&url=' + url;
+             shareUrl = 'https://twitter.com/intent/tweet?text=' + comment + '...%20' + title + '&url=' + url + '%20—%20@NonZeroSumJames';
            } else if (p === 'reddit') {
-             shareUrl = 'https://www.reddit.com/submit?url=' + url + '&title=' + title;
+             shareUrl = 'https://www.reddit.com/submit?url=' + url + '&title=' + title + '%20—%20u/NonZeroSumJames';
            } else if (p === 'mastodon') {
-             shareUrl = 'https://mastodon.social/share?text=' + comment + '...%20' + title + '%20' + url;
+             shareUrl = 'https://mastodon.social/share?text=' + comment + '...%20' + title + '%20' + url + '%20—%20@nonzerosumjames@mastodon.social';
            } else if (p === 'hackernews') {
              shareUrl = 'https://news.ycombinator.com/submitlink?u=' + url + '&t=' + title;
            } else if (p === 'bluesky') {
-             shareUrl = 'https://bsky.app/intent/compose?text=' + comment + '%20' + title + '...%20' + url;
+             shareUrl = 'https://bsky.app/intent/compose?text=' + comment + '%20' + title + '...%20' + url + '%20—%20@nonzerosum.games';
            } else {
              // fallback: leave href as-is
              return true;
