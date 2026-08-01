@@ -10,6 +10,15 @@
     <language>en-us</language>
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>THE DARK SIDE OF COOPERATION</title>
+      <link>https://nonzerosum.games/darksideofcooperation.html</link>
+      <description><![CDATA[dealing with the problems of cooperation first]]></description>
+      <pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/darksideofcooperation.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/darksideofcooperation.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/darksideofcooperation.png"/>
+    </item>
+    <item>
       <title>HUMANS ARE ALIGNMENT GENERATORS</title>
       <link>https://nonzerosum.games/alignmentgenerators.html</link>
       <description><![CDATA[turns out it was about the friends we made along the way]]></description>
