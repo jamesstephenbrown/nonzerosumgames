@@ -10,7 +10,14 @@
    sideways, and the glyph you are reaching for cannot move out from under the
    cursor. The room below is reserved permanently rather than made on demand,
    so the page beneath never jumps either. */
-.menuColumn{ padding-bottom:28px; }
+.menuColumn{
+  padding-bottom:30px;
+  /* Nothing here may be clipped. The name sits below the glyph and slightly
+     outside the bar's own box, so any ancestor quietly hiding its overflow
+     shaves the ends off it — which is what the soft cut-off edges were. */
+  overflow:visible;
+}
+#menu{ overflow:visible; }
 .menuColumn a.menu-link{
   position:relative;
   display:inline-block;
@@ -21,7 +28,7 @@
   display:inline-block;
   font-family:'MoreSugarExtras';
   line-height:1;
-  transition:transform .2s cubic-bezier(.2,.7,.3,1);
+  transition:transform .38s cubic-bezier(.25,.8,.3,1);
 }
 .menuColumn a.menu-link .mi-word{
   position:absolute;
@@ -29,26 +36,26 @@
   top:100%;
   transform:translate(-50%,-3px);
   font-family:'MoreSugar',sans-serif;
-  font-size:.62em;
+  font-size:.74em;
   font-style:normal;
   line-height:1;
   letter-spacing:.03em;
   white-space:nowrap;
   opacity:0;
   pointer-events:none;              /* never steals the click from the link */
-  transition:opacity .17s ease,transform .2s cubic-bezier(.2,.7,.3,1);
+  transition:opacity .34s ease,transform .38s cubic-bezier(.25,.8,.3,1);
 }
 /* Only where hovering is a real thing. On a phone there is nothing to hover
    away from, so the name would either never show or never leave; the title
    attribute is still there for a long press. */
 @media (hover:hover){
-  .menuColumn a.menu-link:hover .mi-glyph{ transform:translateY(-6px); }
+  .menuColumn a.menu-link:hover .mi-glyph{ transform:translateY(-7px); }
   .menuColumn a.menu-link:hover .mi-word{ opacity:1; transform:translate(-50%,0); }
 }
 /* The same state the idle cycle borrows. Outside the hover query on purpose:
    on a phone there is no hover at all, so this is the only way those names ever
    get to introduce themselves. */
-.menuColumn a.menu-link.peek .mi-glyph{ transform:translateY(-6px); }
+.menuColumn a.menu-link.peek .mi-glyph{ transform:translateY(-7px); }
 .menuColumn a.menu-link.peek .mi-word{ opacity:1; transform:translate(-50%,0); }
 @media (prefers-reduced-motion:reduce){
   .menuColumn a.menu-link .mi-glyph,
@@ -63,13 +70,12 @@
     <br>
     <br>
     <!-- <a href="/blog.html" style="text-decoration: none;">Blog</a> -->
-    <a class="menu-link" href="/" title="Home"><span class="mi-glyph">0</span><span class="mi-word">Home</span></a>
-<a class="menu-link" href="/blog.html" title="Blog"><span class="mi-glyph">8</span><span class="mi-word">Blog</span></a>
+    <a class="menu-link" href="/"><span class="mi-glyph">0</span><span class="mi-word">Home</span></a>
+<a class="menu-link" href="/blog.html"><span class="mi-glyph">8</span><span class="mi-word">Blog</span></a>
     <!-- <a href="/arcade.html" style="text-decoration: none;">Arcade</a> -->
-    <a class="menu-link" href="/arcade.html" title="Arcade"><span class="mi-glyph">#</span><span class="mi-word">Arcade</span></a>
-    <a class="menu-link" href="/aboutme.html" title="About"><span class="mi-glyph">.</span><span class="mi-word">About</span></a>
-    <a class="menu-link" href="https://cse.google.com/cse?cx=356d26fd2e9ff46e7"
-        title="Search"><span class="mi-glyph">'</span><span class="mi-word">Search</span></a>
+    <a class="menu-link" href="/arcade.html"><span class="mi-glyph">#</span><span class="mi-word">Arcade</span></a>
+    <a class="menu-link" href="/aboutme.html"><span class="mi-glyph">.</span><span class="mi-word">About</span></a>
+    <a class="menu-link" href="https://cse.google.com/cse?cx=356d26fd2e9ff46e7"><span class="mi-glyph">'</span><span class="mi-word">Search</span></a>
 
     <label class="switch">
         <input type="checkbox" id="darkModeToggle">
@@ -106,8 +112,8 @@
     const links = menu ? [...menu.querySelectorAll('.menu-link')] : [];
     if (links.length < 2) return;
 
-    const SHOWN_MIN = 2000, SHOWN_VARY = 1000;  // up for two to three seconds
-    const GAP_MIN = 4200, GAP_VARY = 1600;      // then about five before the next
+    const SHOWN = 2000;    // up for two seconds
+    const GAP = 4000;      // down for four, then another one at random
     let timer = 0, showing = null, hovering = false;
 
     const hide = () => { if (showing) { showing.classList.remove('peek'); showing = null; } };
@@ -119,13 +125,12 @@
     }
     function step() {
       // Not while they are reading it themselves, and not off-screen.
-      if (hovering || document.hidden) return schedule(GAP_MIN);
+      if (hovering || document.hidden) return schedule(GAP);
       let next = showing;
       while (next === showing) next = links[Math.floor(Math.random() * links.length)];
       showing = next;
       showing.classList.add('peek');
-      timer = setTimeout(() => { hide(); schedule(GAP_MIN + Math.random() * GAP_VARY); },
-                         SHOWN_MIN + Math.random() * SHOWN_VARY);
+      timer = setTimeout(() => { hide(); schedule(GAP); }, SHOWN);
     }
 
     /* A real hover always wins: the pointer arriving cancels whatever the
@@ -133,11 +138,11 @@
     menu.addEventListener('pointerenter', () => { hovering = true; stop(); });
     menu.addEventListener('pointerleave', () => {
       hovering = false;
-      schedule(GAP_MIN + Math.random() * GAP_VARY);
+      schedule(GAP);
     });
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) stop();
-      else if (!hovering) schedule(GAP_MIN);
+      else if (!hovering) schedule(GAP);
     });
 
     schedule(1800);                          // a beat after the page settles
