@@ -23,6 +23,14 @@
   display:inline-block;
   text-decoration:none;
   vertical-align:middle;
+  /* The site tilts links on hover with `font-style: oblique`. There is no real
+     italic cut of this font, so the browser fakes one by skewing — and skewed
+     ink leans outside the element's own box, which WebKit then clips instead of
+     growing the box. That is the soft diagonal shave on the ends. Decline the
+     synthesised slant here and do the tilt with a transform below: transforms
+     paint outside the box quite happily, and they animate, so the lean arrives
+     with the lift rather than snapping on. */
+  font-style:normal;
 }
 .menuColumn a.menu-link .mi-glyph{
   display:inline-block;
@@ -43,13 +51,32 @@
   white-space:nowrap;
   opacity:0;
   pointer-events:none;              /* never steals the click from the link */
+  /* It is plain text now, so whatever the page does to text lands on it — and
+     the soft shave on its ends is the signature of gradient-filled text, where
+     the fill runs to transparent before the word does. Rather than hunt for
+     which rule up there is doing it, this one word opts out of every property
+     that can eat an edge. */
+  color:inherit;
+  background:none;
+  -webkit-background-clip:border-box;
+  background-clip:border-box;
+  -webkit-text-fill-color:currentColor;
+  -webkit-text-stroke:0;
+  text-shadow:none;
+  -webkit-mask-image:none;
+  mask-image:none;
+  clip-path:none;
+  filter:none;
+  text-overflow:clip;
+  max-width:none;
+  overflow:visible;
   transition:opacity .34s ease,transform .38s cubic-bezier(.25,.8,.3,1);
 }
 /* Only where hovering is a real thing. On a phone there is nothing to hover
    away from, so the name would either never show or never leave; the title
    attribute is still there for a long press. */
 @media (hover:hover){
-  .menuColumn a.menu-link:hover .mi-glyph{ transform:translateY(-7px); }
+  .menuColumn a.menu-link:hover .mi-glyph{ transform:translateY(-7px) skewX(-9deg); }
   .menuColumn a.menu-link:hover .mi-word{ opacity:1; transform:translate(-50%,0); }
 }
 /* The same state the idle cycle borrows. Outside the hover query on purpose:
