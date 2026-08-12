@@ -1,0 +1,142 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+<div class="menuColumn">
+    <br>
+    <br>
+    <br>
+    <!-- <a href="/blog.html" style="text-decoration: none;">Blog</a> -->
+    <a href="/" style="font-family: 'MoreSugarExtras'; text-decoration: none;" title="Home">0</a>
+<a href="/blog.html" style="font-family: 'MoreSugarExtras'; text-decoration: none;" title="Blog">8</a>
+    <!-- <a href="/arcade.html" style="text-decoration: none;">Arcade</a> -->
+    <a href="/arcade.html" style="font-family: 'MoreSugarExtras'; text-decoration: none;" title="Arcade">#</a>
+    <a href="/aboutme.html" style="font-family: 'MoreSugarExtras'; text-decoration: none;"title="About">.</a>
+    <a href="https://cse.google.com/cse?cx=356d26fd2e9ff46e7"
+        style="font-family: 'MoreSugarExtras'; text-decoration: none;" title="Search">'</a>
+
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+    </label>
+    <br>
+    <br>
+  </div>
+    <!-- Dark-mode toggle script  -->
+  <script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Load saved preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.checked = true;
+    }
+
+    darkModeToggle.addEventListener('change', function () {
+      document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+      localStorage.setItem('darkMode', darkModeToggle.checked ? 'enabled' : 'disabled');
+    });
+  </script>
+    
+
+<!-- Add this to your menu.html file -->
+<!-- Add this to your menu.html file -->
+<!-- <style>
+  html, body {
+    cursor: none; /* hide default cursor */
+  }
+
+  * {
+    cursor: none !important;
+  }
+
+  .custom-cursor, .custom-cursor-link {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: center center;
+    transition: transform 0.05s ease-out, opacity 0.1s ease-in-out;
+  }
+
+  .custom-cursor-link {
+    display: none;
+  }
+</style>
+
+<script>
+  (function() {
+    // Don't activate custom cursor on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    const cursorDefault = document.createElement('img');
+    cursorDefault.className = 'custom-cursor';
+
+    const cursorLink = document.createElement('img');
+    cursorLink.className = 'custom-cursor-link';
+
+    // Set default cursor image
+    let cursorSrc = './Images/paw.png';
+    let cursorLinkSrc = './Images/paw_link.png';
+
+    // Allow override with <meta name="cursor" content="wand.png">
+    const cursorMeta = document.querySelector('meta[name="cursor"]');
+    if (cursorMeta && cursorMeta.content) {
+      cursorSrc = `./Images/${cursorMeta.content}`;
+    }
+
+    cursorDefault.src = cursorSrc;
+    cursorLink.src = cursorLinkSrc;
+
+    document.body.appendChild(cursorDefault);
+    document.body.appendChild(cursorLink);
+
+    let lastX = 0;
+    let isInViewport = false;
+
+    window.addEventListener('mousemove', e => {
+      const deltaX = e.clientX - lastX;
+      lastX = e.clientX;
+
+      // Show cursor only when inside the viewport
+      if (!isInViewport) {
+        cursorDefault.style.opacity = '1';
+        cursorLink.style.opacity = '1';
+        isInViewport = true;
+      }
+
+      cursorDefault.style.left = `${e.clientX}px`;
+      cursorDefault.style.top = `${e.clientY}px`;
+      cursorLink.style.left = `${e.clientX}px`;
+      cursorLink.style.top = `${e.clientY}px`;
+
+      const angle = Math.max(-40, Math.min(40, deltaX));
+      const transformStyle = `translate(-50%, -50%) rotate(${angle}deg)`;
+      cursorDefault.style.transform = transformStyle;
+      cursorLink.style.transform = transformStyle;
+    });
+
+    // Hide cursor when it leaves the window
+    window.addEventListener('mouseout', () => {
+      cursorDefault.style.opacity = '0';
+      cursorLink.style.opacity = '0';
+      isInViewport = false;
+    });
+
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest('a, button, .clickable')) {
+        cursorLink.style.display = 'block';
+        cursorDefault.style.opacity = '0';
+      }
+    });
+
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest('a, button, .clickable')) {
+        cursorLink.style.display = 'none';
+        cursorDefault.style.opacity = '1';
+      }
+    });
+  })();
+</script> -->
+
+
