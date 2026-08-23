@@ -46,11 +46,15 @@
   #fill { width: 0%; height: 100%; background: #33ffcc; transition: width .2s ease; }
   #label { font-size: 14px; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
 
-  /* Only shown when it can actually do something: hidden once installed to the home screen,
-     since there is no browser chrome left to escape from. */
+  /* Bottom LEFT, not bottom right. The joystick anchors itself into the bottom-right corner of the
+     play area, and this button is a DOM element sitting on top of the canvas - put them in the same
+     corner and the button silently eats the thumb before the touch ever reaches the game, which
+     reads as "the joystick is broken" rather than "something is covering it".
+     Hidden entirely once installed to the home screen, and on iOS, where there is no Fullscreen API
+     to call - see the script below. */
   #full {
     position: fixed; z-index: 11;
-    right: calc(env(safe-area-inset-right, 0px) + 12px);
+    left: calc(env(safe-area-inset-left, 0px) + 12px);
     bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
     width: 40px; height: 40px; border: 0; border-radius: 10px; cursor: pointer;
     background: rgba(255,255,255,.14); color: #dcecff; font-size: 17px; line-height: 40px;
@@ -94,24 +98,36 @@
   // banner. That warning predates Unity's mobile WebGL support and is what you were seeing on
   // itch - the game runs, it just says it doesn't. This template simply never shows it.
 
+  // CSS only. Writing canvas.width/height by hand as well is what broke this: with
+  // matchWebGLToCanvasSize the runtime owns the drawing buffer and derives Unity's own Screen size
+  // from it, so a hand-written value it did not author leaves its internal size stale. The symptom
+  // is the giveaway - the canvas, its CSS box, the GL drawing buffer and the GL viewport all measure
+  // correctly at full size, and the game still draws into a small rectangle in the corner, because
+  // the only size that is wrong is the one inside Unity. A synthetic resize event does not shift it
+  // either; only a real viewport change did, which is what made it look fixed earlier.
   function resize () {
-    // width/height attributes, not just CSS - the CSS box and the drawing buffer are separate
-    // things, and only setting the former gives you a stretched, blurry canvas.
-    var w = window.innerWidth, h = window.innerHeight;
-    var r = config.devicePixelRatio;
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    canvas.width = Math.floor(w * r);
-    canvas.height = Math.floor(h * r);
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
   }
   window.addEventListener("resize", resize);
   window.addEventListener("orientationchange", function () { setTimeout(resize, 120); });
   resize();
 
-  document.querySelector("#full").addEventListener("click", function () {
-    if (instance && instance.SetFullscreen) { instance.SetFullscreen(1); }
-    else if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
-  });
+  // iPhone Safari has no Fullscreen API - not a missing prefix, it simply is not implemented, and
+  // iPad only gained it recently. A button that cannot do its job is worse than no button, so it is
+  // removed rather than left to be pressed. On iOS the way to lose the browser chrome is Add to Home
+  // Screen, which the apple-mobile-web-app-capable meta above already makes work.
+  var full = document.querySelector("#full");
+  var canFullscreen = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+  if (!canFullscreen) {
+    full.remove();
+  } else {
+    full.addEventListener("click", function () {
+      if (instance && instance.SetFullscreen) { instance.SetFullscreen(1); }
+      else if (document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen(); }
+      else { document.documentElement.webkitRequestFullscreen(); }
+    });
+  }
 
   // keep gestures in the game rather than in the browser
   document.addEventListener("gesturestart", function (e) { e.preventDefault(); }, { passive: false });
@@ -125,8 +141,9 @@
     }).then(function (u) {
       instance = u;
       loading.classList.add("done");
-      resize();
       canvas.focus();
+
+      resize();
     }).catch(function (err) {
       document.querySelector("#label").textContent = "Failed to load";
       console.error(err);
