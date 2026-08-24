@@ -42,6 +42,45 @@
     <aside>E</aside>
     <h2>a non-zero-sum game</h2>
     <div class="content">
+
+        <!-- Play / install. Above the history, so someone who came here to play is not made to read
+             first. Install is the primary action: it is genuinely the better way to play, and the
+             browser bar is what stops it feeling like a game.
+
+             The install prompt CANNOT be raised from this page - a browser will only offer it on a
+             page controlled by the game's service worker, which is scoped to /play/. So Install just
+             carries the intent across in the URL and the game raises it there. Nothing here pretends
+             to install anything itself. -->
+        <div class="play-panel">
+            <a class="play-btn" href="play/index.html?install=1">Install NEUTROPIA</a>
+            <p class="play-note">Plays full screen, with no browser bar &mdash; and works offline.</p>
+            <p class="play-alt"><a href="play/index.html">or play in the browser</a></p>
+        </div>
+        <style>
+        /* The game's own face, shipped rather than hoped for - it is a custom font, so no machine has it.
+                 Helvetica Rounded and SF Rounded (ui-rounded) are the fallbacks while it loads or if it fails.
+                 font-display:swap so text is never invisible waiting on it. */
+        @font-face {
+                font-family: "Double Bubble";
+                src: url("DoubleBubble.otf") format("opentype");
+                font-display: swap;
+        }
+
+        /* Rounded, to match the game's lettering rather than the rest of the page's hand-drawn face. */
+        .play-panel, .play-btn, .play-note {
+            font-family: "Helvetica Rounded", ui-rounded, "Arial Rounded MT Bold", "Varela Round", Arial, sans-serif;
+            font-weight: 600;
+        }
+        /* One clear action. Play in the browser is deliberately demoted to a plain link - it is the
+           fallback, not a second choice of equal weight, and two matching buttons made it look like one. */
+        .play-panel { text-align:center; margin:0 0 34px; }
+        .play-btn { display:inline-block; font-size:1.25rem; padding:16px 40px; border:0;
+                    border-radius:14px; background:#33ffcc; color:#17324d; text-decoration:none; cursor:pointer; }
+        .play-note { margin:10px 0 0; font-size:.95rem; opacity:.75; }
+        .play-alt { margin:6px 0 0; font-size:.9rem; opacity:.6; }
+        .play-alt a { color:inherit; }
+        </style>
+
         <p><b>NEUTROPIA</b> has been that project I've been working on since I began teaching myself to code, it's been through many iterations, and has spawned many variations and experiments. It is, to me the essential <a href="whatarenonzerosumgames.html">non-zero-sum game</a>, in that you have a positive and negative balance, but through chain reactions, one can get the upper hand</p>
         <p>This is an early demo from 2015:</p>
         <div style="padding:56.25% 0 0 0;position:relative;">
