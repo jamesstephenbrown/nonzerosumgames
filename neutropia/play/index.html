@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NEUTROPIA</title>
+
+<!-- viewport-fit=cover lets the canvas run under the notch; user-scalable=no stops a
+     double-tap in the game zooming the page instead of doing what you meant -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+<!-- THE line that matters for iOS. With this, Add to Home Screen launches with no Safari
+     chrome at all - no address bar, no toolbar - which is the whole "acts like an app" effect.
+     Android reads display:standalone from the manifest instead. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEUTROPIA">
+<meta name="theme-color" content="#336699">
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+
+<style>
+  /* The game's own face, shipped rather than hoped for - it is a custom font, so no machine has it.
+     Helvetica Rounded and SF Rounded (ui-rounded) are the fallbacks while it loads or if it fails.
+     font-display:swap so text is never invisible waiting on it. */
+  @font-face {
+    font-family: "Double Bubble";
+    src: url("DoubleBubble.otf") format("opentype");
+    font-display: swap;
+  }
+  html, body {
+    margin: 0; padding: 0; height: 100%; overflow: hidden;
+    background: #336699; color: #cfe0f2;
+    /* Matches the game's own lettering. Arial Rounded MT Bold ships on macOS and iOS; the others are
+       the nearest rounded faces elsewhere, falling back to plain Arial rather than to something with
+       a different character. */
+    /* Double Bubble is a demo cut with an incomplete character set - no apostrophe, no full stop, which
+       render as tofu boxes. So it is used for the title alone, where the glyphs are known, and the
+       rounded system faces carry everything with real punctuation in it. */
+    font-family: "Helvetica Rounded", ui-rounded, "Arial Rounded MT Bold", "Varela Round", Arial, sans-serif;
+    /* stops the pull-to-refresh bounce and rubber-banding that make a game feel like a web page */
+    overscroll-behavior: none; touch-action: none;
+    -webkit-user-select: none; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* fixed + inset rather than width:100% - on mobile Safari a percentage height chases the
+     collapsing address bar and the canvas resizes every time you touch the screen */
+  #wrap { position: fixed; inset: 0; }
+  canvas#unity-canvas { width: 100%; height: 100%; display: block; background: #336699; }
+
+  /* The start screen doubles as the loading screen: the game downloads behind it while you read, so
+     Play is instant rather than the usual stare-at-a-bar-then-stare-at-another. */
+  #start {
+    position: fixed; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 20px; z-index: 10;
+    padding: env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);
+    background: #336699; transition: opacity .45s ease;
+  }
+  #start.done { opacity: 0; pointer-events: none; }
+  #title { font-family: "Double Bubble", "Helvetica Rounded", ui-rounded, "Arial Rounded MT Bold", "Varela Round", Arial, sans-serif; font-size: clamp(34px, 10vmin, 68px); letter-spacing: .06em; font-weight: 400; color: #dcecff; margin: 0; }
+  #tag { margin: -6px 0 4px; font-size: clamp(12px, 3.2vmin, 16px); font-weight: 400; opacity: .72; letter-spacing: .04em; }
+  #bar { width: min(46vw, 260px); height: 6px; border-radius: 3px; background: rgba(255,255,255,.18); overflow: hidden; }
+  #fill { width: 0%; height: 100%; background: #33ffcc; transition: width .2s ease; }
+  #btns { display: flex; flex-direction: column; gap: 12px; align-items: stretch; width: min(74vw, 300px); }
+  #btns button {
+    font: inherit; font-size: clamp(15px, 4vmin, 18px); font-weight: 600; letter-spacing: .02em;
+    padding: 14px 18px; border: 0; border-radius: 14px; cursor: pointer; color: #17324d;
+    background: #33ffcc; transition: transform .12s ease, opacity .2s ease;
+  }
+  #btns button:active { transform: scale(.97); }
+  #btns button[disabled] { background: rgba(255,255,255,.2); color: #cfe0f2; cursor: default; }
+  /* iOS bookmarks the page you are standing on, so the steps have to be shown HERE, on the game,
+     or the icon saves the landing page instead of the game. */
+  #steps { display: inline-block; text-align: left; margin: 4px 0 0; padding-left: 22px; max-width: min(80vw, 330px);
+           font-size: clamp(12px, 3.4vmin, 15px); line-height: 1.75; opacity: .85; }
+  #steps[hidden] { display: none; }
+  #steps b { color: #33ffcc; }
+  /* Reserved, not display:none - a button appearing under the thumb mid-tap is how you press the
+     wrong thing. It fades in where it already sat. */
+  /* Install is the primary action - it is the better way to play, so it gets the solid button and
+     Play is demoted to the outline. Reserved rather than display:none so nothing moves under a thumb. */
+  #btns #play { background: transparent; box-shadow: inset 0 0 0 2px rgba(220,236,255,.45); color: #dcecff; }
+  #btns #play[disabled] { box-shadow: inset 0 0 0 2px rgba(220,236,255,.2); color: rgba(220,236,255,.5); }
+
+
+  /* Bottom LEFT, not bottom right. The joystick anchors itself into the bottom-right corner of the
+     play area, and this button is a DOM element sitting on top of the canvas - put them in the same
+     corner and the button silently eats the thumb before the touch ever reaches the game, which
+     reads as "the joystick is broken" rather than "something is covering it".
+     Hidden entirely once installed to the home screen, and on iOS, where there is no Fullscreen API
+     to call - see the script below. */
+  #full {
+    position: fixed; z-index: 11;
+    left: calc(env(safe-area-inset-left, 0px) + 12px);
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+    width: 40px; height: 40px; border: 0; border-radius: 10px; cursor: pointer;
+    background: rgba(255,255,255,.14); color: #dcecff; font-size: 17px; line-height: 40px;
+  }
+  #full:hover { background: rgba(255,255,255,.24); }
+  @media (display-mode: standalone) { #full { display: none; } }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="unity-canvas" tabindex="-1"></canvas></div>
+
+<div id="start">
+  <h1 id="title">NEUTROPIA</h1>
+  <p id="tag">happiness is contagious</p>
+  <div id="bar"><div id="fill"></div></div>
+  <div id="btns"><button id="play" disabled>Loading&hellip;</button></div>
+  <ol id="steps" hidden></ol>
+</div>
+
+<button id="full" title="Fullscreen" aria-label="Fullscreen">&#9974;</button>
+
+<script>
+  var canvas  = document.querySelector("#unity-canvas");
+  var loading = document.querySelector("#start");
+  var fill    = document.querySelector("#fill");
+  var playBtn = document.querySelector("#play");
+  var instance = null, ready = false, started = false;
+
+  var installed = window.matchMedia("(display-mode: standalone)").matches
+               || window.matchMedia("(display-mode: fullscreen)").matches
+               || navigator.standalone === true;
+
+  // The prompt is captured but never surfaced as a button here. Arriving with ?install=1 means the
+  // landing page already asked; raise it once, silently, and otherwise say nothing. The game is the
+  // game - it does not hand out instructions.
+  var deferredPrompt = null, wantsInstall = /[?&]install=1/.test(location.search);
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (wantsInstall && !installed) {
+      wantsInstall = false;
+      e.prompt();
+    }
+  });
+
+  function begin () {
+    loading.classList.add("done");
+    resize();
+    canvas.focus();
+  }
+
+  var ua = navigator.userAgent;
+  var iOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh\b/.test(ua) && navigator.maxTouchPoints > 1);
+  if (iOS && wantsInstall && !installed) {
+    var steps = document.querySelector("#steps");
+    steps.innerHTML = ["Tap <b>&#8943;</b> at the bottom right of Safari.",
+                       "Tap <b>Share</b>.",
+                       "Scroll down to <b>Add to Home Screen</b>.",
+                       "Tap <b>Add</b>, then open it from the new icon."]
+                      .map(function (t) { return "<li>" + t + "</li>"; }).join("");
+    steps.hidden = false;
+  }
+
+  playBtn.addEventListener("click", function () {
+    started = true;
+    if (ready) { begin(); } else { playBtn.textContent = "Loading\u2026"; }
+  });
+
+  var script = document.createElement("script");
+  script.src = "Build/Neutropia.loader.js";
+  script.onload = function () {
+    createUnityInstance(canvas, config, function (p) {
+      fill.style.width = (100 * p) + "%";
+    }).then(function (u) {
+      instance = u;
+      ready = true;
+      playBtn.disabled = false;
+      playBtn.textContent = "Play";
+      if (started || installed) { begin(); }   // installed copies go straight in
+
+    }).catch(function (err) {
+      // Leaving a dead "Failed to load" button strands you with nothing to press. Most causes here are
+      // transient - a dropped connection, or an installed copy whose address has moved - so offer the
+      // one action that fixes those, and say plainly what to do when it does not.
+      playBtn.textContent = "Retry";
+      playBtn.disabled = false;
+      playBtn.onclick = function () { location.reload(); };
+      console.error(err);
+    });
+  };
+  document.body.appendChild(script);
+
+  // Registered only at the top level. Inside an iframe - which is exactly how itch.io embeds a
+  // game - a service worker is pointless and can fail noisily, so it is skipped there.
+  if ("serviceWorker" in navigator && window.self === window.top) {
+    window.addEventListener("load", function () {
+      // updateViaCache:'none' so the worker script itself is never served from cache - otherwise a
+      // broken worker keeps re-installing itself from the very cache it poisoned. update() forces the
+      // check immediately rather than waiting for the browser's own schedule.
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
+        .then(function (reg) { reg.update(); })
+        .catch(function () {});
+    });
+  }
+</script>
+</body>
+</html>

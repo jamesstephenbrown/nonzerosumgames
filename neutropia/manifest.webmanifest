@@ -1,0 +1,17 @@
+{
+  "name": "Neutropia",
+  "short_name": "Neutropia",
+  "description": "Happiness is contagious.",
+  "start_url": "./play/index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "background_color": "#336699",
+  "theme_color": "#336699",
+  "icons": [
+    { "src": "play/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "play/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "play/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
