@@ -186,18 +186,6 @@
   };
   document.body.appendChild(script);
 
-  // Registered only at the top level. Inside an iframe - which is exactly how itch.io embeds a
-  // game - a service worker is pointless and can fail noisily, so it is skipped there.
-  if ("serviceWorker" in navigator && window.self === window.top) {
-    window.addEventListener("load", function () {
-      // updateViaCache:'none' so the worker script itself is never served from cache - otherwise a
-      // broken worker keeps re-installing itself from the very cache it poisoned. update() forces the
-      // check immediately rather than waiting for the browser's own schedule.
-      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" })
-        .then(function (reg) { reg.update(); })
-        .catch(function () {});
-    });
-  }
 </script>
 </body>
 </html>

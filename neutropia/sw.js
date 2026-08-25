@@ -5,9 +5,9 @@
 // hundreds of megabytes, and pre-caching that would stall the first load and can blow past a
 // browser's storage quota outright. The build is left to normal HTTP caching, which handles large
 // immutable files well; only the small shell is managed here.
-const SHELL = "neutropia-shell-v3";
+const SHELL = 'neutropia-v4';
 const FILES = ['./', './index.html', './manifest.webmanifest',
-               './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+               './play/icon-192.png', './play/icon-512.png', './play/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

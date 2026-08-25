@@ -84,6 +84,18 @@
 
             // Launched from the icon: this page is the app's entry point, so send it into the game
             // immediately. replace() rather than assign() so Back does not walk into the article.
+            // Register at THIS level, so the worker's scope is the whole /neutropia/ folder. That matters
+            // for more than caching: an earlier upload put the game at this path and registered a worker
+            // here, and because scope is a path prefix that old worker still sits in front of everything
+            // below it - including play/. It answers a failed request with its cached index.html, so
+            // Unity receives HTML where it expects WebAssembly and hangs on the loading bar. Registering a
+            // new worker at the same scope is what evicts it; skipWaiting/claim inside make it immediate.
+            if ('serviceWorker' in navigator && window.self === window.top) {
+                navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+                    .then(function (reg) { reg.update(); })
+                    .catch(function () {});
+            }
+
             if (standalone) { location.replace('play/index.html'); return; }
 
             var btn = document.getElementById('nz-install'),
