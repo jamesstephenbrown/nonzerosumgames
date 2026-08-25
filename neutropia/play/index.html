@@ -85,21 +85,6 @@
   #btns #play[disabled] { box-shadow: inset 0 0 0 2px rgba(220,236,255,.2); color: rgba(220,236,255,.5); }
 
 
-  /* Bottom LEFT, not bottom right. The joystick anchors itself into the bottom-right corner of the
-     play area, and this button is a DOM element sitting on top of the canvas - put them in the same
-     corner and the button silently eats the thumb before the touch ever reaches the game, which
-     reads as "the joystick is broken" rather than "something is covering it".
-     Hidden entirely once installed to the home screen, and on iOS, where there is no Fullscreen API
-     to call - see the script below. */
-  #full {
-    position: fixed; z-index: 11;
-    left: calc(env(safe-area-inset-left, 0px) + 12px);
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
-    width: 40px; height: 40px; border: 0; border-radius: 10px; cursor: pointer;
-    background: rgba(255,255,255,.14); color: #dcecff; font-size: 17px; line-height: 40px;
-  }
-  #full:hover { background: rgba(255,255,255,.24); }
-  @media (display-mode: standalone) { #full { display: none; } }
 </style>
 </head>
 <body>
@@ -113,7 +98,6 @@
   <ol id="steps" hidden></ol>
 </div>
 
-<button id="full" title="Fullscreen" aria-label="Fullscreen">&#9974;</button>
 
 <script>
   var canvas  = document.querySelector("#unity-canvas");
