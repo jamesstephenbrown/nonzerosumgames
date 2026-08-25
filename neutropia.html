@@ -43,43 +43,76 @@
     <h2>a non-zero-sum game</h2>
     <div class="content">
 
-        <!-- Play / install. Above the history, so someone who came here to play is not made to read
-             first. Install is the primary action: it is genuinely the better way to play, and the
-             browser bar is what stops it feeling like a game.
-
-             The install prompt CANNOT be raised from this page - a browser will only offer it on a
-             page controlled by the game's service worker, which is scoped to /play/. So Install just
-             carries the intent across in the URL and the game raises it there. Nothing here pretends
-             to install anything itself. -->
+        <!-- One action. On iOS the steps appear here rather than on another page, because iOS has no
+             install prompt to go and fetch. On Chromium the button hands off to the game, which raises
+             the browser's own prompt. Where neither applies the button is simply not shown - no
+             instructions, no dead ends. -->
         <div class="play-panel">
-            <a class="play-btn" href="play/index.html?install=1">Install NEUTROPIA</a>
-            <p class="play-note">Plays full screen, with no browser bar &mdash; and works offline.</p>
+            <a class="play-btn" id="nz-install" href="play/index.html?install=1">Install NEUTROPIA</a>
+            <p class="play-note" id="nz-note">Plays full screen, with no browser bar &mdash; and works offline.</p>
+            <ol class="play-steps" id="nz-steps" hidden></ol>
             <p class="play-alt"><a href="play/index.html">or play in the browser</a></p>
         </div>
         <style>
-        /* The game's own face, shipped rather than hoped for - it is a custom font, so no machine has it.
-                 Helvetica Rounded and SF Rounded (ui-rounded) are the fallbacks while it loads or if it fails.
-                 font-display:swap so text is never invisible waiting on it. */
-        @font-face {
-                font-family: "Double Bubble";
-                src: url("DoubleBubble.otf") format("opentype");
-                font-display: swap;
-        }
-
-        /* Rounded, to match the game's lettering rather than the rest of the page's hand-drawn face. */
-        .play-panel, .play-btn, .play-note {
+        .play-panel, .play-btn, .play-note, .play-alt, .play-steps {
             font-family: "Helvetica Rounded", ui-rounded, "Arial Rounded MT Bold", "Varela Round", Arial, sans-serif;
             font-weight: 600;
         }
-        /* One clear action. Play in the browser is deliberately demoted to a plain link - it is the
-           fallback, not a second choice of equal weight, and two matching buttons made it look like one. */
         .play-panel { text-align:center; margin:0 0 34px; }
         .play-btn { display:inline-block; font-size:1.25rem; padding:16px 40px; border:0;
                     border-radius:14px; background:#33ffcc; color:#17324d; text-decoration:none; cursor:pointer; }
         .play-note { margin:10px 0 0; font-size:.95rem; opacity:.75; }
-        .play-alt { margin:6px 0 0; font-size:.9rem; opacity:.6; }
+        .play-alt { margin:8px 0 0; font-size:.9rem; opacity:.6; }
         .play-alt a { color:inherit; }
+        .play-steps { display:inline-block; text-align:left; margin:14px auto 0; padding-left:22px;
+                      font-size:.95rem; line-height:1.7; opacity:.85; }
+        .play-steps[hidden] { display:none; }
         </style>
+        <script>
+        (function () {
+            var btn = document.getElementById('nz-install'),
+                note = document.getElementById('nz-note'),
+                steps = document.getElementById('nz-steps'),
+                panel = btn.parentNode;
+            var ua = navigator.userAgent;
+            var iOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh\b/.test(ua) && navigator.maxTouchPoints > 1);
+            var mac = /Macintosh\b/.test(ua) && !iOS;
+            var chromium = /Chrome|Chromium|Edg|OPR/.test(ua);
+            var safari = /Safari/.test(ua) && !chromium;
+            var standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+
+            function inline (list) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    steps.innerHTML = list.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+                    steps.hidden = false;
+                    note.hidden = true;
+                });
+            }
+
+            if (standalone) {
+                // Running installed already: there is nothing to install and nothing to explain.
+                btn.textContent = 'Play NEUTROPIA';
+                btn.setAttribute('href', 'play/index.html');
+                note.hidden = true;
+                panel.querySelector('.play-alt').hidden = true;
+            } else if (iOS) {
+                inline(['Tap <b>&#8943;</b> at the bottom right of Safari.',
+                        'Choose <b>Add to Home Screen</b>.',
+                        'Tap <b>Add</b>, then open it from the new icon.']);
+            } else if (mac && safari) {
+                inline(['Open the <b>File</b> menu in Safari.',
+                        'Choose <b>Add to Dock</b>.']);
+            } else if (!chromium) {
+                // No install route we can rely on. Offer the game, not an explanation.
+                btn.textContent = 'Play NEUTROPIA';
+                btn.setAttribute('href', 'play/index.html');
+                note.hidden = true;
+                panel.querySelector('.play-alt').hidden = true;
+            }
+            // Chromium keeps the link through to the game, which raises the real prompt there.
+        })();
+        </script>
 
         <p><b>NEUTROPIA</b> has been that project I've been working on since I began teaching myself to code, it's been through many iterations, and has spawned many variations and experiments. It is, to me the essential <a href="whatarenonzerosumgames.html">non-zero-sum game</a>, in that you have a positive and negative balance, but through chain reactions, one can get the upper hand</p>
         <p>This is an early demo from 2015:</p>
