@@ -56,25 +56,49 @@
              icon instead of the game. Opened normally this is the article; opened from an installed icon
              it goes straight into the game and none of this is ever seen. -->
         <div class="play-panel">
+          <div class="play-card">
             <a class="play-btn" id="nz-install" href="play/index.html">Install NEUTROPIA</a>
-            <p class="play-note" id="nz-note">Plays full screen, with no browser bar &mdash; and works offline.</p>
-            <ol class="play-steps" id="nz-steps" hidden></ol>
-            <p class="play-alt"><a href="play/index.html">or play in the browser</a></p>
+            <div class="play-drawer" id="nz-drawer"><ol class="play-steps" id="nz-steps"></ol></div>
+          </div>
+          <p class="play-note" id="nz-note">Plays full screen, with no browser bar &mdash; and works offline.</p>
+          <p class="play-alt"><a href="play/index.html">or play in the browser</a></p>
         </div>
         <style>
-        .play-panel, .play-btn, .play-note, .play-alt, .play-steps {
+        /* Self-contained on purpose: the surrounding page styles lists, links and blocks its own way,
+           and inherited rules were laying the steps out beside the button instead of beneath it.
+           Everything here is stated explicitly rather than relied upon. */
+        .play-panel, .play-panel * {
             font-family: "Helvetica Rounded", ui-rounded, "Arial Rounded MT Bold", "Varela Round", Arial, sans-serif;
-            font-weight: 600;
+            box-sizing: border-box;
         }
-        .play-panel { text-align:center; margin:0 0 34px; }
-        .play-btn { display:inline-block; font-size:1.25rem; padding:16px 40px; border:0;
-                    border-radius:14px; background:#33ffcc; color:#17324d; text-decoration:none; cursor:pointer; }
-        .play-note { margin:10px 0 0; font-size:.95rem; opacity:.75; }
-        .play-alt { margin:8px 0 0; font-size:.9rem; opacity:.6; }
-        .play-alt a { color:inherit; }
-        .play-steps { display:inline-block; text-align:left; margin:14px auto 0; padding-left:22px;
-                      font-size:.95rem; line-height:1.7; opacity:.85; }
-        .play-steps[hidden] { display:none; }
+        .play-panel { display: block; text-align: center; margin: 0 0 34px; }
+
+        /* The button and the steps are one object - the drawer opens out of the button rather than
+           appearing somewhere near it, so it reads as "this is what installing means". */
+        .play-card {
+            display: inline-block; width: min(92%, 420px); text-align: left;
+            border-radius: 16px; overflow: hidden; background: #33ffcc;
+        }
+        .play-card .play-btn {
+            display: block; width: 100%; margin: 0; border: 0; text-align: center;
+            font-size: 1.2rem; font-weight: 700; padding: 16px 20px;
+            background: #33ffcc; color: #17324d; text-decoration: none; cursor: pointer;
+        }
+        .play-drawer {
+            max-height: 0; overflow: hidden; transition: max-height .32s ease;
+            background: rgba(23,50,77,.08);
+        }
+        .play-card.open .play-drawer { max-height: 320px; }
+        .play-steps {
+            display: block; margin: 0; padding: 4px 22px 18px 44px; list-style: decimal outside;
+            color: #17324d; font-size: .98rem; line-height: 1.7;
+        }
+        .play-steps li { margin: 8px 0; text-align: left; }
+        .play-steps b { font-weight: 800; }
+
+        .play-note { display: block; margin: 12px 0 0; font-size: .95rem; opacity: .75; text-align: center; }
+        .play-alt  { display: block; margin: 6px 0 0; font-size: .9rem;  opacity: .6;  text-align: center; }
+        .play-alt a { color: inherit; }
         </style>
         <script>
         (function () {
@@ -107,11 +131,13 @@
             var chromium = /Chrome|Chromium|Edg|OPR/.test(ua);
             var safari = /Safari/.test(ua) && !chromium;
 
+            var card = document.querySelector('.play-card');
             function inline (list) {
+                steps.innerHTML = list.map(function (t) { return '<li>' + t + '</li>'; }).join('');
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    steps.innerHTML = list.map(function (t) { return '<li>' + t + '</li>'; }).join('');
-                    steps.hidden = false; note.hidden = true;
+                    card.classList.toggle('open');
+                    note.hidden = card.classList.contains('open');
                 });
             }
 

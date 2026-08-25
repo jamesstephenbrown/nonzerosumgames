@@ -139,6 +139,22 @@
     }
   });
 
+  var config = {
+    dataUrl:      "Build/Neutropia.data.unityweb",
+    frameworkUrl: "Build/Neutropia.framework.js.unityweb",
+    codeUrl:      "Build/Neutropia.wasm.unityweb",
+    streamingAssetsUrl: "StreamingAssets",
+    companyName:  "BranchOutMedia",
+    productName:  "NEUTROPIA",
+    productVersion: "1.0",
+    // Unity keeps the drawing buffer the same pixel size as the element, so the canvas is always
+    // exactly the window and never letterboxed inside it.
+    matchWebGLToCanvasSize: true,
+    // Retina phones would otherwise render four times the pixels for no visible gain and a large
+    // framerate cost. Capped at 2 rather than 1 so desktop still looks sharp.
+    devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2)
+  };
+
   function begin () {
     loading.classList.add("done");
     resize();
