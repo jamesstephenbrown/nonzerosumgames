@@ -139,6 +139,19 @@
     devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2)
   };
 
+  // Stripping the install UI took resize() out with it, and begin() still called it - so clicking Play
+  // threw before canvas.focus(), which left the canvas unfocused (no keyboard) and the drawing buffer
+  // at whatever size it happened to be, drawing the arena off-centre.
+  function resize () {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect();
+    canvas.width  = Math.round(r.width  * dpr);
+    canvas.height = Math.round(r.height * dpr);
+  }
+  addEventListener("resize", resize);
+  // iOS still reports the pre-rotation size for a frame or two after the address bar settles.
+  addEventListener("orientationchange", function () { setTimeout(resize, 250); });
+
   function begin () {
     loading.classList.add("done");
     resize();
