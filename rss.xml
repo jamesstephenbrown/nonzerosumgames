@@ -10,6 +10,15 @@
     <language>en-us</language>
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>WHAT IS THE META-CRISIS?</title>
+      <link>https://nonzerosum.games/metacrisis.html</link>
+      <description><![CDATA[the mother of all coordination problems]]></description>
+      <pubDate>Sun, 20 Sep 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/metacrisis.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/metacrisis.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/metacrisis.png"/>
+    </item>
+    <item>
       <title>BAYESIAN GAMES WITH NUKES</title>
       <link>https://nonzerosum.games/bayesiangameswithnukes.html</link>
       <description><![CDATA[how we all learned to stop worrying and love the bomb... for a while]]></description>
