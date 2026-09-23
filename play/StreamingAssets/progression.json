@@ -1,0 +1,1140 @@
+{
+ "rule": {
+  "step": 1,
+  "transfer": 0.6
+ },
+ "levels": [
+  {
+   "scene": "Neutropia 01",
+   "title": "NEUTROPIA",
+   "difficulty": 1,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Shoot Gap"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Trinity 01",
+   "title": "TRINITY",
+   "difficulty": 1,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Shoot Gap"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Shoot Gap",
+   "title": "SHOOT GAP",
+   "difficulty": 2,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Vanguards 01",
+    "Vanguards 02",
+    "Ring O Fire 03"
+   ],
+   "after": [
+    "Neutropia 01",
+    "Trinity 01"
+   ]
+  },
+  {
+   "scene": "Dont Worry 01",
+   "title": "DONT WORRY",
+   "difficulty": 1,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "So Close 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Vanguards 01",
+   "title": "VANGUARD",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Gauntlet 02"
+   ],
+   "after": [
+    "Shoot Gap",
+    "So Close 01"
+   ]
+  },
+  {
+   "scene": "So Close 01",
+   "title": "SO CLOSE",
+   "difficulty": 2,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Vanguards 01",
+    "So Close 02",
+    "Ring O Fire 03"
+   ],
+   "after": [
+    "Dont Worry 01",
+    "Mood Wall 01"
+   ]
+  },
+  {
+   "scene": "Meat Up 01",
+   "title": "MEAT UP",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Gauntlet 02"
+   ],
+   "after": [
+    "Long Jump 01",
+    "Crossed 01"
+   ]
+  },
+  {
+   "scene": "Bunsens 01",
+   "title": "BUNSENS",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Two Faced 01"
+   ],
+   "after": [
+    "Lelu Wall 01",
+    "Rods 02"
+   ]
+  },
+  {
+   "scene": "Long Jump 01",
+   "title": "LONG JUMP",
+   "difficulty": 2,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Meat Up 01",
+    "So Close 02",
+    "So Close 03"
+   ],
+   "after": [
+    "Mood Wall 02",
+    "Sad Maths 01"
+   ]
+  },
+  {
+   "scene": "Gauntlet 01",
+   "title": "GAUNTLET",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Two Faced 01"
+   ],
+   "after": [
+    "Rod Route 01",
+    "Jitter Bugs 01"
+   ]
+  },
+  {
+   "scene": "Citadel 01",
+   "title": "CITADEL",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Spud Pot 01"
+   ],
+   "after": [
+    "Go Unseen 02",
+    "Mixed Bag 01"
+   ]
+  },
+  {
+   "scene": "Vanguards 02",
+   "title": "LOOKS EASY",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Spud Pot 01"
+   ],
+   "after": [
+    "Stealth 03",
+    "Shoot Gap"
+   ]
+  },
+  {
+   "scene": "So Close 02",
+   "title": "TOO CLOSE",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "So Close 01",
+    "Long Jump 01"
+   ]
+  },
+  {
+   "scene": "Gauntlet 02",
+   "title": "GAU2TLET",
+   "difficulty": 4,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Citadel 03"
+   ],
+   "after": [
+    "Vanguards 01",
+    "Meat Up 01"
+   ]
+  },
+  {
+   "scene": "Crossed 01",
+   "title": "CRUCIFIED",
+   "difficulty": 2,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Meat Up 01",
+    "Citadel 02",
+    "So Close 03"
+   ],
+   "after": [
+    "Rods 01",
+    "Shy Fella 01"
+   ]
+  },
+  {
+   "scene": "Citadel 02",
+   "title": "PITADEL",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Crossed 01",
+    "Lelu Wall 01"
+   ]
+  },
+  {
+   "scene": "Two Faced 01",
+   "title": "TWO FACED",
+   "difficulty": 4,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Citadel 03"
+   ],
+   "after": [
+    "Bunsens 01",
+    "Gauntlet 01"
+   ]
+  },
+  {
+   "scene": "Spud Pot 01",
+   "title": "SPUD POT",
+   "difficulty": 4,
+   "made": [
+    "green"
+   ],
+   "unlocks": [
+    "Gauntlet 03"
+   ],
+   "after": [
+    "Citadel 01",
+    "Vanguards 02"
+   ]
+  },
+  {
+   "scene": "Ring O Fire 01",
+   "title": "RING-O-FIRE",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Rods 02",
+    "Rod Route 01"
+   ]
+  },
+  {
+   "scene": "Citadel 03",
+   "title": "OSHITADEL",
+   "difficulty": 5,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Gauntlet 02",
+    "Two Faced 01"
+   ]
+  },
+  {
+   "scene": "Mood Wall 01",
+   "title": "MOOD WALL",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "So Close 01",
+    "Rods 02"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Colour Me 01",
+   "title": "COLOUR ME",
+   "difficulty": 5,
+   "made": [
+    "orange",
+    "wall"
+   ],
+   "unlocks": [
+    "FAST FIEND"
+   ],
+   "after": [
+    "Neutropia 03",
+    "TOXICBOND"
+   ]
+  },
+  {
+   "scene": "Mood Wall 02",
+   "title": "MOOD WALLS",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Long Jump 01",
+    "Rod Route 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Sad Maths 01",
+   "title": "NO FRIENDS",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "orange"
+   ],
+   "unlocks": [
+    "Long Jump 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Escape 01",
+   "title": "ESCAPE",
+   "difficulty": 3,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Roomy 01",
+    "Boxed 01"
+   ],
+   "after": [
+    "Rods 02",
+    "Rod Route 01"
+   ]
+  },
+  {
+   "scene": "Rods 01",
+   "title": "RODS",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Crossed 01",
+    "Rod Route 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Shy Fella 01",
+   "title": "SHY FELLA",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "yellow"
+   ],
+   "unlocks": [
+    "Crossed 01",
+    "Go Unseen 02"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Banana 01",
+   "title": "BANANAAAA",
+   "difficulty": 2,
+   "made": [
+    "yellow"
+   ],
+   "unlocks": [],
+   "after": [
+    "Lelu Mate 01",
+    "Herd Them 01"
+   ]
+  },
+  {
+   "scene": "Vanguards 03",
+   "title": "VAN GUARDS",
+   "difficulty": 3,
+   "made": [
+    "green",
+    "yellow"
+   ],
+   "unlocks": [
+    "Ring O Fire 02"
+   ],
+   "after": [
+    "Go Unseen 02",
+    "Mixed Bag 01"
+   ]
+  },
+  {
+   "scene": "Lelu Mate 01",
+   "title": "LELU MATE",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel",
+    "yellow"
+   ],
+   "unlocks": [
+    "Banana 01",
+    "Banana 02",
+    "Lelu Maze 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Lelu Wall 01",
+   "title": "LELLO WALL",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "lel",
+    "yellow"
+   ],
+   "unlocks": [
+    "Bunsens 01",
+    "Citadel 02",
+    "Cat Mouse"
+   ],
+   "after": [
+    "Lelu Wall 02",
+    "REROUTED"
+   ]
+  },
+  {
+   "scene": "Herd Them 01",
+   "title": "HERD THEM",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "yellow"
+   ],
+   "unlocks": [
+    "Banana 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Banana 02",
+   "title": "AAAGH",
+   "difficulty": 4,
+   "made": [
+    "lel",
+    "orange",
+    "yellow"
+   ],
+   "unlocks": [
+    "Lelu Maze 01",
+    "THE PIPER",
+    "Odd Bunch 01"
+   ],
+   "after": [
+    "Neutropia 03",
+    "Lelu Mate 01"
+   ]
+  },
+  {
+   "scene": "Lelu Trip 01",
+   "title": "LELU TRIP",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel"
+   ],
+   "unlocks": [
+    "Stealth 03"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Lelu Maze 01",
+   "title": "LAB RAT",
+   "difficulty": 5,
+   "made": [
+    "green",
+    "lel",
+    "yellow"
+   ],
+   "unlocks": [
+    "Go Unseen 01"
+   ],
+   "after": [
+    "Lelu Mate 01",
+    "Banana 02"
+   ]
+  },
+  {
+   "scene": "Orange Up 01",
+   "title": "ORANGE UP",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "orange"
+   ],
+   "unlocks": [
+    "Mixed Bag 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Ring O Fire 02",
+   "title": "KING-O-FEAR",
+   "difficulty": 4,
+   "made": [
+    "orange",
+    "yellow"
+   ],
+   "unlocks": [
+    "Odd Bunch 01"
+   ],
+   "after": [
+    "Neutropia 03",
+    "Vanguards 03"
+   ]
+  },
+  {
+   "scene": "Crossed 02",
+   "title": "DIVE BOMB",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Jitter Bugs 01",
+    "Stealth 03"
+   ]
+  },
+  {
+   "scene": "Gauntlet 03",
+   "title": "GAUNTL3T",
+   "difficulty": 5,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Spud Pot 01",
+    "Roomy 01"
+   ]
+  },
+  {
+   "scene": "Cat Mouse",
+   "title": "CAT N MOUSE",
+   "difficulty": 3,
+   "made": [
+    "green",
+    "lel"
+   ],
+   "unlocks": [
+    "Lelu Maze 02"
+   ],
+   "after": [
+    "Lelu Wall 01",
+    "Stealth 03"
+   ]
+  },
+  {
+   "scene": "Banana 03",
+   "title": "UNDERRIPE",
+   "difficulty": 3,
+   "made": [
+    "green",
+    "yellow"
+   ],
+   "unlocks": [
+    "THE PIPER"
+   ],
+   "after": [
+    "Go Unseen 02",
+    "Mixed Bag 01"
+   ]
+  },
+  {
+   "scene": "Ring O Fire 03",
+   "title": "RING-O-FEAR",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Shoot Gap",
+    "So Close 01"
+   ]
+  },
+  {
+   "scene": "Rods 02",
+   "title": "HOT RODS",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Bunsens 01",
+    "Ring O Fire 01",
+    "Escape 01"
+   ],
+   "after": [
+    "Walled Off 01",
+    "Mood Wall 01"
+   ]
+  },
+  {
+   "scene": "The Pinch 01",
+   "title": "THE PINCH",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "orange"
+   ],
+   "unlocks": [],
+   "after": []
+  },
+  {
+   "scene": "Walled Off 01",
+   "title": "WALLED OFF",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Rods 02"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Roomy 01",
+   "title": "ROOMY",
+   "difficulty": 4,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Gauntlet 03"
+   ],
+   "after": [
+    "Escape 01",
+    "Lelu Wall 03"
+   ]
+  },
+  {
+   "scene": "Long Wall 01",
+   "title": "PURPLE RAIN",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel",
+    "purple"
+   ],
+   "unlocks": [
+    "Jitter Bugs 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Rod Route 01",
+   "title": "ROD ROUTE",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "Gauntlet 01",
+    "Ring O Fire 01",
+    "Escape 01"
+   ],
+   "after": [
+    "Mood Wall 02",
+    "Rods 01"
+   ]
+  },
+  {
+   "scene": "The Vault 01",
+   "title": "THE VAULT",
+   "difficulty": 1,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": []
+  },
+  {
+   "scene": "Boxed 01",
+   "title": "BOXED",
+   "difficulty": 4,
+   "made": [
+    "green",
+    "wall"
+   ],
+   "unlocks": [
+    "FAST FIEND"
+   ],
+   "after": [
+    "Escape 01",
+    "Lelu Wall 03"
+   ]
+  },
+  {
+   "scene": "Lelu Wall 02",
+   "title": "BOX BUDDY",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel",
+    "wall",
+    "yellow"
+   ],
+   "unlocks": [
+    "Lelu Wall 01",
+    "Lelu Wall 03",
+    "Neutropia 03"
+   ],
+   "after": []
+  },
+  {
+   "scene": "So Close 03",
+   "title": "SO CLOS3",
+   "difficulty": 3,
+   "made": [
+    "green"
+   ],
+   "unlocks": [],
+   "after": [
+    "Long Jump 01",
+    "Crossed 01"
+   ]
+  },
+  {
+   "scene": "Jitter Bugs 01",
+   "title": "JITTERBUGS",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "purple"
+   ],
+   "unlocks": [
+    "Gauntlet 01",
+    "Crossed 02",
+    "Neutropia 03"
+   ],
+   "after": [
+    "Long Wall 01",
+    "REROUTED"
+   ]
+  },
+  {
+   "scene": "Lelu Swarm 01",
+   "title": "LELU SWARM",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel",
+    "orange"
+   ],
+   "unlocks": [
+    "Stealth 03"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Lelu Wall 03",
+   "title": "LELUWALL",
+   "difficulty": 3,
+   "made": [
+    "green",
+    "lel",
+    "wall"
+   ],
+   "unlocks": [
+    "Roomy 01",
+    "Boxed 01",
+    "Lelu Maze 02"
+   ],
+   "after": [
+    "Lelu Wall 02",
+    "TOXICBOND"
+   ]
+  },
+  {
+   "scene": "Invisible 01",
+   "title": "INVISIBLE",
+   "difficulty": 2,
+   "made": [
+    "unseen"
+   ],
+   "unlocks": [],
+   "after": [
+    "The Decoy 01"
+   ]
+  },
+  {
+   "scene": "The Decoy 01",
+   "title": "DECOY",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel",
+    "unseen"
+   ],
+   "unlocks": [
+    "Invisible 01",
+    "Stealth 01",
+    "Gauntlet 04"
+   ],
+   "after": []
+  },
+  {
+   "scene": "Odd Bunch 01",
+   "title": "ODDBUNCH",
+   "difficulty": 4,
+   "made": [
+    "green",
+    "orange",
+    "purple",
+    "unseen",
+    "yellow"
+   ],
+   "unlocks": [
+    "Stealth 01",
+    "Go Unseen 01",
+    "Gauntlet 04"
+   ],
+   "after": [
+    "Ring O Fire 02",
+    "Banana 02"
+   ]
+  },
+  {
+   "scene": "Stealth 01",
+   "title": "STEALTH",
+   "difficulty": 5,
+   "made": [
+    "green",
+    "unseen"
+   ],
+   "unlocks": [],
+   "after": [
+    "Odd Bunch 01",
+    "The Decoy 01"
+   ]
+  },
+  {
+   "scene": "Go Unseen 01",
+   "title": "GO UNSEEN",
+   "difficulty": 5,
+   "made": [
+    "green",
+    "orange",
+    "unseen",
+    "yellow"
+   ],
+   "unlocks": [],
+   "after": [
+    "Odd Bunch 01",
+    "Lelu Maze 01"
+   ]
+  },
+  {
+   "scene": "Go Unseen 02",
+   "title": "GO UNGREEN",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "unseen",
+    "yellow"
+   ],
+   "unlocks": [
+    "Citadel 01",
+    "Vanguards 03",
+    "Banana 03"
+   ],
+   "after": [
+    "PurpleRain",
+    "Shy Fella 01"
+   ]
+  },
+  {
+   "scene": "Bad Teeth 01",
+   "title": "BAD TEETH",
+   "difficulty": 6,
+   "made": [
+    "green",
+    "orange",
+    "purple",
+    "unseen",
+    "yellow"
+   ],
+   "unlocks": [],
+   "after": []
+  },
+  {
+   "scene": "Mixed Bag 01",
+   "title": "MIXED BAG",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "orange",
+    "purple",
+    "yellow"
+   ],
+   "unlocks": [
+    "Citadel 01",
+    "Vanguards 03",
+    "Banana 03"
+   ],
+   "after": [
+    "REROUTED",
+    "Orange Up 01"
+   ]
+  },
+  {
+   "scene": "Neutropia 03",
+   "title": "PET-ROPIA",
+   "difficulty": 3,
+   "made": [
+    "green",
+    "orange",
+    "purple",
+    "wall",
+    "yellow"
+   ],
+   "unlocks": [
+    "Banana 02",
+    "Ring O Fire 02",
+    "Colour Me 01"
+   ],
+   "after": [
+    "Lelu Wall 02",
+    "Jitter Bugs 01"
+   ]
+  },
+  {
+   "scene": "Citadel 04",
+   "title": "COLORHELL",
+   "difficulty": 6,
+   "made": [
+    "green",
+    "orange",
+    "purple",
+    "yellow"
+   ],
+   "unlocks": [],
+   "after": []
+  },
+  {
+   "scene": "Gauntlet 04",
+   "title": "G4UNTLET",
+   "difficulty": 5,
+   "made": [
+    "green",
+    "unseen"
+   ],
+   "unlocks": [],
+   "after": [
+    "Odd Bunch 01",
+    "The Decoy 01"
+   ]
+  },
+  {
+   "scene": "Stealth 03",
+   "title": "BAD HEALTH",
+   "difficulty": 2,
+   "made": [
+    "green",
+    "lel",
+    "orange"
+   ],
+   "unlocks": [
+    "Vanguards 02",
+    "Crossed 02",
+    "Cat Mouse"
+   ],
+   "after": [
+    "Lelu Swarm 01",
+    "Lelu Trip 01"
+   ]
+  },
+  {
+   "scene": "Lelu Maze 02",
+   "title": "LAB RAT",
+   "difficulty": 5,
+   "made": [
+    "green",
+    "lel"
+   ],
+   "unlocks": [],
+   "after": [
+    "Cat Mouse",
+    "Lelu Wall 03"
+   ]
+  },
+  {
+   "scene": "PurpleRain",
+   "title": "HERD THEM",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "yellow"
+   ],
+   "unlocks": [
+    "Go Unseen 02"
+   ],
+   "after": []
+  },
+  {
+   "scene": "",
+   "title": "TRIGAHAPI",
+   "difficulty": 1,
+   "made": [
+    "purple",
+    "teleport"
+   ],
+   "unlocks": [
+    "DOUBLE TAP"
+   ],
+   "after": []
+  },
+  {
+   "scene": "",
+   "title": "DOUBLE TAP",
+   "difficulty": 1,
+   "made": [
+    "lel",
+    "purple",
+    "teleport"
+   ],
+   "unlocks": [],
+   "after": [
+    "TRIGAHAPI"
+   ]
+  },
+  {
+   "scene": "",
+   "title": "THE PIPER",
+   "difficulty": 5,
+   "made": [
+    "green",
+    "lel",
+    "yellow"
+   ],
+   "unlocks": [],
+   "after": [
+    "Banana 02",
+    "Banana 03"
+   ]
+  },
+  {
+   "scene": "",
+   "title": "FAST FIEND",
+   "difficulty": 6,
+   "made": [
+    "green",
+    "orange",
+    "wall"
+   ],
+   "unlocks": [],
+   "after": [
+    "Colour Me 01",
+    "Boxed 01"
+   ]
+  },
+  {
+   "scene": "",
+   "title": "REROUTED",
+   "difficulty": 1,
+   "made": [
+    "green",
+    "lel",
+    "purple",
+    "wall",
+    "yellow"
+   ],
+   "unlocks": [
+    "Lelu Wall 01",
+    "Jitter Bugs 01",
+    "Mixed Bag 01"
+   ],
+   "after": []
+  },
+  {
+   "scene": "",
+   "title": "TOXICBOND",
+   "difficulty": 1,
+   "made": [
+    "lel",
+    "orange",
+    "wall"
+   ],
+   "unlocks": [
+    "Lelu Wall 03",
+    "Colour Me 01"
+   ],
+   "after": []
+  }
+ ]
+}
