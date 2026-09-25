@@ -126,9 +126,9 @@
   // ONE STAMP PER BUILD, SO A NEW BUILD IS NEVER SERVED STALE. The three payloads have the same names
   // every time, and they are tens of megabytes, so a browser that has them will happily go on using the
   // ones it downloaded days ago - which is a change appearing not to have been made at all. The deploy
-  // script rewrites 20260925090622 to the time of the build, so every deploy asks for new URLs. (The
+  // script rewrites 20260925223901 to the time of the build, so every deploy asks for new URLs. (The
   // service worker never caches these; it is ordinary HTTP caching that holds on to them.)
-  var BUILD_STAMP = "?v=20260925090622";
+  var BUILD_STAMP = "?v=20260925223901";
 
   var config = {
     dataUrl:      "Build/Neutropia.data.unityweb" + BUILD_STAMP,
