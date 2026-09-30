@@ -1,11 +1,17 @@
 // Minimal service worker. Its job is twofold: make the game installable at all (a PWA needs a
-// registered worker with a fetch handler), and keep the shell instantly available offline.
+// registered worker with a fetch handler), and keep it available offline.
 //
-// It deliberately does NOT pre-cache the Unity build. A WebGL build of this game runs to tens or
-// hundreds of megabytes, and pre-caching that would stall the first load and can blow past a
-// browser's storage quota outright. The build is left to normal HTTP caching, which handles large
-// immutable files well; only the small shell is managed here.
-const SHELL = 'neutropia-v4';
+// It deliberately does NOT pre-cache the Unity build. A WebGL build of this game runs to tens of
+// megabytes, and fetching that at install would stall the first load. Everything is network first,
+// and what comes back is kept as the copy to fall back on when there is no network.
+//
+// ONE BUILD KEPT, NOT EVERY BUILD EVER (30 Sep). The test that was meant to keep the build out of here
+// matched everything: './' stripped of './' is '', and every path ends with ''. So every build a player
+// ever loaded was kept - about 25MB each, under one cache name, never let go - in the same storage the
+// game's progress lives in, which a browser short of space may clear. Each build's files carry its
+// stamp (?v=), so a stamped file coming in now clears out the files of every other stamp; and the cache
+// has a new name, so the old one, with everything piled up in it, is emptied when this one activates.
+const SHELL = 'neutropia-v5';
 const FILES = ['./', './index.html', './manifest.webmanifest',
                './play/icon-192.png', './play/icon-512.png', './play/apple-touch-icon.png'];
 
@@ -21,29 +27,35 @@ self.addEventListener('activate', e => {
   );
 });
 
+// A build's file has come in: whatever is kept under any other build's stamp goes.
+function keepOnly (cache, url) {
+  const stamp = url.searchParams.get('v');
+  if (!stamp) { return; }
+  return cache.keys().then(keys => Promise.all(keys
+    .filter(k => { const v = new URL(k.url).searchParams.get('v'); return v && v !== stamp; })
+    .map(k => cache.delete(k))));
+}
+
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') { return; }
   const url = new URL(e.request.url);
   if (url.origin !== self.location.origin) { return; }
-
-  const isShell = FILES.some(f => url.pathname.endsWith(f.replace('./', '')));
+  // The game's update check (play/version.txt) has to reach the server, and there is nothing to keep.
+  if (url.pathname.endsWith('/version.txt')) { return; }
   const isNavigation = e.request.mode === 'navigate';
 
-  // Everything else - above all the Build/*.unityweb payloads - goes straight to the network,
-  // untouched. It used to run through here too, and the catch below then answered a failed wasm
-  // fetch with the cached index.html: Unity's loader received an HTML page where it expected
-  // WebAssembly and died with "failed to load", on a page that was in fact perfectly reachable.
-  // A cache built for a small shell has no business standing in front of a 23MB binary.
-  if (!isShell && !isNavigation) { return; }
-
   // Network first, so a redeployed build is never served stale; the cache is only the fallback for
-  // when there is genuinely no network.
+  // when there is genuinely no network. A build file that is not kept is answered with an error, never
+  // with a page: Unity's loader handed an HTML page where it expected WebAssembly dies with "failed to
+  // load", on a page that was in fact perfectly reachable - which is what this once did.
   e.respondWith(
     fetch(e.request)
       .then(res => {
-        if (isShell && res.ok) {
+        if (res.ok) {
           const copy = res.clone();
-          caches.open(SHELL).then(c => c.put(e.request, copy));
+          caches.open(SHELL)
+            .then(c => c.put(e.request, copy).then(() => keepOnly(c, url)))
+            .catch(() => {});
         }
         return res;
       })

@@ -131,9 +131,9 @@
   // ONE STAMP PER BUILD, SO A NEW BUILD IS NEVER SERVED STALE. The three payloads have the same names
   // every time, and they are tens of megabytes, so a browser that has them will happily go on using the
   // ones it downloaded days ago - which is a change appearing not to have been made at all. The deploy
-  // script rewrites 20260930080930 to the time of the build, so every deploy asks for new URLs. (The
+  // script rewrites 20260930225748 to the time of the build, so every deploy asks for new URLs. (The
   // service worker never caches these; it is ordinary HTTP caching that holds on to them.)
-  var BUILD_STAMP = "?v=20260930080930";
+  var BUILD_STAMP = "?v=20260930225748";
 
   var config = {
     dataUrl:      "Build/Neutropia.data.unityweb" + BUILD_STAMP,
@@ -210,6 +210,47 @@
   // Only where the site's layout is (play/ inside neutropia/); the local test build has no ../sw.js.
   if ("serviceWorker" in navigator && /\/play\//.test(location.pathname)) {
     navigator.serviceWorker.register("../sw.js", { scope: "../", updateViaCache: "none" }).catch(function () {});
+  }
+
+  // UPDATES (30 Sep). Every deploy leaves version.txt beside this page holding that build's stamp - the
+  // same one that is on the build's URLs above - so when the server's is newer than this page's own, a
+  // newer build is up. The game shows it (Settings, through NeutropiaUpdate.jslib) and a tap loads it.
+  // Looked for when the page opens, whenever it comes back to the front - an installed copy on a phone
+  // can sit in the background for days without ever loading again - every half hour, and when asked.
+  // nzUpdate: -1 cannot tell (an unstamped local build), 0 looking, 1 this is the latest, 2 a newer one is
+  // up, 3 the look did not get through. Once a newer one has been seen it stays seen.
+  var RUNNING = BUILD_STAMP.slice(3);
+  window.nzUpdate = /^\d{14}$/.test(RUNNING) ? 0 : -1;
+  window.nzCheckUpdate = function () {
+    if (window.nzUpdate === -1) { return; }
+    if (window.nzUpdate !== 2) { window.nzUpdate = 0; }
+    // Past the browser's cache, and the same address every time, so the service worker keeps one copy.
+    fetch("version.txt", { cache: "no-store" })
+      .then(function (r) { if (!r.ok) { throw r.status; } return r.text(); })
+      .then(function (t) {
+        var latest = t.trim();
+        if (/^\d{14}$/.test(latest) && latest > RUNNING) { window.nzUpdate = 2; }
+        else if (window.nzUpdate !== 2) { window.nzUpdate = 1; }
+      })
+      .catch(function () { if (window.nzUpdate !== 2) { window.nzUpdate = 3; } });
+  };
+  // The page is fetched fresh first, so the reload cannot be answered with the copy already held - which
+  // would be this build again. Progress is not touched: it lives in the site's storage, not in the build.
+  window.nzApplyUpdate = function () {
+    fetch(location.href.split("#")[0], { cache: "reload" }).catch(function () {}).then(function () { location.reload(); });
+  };
+  nzCheckUpdate();
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) { nzCheckUpdate(); } });
+  setInterval(function () { if (!document.hidden) { nzCheckUpdate(); } }, 30 * 60 * 1000);
+
+  // KEEP WHAT HAS BEEN WON. Progress lives in this browser's storage for the site (PlayerPrefs, kept in
+  // IndexedDB), and a browser short of space may clear a site's storage to make room. Asking to keep it
+  // is silent in Chrome and Safari, which decide for themselves; Firefox would put up a question in the
+  // player's face, so it is not asked there.
+  if (navigator.storage && navigator.storage.persist && !/Firefox\//.test(ua)) {
+    navigator.storage.persisted()
+      .then(function (kept) { if (!kept) { return navigator.storage.persist(); } })
+      .catch(function () {});
   }
 
   // ?fps=1 SHOWS THE FRAME RATE, for finding out how a phone nobody here has actually plays. Counted off
