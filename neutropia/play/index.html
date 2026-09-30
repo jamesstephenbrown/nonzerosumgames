@@ -17,7 +17,12 @@
 <meta name="apple-mobile-web-app-title" content="NEUTROPIA">
 <meta name="theme-color" content="#336699">
 
-<link rel="manifest" href="manifest.webmanifest">
+<!-- THE LANDING PAGE'S MANIFEST, not this folder's own. One app, whichever page it is installed from:
+     this page's own manifest made a second, different app - its own start page and scope, and locked to
+     landscape - for anyone who installed from here, having arrived by a link straight to the game. The
+     site has play/ inside neutropia/, so ../ is the landing page's; served on its own (the local test
+     build) ../ is this folder, and its copy is used. -->
+<link rel="manifest" href="../manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
 
@@ -126,9 +131,9 @@
   // ONE STAMP PER BUILD, SO A NEW BUILD IS NEVER SERVED STALE. The three payloads have the same names
   // every time, and they are tens of megabytes, so a browser that has them will happily go on using the
   // ones it downloaded days ago - which is a change appearing not to have been made at all. The deploy
-  // script rewrites 20260930074431 to the time of the build, so every deploy asks for new URLs. (The
+  // script rewrites 20260930080930 to the time of the build, so every deploy asks for new URLs. (The
   // service worker never caches these; it is ordinary HTTP caching that holds on to them.)
-  var BUILD_STAMP = "?v=20260930074431";
+  var BUILD_STAMP = "?v=20260930080930";
 
   var config = {
     dataUrl:      "Build/Neutropia.data.unityweb" + BUILD_STAMP,
@@ -177,10 +182,53 @@
     steps.hidden = false;
   }
 
+  // FULL SCREEN IN A PHONE'S BROWSER, not only when installed. Android's browsers can hide their own
+  // bars for a page - iOS cannot, and installed copies are full screen already - so a phone or tablet
+  // playing in a browser tab goes full screen on Play, which needs the tap to be allowed at all. Leaving
+  // it (Back) just leaves it; the game carries on in the tab.
+  function fullScreen () {
+    var root = document.documentElement;
+    var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+    if (installed || iOS || !coarse || document.fullscreenElement || !root.requestFullscreen) { return; }
+    try {
+      var asked = root.requestFullscreen({ navigationUI: "hide" });
+      if (asked && asked.catch) { asked.catch(function () {}); }
+    } catch (e) { /* refused: play on in the tab */ }
+  }
+  document.addEventListener("fullscreenchange", function () { setTimeout(resize, 100); });
+
   playBtn.addEventListener("click", function () {
     started = true;
+    fullScreen ();
     if (ready) { begin(); } else { playBtn.textContent = "Loading\u2026"; }
   });
+
+  // THE SITE'S SERVICE WORKER, registered here as well as by the landing page. A browser will only
+  // install a page as an app when a worker looks after it, and someone sent a link straight to the game
+  // never loads the landing page that registers it - so on Android they could only make a shortcut,
+  // which opens in the browser, bar and all. The same worker and scope, so it is one worker, not two.
+  // Only where the site's layout is (play/ inside neutropia/); the local test build has no ../sw.js.
+  if ("serviceWorker" in navigator && /\/play\//.test(location.pathname)) {
+    navigator.serviceWorker.register("../sw.js", { scope: "../", updateViaCache: "none" }).catch(function () {});
+  }
+
+  // ?fps=1 SHOWS THE FRAME RATE, for finding out how a phone nobody here has actually plays. Counted off
+  // the browser's own frames, which the game draws on, averaged over each half second.
+  if (/[?&]fps=1/.test(location.search)) {
+    var meter = document.createElement("div");
+    meter.style.cssText = "position:fixed;left:8px;top:8px;z-index:20;padding:3px 8px;border-radius:8px;" +
+      "background:rgba(0,0,0,.45);color:#fff;font:600 13px/1.3 ui-monospace,monospace;pointer-events:none";
+    document.body.appendChild(meter);
+    var frames = 0, since = performance.now();
+    (function tick (now) {
+      frames++;
+      if (now - since >= 500) {
+        meter.textContent = Math.round(frames * 1000 / (now - since)) + " fps";
+        frames = 0; since = now;
+      }
+      requestAnimationFrame(tick);
+    })(since);
+  }
 
   var script = document.createElement("script");
   script.src = "Build/Neutropia.loader.js" + BUILD_STAMP;

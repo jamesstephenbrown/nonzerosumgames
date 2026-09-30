@@ -130,6 +130,10 @@
             var mac = /Macintosh\b/.test(ua) && !iOS;
             var chromium = /Chrome|Chromium|Edg|OPR/.test(ua);
             var safari = /Safari/.test(ua) && !chromium;
+            var android = /Android/i.test(ua);
+            // Another app's own browser - a link tapped in WhatsApp, Instagram, Facebook and the like.
+            // Those cannot install anything, and they keep their own bar at the top.
+            var inApp = android && /; wv\)|FBAN|FBAV|Instagram|WhatsApp|Line\/|Snapchat|Twitter|LinkedInApp|Pinterest/i.test(ua);
 
             var card = document.querySelector('.play-card');
             function inline (list) {
@@ -147,7 +151,34 @@
             window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
             window.addEventListener('appinstalled', function () { btn.textContent = 'Play NEUTROPIA'; note.hidden = true; });
 
-            if (iOS) {
+            // ANDROID IS TOLD HOW, as iOS is. Chrome only offers its own install prompt once it has
+            // decided the visitor is interested - after a tap and half a minute on the page - so a first
+            // visit pressing Install straight away had no prompt to show, and fell through to the game in
+            // a browser tab, bar and all. When the prompt is there it is used; when it is not, the steps.
+            if (android) {
+                var how = inApp
+                    ? ['This has opened inside another app. Tap <b>&#8942;</b> (or <b>&#8943;</b>) and choose <b>Open in Chrome</b>, or <b>Open in browser</b>.',
+                       'Tap <b>Install NEUTROPIA</b> again there.']
+                    : /SamsungBrowser/.test(ua)
+                    ? ['Tap <b>&#8801;</b> at the bottom right.', 'Tap <b>Add page to</b>, then <b>Home screen</b>.',
+                       'Open it from the new icon.']
+                    : /Firefox/.test(ua)
+                    ? ['Tap <b>&#8942;</b> at the top right.', 'Tap <b>Install</b>, or <b>Add to Home screen</b>.',
+                       'Open it from the new icon.']
+                    : ['Tap <b>&#8942;</b> at the top right of Chrome.', 'Tap <b>Install app</b>, or <b>Add to Home screen</b> and then <b>Install</b>.',
+                       'Open it from the new icon.'];
+                steps.innerHTML = how.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (deferred && !inApp) {
+                        deferred.prompt();
+                        deferred.userChoice.then(function () { deferred = null; });
+                        return;
+                    }
+                    card.classList.toggle('open');
+                    note.hidden = card.classList.contains('open');
+                });
+            } else if (iOS) {
                 // Saving from HERE is now correct - this page is the app.
                 inline(['Tap <b>&#8943;</b> at the bottom right of Safari.',
                         'Tap <b>Share</b>.',
