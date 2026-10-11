@@ -281,3 +281,176 @@
 </script> -->
 
 
+<script>
+(() => {
+  // Prevent duplicate setup if the shared file loads more than once.
+  if (window.nzMobileCropInstalled) return;
+  window.nzMobileCropInstalled = true;
+
+  const mobile = window.matchMedia("(max-width: 700px)");
+  const states = new Map();
+
+  const style = document.createElement("style");
+  style.textContent = `
+    @media (max-width: 700px) {
+      img.nz-mobile-cropped {
+        display: block !important;
+        float: none !important;
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 1rem auto !important;
+        object-fit: contain !important;
+        box-sizing: border-box !important;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  function apply(img, state) {
+    if (!mobile.matches || !img.isConnected || !state.cropped) return;
+
+    // Don't overwrite an image changed by another script.
+    if (img.getAttribute("src") !== state.original) return;
+
+    img.src = state.cropped;
+    img.classList.add("nz-mobile-cropped");
+  }
+
+  async function crop(img) {
+    if (!mobile.matches || !img.complete || !img.naturalWidth) return;
+
+    // Leave navigation, icons and explicitly excluded images alone.
+    if (img.closest(
+      "header, nav, footer, #menu, #social-icons, [data-no-mobile-crop]"
+    )) return;
+
+    // Leave responsive image sets alone rather than override their sources.
+    if (img.hasAttribute("srcset") || img.closest("picture")) return;
+
+    const existing = states.get(img);
+    if (existing) {
+      apply(img, existing);
+      return;
+    }
+
+    const original = img.getAttribute("src");
+    if (!original) return;
+
+    const url = new URL(img.currentSrc || img.src, document.baseURI);
+    if (!/\.png$/i.test(url.pathname)) return;
+
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+
+    // Skip small icons and unusually large images.
+    if (Math.max(w, h) < 160 || w * h > 16000000) return;
+
+    const state = { original, cropped: null };
+    states.set(img, state);
+
+    try {
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+
+      const pixels = ctx.getImageData(0, 0, w, h).data;
+      let left = w, top = h, right = -1, bottom = -1;
+
+      // Find the bounding box of all non-transparent pixels.
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          if (pixels[(y * w + x) * 4 + 3] > 0) {
+            left = Math.min(left, x);
+            right = Math.max(right, x);
+            top = Math.min(top, y);
+            bottom = Math.max(bottom, y);
+          }
+        }
+      }
+
+      // Fully transparent, or already fills its image rectangle.
+      if (right < left) return;
+      if (left === 0 && top === 0 && right === w - 1 && bottom === h - 1) {
+        return;
+      }
+
+      // Keep a little breathing room around the artwork.
+      const padding = Math.ceil(
+        Math.max(right - left + 1, bottom - top + 1) * 0.02
+      );
+
+      left = Math.max(0, left - padding);
+      top = Math.max(0, top - padding);
+      right = Math.min(w - 1, right + padding);
+      bottom = Math.min(h - 1, bottom + padding);
+
+      const output = document.createElement("canvas");
+      output.width = right - left + 1;
+      output.height = bottom - top + 1;
+
+      output.getContext("2d").drawImage(
+        canvas,
+        left, top, output.width, output.height,
+        0, 0, output.width, output.height
+      );
+
+      const blob = await new Promise(resolve =>
+        output.toBlob(resolve, "image/png")
+      );
+
+      if (!blob) return;
+      state.cropped = URL.createObjectURL(blob);
+      apply(img, state);
+    } catch (error) {
+      // If browser security prevents reading pixels, keep the original.
+      console.warn("Mobile crop skipped:", original, error);
+    }
+  }
+
+  function scan() {
+    if (mobile.matches) document.querySelectorAll("img").forEach(crop);
+  }
+
+  // Handles images that finish loading later, including lazy-loaded images.
+  document.addEventListener("load", event => {
+    if (event.target instanceof HTMLImageElement) crop(event.target);
+  }, true);
+
+  // Handles images inserted by shared includes or other scripts.
+  let queued = false;
+  new MutationObserver(() => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      scan();
+    });
+  }).observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+
+  mobile.addEventListener("change", () => {
+    if (mobile.matches) {
+      scan();
+    } else {
+      for (const [img, state] of states) {
+        if (state.cropped && img.getAttribute("src") === state.cropped) {
+          img.setAttribute("src", state.original);
+        }
+        img.classList.remove("nz-mobile-cropped");
+      }
+    }
+  });
+
+  scan();
+})();
+</script>
