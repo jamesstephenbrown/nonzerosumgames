@@ -778,7 +778,7 @@ input::placeholder, textarea::placeholder {
 
 .image-item img {
   position: absolute;
-  top: 67%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 95%;
@@ -931,6 +931,11 @@ bs {
 @media only screen and (min-device-width: 700px) {
 .image-item {
   padding-top: 200px;
+}
+
+
+.image-item img {
+  top: 67%;
 }
 
   iframe.spotify-embed {
