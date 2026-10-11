@@ -131,9 +131,9 @@
   // ONE STAMP PER BUILD, SO A NEW BUILD IS NEVER SERVED STALE. The three payloads have the same names
   // every time, and they are tens of megabytes, so a browser that has them will happily go on using the
   // ones it downloaded days ago - which is a change appearing not to have been made at all. The deploy
-  // script rewrites 20261010170513 to the time of the build, so every deploy asks for new URLs. (The
+  // script rewrites 20261011092947 to the time of the build, so every deploy asks for new URLs. (The
   // service worker never caches these; it is ordinary HTTP caching that holds on to them.)
-  var BUILD_STAMP = "?v=20261010170513";
+  var BUILD_STAMP = "?v=20261011092947";
 
   var config = {
     dataUrl:      "Build/Neutropia.data.unityweb" + BUILD_STAMP,
@@ -165,6 +165,7 @@
   addEventListener("orientationchange", function () { setTimeout(resize, 250); });
 
   function begin () {
+    window.nzBegun = 1;   // the game can tell the page's Play has been pressed (Updates.Begun)
     loading.classList.add("done");
     resize();
     canvas.focus();
