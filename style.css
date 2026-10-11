@@ -773,7 +773,7 @@ input::placeholder, textarea::placeholder {
   border-radius: 30px; /* Rounded corners */
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.15); /* Background color */
-  padding-top: 200px;
+  padding-top: 20px;
 }
 
 .image-item img {
@@ -929,7 +929,9 @@ bs {
   
 /* Computer */
 @media only screen and (min-device-width: 700px) {
-
+.image-item {
+  padding-top: 200px;
+}
 
   iframe.spotify-embed {
     height: 80px;
@@ -986,7 +988,7 @@ bs {
 
 @media (max-width: 700px) {
   .image-item:has(img.nz-mobile-cropped) {
-    padding-top: 0;
+    padding-top: 20px !important;
   }
 
   .image-item img.nz-mobile-cropped {
