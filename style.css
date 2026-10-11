@@ -928,7 +928,7 @@ bs {
 
   
 /* Computer */
-@media only screen and (min-device-width: 500px) {
+@media only screen and (min-device-width: 700px) {
 
 
   iframe.spotify-embed {
@@ -983,6 +983,17 @@ bs {
   img {
     max-width: 95%;
   }
+
+@media (max-width: 700px) {
+  .image-item:has(img.nz-mobile-cropped) {
+    padding-top: 0;
+  }
+
+  .image-item img.nz-mobile-cropped {
+    margin-top: 0 !important;
+  }
+}
+
   
 }
 
