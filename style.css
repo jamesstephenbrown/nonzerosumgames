@@ -776,6 +776,18 @@ input::placeholder, textarea::placeholder {
   padding-top: 20px;
 }
 
+/* A grid cell that carries a heading above its card (the "... BLOG / ... POD / ... GAME"
+   columns on the home page). Keeping the pair inside one cell means the heading follows
+   its card down when the grid collapses to a single column. */
+.labelled-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelled-col > .image-item {
+  flex: 1; /* cards still line up with each other across the row on desktop */
+}
+
 .image-item img {
   position: absolute;
   top: 70%;
@@ -989,26 +1001,51 @@ bs {
 }
 
 @media (max-width: 700px) {
-  /* Give the card room before the script measures its image. */
+  /* ONE CARD PER ROW, SO HEIGHT COMES FROM CONTENT (not a standard row height).
+     On desktop the cards sit three-across and are deliberately uniform: the artwork is
+     positioned absolutely at 70% down, so it contributes no height, and padding-top plus
+     a min-height fake the box. Stacked single-file on a phone there is nothing to line up
+     with, so that reserved space is just a gap above every image. Here the anchor becomes
+     a flex column, the title and the artwork both return to normal flow, and each card
+     ends up exactly as tall as what is in it. */
   .image-item {
-    min-height: 380px;
+    min-height: 0;
     padding-top: 0 !important;
     box-sizing: border-box;
   }
 
-  /* Keep cropped artwork centred at 70% down the card. */
+  .image-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: none;
+    padding: 0.75rem 1rem;
+  }
+
+  /* The title stops being an overlay and simply sits above the artwork. */
+  .image-item .image-title {
+    position: static;
+    order: -1;
+    padding: 0;
+  }
+
+  /* Artwork flows, so it is what gives the card its height. The crop script sets
+     --nz-crop-max-width on images it has blown up; uncropped ones fall back to 95%. */
+  .image-item img,
   .image-item img.nz-mobile-cropped {
-    position: absolute !important;
-    top: 70% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
 
     width: auto !important;
     height: auto !important;
-    max-width: min(95%, var(--nz-crop-max-width)) !important;
-    max-height: 55% !important;
+    max-width: min(95%, var(--nz-crop-max-width, 95%)) !important;
+    max-height: none !important;
 
-    margin: 0 !important;
+    margin: 0 auto !important;
   }
 }
 
