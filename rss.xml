@@ -10,6 +10,24 @@
     <language>en-us</language>
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>NEUTROPIA</title>
+      <link>https://nonzerosum.games/neutropia/</link>
+      <description><![CDATA[a non-zero-sum 'game' game]]></description>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/neutropia/</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/neutropia.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/neutropia.png"/>
+    </item>
+    <item>
+      <title>LIV BOEREE INTERVIEW</title>
+      <link>https://nonzerosum.games/podcast-livboeree.html</link>
+      <description><![CDATA[a chat with a non-zero hero]]></description>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/podcast-livboeree.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/Thumbnail_Liv%E2%80%94Wide.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/Thumbnail_Liv%E2%80%94Wide.png"/>
+    </item>
+    <item>
       <title>WHAT IS THE META-CRISIS?</title>
       <link>https://nonzerosum.games/metacrisis.html</link>
       <description><![CDATA[the mother of all coordination problems]]></description>

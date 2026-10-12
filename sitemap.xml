@@ -11,6 +11,16 @@
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://nonzerosum.games/neutropia/</loc>
+  <lastmod>2026-10-11T12:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nonzerosum.games/podcast-livboeree.html</loc>
+  <lastmod>2026-10-04T12:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://nonzerosum.games/metacrisis.html</loc>
   <lastmod>2026-09-20T12:00:00+00:00</lastmod>
   <priority>0.80</priority>
