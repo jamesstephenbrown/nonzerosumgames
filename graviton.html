@@ -57,9 +57,17 @@
     }
     .centered-text {
     position: absolute;
-    top: 150px;
+    /* This box is absolutely positioned, so with no width set it shrinks to fit its
+       contents — which left the Spotify iframe's width="100%" resolving against the
+       width of the wrapped title text rather than the page. Giving it a real width
+       lets the embed fill it the way it does on every other page. */
+    width: min(800px, 92vw);
+    /* Was translate(-50%, -50%) from top:150px, which also pulled the box up by half
+       its own height; on a phone that shifted the top of the embed out of view. Now
+       only the horizontal centring remains, and top is the actual top. */
+    top: 25px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     font-family: 'MoreSugar', fallback, sans-serif; /*inherits the font*/
     text-align: center; /*inherits the centering*/
     }
