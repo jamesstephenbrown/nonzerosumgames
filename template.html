@@ -1,0 +1,118 @@
+<!--
+    The following is the HTML model I would like you to follow, to convert my markdown blog to an html page.
+    
+    Fill in all %% %% placemarkers with the following items and otherwise infer from the content of the blog text.
+
+    filename: paretoefficiency - replace any reference to filename with this.
+    title: COSTLESS KINDNESS
+    subtitle: how pareto efficiency can make everyone better off
+    
+    Then I will provide the blog text in Markdown with names of image files. This text is exactly the content I want in the blog, don't reorder or change any of the text that will appear on the page, do not leave anything out, just reformat into HTML.
+
+    COMPLETE ALL THE HTML - DO NOT SKIP ANYTHING - I DO NOT WANT TO HAVE TO COPY / PASTE ANYTHING MYSELF.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CMWXLFBCG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1CMWXLFBCG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>%%TITLE%% - %%SUBTITLE%%</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://nonzerosum.games/%%FILENAME%%.html" />
+    <meta name="description" content="a google friendly description">
+    <meta name="keywords" content="SEO keywords">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NonZeroSumJames">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:image" content="https://nonzerosum.games/Images/Social/%%FILENAME%%.png">
+    <meta property="og:title" content="%%TITLE%% - %%SUBTITLE%%">
+    <meta property="og:description" content="a description based on the post.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NonZeroSumJames">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- menu -->
+    <script>
+        $(document).ready(function() {
+            $("#menu").load("menu.html", function() {
+                var pageName = window.location.pathname.split("/").pop();
+                var menuLink = $("a[href='" + pageName + "']");
+                menuLink.parent().remove();
+            });
+        });
+    </script>
+    <div id="menu"></div>
+    <h1>TITLE</h1><p style="margin-top: 0.2em;">~ subtitle ~</p>
+    <img src="./Images/Content/ImageName.png" alt="alt text">
+    <p>Placemarker paragraph.</p>
+
+    <!-- subheadings are in h3 and are ALL CAPS -->
+    <h3>PLACEMARKER SECTION TITLE</h3>
+    <p>Placemarker paragraph.</p>
+    <img src="./Images/Content/ImageName.png" alt="alt text">
+    <p>Placemarker paragraph.</p>
+    
+    <!-- all lists go in a blockquote -->
+    <blockquote>
+        <p>LIST HEADING</p>
+        <ol>
+            <li>List item</li>
+            <li>List item</li>
+        </ol>
+    </blockquote>
+
+    <h3>SO...</h3>
+    <p>Placemarker paragraph.</p>
+    
+    <div class="nav-section">
+        <a href="%%FILENAME%%-2.html" class="nav-link next"><strong>|<</strong></a>
+        <a href="%%FILENAME%%-1.html" class="nav-link last"><strong><<</strong></a>
+        <span class="part-number"><strong>next:<br>PUTTING<br>IT ON<br>PLASTIC</strong></span>
+        <a href="%%FILENAME%%+1.html" class="nav-link next"><strong>>></strong></a>
+        <a href="%%FILENAME%%+2.html" class="nav-link last"><strong>>|</strong></a>
+    </div>
+
+    <!-- every post has a related content section in this format -->
+    <footer>
+        <h3>RELATED CONTENT</h3>
+        <ul>
+            <!-- all internal links normal external links target = blank -->
+            <li>Find other info about... <a href="link.html">here</a></li>
+        </ul>
+    </footer>
+
+
+    <div class="subscribe">
+        <!-- the text is 8 here because in this font it is an icon -->
+        <a href="subscribe.html" title="SUBSCRIBE" style="text-decoration: none;">8</a>
+    </div>
+
+    <script src="./js/%%FILENAME%%.js"></script>
+        <div id="giscus_thread" ></div>
+    <script src="https://giscus.app/client.js"
+        data-repo="jamesstephenbrown/nonzerosumgames"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkyNDUwNDE4Nzk="
+        data-category-id="DIC_kwDODpsK184CA9jn"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+</body>
+</html>

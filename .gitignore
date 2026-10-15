@@ -1,0 +1,5 @@
+
+# live editor scratch
+.nz-backups/
+*.nztmp
+*.nzbak
