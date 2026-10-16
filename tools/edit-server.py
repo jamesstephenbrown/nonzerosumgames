@@ -144,16 +144,33 @@ def img_spans(src):
     return spans
 
 
+def attr_re(name):
+    """Either quote style. Single quotes are used here whenever the value itself
+    contains a double quote, e.g. alt='"WIN!" say both the hawks'."""
+    return re.compile(r"\b" + name + r"""\s*=\s*("([^"]*)"|'([^']*)')""", re.I)
+
+
+def get_attr(tag, name):
+    m = attr_re(name).search(tag)
+    if not m:
+        return None
+    return m.group(2) if m.group(2) is not None else m.group(3)
+
+
 def set_attr(tag, name, value):
-    """Rewrite one attribute inside a single tag, leaving the rest of it alone."""
-    # ">" must be escaped as well as "<": a raw ">" inside an attribute would
-    # terminate the tag as far as the <img ...> matching is concerned, splitting
-    # one tag into two and throwing the image numbering out.
-    v = ((value or "").replace("&", "&amp;").replace('"', "&quot;")
-         .replace("<", "&lt;").replace(">", "&gt;"))
-    pat = re.compile(r"(\s" + name + r'=")([^"]*)(")', re.I)
-    if pat.search(tag):
-        return pat.sub(lambda m: m.group(1) + v + m.group(3), tag, count=1)
+    """Rewrite one attribute inside a single tag, leaving the rest of it alone.
+
+    ">" is escaped as well as "<": a raw ">" inside an attribute would end the
+    tag as far as tag-matching is concerned, splitting one tag into two. The
+    original quote style is kept, so a hand-written alt='...' stays that way."""
+    raw = value or ""
+    m = attr_re(name).search(tag)
+    single = bool(m and m.group(3) is not None)
+    v = raw.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    v = v.replace("'", "&#39;") if single else v.replace('"', "&quot;")
+    q = "'" if single else '"'
+    if m:
+        return tag[:m.start()] + f"{name}={q}{v}{q}" + tag[m.end():]
     if tag.rstrip().endswith("/>"):
         return tag.rstrip()[:-2].rstrip() + f' {name}="{v}" />'
     return tag.rstrip()[:-1].rstrip() + f' {name}="{v}">'
@@ -332,7 +349,8 @@ def check_page(relpath):
     missing, noalt, heavy = [], [], []
     external = 0
 
-    for attr, url in re.findall(r'(href|src)="([^"]*)"', src):
+    for attr, _, dq, sq in re.findall(r'''\b(href|src)\s*=\s*("([^"]*)"|'([^']*)')''', src):
+        url = dq if dq else sq
         u = url.strip()
         if not u or u.startswith(SKIP_SCHEMES):
             if u.startswith(("http://", "https://", "//")):
@@ -350,10 +368,9 @@ def check_page(relpath):
 
     for a, b in img_spans(src):
         tag = src[a:b]
-        srcm = re.search(r'src="([^"]*)"', tag)
-        altm = re.search(r'alt="([^"]*)"', tag)
-        u = srcm.group(1) if srcm else ""
-        if not altm or not altm.group(1).strip():
+        u = get_attr(tag, "src") or ""
+        alt_val = get_attr(tag, "alt")
+        if alt_val is None or not alt_val.strip():
             noalt.append({"url": u})
         if u and not u.startswith(SKIP_SCHEMES):
             p = os.path.normpath(os.path.join(base, u))
@@ -368,11 +385,10 @@ def check_page(relpath):
     by_alt = {}
     for a, b in img_spans(src):
         tag = src[a:b]
-        am = re.search(r'alt="([^"]*)"', tag)
-        sm = re.search(r'src="([^"]*)"', tag)
-        if not am or not am.group(1).strip() or not sm:
+        av, sv = get_attr(tag, "alt"), get_attr(tag, "src")
+        if not av or not av.strip() or not sv:
             continue
-        by_alt.setdefault(am.group(1).strip(), set()).add(sm.group(1))
+        by_alt.setdefault(av.strip(), set()).add(sv)
     dupes = [{"alt": k, "urls": sorted(v)} for k, v in by_alt.items() if len(v) > 1]
     dupes.sort(key=lambda d: -len(d["urls"]))
 
