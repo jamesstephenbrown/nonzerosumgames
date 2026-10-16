@@ -1043,8 +1043,23 @@ EDITOR_JS = r"""
   });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  // If anything in here throws, the bar can end up on screen with no handlers
+  // attached - buttons that look fine and do nothing. Surface it instead.
+  function safeInit(){
+    try { init(); }
+    catch (err) {
+      var m = document.getElementById('nzmsg');
+      if (m) m.textContent = 'Editor error: ' + (err && err.message ? err.message : err);
+      console.error('[nz editor]', err);
+    }
+  }
+  window.addEventListener('error', function(e){
+    var m = document.getElementById('nzmsg');
+    if (m && !m.textContent) m.textContent = 'Page error: ' + e.message;
+  });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', safeInit);
+  else safeInit();
 })();
 """
 
