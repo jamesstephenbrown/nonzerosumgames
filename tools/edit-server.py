@@ -118,6 +118,30 @@ def scan(src):
             if x["inner_b"] is not None and x["inner_b"] >= x["inner_a"]]
 
 
+IMG_RE = re.compile(r"<img\b[^>]*>", re.I)
+
+
+def img_spans(src):
+    """Every <img> tag's position, counted over the raw source including any in
+    comments, so the numbering is identical when serving and when saving."""
+    return [(m.start(), m.end()) for m in IMG_RE.finditer(src)]
+
+
+def set_attr(tag, name, value):
+    """Rewrite one attribute inside a single tag, leaving the rest of it alone."""
+    # ">" must be escaped as well as "<": a raw ">" inside an attribute would
+    # terminate the tag as far as the <img ...> matching is concerned, splitting
+    # one tag into two and throwing the image numbering out.
+    v = ((value or "").replace("&", "&amp;").replace('"', "&quot;")
+         .replace("<", "&lt;").replace(">", "&gt;"))
+    pat = re.compile(r"(\s" + name + r'=")([^"]*)(")', re.I)
+    if pat.search(tag):
+        return pat.sub(lambda m: m.group(1) + v + m.group(3), tag, count=1)
+    if tag.rstrip().endswith("/>"):
+        return tag.rstrip()[:-2].rstrip() + f' {name}="{v}" />'
+    return tag.rstrip()[:-1].rstrip() + f' {name}="{v}">'
+
+
 def indent_of(src, pos):
     """Whitespace at the start of the line containing pos, so inserted markup
     lines up with its neighbours instead of jamming against the margin."""
@@ -142,6 +166,18 @@ def inject(src, path):
         prev = mark
     out.append(src[prev:])
     page = "".join(out)
+
+    # Number the images too, so alt text and src can be edited even when the
+    # image sits outside any editable block - which on this site is most of them.
+    imgs, prev, n = [], 0, 0
+    for a, b in img_spans(page):
+        tag = page[a:b]
+        close = tag.rstrip().endswith("/>")
+        new = (tag.rstrip()[:-2].rstrip() if close else tag.rstrip()[:-1].rstrip()) \
+            + f' data-nz-img="{n}"' + ("/>" if close else ">")
+        imgs.append(page[prev:a]); imgs.append(new); prev = b; n += 1
+    imgs.append(page[prev:])
+    page = "".join(imgs)
 
     blob = ("<style>" + EDITOR_CSS + "</style><script>"
             + EDITOR_JS.replace("__PATH__", json.dumps(path)) + "</script>")
@@ -199,6 +235,15 @@ def apply_ops(relpath, ops):
             pad = indent_of(src, sp["outer_a"])
             body = "\n".join(pad + line for line in clean(op["html"]).splitlines())
             splices.append((sp["outer_a"], sp["outer_a"], body + "\n" + pad))
+        elif kind == "img":
+            # Only the named attributes of one <img> change; nothing else in the
+            # tag, and nothing around it, is touched.
+            a, b = img_spans(src)[int(op["index"])]
+            tag = src[a:b]
+            for name in ("alt", "src"):
+                if name in op:
+                    tag = set_attr(tag, name, op[name])
+            splices.append((a, b, tag))
         else:
             raise ValueError(f"unknown op {kind!r}")
 
@@ -471,6 +516,7 @@ EDITOR_JS = r"""
   var PATH = __PATH__, on = false, last = null, leaving = false;
   var repl = {};        // index -> new innerHTML
   var dels = {};        // index -> true
+  var imgOps = {};      // image index -> {alt, src} for images outside any block
   var structural = false;
 
   var bar = document.createElement('div');
@@ -492,6 +538,7 @@ EDITOR_JS = r"""
 
   function msg(t){ var e=document.getElementById('nzmsg'); if(e) e.textContent=t||''; }
   function dirtyCount(){ return Object.keys(repl).length + Object.keys(dels).length
+                              + Object.keys(imgOps).length
                               + document.querySelectorAll('[data-nz-new]').length; }
   function touched(){
     document.getElementById('nzsave').disabled = dirtyCount() === 0;
@@ -634,14 +681,52 @@ EDITOR_JS = r"""
     i.click();
   }
 
+  // An image inside an editable block rides along when that block is saved.
+  // One outside any block (most of them here) is saved as a targeted attribute
+  // change to that single <img> tag instead.
+  function imageChanged(img){
+    var host = img.closest('[data-nz],[data-nz-new]');
+    if (host){ markDirty(host); return; }
+    var i = img.getAttribute('data-nz-img');
+    if (i === null) return msg('That image cannot be addressed; edit it in the file.');
+    imgOps[i] = {index:i, alt: img.getAttribute('alt') || '', src: img.getAttribute('src')};
+    img.classList.add('nzdirty');
+    touched();
+  }
+
   function swap(img){
-    pickFile(function(src){
-      img.src = src;
-      var host = img.closest('[data-nz]') || img.closest('[data-nz-new]');
-      if (host) markDirty(host);
-      else { structural = true; touched(); msg('Image replaced. Save to write it in.'); }
-      msg('Image replaced. Save to write it in.');
-    });
+    var p = panel('Image');
+    var prev = document.createElement('img');
+    prev.src = img.getAttribute('src');
+    prev.style.cssText = 'max-width:100%;max-height:120px;display:block;margin:4px 0 10px;border-radius:6px';
+    p.appendChild(prev);
+
+    var lab = document.createElement('div');
+    lab.innerHTML = '<b>Alt text</b> <span style="opacity:.6">(what a screen reader says)</span>';
+    p.appendChild(lab);
+    var alt = document.createElement('input');
+    alt.value = img.getAttribute('alt') || '';
+    alt.placeholder = 'Describe the picture';
+    p.appendChild(alt);
+    alt.oninput = function(){ img.setAttribute('alt', alt.value); imageChanged(img); };
+
+    var btn = document.createElement('button');
+    btn.textContent = 'Replace image...';
+    btn.style.cssText = 'margin-top:8px;font:inherit;font-weight:600;border:0;border-radius:7px;padding:7px 12px;background:#33ffcc;color:#17324d;cursor:pointer';
+    btn.onclick = function(){
+      pickFile(function(src){
+        img.src = src; prev.src = src;
+        imageChanged(img);
+        msg('Image replaced. Save to write it in.');
+      });
+    };
+    p.appendChild(btn);
+
+    var note = document.createElement('p');
+    note.style.cssText = 'margin:10px 0 0;opacity:.6';
+    note.textContent = 'Changes are written when you press Save.';
+    p.appendChild(note);
+    alt.focus();
   }
 
   function init(){
@@ -810,6 +895,9 @@ EDITOR_JS = r"""
       if (!dels[i]) ops.push({op:'replace', index:i, html:repl[i]});
     });
     Object.keys(dels).forEach(function(i){ ops.push({op:'delete', index:i}); });
+    Object.keys(imgOps).forEach(function(i){
+      ops.push({op:'img', index:i, alt:imgOps[i].alt, src:imgOps[i].src});
+    });
 
     // Moves and insertions are both expressed as: take this element's markup and
     // place it next to a numbered neighbour.
@@ -838,7 +926,7 @@ EDITOR_JS = r"""
       if (j.error) return msg('Save failed: ' + j.error);
       // Clear the dirty state BEFORE reloading, or the beforeunload guard below
       // fires against our own reload and asks whether to leave the page.
-      repl = {}; dels = {}; structural = false; leaving = true;
+      repl = {}; dels = {}; imgOps = {}; structural = false; leaving = true;
       document.querySelectorAll('[data-nz-new]').forEach(function(n){
         n.removeAttribute('data-nz-new');
       });
