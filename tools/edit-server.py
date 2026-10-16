@@ -646,8 +646,22 @@ EDITOR_JS = r"""
 
   document.getElementById('nzpub').onclick = function(){
     if (dirtyCount()) return msg('Save first.');
+    msg('Checking what would go up...');
+    // Publish stages everything in the folder, so show exactly what that is
+    // before anything is committed. A stray file is easy to miss otherwise.
+    fetch('/__status').then(function(r){ return r.json(); }).then(function(s){
+      var lines = (s.status || '').split('\n').filter(function(l){ return l.trim(); });
+      if (!lines.length) return msg('Nothing to publish - no changes in the folder.');
+      var list = lines.slice(0, 25).join('\n')
+               + (lines.length > 25 ? '\n...and ' + (lines.length - 25) + ' more' : '');
+      if (!confirm('Publish these ' + lines.length + ' change(s)?\n\n' + list)) return msg('Cancelled.');
+      doPublish();
+    });
+  };
+
+  function doPublish(){
     var m = prompt('Commit message:', 'Edits from the browser');
-    if (m === null) return;
+    if (m === null) return msg('Cancelled.');
     msg('Publishing...');
     fetch('/__publish', {method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({message:m})})
@@ -657,7 +671,7 @@ EDITOR_JS = r"""
       msg(bad.length ? ('Stopped at ' + bad[0].cmd + ': ' + bad[0].out)
                      : 'Published. Live in about a minute.');
     });
-  };
+  }
 
   document.getElementById('nzexit').onclick = function(){
     if (dirtyCount() && !confirm('You have unsaved changes. Leave anyway?')) return;
