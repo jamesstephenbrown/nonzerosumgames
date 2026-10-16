@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Template. install-launcher.sh substitutes __DIR__ for the repo path and
+     writes the result into ~/Library/LaunchAgents, so this works unchanged on
+     a second Mac where the repo lives somewhere else. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>games.nonzerosum.editor</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>__DIR__/tools/edit-server.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>__DIR__</string>
+
+    <!-- Start at login, and restart if it ever stops. -->
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/nzsg-editor.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/nzsg-editor.log</string>
+</dict>
+</plist>
