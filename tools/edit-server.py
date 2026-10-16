@@ -118,13 +118,30 @@ def scan(src):
             if x["inner_b"] is not None and x["inner_b"] >= x["inner_a"]]
 
 
-IMG_RE = re.compile(r"<img\b[^>]*>", re.I)
-
-
 def img_spans(src):
     """Every <img> tag's position, counted over the raw source including any in
-    comments, so the numbering is identical when serving and when saving."""
-    return [(m.start(), m.end()) for m in IMG_RE.finditer(src)]
+    comments, so the numbering is identical when serving and when saving.
+
+    Scanned character by character rather than with <img[^>]*>, because a ">"
+    inside a quoted attribute is legal and common here - alt text on this site
+    uses it as an arrow ("Light Sensitivity > Movement > Eyes"). A naive regex
+    ends the tag at that arrow, which both corrupts the attribute when markers
+    are inserted and invents a tag with no alt text out of the remainder."""
+    spans = []
+    for m in re.finditer(r"<img\b", src, re.I):
+        i, quote = m.end(), None
+        while i < len(src):
+            c = src[i]
+            if quote:
+                if c == quote:
+                    quote = None
+            elif c in "\"'":
+                quote = c
+            elif c == ">":
+                spans.append((m.start(), i + 1))
+                break
+            i += 1
+    return spans
 
 
 def set_attr(tag, name, value):
@@ -331,7 +348,8 @@ def check_page(relpath):
             continue
         missing.append({"attr": attr, "url": u})
 
-    for tag in re.findall(r"<img\b[^>]*>", src):
+    for a, b in img_spans(src):
+        tag = src[a:b]
         srcm = re.search(r'src="([^"]*)"', tag)
         altm = re.search(r'alt="([^"]*)"', tag)
         u = srcm.group(1) if srcm else ""
