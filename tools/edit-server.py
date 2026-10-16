@@ -588,19 +588,19 @@ EDITOR_JS = r"""
   var bar = document.createElement('div');
   bar.id = 'nzbar';
   bar.innerHTML =
-      '<button id="nztoggle">Edit</button>'
-    + '<button id="nzpara" class="sec">+ Para</button>'
-    + '<button id="nzimg"  class="sec">+ Image</button>'
-    + '<button id="nzlink" class="sec">Link</button>'
-    + '<button id="nzcheck" class="sec">Check</button>'
-    + '<button id="nzup"   class="sec" title="Move up">&#9650;</button>'
-    + '<button id="nzdown" class="sec" title="Move down">&#9660;</button>'
-    + '<button id="nzdel"  class="sec" title="Delete block">Delete</button>'
-    + '<button id="nzsave" disabled>Save</button>'
-    + '<button id="nzpub">Publish</button>'
+      '<button type="button" id="nztoggle">Edit</button>'
+    + '<button type="button" id="nzpara" class="sec">+ Para</button>'
+    + '<button type="button" id="nzimg"  class="sec">+ Image</button>'
+    + '<button type="button" id="nzlink" class="sec">Link</button>'
+    + '<button type="button" id="nzcheck" class="sec">Check</button>'
+    + '<button type="button" id="nzup"   class="sec" title="Move up">&#9650;</button>'
+    + '<button type="button" id="nzdown" class="sec" title="Move down">&#9660;</button>'
+    + '<button type="button" id="nzdel"  class="sec" title="Delete block">Delete</button>'
+    + '<button type="button" id="nzsave" disabled>Save</button>'
+    + '<button type="button" id="nzpub">Publish</button>'
     + '<span class="nzspacer"></span><span class="nzmsg" id="nzmsg"></span>'
-    + '<button id="nzundo" class="sec">Undo</button>'
-    + '<button id="nzexit" class="sec">Exit</button>';
+    + '<button type="button" id="nzundo" class="sec">Undo</button>'
+    + '<button type="button" id="nzexit" class="sec">Exit</button>';
 
   function msg(t){ var e=document.getElementById('nzmsg'); if(e) e.textContent=t||''; }
   function dirtyCount(){ return Object.keys(repl).length + Object.keys(dels).length
@@ -777,6 +777,7 @@ EDITOR_JS = r"""
     alt.oninput = function(){ img.setAttribute('alt', alt.value); imageChanged(img); };
 
     var btn = document.createElement('button');
+    btn.type = 'button';
     btn.textContent = 'Replace image...';
     btn.style.cssText = 'margin-top:8px;font:inherit;font-weight:600;border:0;border-radius:7px;padding:7px 12px;background:#33ffcc;color:#17324d;cursor:pointer';
     btn.onclick = function(){
