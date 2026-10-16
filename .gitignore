@@ -3,3 +3,4 @@
 .nz-backups/
 *.nztmp
 *.nzbak
+__pycache__/
