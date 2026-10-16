@@ -1066,11 +1066,17 @@ EDITOR_JS = r"""
       // the buttons do nothing, the script is fine and something is sitting on
       // top of the bar intercepting the clicks.
       var t = document.getElementById('nztoggle');
-      msg(typeof t.onclick === 'function' ? 'ready' : 'WIRING FAILED');
+      var wired = typeof t.onclick === 'function';
+      msg(wired ? 'ready' : 'WIRING FAILED');
+      // Unmissable signal: the whole bar turns GREEN once every handler is
+      // attached. Dark blue means the script never got this far. No hunting for
+      // small text, no console needed.
+      bar.style.background = wired ? '#1a7f4f' : '#8b1a1a';
     }
     catch (err) {
       var m = document.getElementById('nzmsg');
       if (m) m.textContent = 'Editor error: ' + (err && err.message ? err.message : err);
+      try { bar.style.background = '#8b1a1a'; } catch (e) {}
       console.error('[nz editor]', err);
     }
   }
