@@ -1084,6 +1084,14 @@ EDITOR_JS = r"""
       // top of the bar intercepting the clicks.
       var t = document.getElementById('nztoggle');
       var wired = typeof t.onclick === 'function';
+      // Put the diagnosis on the button itself. If this reads "Edit (2)" there
+      // are two bars on the page: getElementById wires the first while the
+      // second is the one on screen, which would look exactly like dead buttons.
+      var bars = document.querySelectorAll('#nzbar').length;
+      t.textContent = 'Edit (' + bars + ')';
+      bar.querySelectorAll('#nztoggle').forEach(function(b){
+        b.textContent = 'Edit (' + bars + ')';
+      });
       msg(wired ? 'ready' : 'WIRING FAILED');
       // Unmissable signal: the whole bar turns GREEN once every handler is
       // attached. Dark blue means the script never got this far. No hunting for
