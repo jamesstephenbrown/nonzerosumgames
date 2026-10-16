@@ -233,6 +233,77 @@ def git(*args):
 
 
 # --------------------------------------------------------------------------
+# Read-only inspection: page check, and the list of pages for the link picker
+# --------------------------------------------------------------------------
+
+SKIP_SCHEMES = ("http://", "https://", "//", "mailto:", "tel:", "javascript:", "data:", "#")
+HEAVY_IMAGE_BYTES = 500_000
+
+
+def list_pages():
+    """Every page at the top level, with its <h1>, for the link picker."""
+    out = []
+    for fn in sorted(os.listdir(ROOT)):
+        if not fn.endswith(".html") or fn.startswith("_"):
+            continue
+        try:
+            s = open(os.path.join(ROOT, fn), encoding="utf-8", errors="ignore").read(6000)
+        except OSError:
+            continue
+        m = re.search(r"<h1[^>]*>(.*?)</h1>", s, re.S) or re.search(r"<title>(.*?)</title>", s, re.S)
+        title = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", m.group(1))).strip() if m else ""
+        out.append({"file": fn, "title": title[:70]})
+    return out
+
+
+def check_page(relpath):
+    """Report broken local targets, missing alt text and heavy images.
+
+    Read-only: it never writes, so it cannot affect the markup. External URLs are
+    counted but not fetched - no network calls, no waiting."""
+    full = safe_path(relpath)
+    src = open(full, encoding="utf-8", errors="ignore").read()
+    # Commented-out markup is not live, so it should not be reported as broken -
+    # placeholders parked in comments are a normal way to stage the next post.
+    src = re.sub(r"<!--.*?-->", "", src, flags=re.S)
+    base = os.path.dirname(full)
+    missing, noalt, heavy = [], [], []
+    external = 0
+
+    for attr, url in re.findall(r'(href|src)="([^"]*)"', src):
+        u = url.strip()
+        if not u or u.startswith(SKIP_SCHEMES):
+            if u.startswith(("http://", "https://", "//")):
+                external += 1
+            continue
+        target = u.split("?")[0].split("#")[0]
+        if not target:
+            continue
+        cand = os.path.normpath(os.path.join(base, target.lstrip("/") if target.startswith("/") else target))
+        if target.startswith("/"):
+            cand = os.path.normpath(os.path.join(ROOT, target.lstrip("/")))
+        if os.path.exists(cand) or os.path.exists(cand + ".html") or os.path.isdir(cand):
+            continue
+        missing.append({"attr": attr, "url": u})
+
+    for tag in re.findall(r"<img\b[^>]*>", src):
+        srcm = re.search(r'src="([^"]*)"', tag)
+        altm = re.search(r'alt="([^"]*)"', tag)
+        u = srcm.group(1) if srcm else ""
+        if not altm or not altm.group(1).strip():
+            noalt.append({"url": u})
+        if u and not u.startswith(SKIP_SCHEMES):
+            p = os.path.normpath(os.path.join(base, u))
+            if os.path.isfile(p):
+                size = os.path.getsize(p)
+                if size > HEAVY_IMAGE_BYTES:
+                    heavy.append({"url": u, "kb": round(size / 1024)})
+
+    return {"page": relpath, "missing": missing, "noalt": noalt,
+            "heavy": heavy, "external": external}
+
+
+# --------------------------------------------------------------------------
 # HTTP
 # --------------------------------------------------------------------------
 
@@ -258,6 +329,16 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if parsed.path == "/__status":
             code, out = git("status", "--porcelain")
             return self._json(200, {"ok": code == 0, "status": out})
+
+        if parsed.path == "/__pages":
+            return self._json(200, {"pages": list_pages()})
+
+        if parsed.path == "/__check":
+            want = (qs.get("path") or ["index.html"])[0]
+            try:
+                return self._json(200, check_page(want))
+            except Exception as exc:
+                return self._json(500, {"error": str(exc)})
 
         rel = urllib.parse.unquote(parsed.path).lstrip("/")
         if rel == "" or rel.endswith("/"):
@@ -367,11 +448,27 @@ EDITOR_CSS = """
 .nzimg-hot{outline:2px dashed #33ffcc;outline-offset:3px;cursor:pointer}
 .nzdirty{background:rgba(51,255,204,.16)}
 .nzfocus{box-shadow:0 0 0 3px rgba(51,255,204,.55)}
+#nzpanel{position:fixed;right:14px;bottom:56px;width:min(430px,92vw);max-height:62vh;overflow:auto;
+ z-index:2147483647;background:#fff;color:#17324d;border-radius:12px;padding:14px 16px;
+ box-shadow:0 8px 30px rgba(0,0,0,.35);font:13px/1.45 -apple-system,BlinkMacSystemFont,sans-serif}
+#nzpanel h4{margin:0 0 8px;font-size:14px}
+#nzpanel ul{margin:4px 0 12px;padding-left:18px}
+#nzpanel li{margin:3px 0;word-break:break-word}
+#nzpanel .ok{color:#1a7f4f}
+#nzpanel .bad{color:#c0392b;font-weight:600}
+#nzpanel input{width:100%;box-sizing:border-box;padding:7px 9px;margin:6px 0;border:1px solid #cbd6e2;border-radius:7px;font:inherit}
+#nzpanel .row{padding:6px 8px;border-radius:6px;cursor:pointer}
+#nzpanel .row:hover{background:#eaf6ff}
+#nzpanel .row b{display:block}
+#nzpanel .row span{opacity:.6;font-size:12px}
+#nzpanel .close{float:right;cursor:pointer;opacity:.5;font-size:16px;line-height:1}
+.nzflash{animation:nzflash 1.6s ease}
+@keyframes nzflash{0%,100%{background:transparent}30%{background:rgba(255,80,80,.35)}}
 """
 
 EDITOR_JS = r"""
 (function(){
-  var PATH = __PATH__, on = false, last = null;
+  var PATH = __PATH__, on = false, last = null, leaving = false;
   var repl = {};        // index -> new innerHTML
   var dels = {};        // index -> true
   var structural = false;
@@ -383,6 +480,7 @@ EDITOR_JS = r"""
     + '<button id="nzpara" class="sec">+ Para</button>'
     + '<button id="nzimg"  class="sec">+ Image</button>'
     + '<button id="nzlink" class="sec">Link</button>'
+    + '<button id="nzcheck" class="sec">Check</button>'
     + '<button id="nzup"   class="sec" title="Move up">&#9650;</button>'
     + '<button id="nzdown" class="sec" title="Move down">&#9660;</button>'
     + '<button id="nzdel"  class="sec" title="Delete block">Delete</button>'
@@ -406,6 +504,23 @@ EDITOR_JS = r"""
   function focusOn(el){
     if (last) last.classList.remove('nzfocus');
     last = el; if (el) el.classList.add('nzfocus');
+  }
+
+  // Shared popover for the link picker and the check report.
+  function closePanel(){
+    var old = document.getElementById('nzpanel');
+    if (old) old.parentNode.removeChild(old);
+  }
+  function panel(title){
+    closePanel();
+    var p = document.createElement('div');
+    p.id = 'nzpanel';
+    var h = document.createElement('div');
+    h.innerHTML = '<span class="close">&times;</span><h4>' + title + '</h4>';
+    h.querySelector('.close').onclick = closePanel;
+    p.appendChild(h);
+    document.body.appendChild(p);
+    return p;
   }
 
   function bind(el){
@@ -557,16 +672,106 @@ EDITOR_JS = r"""
     var host = sel.anchorNode && sel.anchorNode.parentElement
              && sel.anchorNode.parentElement.closest('[data-nz],[data-nz-new]');
     if (!host) return msg('Selection is not inside an editable block.');
-    var url = prompt('Link to (page.html, or a full https:// address):', '');
-    if (!url) return;
-    document.execCommand('createLink', false, url);
-    // Match the site convention: outside links open in a new tab.
-    host.querySelectorAll('a[href="' + url + '"]').forEach(function(a){
-      if (/^https?:\/\//i.test(url) && url.indexOf('nonzerosum.games') === -1)
-        a.setAttribute('target', '_blank');
+
+    // Opening the picker moves focus, which destroys the selection, so keep a
+    // copy of the range and restore it before the link is applied.
+    var saved = sel.getRangeAt(0).cloneRange();
+
+    fetch('/__pages').then(function(r){ return r.json(); }).then(function(d){
+      var p = panel('Link to');
+      var filter = document.createElement('input');
+      filter.placeholder = 'Filter pages, or paste a full https:// address';
+      p.appendChild(filter);
+      var list = document.createElement('div');
+      p.appendChild(list);
+
+      function apply(url){
+        closePanel();
+        var s = window.getSelection();
+        s.removeAllRanges(); s.addRange(saved);
+        document.execCommand('createLink', false, url);
+        host.querySelectorAll('a[href="' + url + '"]').forEach(function(a){
+          // Match the site convention: outside links open in a new tab.
+          if (/^https?:\/\//i.test(url) && url.indexOf('nonzerosum.games') === -1)
+            a.setAttribute('target', '_blank');
+        });
+        markDirty(host);
+        msg('Linked to ' + url);
+      }
+
+      function draw(){
+        var q = filter.value.toLowerCase().trim();
+        list.innerHTML = '';
+        if (/^https?:\/\//i.test(filter.value.trim())){
+          var ext = document.createElement('div');
+          ext.className = 'row';
+          ext.innerHTML = '<b>Use this address</b><span>' + filter.value.trim()
+                        + ' - opens in a new tab</span>';
+          ext.onclick = function(){ apply(filter.value.trim()); };
+          list.appendChild(ext);
+          return;
+        }
+        d.pages.filter(function(pg){
+          return !q || pg.file.toLowerCase().indexOf(q) > -1
+                    || (pg.title || '').toLowerCase().indexOf(q) > -1;
+        }).slice(0, 60).forEach(function(pg){
+          var row = document.createElement('div');
+          row.className = 'row';
+          row.innerHTML = '<b>' + (pg.title || pg.file) + '</b><span>' + pg.file + '</span>';
+          row.onclick = function(){ apply(pg.file); };
+          list.appendChild(row);
+        });
+      }
+      filter.oninput = draw; draw(); filter.focus();
     });
-    markDirty(host);
   };
+
+  document.getElementById('nzcheck').onclick = function(){
+    msg('Checking page...');
+    fetch('/__check?path=' + encodeURIComponent(PATH))
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if (j.error) return msg('Check failed: ' + j.error);
+      msg('');
+      var p = panel('Check: ' + j.page);
+      function section(title, items, render){
+        var h = document.createElement('h4');
+        h.innerHTML = title + ' ' + (items.length
+          ? '<span class="bad">' + items.length + '</span>'
+          : '<span class="ok">none</span>');
+        p.appendChild(h);
+        if (!items.length) return;
+        var ul = document.createElement('ul');
+        items.forEach(function(it){
+          var li = document.createElement('li');
+          li.innerHTML = render(it);
+          li.style.cursor = 'pointer';
+          li.onclick = function(){ reveal(it.url); };
+          ul.appendChild(li);
+        });
+        p.appendChild(ul);
+      }
+      section('Broken links and images', j.missing, function(i){
+        return '<code>' + i.attr + '</code> &rarr; ' + i.url; });
+      section('Images with no alt text', j.noalt, function(i){
+        return i.url || '(no src)'; });
+      section('Heavy images', j.heavy, function(i){
+        return i.url + ' &mdash; ' + i.kb + ' KB'; });
+      var foot = document.createElement('p');
+      foot.style.cssText = 'margin:10px 0 0;opacity:.6';
+      foot.textContent = j.external + ' external link(s) not checked. Click any item to jump to it.';
+      p.appendChild(foot);
+    });
+  };
+
+  function reveal(url){
+    if (!url) return;
+    var el = document.querySelector('[src="' + url + '"],[href="' + url + '"]');
+    if (!el) return msg('Could not locate that on the page.');
+    el.scrollIntoView({behavior:'smooth', block:'center'});
+    el.classList.add('nzflash');
+    setTimeout(function(){ el.classList.remove('nzflash'); }, 1800);
+  }
 
   function move(dir){
     if (!on) return msg('Turn Edit on first.');
@@ -631,6 +836,14 @@ EDITOR_JS = r"""
     .then(function(r){ return r.json(); })
     .then(function(j){
       if (j.error) return msg('Save failed: ' + j.error);
+      // Clear the dirty state BEFORE reloading, or the beforeunload guard below
+      // fires against our own reload and asks whether to leave the page.
+      repl = {}; dels = {}; structural = false; leaving = true;
+      document.querySelectorAll('[data-nz-new]').forEach(function(n){
+        n.removeAttribute('data-nz-new');
+      });
+      touched();
+      msg('Saved. Reloading...');
       // Reload so the numbering matches the file again.
       location.reload();
     });
@@ -679,6 +892,7 @@ EDITOR_JS = r"""
   };
 
   window.addEventListener('beforeunload', function(e){
+    if (leaving) return;                 // our own reload, after a successful save
     if (dirtyCount()){ e.preventDefault(); e.returnValue = ''; }
   });
   }
