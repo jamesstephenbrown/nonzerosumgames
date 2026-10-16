@@ -362,7 +362,21 @@ def check_page(relpath):
                 if size > HEAVY_IMAGE_BYTES:
                     heavy.append({"url": u, "kb": round(size / 1024)})
 
-    return {"page": relpath, "missing": missing, "noalt": noalt,
+    # The same alt text on two different pictures almost always means an <img>
+    # block was copied and the description never updated. The same alt on the
+    # same picture is fine, so compare by distinct src.
+    by_alt = {}
+    for a, b in img_spans(src):
+        tag = src[a:b]
+        am = re.search(r'alt="([^"]*)"', tag)
+        sm = re.search(r'src="([^"]*)"', tag)
+        if not am or not am.group(1).strip() or not sm:
+            continue
+        by_alt.setdefault(am.group(1).strip(), set()).add(sm.group(1))
+    dupes = [{"alt": k, "urls": sorted(v)} for k, v in by_alt.items() if len(v) > 1]
+    dupes.sort(key=lambda d: -len(d["urls"]))
+
+    return {"page": relpath, "missing": missing, "noalt": noalt, "dupes": dupes,
             "heavy": heavy, "external": external}
 
 
@@ -858,6 +872,11 @@ EDITOR_JS = r"""
         return '<code>' + i.attr + '</code> &rarr; ' + i.url; });
       section('Images with no alt text', j.noalt, function(i){
         return i.url || '(no src)'; });
+      section('Same alt on different pictures', (j.dupes || []).map(function(d){
+        return {url: d.urls[0], alt: d.alt, urls: d.urls};
+      }), function(i){
+        return '&ldquo;' + i.alt + '&rdquo;<br><span style="opacity:.65">'
+             + i.urls.join('<br>') + '</span>'; });
       section('Heavy images', j.heavy, function(i){
         return i.url + ' &mdash; ' + i.kb + ' KB'; });
       var foot = document.createElement('p');
