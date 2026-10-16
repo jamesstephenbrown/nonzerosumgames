@@ -188,7 +188,15 @@ def indent_of(src, pos):
 # Serving a page with the editor attached
 # --------------------------------------------------------------------------
 
-def inject(src, path):
+def stamp_of(full):
+    """Cheap identity for a file version: modification time plus size. Serving
+    records it and saving checks it, so an edit made in another editor can never
+    be spliced over using stale block positions."""
+    st = os.stat(full)
+    return f"{st.st_mtime_ns}-{st.st_size}"
+
+
+def inject(src, path, stamp=""):
     spans = scan(src)
     out, prev = [], 0
     for i, sp in enumerate(spans):
@@ -214,7 +222,8 @@ def inject(src, path):
     page = "".join(imgs)
 
     blob = ("<style>" + EDITOR_CSS + "</style><script>"
-            + EDITOR_JS.replace("__PATH__", json.dumps(path)) + "</script>")
+            + EDITOR_JS.replace("__PATH__", json.dumps(path))
+                       .replace("__STAMP__", json.dumps(stamp)) + "</script>")
     at = page.lower().rfind("</body>")
     return (page[:at] + blob + page[at:]) if at != -1 else page + blob
 
@@ -241,13 +250,19 @@ def clean(fragment):
     return frag.strip()
 
 
-def apply_ops(relpath, ops):
+class Stale(Exception):
+    """The file changed on disk since the browser was given its block numbers."""
+
+
+def apply_ops(relpath, ops, stamp=None):
     """ops: replace / insert / insert_before / delete, addressed by block number.
 
     Every operation is turned into a (start, end, replacement) splice against the
     original text, then applied from the end of the file backwards so that earlier
     offsets stay valid."""
     full = safe_path(relpath)
+    if stamp and stamp_of(full) != stamp:
+        raise Stale(relpath)
     src = open(full, encoding="utf-8").read()
     spans = scan(src)
     splices = []
@@ -489,7 +504,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if ((want == "1") or (want is None and cookie_on)) \
                 and is_document and not is_xhr:
             try:
-                page = inject(open(full, encoding="utf-8").read(), rel)
+                page = inject(open(full, encoding="utf-8").read(), rel, stamp_of(full))
             except Exception as exc:
                 return self._json(500, {"error": str(exc)})
             body = page.encode("utf-8")
@@ -514,10 +529,34 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         if route == "/__save":
             try:
-                n = apply_ops(data["path"], data["ops"])
+                n = apply_ops(data["path"], data["ops"], data.get("stamp"))
+            except Stale:
+                return self._json(409, {"stale": True,
+                                        "error": "This file changed on disk since the page "
+                                                 "was loaded. Reload to pick up those changes."})
             except Exception as exc:
                 return self._json(500, {"error": f"{type(exc).__name__}: {exc}"})
-            return self._json(200, {"ok": True, "ops": n})
+            return self._json(200, {"ok": True, "ops": n,
+                                    "stamp": stamp_of(safe_path(data["path"]))})
+
+        if route == "/__reveal":
+            # Hand the file to Finder or VS Code for edits the browser cannot make.
+            try:
+                full = safe_path(data["path"])
+            except ValueError:
+                return self._json(403, {"error": "forbidden"})
+            if not os.path.isfile(full):
+                return self._json(404, {"ok": False, "error": "no such file"})
+            if data.get("app") == "code":
+                for cmd in (["code", "-g", full], ["open", "-a", "Visual Studio Code", full]):
+                    try:
+                        if subprocess.run(cmd, capture_output=True).returncode == 0:
+                            return self._json(200, {"ok": True, "opened": "VS Code"})
+                    except FileNotFoundError:
+                        continue
+                return self._json(200, {"ok": False, "error": "VS Code not found"})
+            subprocess.run(["open", "-R", full], capture_output=True)
+            return self._json(200, {"ok": True, "opened": "Finder"})
 
         if route == "/__upload":
             name = re.sub(r"[^A-Za-z0-9._-]", "_", data.get("name", "image.png"))
@@ -599,7 +638,7 @@ body{padding-bottom:64px}
 
 EDITOR_JS = r"""
 (function(){
-  var PATH = __PATH__, on = false, last = null, leaving = false;
+  var PATH = __PATH__, STAMP = __STAMP__, on = false, last = null, leaving = false;
   var repl = {};        // index -> new innerHTML
   var dels = {};        // index -> true
   var imgOps = {};      // image index -> {alt, src} for images outside any block
@@ -613,6 +652,8 @@ EDITOR_JS = r"""
     + '<button type="button" id="nzimg"  class="sec">+ Image</button>'
     + '<button type="button" id="nzlink" class="sec">Link</button>'
     + '<button type="button" id="nzcheck" class="sec">Check</button>'
+    + '<button type="button" id="nzfinder" class="sec" title="Reveal this file in Finder">Finder</button>'
+    + '<button type="button" id="nzcode" class="sec" title="Open this file in VS Code">Code</button>'
     + '<button type="button" id="nzup"   class="sec" title="Move up">&#9650;</button>'
     + '<button type="button" id="nzdown" class="sec" title="Move down">&#9660;</button>'
     + '<button type="button" id="nzdel"  class="sec" title="Delete block">Delete</button>'
@@ -981,6 +1022,18 @@ EDITOR_JS = r"""
     msg('Deleted. Save to write it in.');
   };
 
+  function reveal(app){
+    fetch('/__reveal', {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({path:PATH, app:app})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      msg(j.ok ? ('Opened in ' + j.opened + ' - reload here after you edit it')
+               : ('Could not open: ' + j.error));
+    });
+  }
+  document.getElementById('nzfinder').onclick = function(){ reveal('finder'); };
+  document.getElementById('nzcode').onclick   = function(){ reveal('code'); };
+
   document.getElementById('nzsave').onclick = function(){
     var ops = [];
     Object.keys(repl).forEach(function(i){
@@ -1012,13 +1065,22 @@ EDITOR_JS = r"""
     if (!ops.length) return msg('Nothing changed.');
     msg('Saving ' + ops.length + ' change(s)...');
     fetch('/__save', {method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({path:PATH, ops:ops})})
+      body: JSON.stringify({path:PATH, ops:ops, stamp:STAMP})})
     .then(function(r){ return r.json(); })
     .then(function(j){
+      if (j.stale){
+        // Someone edited the file in another editor. Refusing is the only safe
+        // move: the block numbers this page holds no longer match the file.
+        msg(j.error);
+        if (confirm(j.error + '\n\nReload now? Unsaved changes here will be lost.'))
+          { leaving = true; location.reload(); }
+        return;
+      }
       if (j.error) return msg('Save failed: ' + j.error);
       // Clear the dirty state BEFORE reloading, or the beforeunload guard below
       // fires against our own reload and asks whether to leave the page.
       repl = {}; dels = {}; imgOps = {}; structural = false; leaving = true;
+      if (j.stamp) STAMP = j.stamp;   // keep in step with the file we just wrote
       document.querySelectorAll('[data-nz-new]').forEach(function(n){
         n.removeAttribute('data-nz-new');
       });
