@@ -540,7 +540,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 EDITOR_CSS = """
 #nzbar{position:fixed;left:0;right:0;bottom:0;z-index:2147483647;display:flex;gap:6px;
  align-items:center;padding:8px 12px;background:#17324d;color:#fff;flex-wrap:wrap;
- font:13px/1.3 -apple-system,BlinkMacSystemFont,sans-serif;box-shadow:0 -2px 12px rgba(0,0,0,.3)}
+ font:13px/1.3 -apple-system,BlinkMacSystemFont,sans-serif;box-shadow:0 -2px 12px rgba(0,0,0,.3);
+ isolation:isolate;pointer-events:auto}
+#nzbar *{pointer-events:auto}
+/* The site's subscribe link is fixed to the bottom-left corner at 200% size -
+   exactly where the Edit and Save buttons sit - and will take the clicks. Push
+   the page up and move that link clear while the editor is on screen. */
+body{padding-bottom:64px}
+.subscribe{bottom:64px !important;z-index:1 !important}
 #nzbar button{font:inherit;font-weight:600;border:0;border-radius:7px;padding:6px 11px;
  cursor:pointer;background:#33ffcc;color:#17324d}
 #nzbar button.sec{background:rgba(255,255,255,.17);color:#fff}
@@ -1052,7 +1059,14 @@ EDITOR_JS = r"""
   // If anything in here throws, the bar can end up on screen with no handlers
   // attached - buttons that look fine and do nothing. Surface it instead.
   function safeInit(){
-    try { init(); }
+    try {
+      init();
+      // Visible proof that every handler attached. If you can see this text but
+      // the buttons do nothing, the script is fine and something is sitting on
+      // top of the bar intercepting the clicks.
+      var t = document.getElementById('nztoggle');
+      msg(typeof t.onclick === 'function' ? 'ready' : 'WIRING FAILED');
+    }
     catch (err) {
       var m = document.getElementById('nzmsg');
       if (m) m.textContent = 'Editor error: ' + (err && err.message ? err.message : err);
