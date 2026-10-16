@@ -466,8 +466,28 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             return
 
+        # Only ever inject into a whole page being opened in the address bar.
+        #
+        # menu.html and social.html are fragments that jQuery fetches into every
+        # page. Once edit mode became sticky via cookie, those requests matched
+        # too, so each page got three editors: its own, plus one from each
+        # fragment. getElementById then wired the handlers to the first bar while
+        # a later duplicate sat on top - buttons that looked perfect and did
+        # nothing. Two independent guards, since either alone can be fooled.
+        fetch_dest = (self.headers.get("Sec-Fetch-Dest") or "").lower()
+        is_xhr = (self.headers.get("X-Requested-With", "").lower() == "xmlhttprequest"
+                  or fetch_dest not in ("", "document", "iframe"))
+
+        is_document = False
+        if full.endswith(".html") and os.path.isfile(full):
+            try:
+                head = open(full, encoding="utf-8", errors="ignore").read(4000).lower()
+                is_document = "<body" in head or "<html" in head
+            except OSError:
+                is_document = False
+
         if ((want == "1") or (want is None and cookie_on)) \
-                and full.endswith(".html") and os.path.isfile(full):
+                and is_document and not is_xhr:
             try:
                 page = inject(open(full, encoding="utf-8").read(), rel)
             except Exception as exc:
@@ -1057,23 +1077,6 @@ EDITOR_JS = r"""
   });
   }
 
-  // Click probe. The handlers are attached, so if a button still does nothing
-  // the click is landing on something else. This reports, in the bar, whatever
-  // element is actually topmost at the point clicked.
-  document.addEventListener('click', function(e){
-    var hit = document.elementFromPoint(e.clientX, e.clientY);
-    var bx = bar.getBoundingClientRect();
-    var overBar = e.clientY >= bx.top;
-    if (!overBar) return;
-    var desc = hit ? (hit.tagName.toLowerCase()
-                     + (hit.id ? '#' + hit.id : '')
-                     + (hit.className && typeof hit.className === 'string'
-                        ? '.' + hit.className.trim().split(/\s+/).join('.') : ''))
-                   : 'nothing';
-    var m = document.getElementById('nzmsg');
-    if (m) m.textContent = 'click hit: ' + desc;
-  }, true);
-
   // If anything in here throws, the bar can end up on screen with no handlers
   // attached - buttons that look fine and do nothing. Surface it instead.
   function safeInit(){
@@ -1082,26 +1085,14 @@ EDITOR_JS = r"""
       // Visible proof that every handler attached. If you can see this text but
       // the buttons do nothing, the script is fine and something is sitting on
       // top of the bar intercepting the clicks.
-      var t = document.getElementById('nztoggle');
-      var wired = typeof t.onclick === 'function';
-      // Put the diagnosis on the button itself. If this reads "Edit (2)" there
-      // are two bars on the page: getElementById wires the first while the
-      // second is the one on screen, which would look exactly like dead buttons.
+      // A second bar on the page would mean handlers wired to the wrong one,
+      // so say so loudly rather than leaving dead-looking buttons.
       var bars = document.querySelectorAll('#nzbar').length;
-      t.textContent = 'Edit (' + bars + ')';
-      bar.querySelectorAll('#nztoggle').forEach(function(b){
-        b.textContent = 'Edit (' + bars + ')';
-      });
-      msg(wired ? 'ready' : 'WIRING FAILED');
-      // Unmissable signal: the whole bar turns GREEN once every handler is
-      // attached. Dark blue means the script never got this far. No hunting for
-      // small text, no console needed.
-      bar.style.background = wired ? '#1a7f4f' : '#8b1a1a';
+      if (bars > 1) msg('WARNING: ' + bars + ' editor bars on this page');
     }
     catch (err) {
       var m = document.getElementById('nzmsg');
       if (m) m.textContent = 'Editor error: ' + (err && err.message ? err.message : err);
-      try { bar.style.background = '#8b1a1a'; } catch (e) {}
       console.error('[nz editor]', err);
     }
   }
