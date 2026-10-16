@@ -223,15 +223,21 @@ def inject(src, path):
 # Writing changes back
 # --------------------------------------------------------------------------
 
-STRIP_ATTRS = re.compile(r'\s+(?:data-nz|data-nz-new|data-nz-bound|contenteditable|spellcheck)="[^"]*"')
+# Any data-nz* attribute, not a list of specific ones: an earlier version listed
+# data-nz and data-nz-new, so data-nz-img was written straight into a page.
+STRIP_ATTRS = re.compile(
+    r'''\s+(?:data-nz[\w-]*|contenteditable|spellcheck)\s*=\s*("[^"]*"|'[^']*')''', re.I)
+EDITOR_CLASSES = ("nzdirty", "nzimg-hot", "nzfocus", "nzflash")
 
 
 def clean(fragment):
     """Remove the editor's own bookkeeping before anything touches the file."""
     frag = STRIP_ATTRS.sub("", fragment)
-    frag = re.sub(r'\s*class="([^"]*)\bnzdirty\b([^"]*)"', lambda m: (
-        f' class="{(m.group(1) + m.group(2)).strip()}"' if (m.group(1) + m.group(2)).strip() else ""), frag)
-    frag = re.sub(r'\s*class="\s*"', "", frag)
+
+    def declass(m):
+        kept = [c for c in m.group(2).split() if c not in EDITOR_CLASSES]
+        return f' class="{" ".join(kept)}"' if kept else ""
+    frag = re.sub(r'\s*class\s*=\s*(["\'])([^"\']*)\1', declass, frag)
     return frag.strip()
 
 
