@@ -1057,6 +1057,23 @@ EDITOR_JS = r"""
   });
   }
 
+  // Click probe. The handlers are attached, so if a button still does nothing
+  // the click is landing on something else. This reports, in the bar, whatever
+  // element is actually topmost at the point clicked.
+  document.addEventListener('click', function(e){
+    var hit = document.elementFromPoint(e.clientX, e.clientY);
+    var bx = bar.getBoundingClientRect();
+    var overBar = e.clientY >= bx.top;
+    if (!overBar) return;
+    var desc = hit ? (hit.tagName.toLowerCase()
+                     + (hit.id ? '#' + hit.id : '')
+                     + (hit.className && typeof hit.className === 'string'
+                        ? '.' + hit.className.trim().split(/\s+/).join('.') : ''))
+                   : 'nothing';
+    var m = document.getElementById('nzmsg');
+    if (m) m.textContent = 'click hit: ' + desc;
+  }, true);
+
   // If anything in here throws, the bar can end up on screen with no handlers
   // attached - buttons that look fine and do nothing. Surface it instead.
   function safeInit(){
