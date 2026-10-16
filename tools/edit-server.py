@@ -349,7 +349,12 @@ def check_page(relpath):
     missing, noalt, heavy = [], [], []
     external = 0
 
-    for attr, _, dq, sq in re.findall(r'''\b(href|src)\s*=\s*("([^"]*)"|'([^']*)')''', src):
+    # Script and style bodies are not markup: the menu loader on every page
+    # contains $("a[href='" + pageName + "']"), which otherwise reads as a link
+    # to a file literally named '" + pageName + "'.
+    link_src = re.sub(r"<(script|style)\b.*?</\1>", "", src, flags=re.S | re.I)
+
+    for attr, _, dq, sq in re.findall(r'''\b(href|src)\s*=\s*("([^"]*)"|'([^']*)')''', link_src):
         url = dq if dq else sq
         u = url.strip()
         if not u or u.startswith(SKIP_SCHEMES):
