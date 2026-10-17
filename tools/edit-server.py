@@ -447,7 +447,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         if parsed.path == "/__status":
             code, out = git("status", "--porcelain")
-            return self._json(200, {"ok": code == 0, "status": out})
+            # Committed-but-unpushed work is invisible to `status`, so count it
+            # separately: otherwise Publish refuses with "nothing to publish"
+            # while the live site is demonstrably out of date.
+            _, ahead = git("rev-list", "--count", "@{upstream}..HEAD")
+            try:
+                ahead_n = int(ahead.strip())
+            except ValueError:
+                ahead_n = 0
+            _, log = git("log", "--oneline", "@{upstream}..HEAD")
+            return self._json(200, {"ok": code == 0, "status": out,
+                                    "ahead": ahead_n, "ahead_log": log})
 
         if parsed.path == "/__pages":
             return self._json(200, {"pages": list_pages()})
@@ -1106,10 +1116,14 @@ EDITOR_JS = r"""
     // before anything is committed. A stray file is easy to miss otherwise.
     fetch('/__status').then(function(r){ return r.json(); }).then(function(s){
       var lines = (s.status || '').split('\n').filter(function(l){ return l.trim(); });
-      if (!lines.length) return msg('Nothing to publish - no changes in the folder.');
-      var list = lines.slice(0, 25).join('\n')
-               + (lines.length > 25 ? '\n...and ' + (lines.length - 25) + ' more' : '');
-      if (!confirm('Publish these ' + lines.length + ' change(s)?\n\n' + list)) return msg('Cancelled.');
+      var ahead = s.ahead || 0;
+      if (!lines.length && !ahead)
+        return msg('Nothing to publish - no changes, and nothing waiting to push.');
+      var parts = [];
+      if (lines.length) parts.push(lines.length + ' uncommitted change(s):\n'
+        + lines.slice(0,20).join('\n') + (lines.length>20 ? '\n...and '+(lines.length-20)+' more':''));
+      if (ahead) parts.push(ahead + ' commit(s) already made, waiting to push:\n' + (s.ahead_log||''));
+      if (!confirm('Publish?\n\n' + parts.join('\n\n'))) return msg('Cancelled.');
       doPublish();
     });
   };
