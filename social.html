@@ -40,7 +40,7 @@
 
 <!-- Begin Mailchimp Subscribe Form -->
 <div id="mc_embed_signup"><br>
-    <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="text-align: center;">
+    <form action="https://games.us8.list-manage.com/subscribe/post?u=445e5215aca824f22b35f8f22&amp;id=f62bbfcd6b&amp;f_id=00bc60e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" onsubmit="var s=this.querySelector('#mce-SIGNUP'); if(s){s.value=location.pathname.split('/').filter(Boolean).pop()||'index.html';}" style="text-align: center;">
 
         <div class="animation-container">
             <img id="animation-frame" src="/Images/Content/Frames_Rabbits_0000.png" alt="Animation Frame">
@@ -133,6 +133,7 @@
 
         <p>To get updated with next week's blog...</p>
         <!-- <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" style="display: block; margin: auto;"> -->
+        <input type="hidden" name="SIGNUP" id="mce-SIGNUP" value="">
         <input type="text" name="FNAME" id="mce-FNAME" placeholder="your first name" autocomplete="given-name" style="display: block; margin: auto auto 12px;">
         <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" placeholder="enter@your.email" style="display: block; margin: auto;">
 
