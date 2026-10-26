@@ -314,6 +314,37 @@ def apply_ops(relpath, ops, stamp=None):
     return len(splices)
 
 
+
+SKIP_DIRS = {".git", ".nz-backups", "__pycache__", "node_modules", "_to_delete"}
+
+
+def find_existing(name, blob):
+    """Return the repo-relative path of a file whose bytes equal blob, or None.
+
+    Same-named files are checked first, then anything of the same size, so a
+    renamed copy is still found. Only files of matching size are ever read."""
+    size = len(blob)
+    named, sized = [], []
+    for d, dirs, files in os.walk(ROOT):
+        dirs[:] = [x for x in dirs if x not in SKIP_DIRS]
+        for f in files:
+            full = os.path.join(d, f)
+            try:
+                if os.path.getsize(full) != size:
+                    continue
+            except OSError:
+                continue
+            (named if f == name else sized).append(full)
+    for full in named + sized:
+        try:
+            with open(full, "rb") as fh:
+                if fh.read() == blob:
+                    return os.path.relpath(full, ROOT).replace(os.sep, "/")
+        except OSError:
+            pass
+    return None
+
+
 def backup_path(relpath):
     os.makedirs(BACKUP_DIR, exist_ok=True)
     return os.path.join(BACKUP_DIR, relpath.replace("/", "__") + ".bak")
@@ -570,15 +601,24 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         if route == "/__upload":
             name = re.sub(r"[^A-Za-z0-9._-]", "_", data.get("name", "image.png"))
+            blob = base64.b64decode(data["data"].split(",", 1)[-1])
+            # The browser only sends a name and bytes, never where the file came
+            # from. If those exact bytes are already in the repo (the usual case:
+            # you dropped the artwork into Images/ first), link to that file
+            # rather than writing a copy.
+            existing = find_existing(name, blob)
+            if existing:
+                return self._json(200, {"ok": True, "reused": True,
+                                        "src": "./" + existing})
             os.makedirs(os.path.join(ROOT, IMAGE_DIR), exist_ok=True)
             stem, ext = os.path.splitext(name)
             dest = os.path.join(ROOT, IMAGE_DIR, name)
             n = 2
-            while os.path.exists(dest):           # never overwrite existing artwork
+            while os.path.exists(dest):           # different art, same name: don't overwrite
                 dest = os.path.join(ROOT, IMAGE_DIR, f"{stem}_{n}{ext}")
                 n += 1
             with open(dest, "wb") as f:
-                f.write(base64.b64decode(data["data"].split(",", 1)[-1]))
+                f.write(blob)
             return self._json(200, {"ok": True,
                                     "src": "./" + IMAGE_DIR + "/" + os.path.basename(dest)})
 
@@ -807,7 +847,11 @@ EDITOR_JS = r"""
       fetch('/__upload', {method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({name:file.name, data:fr.result})})
       .then(function(r){ return r.json(); })
-      .then(function(j){ j.error ? msg('Upload failed: ' + j.error) : done(j.src); });
+      .then(function(j){
+        if (j.error) return msg('Upload failed: ' + j.error);
+        if (j.reused) msg('Using the copy already in the repo: ' + j.src.replace('./',''));
+        done(j.src);
+      });
     };
     fr.readAsDataURL(file);
   }

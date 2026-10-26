@@ -4,3 +4,4 @@
 *.nztmp
 *.nzbak
 __pycache__/
+_to_delete/
