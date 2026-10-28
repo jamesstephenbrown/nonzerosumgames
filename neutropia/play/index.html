@@ -88,7 +88,11 @@
      Play is demoted to the outline. Reserved rather than display:none so nothing moves under a thumb. */
   #btns #play { background: transparent; box-shadow: inset 0 0 0 2px rgba(220,236,255,.45); color: #dcecff; }
   #btns #play[disabled] { box-shadow: inset 0 0 0 2px rgba(220,236,255,.2); color: rgba(220,236,255,.5); }
-
+  /* Why it would not start, when the reason is one a reload cannot fix (the loader's .catch). */
+  #why { margin: 0; max-width: min(80vw, 340px); text-align: center;
+         font-size: clamp(12px, 3.4vmin, 15px); line-height: 1.6; opacity: .85; }
+  #why[hidden] { display: none; }
+  #why b { color: #33ffcc; }
 
 </style>
 </head>
@@ -100,6 +104,7 @@
   <p id="tag">happiness is contagious</p>
   <div id="bar"><div id="fill"></div></div>
   <div id="btns"><button id="play" disabled>Loading&hellip;</button></div>
+  <p id="why" hidden></p>
   <ol id="steps" hidden></ol>
 </div>
 
@@ -292,6 +297,24 @@
       playBtn.disabled = false;
       playBtn.onclick = function () { location.reload(); };
       console.error(err);
+
+      // NO WEBGL, NO GAME (28 Oct). Some refusals are the browser, not the network: the loader turns it away
+      // before downloading anything, and its sentence only ever reached the console. So Brave with graphics
+      // acceleration switched off (Settings, System) sat on a Retry that reloaded into the same refusal for
+      // ever. A reload cannot fix these, so they are said on the screen.
+      var why = document.querySelector("#why"), said = String(err && err.message || err);
+      if (/support WebGL\./.test(said)) {
+        why.innerHTML = "This browser has WebGL turned off, and the game is drawn with it. Turn on <b>" +
+          (/Firefox\//.test(ua) ? "Settings &rsaquo; General &rsaquo; Performance &rsaquo; Use hardware acceleration"
+                                : "Settings &rsaquo; System &rsaquo; Use graphics acceleration") +
+          "</b>, restart the browser, and come back.";
+      } else if (/support (graphics API|WebAssembly)/.test(said)) {
+        why.textContent = "This browser is too old to run the game. Update it, or open this page in another one.";
+      }
+      if (why.innerHTML) {
+        why.hidden = false;
+        document.querySelector("#bar").style.visibility = "hidden";
+      }
     });
   };
   document.body.appendChild(script);
