@@ -250,20 +250,145 @@ def clean(fragment):
     return frag.strip()
 
 
+class StaleUnused(Exception):
+    pass
+
+
 class Stale(Exception):
     """The file changed on disk since the browser was given its block numbers."""
 
 
-def apply_ops(relpath, ops, stamp=None):
+SERVED_DIR = os.path.join(BACKUP_DIR, "served")
+
+
+def _served_path(relpath, stamp):
+    return os.path.join(SERVED_DIR, relpath.replace("/", "__") + "." + stamp + ".html")
+
+
+def remember_served(relpath, stamp, src):
+    """Keep the exact source a page was opened from, so a save can be checked
+    against it by content rather than by timestamp. Newest 10 per page."""
+    os.makedirs(SERVED_DIR, exist_ok=True)
+    path = _served_path(relpath, stamp)
+    if not os.path.exists(path):
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(src)
+    base = relpath.replace("/", "__") + "."
+    mine = sorted((f for f in os.listdir(SERVED_DIR) if f.startswith(base)),
+                  key=lambda f: os.path.getmtime(os.path.join(SERVED_DIR, f)))
+    for old in mine[:-10]:
+        try:
+            os.remove(os.path.join(SERVED_DIR, old))
+        except OSError:
+            pass
+
+
+def rescue_edits(relpath, ops, stamp):
+    """Save an old tab's edits without touching the page. Always writes the raw
+    operations; also renders them into a full page if the exact version the tab
+    was opened from can be found among the backups (matched by its stamp)."""
+    out = os.path.join(ROOT, ".nz-recovery")
+    os.makedirs(out, exist_ok=True)
+    when = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    stem = os.path.join(out, f"editor-rescue-{when}")
+    with open(stem + ".json", "w", encoding="utf-8") as f:
+        json.dump({"path": relpath, "stamp": stamp, "ops": ops}, f, indent=1)
+    found = None
+    for d in (BACKUP_DIR, os.path.join(BACKUP_DIR, "history"), SERVED_DIR, out):
+        if not os.path.isdir(d):
+            continue
+        for name in os.listdir(d):
+            cand = os.path.join(d, name)
+            if os.path.isfile(cand) and cand.endswith((".html", ".bak")) and stamp_of(cand) == stamp:
+                found = cand
+                break
+        if found:
+            break
+    if not found:
+        return os.path.relpath(stem + ".json", ROOT) + " (raw edits only)"
+    tmp_rel = os.path.relpath(stem + ".work.html", ROOT)
+    shutil.copyfile(found, stem + ".work.html")
+    apply_ops(tmp_rel, ops)
+    os.replace(stem + ".work.html", stem + ".html")
+    return os.path.relpath(stem + ".html", ROOT)
+
+
+def can_merge(served, current, ops):
+    """True if every block and image these edits touch is identical in the
+    version the page was opened from and the version on disk now, and the
+    files have the same blocks and images, so the numbers still line up."""
+    a, b = scan(served), scan(current)
+    ia, ib = img_spans(served), img_spans(current)
+    if len(a) != len(b) or len(ia) != len(ib):
+        return False
+    if [x["tag"] for x in a] != [x["tag"] for x in b]:
+        return False
+    blocks, imgs = set(), set()
+    for op in ops:
+        k = op.get("op")
+        if k in ("replace", "delete"):
+            blocks.add(int(op["index"]))
+        elif k == "insert":
+            blocks.add(int(op["after"]))
+        elif k == "insert_before":
+            blocks.add(int(op["before"]))
+        elif k == "img":
+            imgs.add(int(op["index"]))
+        else:
+            return False
+    for i in blocks:
+        if i >= len(a) or served[a[i]["outer_a"]:a[i]["outer_b"]] != current[b[i]["outer_a"]:b[i]["outer_b"]]:
+            return False
+    for i in imgs:
+        if i >= len(ia) or served[ia[i][0]:ia[i][1]] != current[ib[i][0]:ib[i][1]]:
+            return False
+    return True
+
+
+def apply_ops(relpath, ops, stamp=None, force=False):
     """ops: replace / insert / insert_before / delete, addressed by block number.
 
     Every operation is turned into a (start, end, replacement) splice against the
     original text, then applied from the end of the file backwards so that earlier
     offsets stay valid."""
     full = safe_path(relpath)
+    base_src = None            # the text the browser's block numbers refer to
     if stamp and stamp_of(full) != stamp:
-        raise Stale(relpath)
-    src = open(full, encoding="utf-8").read()
+        current = open(full, encoding="utf-8").read()
+        try:
+            served = open(_served_path(relpath, stamp), encoding="utf-8").read()
+        except OSError:
+            served = None
+        if served is not None and served == current:
+            stamp = None       # only the timestamp moved; the text is identical
+        elif served is None and stamp.rsplit("-", 1)[-1] == str(os.path.getsize(full)):
+            stamp = None       # opened before this check existed; same size, treat as same
+            keep_history(full, relpath, "before-save-unverified")
+        elif served is not None and can_merge(served, current, ops):
+            # Changed on disk, but only in blocks these edits don't touch, and with
+            # the same block layout: apply the edits to the current file.
+            keep_history(full, relpath, "before-merged-save")
+            stamp = None
+        elif force and served is not None:
+            # Deliberate overwrite: keep the disk version, then apply the edits to
+            # the text the page was opened from.
+            keep_history(full, relpath, "overwritten-by-editor")
+            base_src = served
+            stamp = None
+    if stamp and stamp_of(full) != stamp:
+        # One-shot override: tools/.allow-stale lists a page whose contents were
+        # restored to exactly what the browser loaded (only the mtime differs).
+        # Honoured once, and only if the size still matches the browser's stamp.
+        flag = os.path.join(ROOT, "tools", ".allow-stale")
+        allowed = False
+        if os.path.exists(flag):
+            names = open(flag).read().split()
+            if relpath.lstrip("/") in names and stamp.rsplit("-", 1)[-1] == str(os.path.getsize(full)):
+                allowed = True
+                os.remove(flag)
+        if not allowed:
+            raise Stale(relpath)
+    src = base_src if base_src is not None else open(full, encoding="utf-8").read()
     spans = scan(src)
     splices = []
 
@@ -307,11 +432,32 @@ def apply_ops(relpath, ops, stamp=None):
 
     os.makedirs(BACKUP_DIR, exist_ok=True)
     shutil.copy2(full, backup_path(relpath))
+    keep_history(full, relpath, "before-save")
     tmp = full + ".nztmp"
     with open(tmp, "w", encoding="utf-8") as f:
         f.write(src)
     os.replace(tmp, full)
+    # Undo may only restore the backup while the file is still exactly what this
+    # save wrote. Edits made anywhere else (VS Code, Claude) invalidate it.
+    with open(backup_path(relpath) + ".stamp", "w") as f:
+        f.write(stamp_of(full))
     return len(splices)
+
+
+def keep_history(full, relpath, why):
+    """Dated copy in .nz-backups/history/ - never overwritten, so nothing the
+    editor does can lose a version. Keeps the newest 30 per page."""
+    hist = os.path.join(BACKUP_DIR, "history")
+    os.makedirs(hist, exist_ok=True)
+    base = relpath.replace("/", "__")
+    when = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    shutil.copy2(full, os.path.join(hist, f"{base}.{when}.{why}.html"))
+    mine = sorted(f for f in os.listdir(hist) if f.startswith(base + "."))
+    for old in mine[:-30]:
+        try:
+            os.remove(os.path.join(hist, old))
+        except OSError:
+            pass
 
 
 
@@ -545,7 +691,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if ((want == "1") or (want is None and cookie_on)) \
                 and is_document and not is_xhr:
             try:
-                page = inject(open(full, encoding="utf-8").read(), rel, stamp_of(full))
+                served_src = open(full, encoding="utf-8").read()
+                page_stamp = stamp_of(full)
+                remember_served(rel, page_stamp, served_src)
+                page = inject(served_src, rel, page_stamp)
             except Exception as exc:
                 return self._json(500, {"error": str(exc)})
             body = page.encode("utf-8")
@@ -569,14 +718,41 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return self._json(400, {"error": "bad json"})
 
         if route == "/__save":
+            diag("editor-log.jsonl", {"event": "save-request", "path": data.get("path"),
+                                      "stamp": data.get("stamp"), "v": data.get("v"),
+                                      "ops": data.get("ops")})
             try:
-                n = apply_ops(data["path"], data["ops"], data.get("stamp"))
+                n = apply_ops(data["path"], data["ops"], data.get("stamp"),
+                              bool(data.get("force")))
             except Stale:
+                can_force = os.path.exists(_served_path(data["path"], data.get("stamp") or ""))
+                # Tabs opened before this version send no "v". Their only stale
+                # option is "reload and lose your edits", so never send them one.
+                if not can_force or not data.get("v"):
+                    # A tab opened before the content check existed: it cannot
+                    # offer an overwrite, and its only option is "reload and lose
+                    # your edits". Rescue the edits into .nz-recovery instead and
+                    # answer with a plain error, which old tabs show without
+                    # reloading.
+                    try:
+                        where = rescue_edits(data["path"], data["ops"], data.get("stamp") or "")
+                    except Exception as exc:
+                        where = f"(rescue failed: {type(exc).__name__}: {exc})"
+                    return self._json(200, {"error": "NOT saved to the page, which changed on "
+                                            "disk. Your edits were rescued to " + where +
+                                            ". Keep this tab open."})
+                return self._json(409, {"stale": True, "can_force": can_force,
+                                        "error": "The file on disk is different from when "
+                                                 "you opened this page."})
+            except StaleUnused:
                 return self._json(409, {"stale": True,
                                         "error": "This file changed on disk since the page "
                                                  "was loaded. Reload to pick up those changes."})
             except Exception as exc:
+                import traceback
+                diag("editor-log.jsonl", {"event": "save-error", "error": traceback.format_exc()})
                 return self._json(500, {"error": f"{type(exc).__name__}: {exc}"})
+            diag("editor-log.jsonl", {"event": "saved", "ops": n})
             return self._json(200, {"ok": True, "ops": n,
                                     "stamp": stamp_of(safe_path(data["path"]))})
 
@@ -638,9 +814,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             except ValueError:
                 return self._json(403, {"error": "forbidden"})
             bak = backup_path(data["path"])
+            full = safe_path(data["path"])
             if not os.path.exists(bak):
                 return self._json(404, {"error": "nothing to undo"})
-            shutil.copy2(bak, safe_path(data["path"]))
+            try:
+                saved = open(bak + ".stamp").read().strip()
+            except OSError:
+                saved = ""
+            if saved != stamp_of(full):
+                return self._json(409, {"error": "Nothing to undo. Undo only reverses the editor's "
+                                        "own last save, and only while the file is unchanged "
+                                        "since (no edits in VS Code or elsewhere). Older "
+                                        "versions are in .nz-backups/history/."})
+            keep_history(full, data["path"], "before-undo")
+            shutil.copy2(bak, full)
+            os.remove(bak + ".stamp")      # one undo per save
             return self._json(200, {"ok": True})
 
         return self._json(404, {"error": "unknown route"})
@@ -766,8 +954,45 @@ EDITOR_JS = r"""
     });
   }
 
-  // Return splits the block: whatever sits after the caret moves into a new <p>.
+  // Return splits the block: whatever sits after the caret moves into a new block.
+  // Inside a list item it makes a new item in the same list. Inside a heading or
+  // paragraph that is nested in a larger block (the glossary box), it only adds
+  // a line break: extracting "to the end of the block" there used to sweep the
+  // rest of the list into a <p>, where the browser threw it away.
   function splitAt(el){
+    var sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return;
+    var node = sel.getRangeAt(0).startContainer;
+    if (node.nodeType !== 1) node = node.parentNode;
+    var inner = node.closest('li,p,h1,h2,h3,h4,h5,h6,figcaption');
+    if (inner && el.contains(inner) && inner !== el){
+      if (inner.tagName === 'LI'){ splitInto(inner, 'li', el); return; }
+      document.execCommand('insertLineBreak'); markDirty(el); return;
+    }
+    if (el.tagName === 'LI'){ splitTop(el, 'li'); return; }
+    if (el.tagName !== 'P'){ document.execCommand('insertLineBreak'); markDirty(el); return; }
+    splitTop(el, 'p');
+  }
+
+  // Split a list item that lives inside a larger editable block: the new item is
+  // part of that block, so it is saved with it.
+  function splitInto(item, tag, host){
+    var r = window.getSelection().getRangeAt(0);
+    r.deleteContents();
+    var after = document.createRange();
+    after.selectNodeContents(item);
+    after.setStart(r.endContainer, r.endOffset);
+    var frag = after.extractContents();
+    var n = document.createElement(tag);
+    n.appendChild(frag);
+    if (!n.textContent.trim() && !n.querySelector('img')) n.innerHTML = '<br>';
+    item.parentNode.insertBefore(n, item.nextSibling);
+    var c = document.createRange(); c.setStart(n, 0); c.collapse(true);
+    var s2 = window.getSelection(); s2.removeAllRanges(); s2.addRange(c);
+    markDirty(host);
+  }
+
+  function splitTop(el, tag){
     var sel = window.getSelection();
     var tail = '';
     if (sel && sel.rangeCount){
@@ -782,7 +1007,7 @@ EDITOR_JS = r"""
       tail = tmp.innerHTML;
     }
     markDirty(el);
-    addBlock(el, '<p>' + (tail || '<br>') + '</p>');
+    addBlock(el, '<' + tag + '>' + (tail || '<br>') + '</' + tag + '>');
   }
 
   // New blocks carry no data-nz. They are saved as "insert after <anchor>", where
@@ -1118,16 +1343,25 @@ EDITOR_JS = r"""
 
     if (!ops.length) return msg('Nothing changed.');
     msg('Saving ' + ops.length + ' change(s)...');
+    var body = {path:PATH, ops:ops, stamp:STAMP, v:2};
+    send(body);
+    function send(body){
     fetch('/__save', {method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({path:PATH, ops:ops, stamp:STAMP})})
+      body: JSON.stringify(body)})
     .then(function(r){ return r.json(); })
     .then(function(j){
       if (j.stale){
-        // Someone edited the file in another editor. Refusing is the only safe
-        // move: the block numbers this page holds no longer match the file.
-        msg(j.error);
-        if (confirm(j.error + '\n\nReload now? Unsaved changes here will be lost.'))
-          { leaving = true; location.reload(); }
+        // The file changed elsewhere since this page was opened.
+        if (j.can_force && !body.force){
+          if (confirm(j.error + '\n\nOK: save my edits anyway. The version on disk is '
+                      + 'kept in .nz-backups/history, so nothing is lost.\n'
+                      + 'Cancel: keep editing without saving.')){
+            body.force = true; return send(body);
+          }
+          return msg('Not saved. Your edits are still here.');
+        }
+        msg(j.error + ' Not saved; your edits are still here. Copy anything you need '
+            + 'before reloading.');
         return;
       }
       if (j.error) return msg('Save failed: ' + j.error);
@@ -1143,6 +1377,7 @@ EDITOR_JS = r"""
       // Reload so the numbering matches the file again.
       location.reload();
     });
+    }
   };
 
   document.getElementById('nzundo').onclick = function(){
@@ -1227,7 +1462,21 @@ EDITOR_JS = r"""
 """
 
 
+def diag(name, record):
+    """Append a line to .nz-recovery/<name> - a trail of what the editor did."""
+    try:
+        d = os.path.join(ROOT, ".nz-recovery")
+        os.makedirs(d, exist_ok=True)
+        record = dict(record, time=datetime.datetime.now().isoformat(timespec="seconds"))
+        with open(os.path.join(d, name), "a", encoding="utf-8") as f:
+            f.write(json.dumps(record) + "\n")
+    except Exception:
+        pass
+
+
 def main():
+    diag("editor-log.jsonl", {"event": "started", "root": ROOT, "code": os.path.abspath(__file__),
+                              "python": sys.executable})
     os.chdir(ROOT)
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("127.0.0.1", PORT), Handler) as srv:

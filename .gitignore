@@ -5,3 +5,5 @@
 *.nzbak
 __pycache__/
 _to_delete/
+tools/.allow-stale
+.nz-recovery/
