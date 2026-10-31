@@ -10,6 +10,15 @@
     <language>en-us</language>
     <atom:link href="https://nonzerosum.games/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
+      <title>THE NATURAL ALLIANCE OF EVERYONE ELSE</title>
+      <link>https://nonzerosum.games/naturalalliance.html</link>
+      <description><![CDATA[alignment as the foundation]]></description>
+      <pubDate>Sat, 31 Oct 2026 12:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://nonzerosum.games/naturalalliance.html</guid>
+      <media:content url="https://nonzerosum.games/Images/Social/naturalalliance.png" medium="image" type="image/png"/>
+      <media:thumbnail url="https://nonzerosum.games/Images/Social/naturalalliance.png"/>
+    </item>
+    <item>
       <title>NEUTROPIA</title>
       <link>https://nonzerosum.games/neutropia/</link>
       <description><![CDATA[a non-zero-sum 'game' game]]></description>

@@ -11,6 +11,11 @@
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://nonzerosum.games/naturalalliance.html</loc>
+  <lastmod>2026-10-31T12:00:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://nonzerosum.games/neutropia/</loc>
   <lastmod>2026-10-11T12:00:00+00:00</lastmod>
   <priority>0.80</priority>
@@ -747,11 +752,6 @@
 </url>
 <url>
   <loc>https://nonzerosum.games/differentiation.html</loc>
-  <lastmod>2026-10-27T00:00:00+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://nonzerosum.games/naturalalliance.html</loc>
   <lastmod>2026-10-27T00:00:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
